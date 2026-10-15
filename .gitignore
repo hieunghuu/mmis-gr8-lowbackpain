@@ -7,6 +7,7 @@ data/*
 totalspineseg/outputs/nifti/
 totalspineseg/outputs/tss/
 totalspineseg/outputs/kaggle/
+totalspineseg/outputs/release/
 totalspineseg/outputs/tss_pilot/
 totalspineseg/outputs/cache/
 totalspineseg/outputs/*.log
