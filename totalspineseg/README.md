@@ -30,6 +30,176 @@ Giải thích về bộ dữ liệu, giải phẫu và thuật ngữ y khoa: xem
 
 ---
 
+## Kiến trúc hệ thống
+
+Ba góc nhìn: (A) kiến trúc tổng thể theo tầng, đọc từ trái sang phải theo mô hình **đầu vào → xử
+lý → đầu ra** – phần **đã xây** nền xanh lá, phần **đề xuất** viền đứt, người dùng nền xanh dương; (B) luồng dữ liệu đã hiện thực trong project; (C) kịch bản sử dụng khi
+triển khai tại khoa chẩn đoán hình ảnh.
+
+Ảnh PNG để chèn vào báo cáo / slide: `outputs/figures/arch_a.png`, `arch_b.png`, `arch_c.png`
+(render từ chính các khối Mermaid dưới đây bằng `npx @mermaid-js/mermaid-cli`).
+
+### A. Kiến trúc tổng thể theo tầng
+
+```mermaid
+flowchart LR
+    subgraph IN["👤 Người tạo dữ liệu"]
+        direction LR
+        KTV["Kỹ thuật viên MRI<br/>chụp ảnh"]
+        RADW["Bác sĩ X-quang<br/>viết báo cáo"]
+    end
+
+    subgraph SRC["① Nguồn dữ liệu"]
+        direction LR
+        PACS["PACS<br/>ảnh DICOM"]
+        RIS["RIS / HIS<br/>báo cáo văn bản tự do"]
+    end
+
+    subgraph ING["② Thu nhận & chuẩn hóa"]
+        direction LR
+        S12["Ảnh: chỉ mục DICOM,<br/>chọn series, NIfTI<br/>s01 · s02"]
+        NOTE["Văn bản: sửa chính tả,<br/>tách câu, chuẩn hóa tầng"]
+    end
+
+    subgraph AI["③ Xử lý AI"]
+        direction LR
+        TSS["Ảnh: phân đoạn<br/>TotalSpineSeg + QC<br/>s03 · s05"]
+        MEAS["Ảnh: đo theo tầng<br/>s08"]
+        NLP["Văn bản: NLP rule<br/>tầng · bệnh · phủ định<br/>s07 (chuẩn vàng s06)"]
+    end
+
+    subgraph DAT["④ Lưu trữ"]
+        direction LR
+        OBJ["Kho ảnh & mask<br/>NIfTI · mask"]
+        FEAT["Bảng có cấu trúc<br/>khóa (patient_id, level)"]
+    end
+
+    subgraph APP["⑤ Ứng dụng"]
+        direction LR
+        ANA["Ghép ảnh × văn bản<br/>phân tích – bước 8"]
+        ASSIST["Trợ lý đọc phim<br/>số đo · cảnh báo"]
+        DASH["Dashboard quản lý"]
+    end
+
+    subgraph OUT["👥 Người dùng thông tin"]
+        direction LR
+        RADR["Bác sĩ X-quang"]
+        CLIN["Bác sĩ lâm sàng"]
+        MGR["Quản lý khoa / QA"]
+        DS["Nhóm dữ liệu / IT"]
+    end
+
+    IN --> SRC --> ING --> AI --> DAT --> APP --> OUT
+    OUT -. "bác sĩ xác nhận / sửa báo cáo" .-> SRC
+    OUT -. "cải tiến rule, ngưỡng QC" .-> AI
+
+    classDef done fill:#d9f2e3,stroke:#2e7d4f,color:#123
+    classDef plan fill:#fff,stroke:#888,stroke-dasharray:5 4,color:#444
+    classDef user fill:#e8ecf7,stroke:#5b6b9a,color:#123
+    class S12,NOTE,TSS,MEAS,NLP,OBJ,FEAT done
+    class PACS,RIS,ANA,ASSIST,DASH plan
+    class KTV,RADW,RADR,CLIN,MGR,DS user
+```
+
+| Tầng | Thành phần | Vai trò trong hệ thống thông tin | Trạng thái |
+|---|---|---|---|
+| ① Nguồn | Máy MRI, PACS, RIS/HIS | Dữ liệu giao dịch hằng ngày của khoa (ảnh + báo cáo). Project dùng bộ dữ liệu công khai thay cho PACS/RIS thật | Thay bằng dữ liệu Mendeley |
+| ② Thu nhận | s01, s02, nạp ghi chú | Làm sạch, chuẩn hóa – biến dữ liệu thô không đồng nhất thành dạng máy xử lý được | ✅ |
+| ③ Xử lý AI | TotalSpineSeg, QC, đo đạc; NLP rule, bộ chuẩn vàng | Biến ảnh và văn bản thành **dữ liệu có cấu trúc** theo cùng khóa `(patient_id, level)` | ✅ (5d chờ chấm) |
+| ④ Lưu trữ | Kho ảnh/mask; bảng có cấu trúc | Ảnh lớn tách khỏi bảng nhỏ; bảng là "kho dữ liệu" cho phân tích | ✅ (dạng file) |
+| ⑤ Ứng dụng | Phân tích, dashboard, trợ lý đọc phim, màn hình duyệt | Tạo **thông tin** cho từng nhóm người dùng; vòng phản hồi cải tiến hệ thống | Bước 8 + đề xuất |
+
+### B. Luồng dữ liệu đã hiện thực (môi trường chạy)
+
+```mermaid
+flowchart LR
+    subgraph EXT["Nguồn ngoài"]
+        MEN["Mendeley Data<br/>MRI 12,5 GB + ghi chú xlsx"]
+    end
+
+    subgraph PC["Máy cá nhân – CPU 16 luồng, RAM 7,3 GB"]
+        S01["s01 chỉ mục DICOM<br/>→ dicom_index.csv"]
+        S02["s02 chọn series<br/>→ 515 NIfTI SAG + 1.823 khối AX"]
+        S04["s04 đóng gói<br/>→ zip 1,2 GB"]
+        S05["s05 QC<br/>→ tss_qc.csv"]
+        S06["s06 tách dev/gold<br/>→ nlp_split.csv, file Excel"]
+        S07["s07 NLP rule<br/>→ nlp_findings_long"]
+        S08["s08 đo đạc<br/>→ level_features.csv"]
+        CPU3["s03 TotalSpineSeg CPU<br/>3 ca chạy lại (~10 phút/ca)"]
+    end
+
+    subgraph KG["Kaggle – GPU Tesla T4"]
+        NB["tss_kaggle.ipynb<br/>512 ca, ~18 s/ca, 2 giờ 41 phút"]
+    end
+
+    subgraph AG["Claude Opus 5.5 (agent độc lập)"]
+        ANN["Gán nhãn 80 ghi chú gold<br/>→ gold_labels_llm"]
+    end
+
+    subgraph GH["GitHub – hieunghuu/mmis-gr8-lowbackpain"]
+        REPO["Mã nguồn + bảng kết quả<br/>(Git, PR review)"]
+        REL["Release v0.1-tss-masks<br/>mask 515 ca (26 MB)"]
+    end
+
+    MEN --> S01 --> S02 --> S04 --> NB
+    S02 --> CPU3
+    NB -- "mask 512 ca" --> S05
+    CPU3 -- "mask 3 ca" --> S05
+    S05 --> S08
+    S02 --> S08
+    MEN --> S06 --> S07
+    S06 --> ANN
+    S05 -- "s00 --pack" --> REL
+    REL -- "s00 --fetch<br/>(thành viên khác)" --> S05
+    S08 --> REPO
+    S07 --> REPO
+    ANN --> REPO
+```
+
+Điểm thiết kế đáng chú ý:
+- **Tách tính toán nặng ra GPU đám mây** (Kaggle): CPU cá nhân ~15 phút/ca → GPU ~18 s/ca.
+- **Ảnh y tế không vào Git**; chỉ mã nguồn + bảng nhỏ. Kết quả tốn kém (mask) chia sẻ qua
+  Release có kiểm tra SHA-256 – thành viên khác không cần GPU.
+- **Kiểm soát chất lượng ở mọi chặng**: QC hình học (s02), QC phân đoạn (s05), QC đo đạc (ảnh
+  overlay s08), bộ chuẩn vàng cho NLP (s06/5d).
+
+### C. Kịch bản sử dụng đề xuất: hỗ trợ bác sĩ đọc một ca mới
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant MRI as Máy MRI
+    participant PACS as PACS
+    participant SYS as Hệ thống (pipeline)
+    participant RAD as Bác sĩ X-quang
+    participant RIS as RIS
+    participant MGR as Quản lý khoa
+
+    MRI->>PACS: Lưu ảnh DICOM của ca mới
+    PACS->>SYS: Gửi series (tự động)
+    SYS->>SYS: Chọn series T2, chuyển NIfTI, phân đoạn, QC
+    SYS->>SYS: Đo theo tầng (chiều cao đĩa, ống sống, nhô sau...)
+    alt QC không đạt (thiếu tầng, 6 đốt thắt lưng...)
+        SYS-->>RAD: Cảnh báo "kiểm tra đánh số tầng"
+    end
+    SYS-->>RAD: Bảng số đo + tầng nghi bất thường
+    RAD->>RIS: Viết báo cáo (văn bản tự do)
+    RIS->>SYS: Báo cáo vừa ký
+    SYS->>SYS: NLP: tầng, bệnh, phủ định
+    SYS->>SYS: So báo cáo với số đo
+    opt Lệch nhau (vd số đo gợi ý hẹp nhưng báo cáo không nhắc)
+        SYS-->>RAD: Gợi ý xem lại tầng X (không tự sửa báo cáo)
+        RAD->>RIS: Xác nhận hoặc bổ sung
+    end
+    SYS->>MGR: Cập nhật dashboard: tần suất bệnh, tỉ lệ lệch, tỉ lệ bổ sung
+```
+
+Hệ thống **không thay bác sĩ chẩn đoán**: nó chuẩn hóa dữ liệu, đo lường, và **gợi ý** chỗ cần
+xem lại; mọi kết luận do bác sĩ ký (human-in-the-loop). Dashboard biến dữ liệu vận hành thành
+thông tin quản lý (chất lượng báo cáo, phân bố bệnh, năng suất).
+
+---
+
 ## 0. Chuẩn bị
 
 ```
@@ -63,6 +233,27 @@ Khi sử dụng, trích dẫn:
 - Sudirman S. *et al.*, "Radiologists' Notes for Lumbar Spine MRI Dataset", Mendeley Data V2, 2019. doi: 10.17632/s6bgczr8s2.2
 - Natalia F. *et al.*, "Automated measurement of anteroposterior diameter and foraminal widths in MRI images for lumbar spinal stenosis diagnosis", *PLoS ONE* 15(11), 2020.
 - TotalSpineSeg: https://github.com/neuropoly/totalspineseg
+
+### Dữ liệu dùng chung trong nhóm
+
+| Dữ liệu | Lấy ở đâu | Ghi chú |
+|---|---|---|
+| Ảnh MRI + ghi chú bác sĩ (12,5 GB) | Mendeley (bảng trên) → đặt vào `data/` | Nguồn chính thức, mỗi người tự tải |
+| **Mask TotalSpineSeg 515 ca** (~29 MB) | **GitHub Release `v0.1-tss-masks`** của repo | Tốn ~2,7 giờ GPU + 30 phút CPU để tạo lại → tải về thay vì chạy lại bước 3 |
+| Preview mask (1 ảnh/ca, tùy chọn) | Cùng release | Để xem QC bằng mắt |
+| NIfTI (2,1 GB) | Tự tạo: `python src/s02_select_convert.py` (~2 phút) | Không chia sẻ |
+| Bảng kết quả, hình, nhãn gold | Git | – |
+
+Tải mask (không cần GPU, không cần cài TotalSpineSeg):
+
+```bash
+python src/s00_shared_data.py --fetch              # mask -> outputs/tss/sag/, kiem tra SHA-256
+python src/s00_shared_data.py --fetch --previews   # them anh preview
+```
+
+Sau đó chạy tiếp `s05` → `s08` (cần ảnh gốc + `s01`, `s02` cho bước đo tín hiệu ở `s08`).
+Người tạo release dùng `python src/s00_shared_data.py --pack` để đóng gói lại từ
+`outputs/tss/sag/` (zip + `MANIFEST.json` ghi commit, ngày, số ca, SHA-256 từng file).
 
 Mọi đường dẫn khai báo trong `src/common.py`. Các script dùng đa tiến trình (16 luồng
 CPU); thời gian ở trên đo trên máy CPU 16 luồng, RAM 7,3 GB.
