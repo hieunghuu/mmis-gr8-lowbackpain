@@ -12,7 +12,7 @@ MRI (DICOM) ─► s01 lập chỉ mục ─► s02 chọn series + NIfTI ─►
 Ghi chú (xlsx) ─► NLP: tầng + bệnh + phủ định ─────────────────────────────────────► nhãn / tầng ──┘
 ```
 
-Giải thích về bộ dữ liệu, giải phẫu và thuật ngữ y khoa: xem [`../Data/README.md`](../Data/README.md).
+Giải thích về bộ dữ liệu, giải phẫu và thuật ngữ y khoa: xem [`../data/README.md`](../data/README.md).
 
 | Bước | Script | Trạng thái |
 |---|---|---|
@@ -34,7 +34,7 @@ Giải thích về bộ dữ liệu, giải phẫu và thuật ngữ y khoa: xem
 
 ```
 mmis-gr8-lowbackpain/      # gốc repo
-├── Data/
+├── data/
 │   ├── MRI_Data/01_MRI_Data/0001 … 0575/    # ảnh DICOM (.ima), 515 bệnh nhân
 │   └── Radiologists Report.xlsx
 └── totalspineseg/                            # thư mục này (code + kết quả)
@@ -51,7 +51,7 @@ python src/s02_select_convert.py     # ~2 phút
 
 ### Nguồn dữ liệu và trích dẫn
 
-Dữ liệu **không** nằm trong Git (12,5 GB, dữ liệu y tế). Tải về và đặt vào `Data/` ở gốc repo theo cấu trúc trên:
+Dữ liệu **không** nằm trong Git (12,5 GB, dữ liệu y tế). Tải về và đặt vào `data/` ở gốc repo theo cấu trúc trên:
 
 | Dữ liệu | Nguồn |
 |---|---|
@@ -396,7 +396,7 @@ tầng đúng thứ tự.
 
 ### 5.1. Mục tiêu
 
-Biến 515 ghi chú tự do (tiếng Anh) trong `Data/Radiologists Report.xlsx` thành nhãn có cấu
+Biến 515 ghi chú tự do (tiếng Anh) trong `data/Radiologists Report.xlsx` thành nhãn có cấu
 trúc **theo từng tầng đĩa đệm**, để bước 8 ghép với số đo từ ảnh theo khóa
 `(patient_id, level)`.
 

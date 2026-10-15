@@ -1,7 +1,7 @@
-# Du lieu goc - KHONG commit (12,5 GB anh y te). Chi giu Data/README.md va Data/assets/
-Data/*
-!Data/README.md
-!Data/assets/
+# Du lieu goc - KHONG commit (12,5 GB anh y te). Chi giu data/README.md va data/assets/
+data/*
+!data/README.md
+!data/assets/
 
 # Ket qua trung gian lon / anh y te da chuyen doi - tao lai bang script
 totalspineseg/outputs/nifti/

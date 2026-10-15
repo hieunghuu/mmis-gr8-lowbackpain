@@ -11,7 +11,7 @@ except AttributeError:
 
 CODE = Path(__file__).resolve().parents[1]          # Assignment/Code
 ROOT = CODE.parent                                   # Assignment
-DATA = ROOT / "Data"
+DATA = ROOT / "data"           # Windows khong phan biet hoa/thuong; Linux thi co
 MRI_DIR = DATA / "MRI_Data" / "01_MRI_Data"
 REPORT_XLSX = DATA / "Radiologists Report.xlsx"
 
