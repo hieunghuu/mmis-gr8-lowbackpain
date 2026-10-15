@@ -1,0 +1,122 @@
+patient_id,sentence_id,text,levels,inherited,n_findings
+8,4,nb:,L4-L5,True,0
+8,5,"about 7 cm, mixed pelvic cyst noted, correlate with us",L4-L5,True,0
+11,3,contrast study is advsied,,False,0
+20,7,further evaluation is advised,L5-S1,True,0
+29,1,mri of the lss,,False,0
+31,4,evidence of previus surgery noted at lumbosacra level,L5-S1,True,0
+35,1,lss mri (with contrast ):follow up,,False,0
+35,2,history of recent & prevoius operations,,False,0
+35,4,inhomogenous enhancing granulation noted at <L4-L5> left sided,L4-L5,False,0
+37,1,mri of the lss,,False,0
+38,6,incidental finding of subcutaneous lipoma at the level of the l1 vertebra,L5-S1,True,0
+42,1,mri of the lss,,False,0
+44,1,lss mri (without contrast):,,False,0
+44,2,"evidence of recent operation noted at lower level ( <L5-S1> ), with soft tissue edema",L5-S1,False,0
+47,3,degenerative spondylotic chnages noted,,False,0
+47,6,nb :,L1-L2,True,0
+47,7,lt renal cyst noted,L1-L2,True,0
+60,1,c spine and lss mri,,False,0
+61,3,adequate spinal,L4-L5,True,0
+68,1,l,,False,0
+68,2,ss mri :,,False,0
+72,5,<L4-L5> & <L5-S1> levels:,"L4-L5,L5-S1",False,0
+84,1,mri of the lumbosacral spine,,False,0
+84,5,"bulky lt iliopsoas muscle with abnormal signal alteration ? post traumatic , infective…",,False,0
+88,3,<L4-L5> level :,L4-L5,False,0
+90,5,nb :,,False,0
+90,7,pelvic cyst noted ? correalte with us,,False,0
+95,1,mri of the lumbosacral spine,,False,0
+104,1,mri of the lumbosacral spine,,False,0
+116,2,previous surgery noted with transpedicle fixation noted at <L3-L4> level,L3-L4,False,0
+116,3,normal bony alignment,L3-L4,True,0
+116,5,"enhancing posterior parts of <L4-L5> disc with ioncreased t2 signal, probably discitis",L4-L5,False,0
+126,2,degenerative changes,,False,0
+133,5,nb :,,False,0
+133,6,"pelvic kidney noted ,correlate with us",,False,0
+137,1,mri of the c,,False,0
+137,7,mri of the lss,,False,0
+147,1,"<L3-L4> , <L4-L5> , <L5-S1> :","L3-L4,L4-L5,L5-S1",False,0
+156,1,lss and pelvis mri:,,False,0
+156,2,evidence of the previous surgery noted,,False,0
+169,3,contrast study is recommended,L3-L4,True,0
+172,1,mri of the lumbosacral spine,,False,0
+181,5,nb : small rt renal cyst,"L4-L5,L5-S1",True,0
+190,1,mri of the l,,False,0
+199,5,schuerman's disease,"L2-L3,L4-L5",True,0
+209,3,"high t2 signal intensity involving the sacral ala (? post trauma, inflamatory",,False,0
+249,1,mri of the lss,,False,0
+250,3,<L1-L2> level :,L1-L2,False,0
+250,5,<L5-S1> level:,L5-S1,False,0
+252,1,lss mri l,,False,0
+256,1,d spine mri,,False,0
+256,2,normal bony alignment,,False,0
+259,1,mri of the lumbar spine :,,False,0
+268,1,mri of the lss,,False,0
+272,1,cervical spine mri,,False,0
+272,4,normal signal intensity of the spinal cord,,False,0
+276,5,nb:cystic dilaition of rt pelvicalyceal syetems ? correalte with renal us,"L4-L5,L5-S1",True,0
+280,1,mri of the l,,False,0
+281,1,<L4-L5> and <L5-S1> :,"L4-L5,L5-S1",False,0
+285,4,focal bony bruise noted at s3-s4 vertebral bodies? post traumatic,,False,0
+286,3,degenerative spondylotic changes,,False,0
+286,6,nb:,"L3-L4,L4-L5",True,0
+286,7,small size rt kidney (correalte with us ),"L3-L4,L4-L5",True,0
+287,1,mri of the lss,,False,0
+299,3,<L3-L4> & <L4-L5>,"L3-L4,L4-L5",False,0
+305,3,nb:,L5-S1,True,0
+306,2,<L3-L4>,L3-L4,False,0
+306,4,<L4-L5>,L4-L5,False,0
+306,6,<L5-S1>,L5-S1,False,0
+308,5,contrast re-evaluation is recommended,L4-L5,True,0
+324,1,mri of the lss,,False,0
+329,2,no significant changes noted since 04/01/2016,,False,0
+333,2,preveius surgery noted at lower lumbar spine,,False,0
+333,3,degenerative spondolytic changes,,False,0
+333,6,"ect, contrast study is advsied",L3-L4,True,0
+344,1,previous surgery noted with transpedicle fixation,,False,0
+363,4,others,L3-L4,True,0
+363,5,lss mri with contrast study is advised,L3-L4,True,0
+378,1,mri of the lumbosacral spine,,False,0
+392,3,dgenerative spondolytic changes,,False,0
+402,3,<L5-S1> level :,L5-S1,False,0
+412,4,"nb:lt pelvic kidney noted , correalte with ultrasound",L5-S1,True,0
+422,4,"3.0 cm, lt ovarian cyst",L4-L5,True,0
+428,1,c,,False,0
+439,4,<L4-L5> level:,L4-L5,False,0
+439,7,<L5-S1> level:,L5-S1,False,0
+439,9,contrast study lss is advised,L5-S1,True,0
+443,4,si joints mri:,L5-S1,True,0
+443,5,normal smooth articular surface of both scaro iliac joints,L5-S1,True,0
+443,7,no bony erosion or peri-osteal reaction,L5-S1,True,0
+443,8,intact visualised muscles,L5-S1,True,0
+468,1,cervical mri :,,False,0
+468,8,the cyst is very expansive but doses not transgress margins of the sacrum,L4-L5,True,0
+468,10,there is no other significant abnormality,L4-L5,True,0
+468,11,appearances mostly represent occult intrasacral meningocele (oim) or sacral meningeal cyst,L4-L5,True,0
+469,4,small rt renal cyst noted,"L4-L5,L2-L3",True,0
+475,1,lss and c,,False,0
+475,4,spine and lss,,False,0
+476,1,lss and c,,False,0
+476,4,spine and lss,,False,0
+484,1,hip joint & sij mri :,,False,0
+484,2,"feature of lt sided scaroilitis noted(infective = septic sacroiliatis ,tb, brucellosis",,False,0
+484,3,"etc), correalte with lab results and needs clinical correaltion",,False,0
+484,4,preserved both femoral head noted,,False,0
+484,8,evidence of left sided gluteal signal alteration noted (old insult ),,False,0
+501,2,feature of degenerative changes,,False,0
+502,6,"nb :about 4 cm , ovarian cyst noted",L3-L4,True,0
+521,1,lss and pelvis mri,,False,0
+521,4,preserved si joints,,False,0
+521,5,features of pid noted,,False,0
+525,1,c,,False,0
+525,5,lss mri (contrast):,,False,0
+525,6,evidnece of previus opertaion at rt sided ( <L4-L5> level):,L4-L5,False,0
+539,1,"<L5-S1> , <L4-L5> :","L5-S1,L4-L5",False,0
+543,6,"nb:small hypointense lesion noted at s2 vertebral body , mostly bony scleorois like bony island","L4-L5,L5-S1",True,0
+546,4,nb :,L4-L5,True,0
+546,5,"about 4 cm, sub mucosal fibroid noted",L4-L5,True,0
+570,1,"<L3-L4> , <L4-L5> :","L3-L4,L4-L5",False,0
+573,3,preveius operation at <L4-L5> level ( fenestration),L4-L5,False,0
+573,5,no definite abnormal enhancing lesion could be seen,L4-L5,True,0
+575,1,mri of the l,,False,0

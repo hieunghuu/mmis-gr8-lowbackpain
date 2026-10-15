@@ -1,0 +1,35 @@
+pattern,n
+\bnoted ar\b,1
+\bcompres+i+ng\b,7
+\bveretbral\b,2
+\bhyperatrophy\b,14
+\bligamnetum\b,6
+\bspondylolithesis\b,3
+\bmultlevel\b,2
+\bsequea?trated\b,1
+\bfracgement\b,1
+\bheniation\b,2
+\bencr[ao]+ching\b,2
+\bnotedat\b,1
+\bdif+use\b,2
+\bnerr+ve\b,1
+\bnot?red\b,2
+\bnerveroots?\b,1
+\bpara central\b,2
+\bsch[a-z]*r?l\w*\s+nod\w*,10
+\bmultilevels\b,4
+\bend\s?palte,2
+\bmodec\b,5
+\bmusclespasm\b,1
+\bhemngioma\b,1
+\birrigular\b,1
+\badquate\b,2
+\babit+ing\b,1
+\bcompressng\b,1
+\bmuscle spam\b,1
+\bfeatrure\b,1
+\bcompres+ion\b,1
+\bcomprssing\b,1
+\bchn?a+nges\b,1
+\bnoetd\b,1
+\btehcal\b,1

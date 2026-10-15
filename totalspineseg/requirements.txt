@@ -1,0 +1,8 @@
+# Phu thuoc Python cho pipeline chinh (da kiem tren Python 3.13, Windows 11, CPU)
+# TotalSpineSeg cai rieng trong .venv-tss (xem README, buoc 3)
+numpy>=2.0
+pandas>=2.2
+openpyxl>=3.1          # doc Radiologists Report.xlsx
+pydicom>=3.0           # doc header va pixel DICOM
+SimpleITK>=2.4         # ghi NIfTI dung hinh hoc
+matplotlib>=3.9        # hinh QC
