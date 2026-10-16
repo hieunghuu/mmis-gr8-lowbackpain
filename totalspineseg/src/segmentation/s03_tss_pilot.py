@@ -6,6 +6,8 @@ TotalSpineSeg cài trong môi trường riêng totalspineseg/.venv-tss (Python 3
     uv pip install --python .venv-tss/Scripts/python.exe torch --index-url https://download.pytorch.org/whl/cpu
     uv pip install --python .venv-tss/Scripts/python.exe "totalspineseg[nnunetv2]"
     uv pip install --python .venv-tss/Scripts/python.exe "kornia<0.8"
+(macOS/Linux: thay .venv-tss/Scripts/python.exe bằng .venv-tss/bin/python. Hoặc cài thẳng vào
+ venv đang chạy script (Python 3.12) - script tìm totalspineseg cạnh sys.executable.)
 (kornia 0.8.x bỏ kornia.core.Tensor mà auglab - phụ thuộc của TotalSpineSeg - cần,
  gây ImportError khi nạp mô hình.)
 Trọng số mô hình tự tải lần đầu vào totalspineseg/.tss_data.
@@ -18,6 +20,7 @@ Chạy (từ thư mục totalspineseg/):
     python src/segmentation/s03_tss_pilot.py ax 1                     # mọi khối axial của BN 1
 Kết quả: outputs/tss_pilot/<tên>/  + 1 dòng log trong outputs/tables/segmentation/tss_pilot_log.csv
 """
+import os
 import shutil
 import subprocess
 import sys
@@ -30,7 +33,9 @@ import psutil
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # src/
 from common import CODE, NIFTI, OUTPUTS, T_SEG
 
-TSS_EXE = CODE / ".venv-tss" / "Scripts" / "totalspineseg.exe"
+# ưu tiên .venv-tss riêng; không có thì dùng totalspineseg cùng venv với Python đang chạy
+_TSS_BIN = CODE / ".venv-tss" / ("Scripts" if sys.platform == "win32" else "bin")
+TSS_EXE = shutil.which("totalspineseg", path=f"{_TSS_BIN}{os.pathsep}{Path(sys.executable).parent}")
 TSS_DATA = CODE / ".tss_data"
 PILOT = OUTPUTS / "tss_pilot"
 
@@ -53,6 +58,8 @@ def run_monitored(cmd):
 
 
 def main():
+    if TSS_EXE is None:
+        sys.exit(f"Không thấy totalspineseg trong {_TSS_BIN} hoặc {Path(sys.executable).parent}")
     kind, pids = sys.argv[1], [int(x) for x in sys.argv[2:]]
     name = f"{kind}_" + "_".join(f"{p:04d}" for p in pids)
     inp, out = PILOT / name / "input", PILOT / name / "output"
