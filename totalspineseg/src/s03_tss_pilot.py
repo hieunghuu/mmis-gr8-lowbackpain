@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
-"""S03 - Chay thu TotalSpineSeg tren vai ca de do thoi gian, RAM va xem ket qua.
+"""S03 - Chạy thử TotalSpineSeg trên vài ca để đo thời gian, RAM và xem kết quả.
 
-TotalSpineSeg cai trong moi truong rieng totalspineseg/.venv-tss (Python 3.12):
+TotalSpineSeg cài trong môi trường riêng totalspineseg/.venv-tss (Python 3.12):
     uv venv .venv-tss --python 3.12
     uv pip install --python .venv-tss/Scripts/python.exe torch --index-url https://download.pytorch.org/whl/cpu
     uv pip install --python .venv-tss/Scripts/python.exe "totalspineseg[nnunetv2]"
     uv pip install --python .venv-tss/Scripts/python.exe "kornia<0.8"
-(kornia 0.8.x bo kornia.core.Tensor ma auglab - phu thuoc cua TotalSpineSeg - can,
- gay ImportError khi nap mo hinh.)
-Trong so mo hinh tu tai lan dau vao totalspineseg/.tss_data.
+(kornia 0.8.x bỏ kornia.core.Tensor mà auglab - phụ thuộc của TotalSpineSeg - cần,
+ gây ImportError khi nạp mô hình.)
+Trọng số mô hình tự tải lần đầu vào totalspineseg/.tss_data.
 
-Script nay chay bang Python chinh, goi totalspineseg nhu mot tien trinh con va lay
-mau RAM (tong ca cay tien trinh) moi 0,5 giay.
+Script này chạy bằng Python chính, gọi totalspineseg như một tiến trình con và lấy
+mẫu RAM (tổng cả cây tiến trình) mỗi 0,5 giây.
 
-Chay (tu thu muc totalspineseg/):
-    python src/s03_tss_pilot.py sag 1 2 100 230 300     # anh sagittal
-    python src/s03_tss_pilot.py ax 1                     # moi khoi axial cua BN 1
-Ket qua: outputs/tss_pilot/<ten>/  + 1 dong log trong outputs/tables/tss_pilot_log.csv
+Chạy (từ thư mục totalspineseg/):
+    python src/s03_tss_pilot.py sag 1 2 100 230 300     # ảnh sagittal
+    python src/s03_tss_pilot.py ax 1                     # mọi khối axial của BN 1
+Kết quả: outputs/tss_pilot/<tên>/  + 1 dòng log trong outputs/tables/tss_pilot_log.csv
 """
 import shutil
 import subprocess
@@ -36,7 +36,7 @@ PILOT = OUTPUTS / "tss_pilot"
 
 
 def run_monitored(cmd):
-    """Chay lenh, tra ve (ma thoat, giay, RAM dinh GB cua ca cay tien trinh)."""
+    """Chạy lệnh, trả về (mã thoát, giây, RAM đỉnh GB của cả cây tiến trình)."""
     t0 = time.time()
     proc = subprocess.Popen(cmd)
     p = psutil.Process(proc.pid)
@@ -69,8 +69,8 @@ def main():
            "--device", "cpu"]
     print(" ".join(cmd))
     code, secs, peak = run_monitored(cmd)
-    print(f"\nMa thoat {code} | {secs:.0f} giay ({secs / len(files):.0f} giay/file) | "
-          f"RAM dinh {peak:.2f} GB / {psutil.virtual_memory().total / 2**30:.1f} GB")
+    print(f"\nMã thoát {code} | {secs:.0f} giây ({secs / len(files):.0f} giây/file) | "
+          f"RAM đỉnh {peak:.2f} GB / {psutil.virtual_memory().total / 2**30:.1f} GB")
 
     log = TABLES / "tss_pilot_log.csv"
     row = pd.DataFrame([{"run": name, "kind": kind, "n_files": len(files),

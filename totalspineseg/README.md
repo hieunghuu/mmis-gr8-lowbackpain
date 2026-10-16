@@ -721,7 +721,8 @@ Mệnh đề không khớp nhãn nào và không phải câu phủ định/bình
 | Q8 | `multilevel … noticeably at L3-L4 & L4-L5` | Chỉ gán các tầng **được nêu tên** | Không suy diễn tầng không được viết |
 | Q9 | Tầng được nhắc chỉ để định vị (`posterior to L5 vertebral body below L4/L5 level`) | Gán tầng đĩa được nêu (L4-L5) | |
 | Q10 | Nhãn mức tầng không được nhắc | `0` = **không được nhắc**, **không** có nghĩa đã kiểm tra là bình thường | Bác sĩ chủ yếu ghi tầng bất thường (nhãn yếu) |
-| Q11 | `nerve roots` / `exit nerve roots` (số nhiều) không nói bên | `side = bilateral` | Số nhiều = rễ hai bên; khác `Lt S1 nerve root` (một bên) |
+| Q11 | `nerve roots` / `exit nerve roots` / `exit (neural) canals` (số nhiều) không nói bên | `side = bilateral` | Số nhiều = hai bên; khác `Lt S1 nerve root`, `exit canal` (một bên / số ít → `unspecified`). Mở rộng cho "canals" khi chốt bộ nhãn gold |
+| Q12 | Câu **phủ định khuôn mẫu không có tầng** (vd "No significant thecal sac or nerve root compression", "adequate spinal canal") đứng sau câu có tầng | `level = UNSPEC`, **không** kế thừa tầng | Câu khuôn mẫu nói chung cho cả phim, không riêng tầng trước. Chỉ kế thừa tầng cho câu **khẳng định** nối tiếp (vd "… // torn annulus" sau "L4-5: …") |
 
 Phát hiện quy ước mới khi làm → thêm dòng vào bảng này **trước** khi sửa code.
 
@@ -777,10 +778,12 @@ hiện khẳng định nào), `multilevel`.
 
   | Sheet | Nội dung |
   |---|---|
-  | `HuongDan` | Cách gán nhãn, danh sách nhãn, quy ước Q1–Q10 |
-  | `ViDu` | Một ghi chú **thuộc tập dev** đã gán nhãn mẫu |
-  | `Notes` | 80 ghi chú gold (`patient_id`, `note`) |
-  | `Labels` | Bảng trống để điền – mỗi phát hiện một dòng: `patient_id`, `level`, `vertebra`, `root`, `finding`, `present`, `severity`, `side`, `comment`; các cột có danh sách chọn sẵn (data validation) để tránh gõ sai |
+  | `HuongDan` | Đọc trước: các sheet, các bước, ý nghĩa từng cột, cách gán tầng |
+  | `NhanBenh` | Bảng tra 23 nhãn: tên tiếng Việt, cách bác sĩ thường viết, ghi chú |
+  | `QuyUoc` | Quy ước Q1–Q11, bảng chọn mức độ và bên |
+  | `ViDu` | Một ghi chú **thuộc tập dev** đã gán nhãn mẫu, có cột giải thích |
+  | `Notes` | 80 ghi chú gold (`patient_id`, `note`) + cột `da_gan` tự đếm số dòng đã nhập (đỏ = chưa gán) |
+  | `Labels` | Bảng trống để điền – mỗi phát hiện một dòng: `patient_id`, `level`, `vertebra`, `root`, `finding`, `present`, `severity`, `side`, `comment`; các cột có danh sách chọn sẵn (data validation) kèm gợi ý khi chọn ô để tránh gõ sai |
 
   Quy tắc điền: ghi **mọi** phát hiện được nhắc, **kể cả phát hiện bị phủ định**
   (`present = FALSE`) để chấm được phần phủ định; ghi chú không có phát hiện nào → một dòng
@@ -789,7 +792,13 @@ hiện khẳng định nào), `multilevel`.
   `gold_labels_final.xlsx`.
 - **Chỉ số:** precision, recall, F1 cho từng bệnh ở hai mức – `(patient, level, finding)` và
   `(patient, finding)`; tổng hợp micro và macro F1. Đánh giá riêng độ đúng của `present`
-  (phủ định), `severity`, `side`.
+  (phủ định), `severity`, `side`. Theo Q12, phát hiện **phủ định** chủ yếu nằm ở `UNSPEC` →
+  chấm phần phủ định ở **mức bệnh nhân** `(patient, finding, present)`; mức tầng chỉ chấm các
+  phát hiện **khẳng định** (đây cũng là thứ dùng ở bước 8).
+- **Bộ nhãn hiện có:** `gold_labels_llm.*` do Claude Opus 5.5 gán (silver standard – nhật ký ở
+  `data/gold/gold_labels_llm_log.md`). Khi chốt: bỏ 3 dòng "extending to lateral recess" gán hẹp
+  ống sống (BN 174, 253) cho khớp 5.4.1; chấp nhận mở rộng Q11 và thêm Q12; giữ cách gán **theo
+  nghĩa** ở các câu khuôn mẫu bị mất chữ "No".
 - **Phân tích lỗi:** liệt kê mọi FP/FN của tập gold theo nguyên nhân (sai tầng, sai phủ định,
   thiếu mẫu, lỗi chính tả, quy ước mơ hồ).
 
@@ -810,6 +819,9 @@ hiện khẳng định nào), `multilevel`.
 - Phạm vi phủ định là xấp xỉ (đến hết mệnh đề / từ cắt) → câu kiểu "no compression of X, Y is
   compressed" có thể sai.
 - Nhãn `0` ở mức tầng là nhãn yếu (Q10) – ảnh hưởng trực tiếp tới cách diễn giải ở bước 8.
+- Rule đọc **theo chữ**: câu khuôn mẫu bị mất chữ "No" (vd câu chèn ép "… or … noted" ngay sau
+  "No evidence of disc herniation") bị hiểu là khẳng định, trong khi đáp án gán theo nghĩa
+  (phủ định) → các câu này sẽ là lỗi của rule khi chấm.
 - Không có nhãn cho: thoái hóa chung ("degenerative spondylotic changes"), hậu phẫu, viêm đĩa
   đệm, nang màng não cùng, phát hiện ngoài cột sống (nang thận/buồng trứng, u xơ, khớp cùng-chậu).
 - Thuộc tính (mức độ, bên) lấy theo cụm từ – đúng với câu mẫu phổ biến nhưng có thể nhầm khi
@@ -843,10 +855,11 @@ Chạy: `python src/s07_nlp_extract.py` (mặc định **chỉ tập dev**, vài
 | 2 | `lateral recess` bị tính là lỗ liên hợp, trái với 5.4.1; "extending to lateral recess" chỉ là vị trí | Chuyển sang hẹp ống sống, bắt buộc có từ chỉ hẹp/chèn ép |
 | 3 | Kiểm tra tay 40 phát hiện ngẫu nhiên: **bệnh 39/40, tầng 40/40, phủ định 40/40, mức độ/bên 33/40** – lỗi hệ thống "mượn nhầm" thuộc tính của bệnh khác (vd "*largely* compressing" gán cho protrusion) | Thuộc tính theo cụm từ (bước ⑥); thêm "neural canals", "exit nerve canal" |
 | 4 | "exit **nerve canal**" bị nhận nhầm là chèn ép rễ | Mẫu rễ loại trường hợp có "canal" theo sau |
+| 5 | Chốt bộ nhãn gold (quy ước mới Q11 mở rộng, Q12) | "exit canals" số nhiều → `bilateral`; phát hiện phủ định trong câu không có tầng → `UNSPEC` (không kế thừa). Phát hiện khẳng định: 0 thay đổi |
 
-Kết quả cuối trên **435 ghi chú dev**: 1.514 câu, 2.321 phát hiện (1.927 khẳng định, 394 phủ
-định); câu chưa khớp **196 → 121**, trong đó chỉ ~37 câu liên quan cột sống và phần lớn thuộc
-nhóm không có nhãn (mục 5.9). 253 dòng có tầng kế thừa từ câu trước.
+Kết quả cuối trên **435 ghi chú dev**: 1.514 câu, 2.308 phát hiện (1.927 khẳng định, 381 phủ
+định – 350 phủ định ở `UNSPEC` theo Q12); câu chưa khớp **196 → 121**, trong đó chỉ ~37 câu liên
+quan cột sống và phần lớn thuộc nhóm không có nhãn (mục 5.9). 141 dòng có tầng kế thừa từ câu trước.
 
 | Bệnh (số BN dev) | Khẳng định | Phủ định |
 |---|---|---|

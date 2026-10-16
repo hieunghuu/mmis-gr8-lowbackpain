@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-"""S07 - Buoc 5b: chay bo rule (nlp_rules.py) tren ghi chu bac si.
+"""S07 - Bước 5b: chạy bộ rule (nlp_rules.py) trên ghi chú bác sĩ.
 
-Mac dinh CHI chay tap dev (435 ghi chu) - tap gold khong duoc nhin khi phat trien rule.
-Dung --all o buoc 5d (sau khi da chot rule) de chay ca 515 ghi chu.
+Mặc định CHỈ chạy tập dev (435 ghi chú) - tập gold không được nhìn khi phát triển rule.
+Dùng --all ở bước 5d (sau khi đã chốt rule) để chạy cả 515 ghi chú.
 
-Dau ra (hau to _dev hoac _all):
-  outputs/tables/nlp_findings_long_<tap>.csv   moi phat hien 1 dong
-  outputs/tables/nlp_sentences_<tap>.csv       moi cau 1 dong (tang gan, so phat hien)
-  outputs/tables/nlp_unmatched_<tap>.csv       cau KHONG khop benh nao -> doc de bo sung mau
-  outputs/tables/nlp_typo_hits_<tap>.csv       so lan sua tung loi chinh ta
+Đầu ra (hậu tố _dev hoặc _all):
+  outputs/tables/nlp_findings_long_<tập>.csv   mỗi phát hiện 1 dòng
+  outputs/tables/nlp_sentences_<tập>.csv       mỗi câu 1 dòng (tầng gán, số phát hiện)
+  outputs/tables/nlp_unmatched_<tập>.csv       câu KHÔNG khớp bệnh nào -> đọc để bổ sung mẫu
+  outputs/tables/nlp_typo_hits_<tập>.csv       số lần sửa từng lỗi chính tả
 
-Chay (tu thu muc totalspineseg/):  python src/s07_nlp_extract.py [--all]
+Chạy (từ thư mục totalspineseg/):  python src/s07_nlp_extract.py [--all]
 """
 import re
 import sys
@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import REPORT_XLSX, TABLES
 import nlp_rules
 
-# cau tieu de / khong mang thong tin benh - khong tinh la "chua khop"
+# câu tiêu đề / không mang thông tin bệnh - không tính là "chưa khớp"
 TRIVIAL = re.compile(r"^(?:l\.?s\.?s|lss|lumbo-?sacral|lumbar|l-?spine|mri|spine|of|\W)*"
                      r"(?:mri|study|spine)?\W*$")
 
@@ -52,19 +52,19 @@ def main():
     pd.Series(nlp_rules.TYPO_HITS, name="n").rename_axis("pattern").to_csv(
         TABLES / f"nlp_typo_hits_{which}.csv")
 
-    print(f"=== Rule tren tap {which}: {d.patient_id.nunique()} ghi chu, {len(sl)} cau ===")
-    print(f"Phat hien: {len(fl)} dong | khang dinh {fl.present.sum()} | phu dinh {(~fl.present).sum()}")
-    print(f"Cau chua khop benh nao (khong tinh tieu de): {len(um)} / {len(sl)}")
-    print(f"Dong co tang ke thua tu cau truoc: {int(fl.level_inherited.sum())}")
-    print(f"Sua loi chinh ta: {sum(nlp_rules.TYPO_HITS.values())} lan, {len(nlp_rules.TYPO_HITS)} mau")
+    print(f"=== Rule trên tập {which}: {d.patient_id.nunique()} ghi chú, {len(sl)} câu ===")
+    print(f"Phát hiện: {len(fl)} dòng | khẳng định {fl.present.sum()} | phủ định {(~fl.present).sum()}")
+    print(f"Câu chưa khớp bệnh nào (không tính tiêu đề): {len(um)} / {len(sl)}")
+    print(f"Dòng có tầng kế thừa từ câu trước: {int(fl.level_inherited.sum())}")
+    print(f"Sửa lỗi chính tả: {sum(nlp_rules.TYPO_HITS.values())} lần, {len(nlp_rules.TYPO_HITS)} mẫu")
     pos = fl[fl.present]
     tab = pd.DataFrame({
-        "BN_khang_dinh": pos.groupby("finding").patient_id.nunique(),
-        "BN_phu_dinh": fl[~fl.present].groupby("finding").patient_id.nunique(),
-    }).fillna(0).astype(int).sort_values("BN_khang_dinh", ascending=False)
-    print("\nSo benh nhan theo benh:")
+        "BN_khẳng_định": pos.groupby("finding").patient_id.nunique(),
+        "BN_phủ_định": fl[~fl.present].groupby("finding").patient_id.nunique(),
+    }).fillna(0).astype(int).sort_values("BN_khẳng_định", ascending=False)
+    print("\nSố bệnh nhân theo bệnh:")
     print(tab.to_string())
-    print("\nPhat hien khang dinh theo tang:")
+    print("\nPhát hiện khẳng định theo tầng:")
     print(pos.level.value_counts().reindex(nlp_rules.VALID_LEVELS + ["UNSPEC"]).fillna(0)
           .astype(int).to_string())
 

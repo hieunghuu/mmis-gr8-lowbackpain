@@ -1,427 +1,424 @@
 patient_id,level,vertebra,root,finding,present,severity,side,comment
-13,L4-L5,,,disc_protrusion,TRUE,unspecified,left,central + left paracentral -> left
-13,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-13,L4-L5,,,foraminal_stenosis,TRUE,unspecified,left,
-13,L5-S1,,,disc_bulge,TRUE,unspecified,central,
-13,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,indenting = compression
-13,L5-S1,,,nerve_root_compression,FALSE,,,
-13,L5-S1,,,foraminal_stenosis,FALSE,,,
-13,L4-L5,,,disc_desiccation,TRUE,unspecified,unspecified,dehydrated
-13,L5-S1,,,disc_desiccation,TRUE,unspecified,unspecified,dehydrated
-13,UNSPEC,,,bone_marrow_lesion,TRUE,unspecified,unspecified,marrow signal reconversion; lesion vs other doubtful
-16,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-16,UNSPEC,,,disc_desiccation,TRUE,unspecified,unspecified,"misspelled; lower discs, no level named"
-16,L4-L5,,,disc_protrusion,TRUE,unspecified,left,central + left paracentral -> left
-16,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-16,L4-L5,,,nerve_root_compression,TRUE,unspecified,left,
-16,L5-S1,,,disc_bulge,TRUE,unspecified,unspecified,
-16,L5-S1,,,thecal_sac_compression,TRUE,mild,unspecified,
-16,L5-S1,,,nerve_root_compression,TRUE,mild,unspecified,same verb mild; singular root
-26,UNSPEC,,,disc_herniation,FALSE,,,
-26,UNSPEC,,,thecal_sac_compression,FALSE,,,
-26,UNSPEC,,,nerve_root_compression,FALSE,,,
-27,L2-L3,,,disc_herniation,TRUE,unspecified,right,Q3 extrusion; paramedian
-33,UNSPEC,,,disc_herniation,FALSE,,,
-33,UNSPEC,,,thecal_sac_compression,FALSE,,,
-33,UNSPEC,,,nerve_root_compression,FALSE,,,
-52,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-52,L3-L4,,,disc_bulge,TRUE,unspecified,unspecified,
-52,L3-L4,,,thecal_sac_compression,TRUE,mild,unspecified,
-52,L3-L4,,,foraminal_stenosis,TRUE,mild,unspecified,Q5 encroaching exit canal
-52,L5-S1,,,disc_bulge,TRUE,unspecified,unspecified,
-52,L5-S1,,,thecal_sac_compression,TRUE,mild,unspecified,
-52,L5-S1,,,foraminal_stenosis,TRUE,mild,unspecified,Q5 encroaching exit canal
-52,L5-S1,,,annular_tear,TRUE,unspecified,unspecified,
-63,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-63,L4-L5,,,disc_bulge,TRUE,mild,unspecified,
-63,L4-L5,,,thecal_sac_compression,TRUE,mild,unspecified,
-63,L4-L5,,,nerve_root_compression,TRUE,mild,bilateral,Q11
-63,L5-S1,,,disc_bulge,TRUE,mild,unspecified,
-63,L5-S1,,,thecal_sac_compression,TRUE,mild,unspecified,
-63,L5-S1,,,nerve_root_compression,TRUE,mild,bilateral,Q11
-78,UNSPEC,,,disc_herniation,FALSE,,,
-78,UNSPEC,,,thecal_sac_compression,FALSE,,,
-78,UNSPEC,,,nerve_root_compression,FALSE,,,
-83,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-83,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-83,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,plural exit canals -> bilateral
-83,L5-S1,,,disc_protrusion,TRUE,unspecified,left,
-83,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-83,L5-S1,,,foraminal_stenosis,TRUE,unspecified,left,"truncated phrase, canal assumed"
-91,UNSPEC,,,scoliosis,TRUE,unspecified,unspecified,
-91,UNSPEC,,,disc_desiccation,TRUE,unspecified,unspecified,"misspelled, no level"
-91,UNSPEC,L2,,vertebral_fracture,TRUE,unspecified,unspecified,old wedge fracture
-91,L4-L5,,,spondylolisthesis,TRUE,unspecified,unspecified,Grade II; L4 over L5
-91,L5-S1,,,disc_bulge,TRUE,unspecified,unspecified,
-91,L5-S1,,,thecal_sac_compression,TRUE,mild,unspecified,
-96,L5-S1,,,disc_protrusion,TRUE,unspecified,left,
-96,L5-S1,,,thecal_sac_compression,FALSE,,,Q1 abutting
-96,L5-S1,,S1,nerve_root_compression,FALSE,,,Q1 abutting
-96,UNSPEC,,,spinal_canal_stenosis,FALSE,,,Q6; general statement -> UNSPEC
-97,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-97,L5-S1,,,disc_bulge,TRUE,unspecified,left,focal bulge more to left
-97,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-97,L5-S1,,,nerve_root_compression,TRUE,unspecified,bilateral,both exit nerve roots
-97,L5-S1,,,disc_desiccation,TRUE,unspecified,unspecified,dehydrated disc material
-105,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-105,UNSPEC,,,schmorl_nodes,TRUE,unspecified,unspecified,
-105,UNSPEC,L4,,other,TRUE,unspecified,unspecified,suggestive limbus vertebra
-105,L4-L5,,,disc_bulge,TRUE,mild,unspecified,
-105,L4-L5,,,thecal_sac_compression,TRUE,mild,unspecified,
-105,L4-L5,,,nerve_root_compression,TRUE,mild,bilateral,both nerve roots
-105,L5-S1,,,disc_bulge,TRUE,mild,unspecified,
-105,L5-S1,,,thecal_sac_compression,TRUE,mild,unspecified,
-105,L5-S1,,,nerve_root_compression,TRUE,mild,bilateral,both nerve roots
-113,L5-S1,,,disc_bulge,TRUE,mild,unspecified,
-113,UNSPEC,,,thecal_sac_compression,FALSE,,,
-113,UNSPEC,,,nerve_root_compression,FALSE,,,
-113,UNSPEC,,,spinal_canal_stenosis,FALSE,,,Q6
-127,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-127,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-127,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,plural exit canals
-131,L4-L5,,,disc_bulge,TRUE,mild,unspecified,
-131,UNSPEC,,,spinal_canal_stenosis,FALSE,,,Q6
-132,UNSPEC,,,disc_protrusion,TRUE,unspecified,right,
-132,UNSPEC,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-132,UNSPEC,,S1,nerve_root_compression,TRUE,unspecified,right,
-159,UNSPEC,,,disc_herniation,FALSE,,,
-159,UNSPEC,,,thecal_sac_compression,FALSE,,,negation word likely dropped; literal reads positive
-159,UNSPEC,,,nerve_root_compression,FALSE,,,negation word likely dropped; literal reads positive
-160,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-160,UNSPEC,,,thecal_sac_compression,FALSE,,,
-160,UNSPEC,,,nerve_root_compression,FALSE,,,
-165,UNSPEC,,,disc_herniation,FALSE,,,
-165,UNSPEC,,,thecal_sac_compression,FALSE,,,
-165,UNSPEC,,,nerve_root_compression,FALSE,,,
-166,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-166,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-166,L4-L5,,,thecal_sac_compression,TRUE,mild,unspecified,"""thecal"" without sac"
-166,L4-L5,,,nerve_root_compression,TRUE,mild,bilateral,both nerve roots
-166,UNSPEC,,,other,TRUE,unspecified,unspecified,filum terminale lipoma
-173,UNSPEC,L1,,vertebral_fracture,TRUE,unspecified,unspecified,old compression fracture
-173,UNSPEC,,,disc_herniation,FALSE,,,
-173,UNSPEC,,,thecal_sac_compression,FALSE,,,
-173,UNSPEC,,,nerve_root_compression,FALSE,,,
-174,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-174,UNSPEC,,,disc_desiccation,TRUE,unspecified,unspecified,"misspelled, no level"
-174,L2-L3,,,endplate_degeneration,TRUE,unspecified,unspecified,Modic II
-174,L2-L3,,,disc_bulge,TRUE,unspecified,unspecified,
-174,L2-L3,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-174,L2-L3,,,spinal_canal_stenosis,TRUE,unspecified,unspecified,extends to lateral recess; uncertain
-174,L2-L3,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 exit neural canals plural
-174,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-174,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-174,L4-L5,,,spinal_canal_stenosis,TRUE,unspecified,unspecified,extends to lateral recess; uncertain
-174,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 exit neural canals plural
-174,L3-L4,,,disc_bulge,TRUE,mild,unspecified,
-174,L3-L4,,,thecal_sac_compression,TRUE,mild,unspecified,
-176,L4-L5,,,disc_bulge,TRUE,unspecified,left,
-176,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-176,L4-L5,,,foraminal_stenosis,TRUE,unspecified,left,Q5 exit canal
-176,UNSPEC,,,spinal_canal_stenosis,FALSE,,,Q6
-183,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,"Q8 multilevel, only named level"
-183,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-183,L4-L5,,,foraminal_stenosis,TRUE,unspecified,right,"plural canals, more to right"
-186,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-186,UNSPEC,,,disc_desiccation,TRUE,unspecified,unspecified,"misspelled, no level"
-186,L3-L4,,,disc_bulge,TRUE,unspecified,unspecified,
-186,L3-L4,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-186,L3-L4,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-186,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-186,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-186,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-191,UNSPEC,,,disc_bulge,TRUE,unspecified,unspecified,"multilevel, no level named"
-191,UNSPEC,,,facet_arthropathy,TRUE,unspecified,unspecified,facet joint hypertrophy
-191,UNSPEC,,,ligamentum_flavum_hypertrophy,TRUE,unspecified,unspecified,"""ligamentum hypertrophy"""
-191,L4-L5,,,spondylolisthesis,TRUE,mild,unspecified,
-191,L3-L4,,,spinal_canal_stenosis,TRUE,unspecified,unspecified,
-191,L4-L5,,,spinal_canal_stenosis,TRUE,unspecified,unspecified,
-193,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-193,UNSPEC,,,schmorl_nodes,TRUE,unspecified,unspecified,multilevel
-193,L4-L5,,,disc_protrusion,TRUE,unspecified,left,foraminal
-193,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-193,L4-L5,,L5,nerve_root_compression,TRUE,unspecified,left,
-198,UNSPEC,,,disc_protrusion,TRUE,unspecified,right,
-198,UNSPEC,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-201,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-201,L5-S1,,,disc_protrusion,TRUE,unspecified,left,central and to the left
-201,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,"""relatively"" not mapped"
-201,L5-S1,,,foraminal_stenosis,TRUE,unspecified,unspecified,Q5 encroaching exit neural canal
-201,L5-S1,,,disc_desiccation,TRUE,unspecified,unspecified,misspelled
-202,L3-L4,,,disc_bulge,TRUE,mild,unspecified,
-202,L5-S1,,,disc_bulge,TRUE,mild,unspecified,
-202,UNSPEC,,,thecal_sac_compression,FALSE,,,
-202,UNSPEC,,,nerve_root_compression,FALSE,,,
-203,UNSPEC,,,disc_bulge,TRUE,mild,unspecified,"multilevel, no level"
-203,UNSPEC,,,thecal_sac_compression,FALSE,,,Q1 abutting
-203,UNSPEC,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural exit canals
-203,UNSPEC,,,spinal_canal_stenosis,FALSE,,,Q6
-222,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-222,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-222,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-222,L5-S1,,,disc_bulge,TRUE,unspecified,unspecified,
-222,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-222,L5-S1,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-222,L3-L4,,,disc_bulge,TRUE,mild,unspecified,
-232,L5-S1,,,disc_bulge,TRUE,unspecified,left,
-232,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-232,L5-S1,,,foraminal_stenosis,TRUE,unspecified,left,
-232,L3-L4,,,disc_bulge,TRUE,unspecified,unspecified,
-232,L3-L4,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-232,L3-L4,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-236,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-236,UNSPEC,,,schmorl_nodes,TRUE,unspecified,unspecified,
-236,L5-S1,,,disc_protrusion,TRUE,unspecified,left,foraminal
-236,L5-S1,,,thecal_sac_compression,TRUE,unspecified,left,left-sided thecal sac
-236,L5-S1,,,nerve_root_compression,TRUE,unspecified,unspecified,"singular root, side implied left"
-239,L5-S1,,,disc_protrusion,TRUE,unspecified,left,
-239,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-239,L5-S1,,S1,nerve_root_compression,FALSE,,,Q1 abutting
-247,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-247,L3-L4,,,disc_bulge,TRUE,unspecified,unspecified,
-247,L3-L4,,,thecal_sac_compression,TRUE,mild,unspecified,
-247,L3-L4,,,nerve_root_compression,TRUE,mild,bilateral,Q11
-247,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-247,L4-L5,,,thecal_sac_compression,TRUE,mild,unspecified,
-247,L4-L5,,,nerve_root_compression,TRUE,mild,bilateral,Q11
-248,L5-S1,,,disc_bulge,TRUE,mild,unspecified,
-248,UNSPEC,,,thecal_sac_compression,FALSE,,,
-248,UNSPEC,,,nerve_root_compression,FALSE,,,
-253,L3-L4,,,disc_bulge,TRUE,unspecified,unspecified,
-253,L3-L4,,,thecal_sac_compression,TRUE,severe,unspecified,significantly
-253,L3-L4,,,spinal_canal_stenosis,TRUE,unspecified,left,left lateral recess; uncertain
-253,L3-L4,,,foraminal_stenosis,TRUE,unspecified,unspecified,Q5
-253,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-253,L4-L5,,,thecal_sac_compression,TRUE,mild,unspecified,
-253,L4-L5,,,nerve_root_compression,TRUE,mild,bilateral,"missing ""and""; Q11"
-266,L4-L5,,,disc_protrusion,TRUE,unspecified,left,
-266,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-266,T12-L1,,,disc_bulge,TRUE,unspecified,unspecified,
-266,T12-L1,,,other,FALSE,,,"cord abutting, not compression (Q1)"
-278,L5-S1,,,disc_bulge,TRUE,unspecified,right,
-278,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-278,L5-S1,,,foraminal_stenosis,TRUE,unspecified,right,Q5
-283,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-283,L5-S1,,,disc_bulge,TRUE,unspecified,unspecified,
-283,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-283,L5-S1,,,nerve_root_compression,TRUE,unspecified,bilateral,both nerve roots
-283,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-283,L4-L5,,,thecal_sac_compression,TRUE,mild,unspecified,
-283,L4-L5,,,foraminal_stenosis,TRUE,unspecified,unspecified,Q5 singular
-297,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-297,L4-L5,,,disc_bulge,TRUE,mild,unspecified,
-297,L4-L5,,,thecal_sac_compression,TRUE,mild,unspecified,
-297,L4-L5,,,nerve_root_compression,TRUE,mild,bilateral,both nerve roots
-297,L5-S1,,,disc_bulge,TRUE,mild,unspecified,
-297,L5-S1,,,thecal_sac_compression,TRUE,mild,unspecified,
-297,L5-S1,,,nerve_root_compression,TRUE,mild,bilateral,both nerve roots
-307,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-307,UNSPEC,,,disc_desiccation,TRUE,unspecified,unspecified,
-307,L3-L4,,,disc_bulge,TRUE,unspecified,unspecified,Q8
-307,L3-L4,,,thecal_sac_compression,TRUE,mild,unspecified,
-307,L3-L4,,,foraminal_stenosis,TRUE,severe,bilateral,significantly; plural
-307,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,Q8
-307,L4-L5,,,thecal_sac_compression,TRUE,mild,unspecified,
-307,L4-L5,,,foraminal_stenosis,TRUE,severe,bilateral,significantly; plural
-313,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-313,UNSPEC,,,thecal_sac_compression,FALSE,,,
-313,UNSPEC,,,nerve_root_compression,FALSE,,,
-313,UNSPEC,,,disc_protrusion,FALSE,,,
-313,UNSPEC,,,disc_herniation,FALSE,,,
-319,UNSPEC,,,other,TRUE,unspecified,unspecified,previous spine surgery
-319,L4-L5,,,other,TRUE,mild,right,postoperative enhancing granulation/fibrosis
-331,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-331,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-331,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-336,UNSPEC,,,disc_desiccation,TRUE,unspecified,unspecified,"multilevel, misspelled"
-336,UNSPEC,,,other,TRUE,unspecified,unspecified,degenerative spondylotic changes
-336,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-336,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-336,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-336,L4-L5,,,ligamentum_flavum_hypertrophy,TRUE,unspecified,unspecified,misspelled
-336,L4-L5,,,spinal_canal_stenosis,TRUE,unspecified,unspecified,secondary stenosis
-336,L5-S1,,,disc_bulge,TRUE,unspecified,unspecified,
-336,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-336,L5-S1,,,nerve_root_compression,TRUE,unspecified,bilateral,both nerve roots
-343,L5-S1,,,disc_protrusion,TRUE,unspecified,right,
-343,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-343,L5-S1,,,foraminal_stenosis,TRUE,unspecified,right,
-343,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-343,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-343,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-346,UNSPEC,,,disc_herniation,FALSE,,,
-346,UNSPEC,,,thecal_sac_compression,FALSE,,,
-346,UNSPEC,,,nerve_root_compression,FALSE,,,
-346,UNSPEC,,,spinal_canal_stenosis,FALSE,,,Q6
-365,L4-L5,,,disc_bulge,TRUE,mild,right,
-365,UNSPEC,,,spinal_canal_stenosis,FALSE,,,Q6
-371,UNSPEC,,,disc_bulge,TRUE,unspecified,unspecified,"multilevel, no level"
-371,UNSPEC,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-371,UNSPEC,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-372,L3-L4,,,disc_bulge,TRUE,mild,unspecified,
-372,L3-L4,,,thecal_sac_compression,TRUE,unspecified,unspecified,inherits level from previous line
-372,L3-L4,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-372,L4-L5,,,disc_bulge,TRUE,mild,unspecified,
-372,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,inherits level from previous line
-372,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-372,L5-S1,,,facet_arthropathy,TRUE,unspecified,unspecified,facet joint hypertrophy
-375,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-375,L5-S1,,,disc_bulge,TRUE,unspecified,unspecified,Q4
-375,L5-S1,,,disc_protrusion,TRUE,unspecified,central,Q4 posterocentral
-375,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-375,L5-S1,,,foraminal_stenosis,TRUE,unspecified,unspecified,Q5 singular
-375,L3-L4,,,disc_bulge,TRUE,unspecified,unspecified,
-375,L3-L4,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-375,L3-L4,,,foraminal_stenosis,TRUE,unspecified,unspecified,Q5 singular
-375,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-375,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-375,L4-L5,,,foraminal_stenosis,TRUE,unspecified,unspecified,Q5 singular
-375,UNSPEC,,,tarlov_cyst,TRUE,mild,unspecified,multiple small
-377,L5-S1,,,disc_protrusion,TRUE,mild,right,small
-377,L5-S1,,S1,nerve_root_compression,FALSE,,,Q1 abutting
-377,UNSPEC,,,spinal_canal_stenosis,FALSE,,,Q6
-381,L3-L4,,,disc_bulge,TRUE,unspecified,right,
-381,L3-L4,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-381,L3-L4,,,foraminal_stenosis,TRUE,unspecified,right,
-381,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-381,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-381,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-381,L5-S1,,,disc_protrusion,TRUE,unspecified,left,
-381,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-381,L5-S1,,,foraminal_stenosis,TRUE,unspecified,left,
-384,UNSPEC,,,disc_herniation,FALSE,,,
-384,UNSPEC,,,thecal_sac_compression,FALSE,,,
-384,UNSPEC,,,nerve_root_compression,FALSE,,,
-386,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-386,L4-L5,,,facet_arthropathy,TRUE,unspecified,unspecified,facet joint hypertrophy
-386,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-386,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-386,UNSPEC,,,spinal_canal_stenosis,FALSE,,,Q6 still adequate
-401,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-401,L3-L4,,,spondylolisthesis,TRUE,unspecified,unspecified,Grade I; L3 over L4
-401,L3-L4,,,endplate_degeneration,TRUE,unspecified,unspecified,"Modic I, same clause as listhesis"
-401,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,Q8
-401,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-401,L4-L5,,,nerve_root_compression,TRUE,unspecified,bilateral,both nerve roots
-401,UNSPEC,,,scoliosis,TRUE,unspecified,left,convexity to left
-415,L3-L4,,,disc_bulge,TRUE,unspecified,unspecified,
-415,L3-L4,,,facet_arthropathy,TRUE,unspecified,unspecified,
-415,L3-L4,,,thecal_sac_compression,TRUE,unspecified,unspecified,header lists both levels
-415,L3-L4,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-415,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-415,L4-L5,,,facet_arthropathy,TRUE,unspecified,unspecified,
-415,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,header lists both levels
-415,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-415,L4-L5,,,spondylolisthesis,TRUE,mild,unspecified,
-415,UNSPEC,,,spinal_canal_stenosis,FALSE,,,Q6 still adequate
-420,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-420,UNSPEC,,,disc_protrusion,FALSE,,,
-420,UNSPEC,,,disc_herniation,FALSE,,,
-420,UNSPEC,,,thecal_sac_compression,FALSE,,,
-420,UNSPEC,,,nerve_root_compression,FALSE,,,
-420,UNSPEC,,,vertebral_fracture,FALSE,,,preserved vertebral height
-420,UNSPEC,,,bone_marrow_lesion,FALSE,,,preserved marrow signal
-430,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-430,L5-S1,,,disc_bulge,TRUE,unspecified,unspecified,Q4
-430,L5-S1,,,disc_protrusion,TRUE,unspecified,left,
-430,L5-S1,,,disc_herniation,TRUE,unspecified,left,Q3 sequestration
-430,L5-S1,,,thecal_sac_compression,TRUE,severe,unspecified,"""largely"" mapped to severe"
-430,L5-S1,,,foraminal_stenosis,TRUE,unspecified,unspecified,Q5
-430,L5-S1,,,disc_space_narrowing,TRUE,unspecified,unspecified,
-430,L5-S1,,,disc_desiccation,TRUE,unspecified,unspecified,dehydrated
-434,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-434,UNSPEC,,,thecal_sac_compression,FALSE,,,
-434,UNSPEC,,,nerve_root_compression,FALSE,,,
-453,L5-S1,,,disc_protrusion,TRUE,unspecified,central,
-453,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-456,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-456,UNSPEC,,,other,TRUE,unspecified,unspecified,degenerative spondylotic changes
-456,L3-L4,,,disc_bulge,TRUE,unspecified,unspecified,Q8
-456,L3-L4,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-456,L3-L4,,,foraminal_stenosis,TRUE,unspecified,bilateral,both exit neural canals
-456,L3-L4,,,ligamentum_flavum_hypertrophy,TRUE,unspecified,unspecified,
-456,L3-L4,,,spinal_canal_stenosis,TRUE,unspecified,unspecified,"""relatively"" not mapped"
-456,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,Q8
-456,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-456,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,both exit neural canals
-456,L4-L5,,,ligamentum_flavum_hypertrophy,TRUE,unspecified,unspecified,
-456,L4-L5,,,spinal_canal_stenosis,TRUE,unspecified,unspecified,"""relatively"" not mapped"
-456,L5-S1,,,disc_bulge,TRUE,unspecified,unspecified,Q4
-456,L5-S1,,,disc_protrusion,TRUE,mild,right,small
-456,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-456,L5-S1,,,nerve_root_compression,TRUE,unspecified,bilateral,Q11
-467,L4-L5,,,disc_bulge,TRUE,mild,unspecified,
-467,L5-S1,,,disc_protrusion,TRUE,mild,left,
-467,L5-S1,,,thecal_sac_compression,FALSE,,,Q1 abutting
-467,L5-S1,,,foraminal_stenosis,TRUE,unspecified,left,Q5 encroaching exit canal
-477,L5-S1,,,disc_protrusion,TRUE,unspecified,left,
-477,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-477,L4-L5,,,disc_bulge,TRUE,mild,unspecified,
-477,L4-L5,,,annular_tear,TRUE,unspecified,unspecified,
-486,L3-L4,,,disc_bulge,TRUE,mild,unspecified,
-486,UNSPEC,,,disc_herniation,FALSE,,,"""at other levels"" -> UNSPEC"
-486,UNSPEC,,,spinal_canal_stenosis,FALSE,,,Q6
-487,UNSPEC,,,disc_herniation,FALSE,,,
-487,UNSPEC,,,thecal_sac_compression,FALSE,,,
-487,UNSPEC,,,nerve_root_compression,FALSE,,,
-509,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-509,L4-L5,,,disc_desiccation,TRUE,unspecified,unspecified,
-509,L5-S1,,,disc_desiccation,TRUE,unspecified,unspecified,
-509,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-509,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-509,L4-L5,,,foraminal_stenosis,TRUE,unspecified,unspecified,Q5 singular
-509,L4-L5,,,annular_tear,TRUE,unspecified,unspecified,
-509,L5-S1,,,disc_bulge,TRUE,mild,central,small posterior central
-509,L5-S1,,,thecal_sac_compression,TRUE,mild,unspecified,
-509,L5-S1,,,nerve_root_compression,TRUE,mild,bilateral,Q11
-510,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-510,L4-L5,,,disc_desiccation,TRUE,unspecified,unspecified,"""partial"" not mapped"
-510,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-510,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-510,L4-L5,,,nerve_root_compression,TRUE,unspecified,bilateral,both nerve roots
-512,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-512,UNSPEC,,,disc_desiccation,TRUE,unspecified,unspecified,"lower levels, unnamed"
-512,UNSPEC,,,schmorl_nodes,TRUE,unspecified,unspecified,
-512,L5-S1,,,endplate_degeneration,TRUE,unspecified,unspecified,Modic II
-512,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-512,L4-L5,,,thecal_sac_compression,TRUE,mild,unspecified,
-512,L4-L5,,,nerve_root_compression,TRUE,mild,unspecified,singular root
-512,L5-S1,,,disc_bulge,TRUE,unspecified,unspecified,
-512,L5-S1,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-512,L5-S1,,,foraminal_stenosis,TRUE,unspecified,bilateral,"""neural canals"" plural = foramina"
-515,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-515,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-515,L4-L5,,,annular_tear,TRUE,unspecified,unspecified,
-515,L4-L5,,,thecal_sac_compression,TRUE,mild,unspecified,
-515,UNSPEC,,,thecal_sac_compression,FALSE,,,contradicts L4-L5 line; knee findings ignored
-517,L4-L5,,,disc_bulge,TRUE,mild,unspecified,
-517,L5-S1,,,disc_bulge,TRUE,mild,unspecified,
-517,UNSPEC,,,thecal_sac_compression,FALSE,,,
-517,UNSPEC,,,nerve_root_compression,FALSE,,,
-517,UNSPEC,,,spinal_canal_stenosis,FALSE,,,Q6
-522,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-522,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-522,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,both exit canals
-522,L5-S1,,,disc_bulge,TRUE,mild,unspecified,
-529,UNSPEC,,,other,TRUE,mild,unspecified,"cervical C4-C5 disc bulge, not lumbar"
-529,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,abbreviated m. spasm
-529,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-529,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,
-529,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-534,UNSPEC,,,muscle_spasm,TRUE,unspecified,unspecified,
-534,L5-S1,,,disc_bulge,TRUE,unspecified,unspecified,
-534,L5-S1,,,thecal_sac_compression,TRUE,mild,unspecified,
-534,L5-S1,,,nerve_root_compression,TRUE,mild,bilateral,Q11
-534,L5-S1,,,annular_tear,TRUE,unspecified,unspecified,
-536,L4-L5,,,disc_bulge,TRUE,unspecified,unspecified,
-536,L4-L5,,,thecal_sac_compression,FALSE,,,Q1 abutting
-536,L4-L5,,,foraminal_stenosis,TRUE,unspecified,bilateral,Q5 plural
-547,L4-L5,,,other,TRUE,unspecified,left,enhancing postoperative fibrosis
-547,L4-L5,,,thecal_sac_compression,TRUE,unspecified,unspecified,"by fibrosis, not disc"
-547,L4-L5,,,foraminal_stenosis,TRUE,unspecified,left,Q5
-559,L3-L4,,,disc_protrusion,TRUE,mild,right,
-559,L3-L4,,,thecal_sac_compression,FALSE,,,Q1 abutting
-559,L4-L5,,,disc_protrusion,TRUE,mild,central,
-559,L4-L5,,,thecal_sac_compression,FALSE,,,Q1 abutting
-559,L5-S1,,,disc_protrusion,TRUE,mild,left,
-559,L5-S1,,,thecal_sac_compression,FALSE,,,Q1 abutting
+13,L4-L5,,,disc_protrusion,True,unspecified,left,central + left paracentral -> left
+13,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+13,L4-L5,,,foraminal_stenosis,True,unspecified,left,
+13,L5-S1,,,disc_bulge,True,unspecified,central,
+13,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,indenting = compression
+13,L5-S1,,,nerve_root_compression,False,,,
+13,L5-S1,,,foraminal_stenosis,False,,,
+13,L4-L5,,,disc_desiccation,True,unspecified,unspecified,dehydrated
+13,L5-S1,,,disc_desiccation,True,unspecified,unspecified,dehydrated
+13,UNSPEC,,,bone_marrow_lesion,True,unspecified,unspecified,marrow signal reconversion; lesion vs other doubtful
+16,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+16,UNSPEC,,,disc_desiccation,True,unspecified,unspecified,"misspelled; lower discs, no level named"
+16,L4-L5,,,disc_protrusion,True,unspecified,left,central + left paracentral -> left
+16,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+16,L4-L5,,,nerve_root_compression,True,unspecified,left,
+16,L5-S1,,,disc_bulge,True,unspecified,unspecified,
+16,L5-S1,,,thecal_sac_compression,True,mild,unspecified,
+16,L5-S1,,,nerve_root_compression,True,mild,unspecified,same verb mild; singular root
+26,UNSPEC,,,disc_herniation,False,,,
+26,UNSPEC,,,thecal_sac_compression,False,,,
+26,UNSPEC,,,nerve_root_compression,False,,,
+27,L2-L3,,,disc_herniation,True,unspecified,right,Q3 extrusion; paramedian
+33,UNSPEC,,,disc_herniation,False,,,
+33,UNSPEC,,,thecal_sac_compression,False,,,
+33,UNSPEC,,,nerve_root_compression,False,,,
+52,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+52,L3-L4,,,disc_bulge,True,unspecified,unspecified,
+52,L3-L4,,,thecal_sac_compression,True,mild,unspecified,
+52,L3-L4,,,foraminal_stenosis,True,mild,unspecified,Q5 encroaching exit canal
+52,L5-S1,,,disc_bulge,True,unspecified,unspecified,
+52,L5-S1,,,thecal_sac_compression,True,mild,unspecified,
+52,L5-S1,,,foraminal_stenosis,True,mild,unspecified,Q5 encroaching exit canal
+52,L5-S1,,,annular_tear,True,unspecified,unspecified,
+63,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+63,L4-L5,,,disc_bulge,True,mild,unspecified,
+63,L4-L5,,,thecal_sac_compression,True,mild,unspecified,
+63,L4-L5,,,nerve_root_compression,True,mild,bilateral,Q11
+63,L5-S1,,,disc_bulge,True,mild,unspecified,
+63,L5-S1,,,thecal_sac_compression,True,mild,unspecified,
+63,L5-S1,,,nerve_root_compression,True,mild,bilateral,Q11
+78,UNSPEC,,,disc_herniation,False,,,
+78,UNSPEC,,,thecal_sac_compression,False,,,
+78,UNSPEC,,,nerve_root_compression,False,,,
+83,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+83,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+83,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,plural exit canals -> bilateral
+83,L5-S1,,,disc_protrusion,True,unspecified,left,
+83,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+83,L5-S1,,,foraminal_stenosis,True,unspecified,left,"truncated phrase, canal assumed"
+91,UNSPEC,,,scoliosis,True,unspecified,unspecified,
+91,UNSPEC,,,disc_desiccation,True,unspecified,unspecified,"misspelled, no level"
+91,UNSPEC,L2,,vertebral_fracture,True,unspecified,unspecified,old wedge fracture
+91,L4-L5,,,spondylolisthesis,True,unspecified,unspecified,Grade II; L4 over L5
+91,L5-S1,,,disc_bulge,True,unspecified,unspecified,
+91,L5-S1,,,thecal_sac_compression,True,mild,unspecified,
+96,L5-S1,,,disc_protrusion,True,unspecified,left,
+96,L5-S1,,,thecal_sac_compression,False,,,Q1 abutting
+96,L5-S1,,S1,nerve_root_compression,False,,,Q1 abutting
+96,UNSPEC,,,spinal_canal_stenosis,False,,,Q6; general statement -> UNSPEC
+97,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+97,L5-S1,,,disc_bulge,True,unspecified,left,focal bulge more to left
+97,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+97,L5-S1,,,nerve_root_compression,True,unspecified,bilateral,both exit nerve roots
+97,L5-S1,,,disc_desiccation,True,unspecified,unspecified,dehydrated disc material
+105,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+105,UNSPEC,,,schmorl_nodes,True,unspecified,unspecified,
+105,UNSPEC,L4,,other,True,unspecified,unspecified,suggestive limbus vertebra
+105,L4-L5,,,disc_bulge,True,mild,unspecified,
+105,L4-L5,,,thecal_sac_compression,True,mild,unspecified,
+105,L4-L5,,,nerve_root_compression,True,mild,bilateral,both nerve roots
+105,L5-S1,,,disc_bulge,True,mild,unspecified,
+105,L5-S1,,,thecal_sac_compression,True,mild,unspecified,
+105,L5-S1,,,nerve_root_compression,True,mild,bilateral,both nerve roots
+113,L5-S1,,,disc_bulge,True,mild,unspecified,
+113,UNSPEC,,,thecal_sac_compression,False,,,
+113,UNSPEC,,,nerve_root_compression,False,,,
+113,UNSPEC,,,spinal_canal_stenosis,False,,,Q6
+127,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+127,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+127,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,plural exit canals
+131,L4-L5,,,disc_bulge,True,mild,unspecified,
+131,UNSPEC,,,spinal_canal_stenosis,False,,,Q6
+132,UNSPEC,,,disc_protrusion,True,unspecified,right,
+132,UNSPEC,,,thecal_sac_compression,True,unspecified,unspecified,
+132,UNSPEC,,S1,nerve_root_compression,True,unspecified,right,
+159,UNSPEC,,,disc_herniation,False,,,
+159,UNSPEC,,,thecal_sac_compression,False,,,negation word likely dropped; literal reads positive
+159,UNSPEC,,,nerve_root_compression,False,,,negation word likely dropped; literal reads positive
+160,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+160,UNSPEC,,,thecal_sac_compression,False,,,
+160,UNSPEC,,,nerve_root_compression,False,,,
+165,UNSPEC,,,disc_herniation,False,,,
+165,UNSPEC,,,thecal_sac_compression,False,,,
+165,UNSPEC,,,nerve_root_compression,False,,,
+166,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+166,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+166,L4-L5,,,thecal_sac_compression,True,mild,unspecified,"""thecal"" without sac"
+166,L4-L5,,,nerve_root_compression,True,mild,bilateral,both nerve roots
+166,UNSPEC,,,other,True,unspecified,unspecified,filum terminale lipoma
+173,UNSPEC,L1,,vertebral_fracture,True,unspecified,unspecified,old compression fracture
+173,UNSPEC,,,disc_herniation,False,,,
+173,UNSPEC,,,thecal_sac_compression,False,,,
+173,UNSPEC,,,nerve_root_compression,False,,,
+174,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+174,UNSPEC,,,disc_desiccation,True,unspecified,unspecified,"misspelled, no level"
+174,L2-L3,,,endplate_degeneration,True,unspecified,unspecified,Modic II
+174,L2-L3,,,disc_bulge,True,unspecified,unspecified,
+174,L2-L3,,,thecal_sac_compression,True,unspecified,unspecified,
+174,L2-L3,,,foraminal_stenosis,True,unspecified,bilateral,Q5 exit neural canals plural
+174,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+174,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+174,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,Q5 exit neural canals plural
+174,L3-L4,,,disc_bulge,True,mild,unspecified,
+174,L3-L4,,,thecal_sac_compression,True,mild,unspecified,
+176,L4-L5,,,disc_bulge,True,unspecified,left,
+176,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+176,L4-L5,,,foraminal_stenosis,True,unspecified,left,Q5 exit canal
+176,UNSPEC,,,spinal_canal_stenosis,False,,,Q6
+183,L4-L5,,,disc_bulge,True,unspecified,unspecified,"Q8 multilevel, only named level"
+183,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+183,L4-L5,,,foraminal_stenosis,True,unspecified,right,"plural canals, more to right"
+186,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+186,UNSPEC,,,disc_desiccation,True,unspecified,unspecified,"misspelled, no level"
+186,L3-L4,,,disc_bulge,True,unspecified,unspecified,
+186,L3-L4,,,thecal_sac_compression,True,unspecified,unspecified,
+186,L3-L4,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+186,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+186,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+186,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+191,UNSPEC,,,disc_bulge,True,unspecified,unspecified,"multilevel, no level named"
+191,UNSPEC,,,facet_arthropathy,True,unspecified,unspecified,facet joint hypertrophy
+191,UNSPEC,,,ligamentum_flavum_hypertrophy,True,unspecified,unspecified,"""ligamentum hypertrophy"""
+191,L4-L5,,,spondylolisthesis,True,mild,unspecified,
+191,L3-L4,,,spinal_canal_stenosis,True,unspecified,unspecified,
+191,L4-L5,,,spinal_canal_stenosis,True,unspecified,unspecified,
+193,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+193,UNSPEC,,,schmorl_nodes,True,unspecified,unspecified,multilevel
+193,L4-L5,,,disc_protrusion,True,unspecified,left,foraminal
+193,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+193,L4-L5,,L5,nerve_root_compression,True,unspecified,left,
+198,UNSPEC,,,disc_protrusion,True,unspecified,right,
+198,UNSPEC,,,thecal_sac_compression,True,unspecified,unspecified,
+201,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+201,L5-S1,,,disc_protrusion,True,unspecified,left,central and to the left
+201,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,"""relatively"" not mapped"
+201,L5-S1,,,foraminal_stenosis,True,unspecified,unspecified,Q5 encroaching exit neural canal
+201,L5-S1,,,disc_desiccation,True,unspecified,unspecified,misspelled
+202,L3-L4,,,disc_bulge,True,mild,unspecified,
+202,L5-S1,,,disc_bulge,True,mild,unspecified,
+202,UNSPEC,,,thecal_sac_compression,False,,,
+202,UNSPEC,,,nerve_root_compression,False,,,
+203,UNSPEC,,,disc_bulge,True,mild,unspecified,"multilevel, no level"
+203,UNSPEC,,,thecal_sac_compression,False,,,Q1 abutting
+203,UNSPEC,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural exit canals
+203,UNSPEC,,,spinal_canal_stenosis,False,,,Q6
+222,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+222,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+222,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+222,L5-S1,,,disc_bulge,True,unspecified,unspecified,
+222,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+222,L5-S1,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+222,L3-L4,,,disc_bulge,True,mild,unspecified,
+232,L5-S1,,,disc_bulge,True,unspecified,left,
+232,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+232,L5-S1,,,foraminal_stenosis,True,unspecified,left,
+232,L3-L4,,,disc_bulge,True,unspecified,unspecified,
+232,L3-L4,,,thecal_sac_compression,True,unspecified,unspecified,
+232,L3-L4,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+236,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+236,UNSPEC,,,schmorl_nodes,True,unspecified,unspecified,
+236,L5-S1,,,disc_protrusion,True,unspecified,left,foraminal
+236,L5-S1,,,thecal_sac_compression,True,unspecified,left,left-sided thecal sac
+236,L5-S1,,,nerve_root_compression,True,unspecified,unspecified,"singular root, side implied left"
+239,L5-S1,,,disc_protrusion,True,unspecified,left,
+239,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+239,L5-S1,,S1,nerve_root_compression,False,,,Q1 abutting
+247,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+247,L3-L4,,,disc_bulge,True,unspecified,unspecified,
+247,L3-L4,,,thecal_sac_compression,True,mild,unspecified,
+247,L3-L4,,,nerve_root_compression,True,mild,bilateral,Q11
+247,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+247,L4-L5,,,thecal_sac_compression,True,mild,unspecified,
+247,L4-L5,,,nerve_root_compression,True,mild,bilateral,Q11
+248,L5-S1,,,disc_bulge,True,mild,unspecified,
+248,UNSPEC,,,thecal_sac_compression,False,,,
+248,UNSPEC,,,nerve_root_compression,False,,,
+253,L3-L4,,,disc_bulge,True,unspecified,unspecified,
+253,L3-L4,,,thecal_sac_compression,True,severe,unspecified,significantly
+253,L3-L4,,,foraminal_stenosis,True,unspecified,unspecified,Q5
+253,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+253,L4-L5,,,thecal_sac_compression,True,mild,unspecified,
+253,L4-L5,,,nerve_root_compression,True,mild,bilateral,"missing ""and""; Q11"
+266,L4-L5,,,disc_protrusion,True,unspecified,left,
+266,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+266,T12-L1,,,disc_bulge,True,unspecified,unspecified,
+266,T12-L1,,,other,False,,,"cord abutting, not compression (Q1)"
+278,L5-S1,,,disc_bulge,True,unspecified,right,
+278,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+278,L5-S1,,,foraminal_stenosis,True,unspecified,right,Q5
+283,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+283,L5-S1,,,disc_bulge,True,unspecified,unspecified,
+283,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+283,L5-S1,,,nerve_root_compression,True,unspecified,bilateral,both nerve roots
+283,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+283,L4-L5,,,thecal_sac_compression,True,mild,unspecified,
+283,L4-L5,,,foraminal_stenosis,True,unspecified,unspecified,Q5 singular
+297,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+297,L4-L5,,,disc_bulge,True,mild,unspecified,
+297,L4-L5,,,thecal_sac_compression,True,mild,unspecified,
+297,L4-L5,,,nerve_root_compression,True,mild,bilateral,both nerve roots
+297,L5-S1,,,disc_bulge,True,mild,unspecified,
+297,L5-S1,,,thecal_sac_compression,True,mild,unspecified,
+297,L5-S1,,,nerve_root_compression,True,mild,bilateral,both nerve roots
+307,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+307,UNSPEC,,,disc_desiccation,True,unspecified,unspecified,
+307,L3-L4,,,disc_bulge,True,unspecified,unspecified,Q8
+307,L3-L4,,,thecal_sac_compression,True,mild,unspecified,
+307,L3-L4,,,foraminal_stenosis,True,severe,bilateral,significantly; plural
+307,L4-L5,,,disc_bulge,True,unspecified,unspecified,Q8
+307,L4-L5,,,thecal_sac_compression,True,mild,unspecified,
+307,L4-L5,,,foraminal_stenosis,True,severe,bilateral,significantly; plural
+313,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+313,UNSPEC,,,thecal_sac_compression,False,,,
+313,UNSPEC,,,nerve_root_compression,False,,,
+313,UNSPEC,,,disc_protrusion,False,,,
+313,UNSPEC,,,disc_herniation,False,,,
+319,UNSPEC,,,other,True,unspecified,unspecified,previous spine surgery
+319,L4-L5,,,other,True,mild,right,postoperative enhancing granulation/fibrosis
+331,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+331,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+331,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+336,UNSPEC,,,disc_desiccation,True,unspecified,unspecified,"multilevel, misspelled"
+336,UNSPEC,,,other,True,unspecified,unspecified,degenerative spondylotic changes
+336,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+336,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+336,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+336,L4-L5,,,ligamentum_flavum_hypertrophy,True,unspecified,unspecified,misspelled
+336,L4-L5,,,spinal_canal_stenosis,True,unspecified,unspecified,secondary stenosis
+336,L5-S1,,,disc_bulge,True,unspecified,unspecified,
+336,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+336,L5-S1,,,nerve_root_compression,True,unspecified,bilateral,both nerve roots
+343,L5-S1,,,disc_protrusion,True,unspecified,right,
+343,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+343,L5-S1,,,foraminal_stenosis,True,unspecified,right,
+343,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+343,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+343,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+346,UNSPEC,,,disc_herniation,False,,,
+346,UNSPEC,,,thecal_sac_compression,False,,,
+346,UNSPEC,,,nerve_root_compression,False,,,
+346,UNSPEC,,,spinal_canal_stenosis,False,,,Q6
+365,L4-L5,,,disc_bulge,True,mild,right,
+365,UNSPEC,,,spinal_canal_stenosis,False,,,Q6
+371,UNSPEC,,,disc_bulge,True,unspecified,unspecified,"multilevel, no level"
+371,UNSPEC,,,thecal_sac_compression,True,unspecified,unspecified,
+371,UNSPEC,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+372,L3-L4,,,disc_bulge,True,mild,unspecified,
+372,L3-L4,,,thecal_sac_compression,True,unspecified,unspecified,inherits level from previous line
+372,L3-L4,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+372,L4-L5,,,disc_bulge,True,mild,unspecified,
+372,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,inherits level from previous line
+372,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+372,L5-S1,,,facet_arthropathy,True,unspecified,unspecified,facet joint hypertrophy
+375,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+375,L5-S1,,,disc_bulge,True,unspecified,unspecified,Q4
+375,L5-S1,,,disc_protrusion,True,unspecified,central,Q4 posterocentral
+375,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+375,L5-S1,,,foraminal_stenosis,True,unspecified,unspecified,Q5 singular
+375,L3-L4,,,disc_bulge,True,unspecified,unspecified,
+375,L3-L4,,,thecal_sac_compression,True,unspecified,unspecified,
+375,L3-L4,,,foraminal_stenosis,True,unspecified,unspecified,Q5 singular
+375,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+375,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+375,L4-L5,,,foraminal_stenosis,True,unspecified,unspecified,Q5 singular
+375,UNSPEC,,,tarlov_cyst,True,mild,unspecified,multiple small
+377,L5-S1,,,disc_protrusion,True,mild,right,small
+377,L5-S1,,S1,nerve_root_compression,False,,,Q1 abutting
+377,UNSPEC,,,spinal_canal_stenosis,False,,,Q6
+381,L3-L4,,,disc_bulge,True,unspecified,right,
+381,L3-L4,,,thecal_sac_compression,True,unspecified,unspecified,
+381,L3-L4,,,foraminal_stenosis,True,unspecified,right,
+381,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+381,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+381,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+381,L5-S1,,,disc_protrusion,True,unspecified,left,
+381,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+381,L5-S1,,,foraminal_stenosis,True,unspecified,left,
+384,UNSPEC,,,disc_herniation,False,,,
+384,UNSPEC,,,thecal_sac_compression,False,,,
+384,UNSPEC,,,nerve_root_compression,False,,,
+386,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+386,L4-L5,,,facet_arthropathy,True,unspecified,unspecified,facet joint hypertrophy
+386,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+386,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+386,UNSPEC,,,spinal_canal_stenosis,False,,,Q6 still adequate
+401,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+401,L3-L4,,,spondylolisthesis,True,unspecified,unspecified,Grade I; L3 over L4
+401,L3-L4,,,endplate_degeneration,True,unspecified,unspecified,"Modic I, same clause as listhesis"
+401,L4-L5,,,disc_bulge,True,unspecified,unspecified,Q8
+401,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+401,L4-L5,,,nerve_root_compression,True,unspecified,bilateral,both nerve roots
+401,UNSPEC,,,scoliosis,True,unspecified,left,convexity to left
+415,L3-L4,,,disc_bulge,True,unspecified,unspecified,
+415,L3-L4,,,facet_arthropathy,True,unspecified,unspecified,
+415,L3-L4,,,thecal_sac_compression,True,unspecified,unspecified,header lists both levels
+415,L3-L4,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+415,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+415,L4-L5,,,facet_arthropathy,True,unspecified,unspecified,
+415,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,header lists both levels
+415,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+415,L4-L5,,,spondylolisthesis,True,mild,unspecified,
+415,UNSPEC,,,spinal_canal_stenosis,False,,,Q6 still adequate
+420,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+420,UNSPEC,,,disc_protrusion,False,,,
+420,UNSPEC,,,disc_herniation,False,,,
+420,UNSPEC,,,thecal_sac_compression,False,,,
+420,UNSPEC,,,nerve_root_compression,False,,,
+420,UNSPEC,,,vertebral_fracture,False,,,preserved vertebral height
+420,UNSPEC,,,bone_marrow_lesion,False,,,preserved marrow signal
+430,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+430,L5-S1,,,disc_bulge,True,unspecified,unspecified,Q4
+430,L5-S1,,,disc_protrusion,True,unspecified,left,
+430,L5-S1,,,disc_herniation,True,unspecified,left,Q3 sequestration
+430,L5-S1,,,thecal_sac_compression,True,severe,unspecified,"""largely"" mapped to severe"
+430,L5-S1,,,foraminal_stenosis,True,unspecified,unspecified,Q5
+430,L5-S1,,,disc_space_narrowing,True,unspecified,unspecified,
+430,L5-S1,,,disc_desiccation,True,unspecified,unspecified,dehydrated
+434,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+434,UNSPEC,,,thecal_sac_compression,False,,,
+434,UNSPEC,,,nerve_root_compression,False,,,
+453,L5-S1,,,disc_protrusion,True,unspecified,central,
+453,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+456,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+456,UNSPEC,,,other,True,unspecified,unspecified,degenerative spondylotic changes
+456,L3-L4,,,disc_bulge,True,unspecified,unspecified,Q8
+456,L3-L4,,,thecal_sac_compression,True,unspecified,unspecified,
+456,L3-L4,,,foraminal_stenosis,True,unspecified,bilateral,both exit neural canals
+456,L3-L4,,,ligamentum_flavum_hypertrophy,True,unspecified,unspecified,
+456,L3-L4,,,spinal_canal_stenosis,True,unspecified,unspecified,"""relatively"" not mapped"
+456,L4-L5,,,disc_bulge,True,unspecified,unspecified,Q8
+456,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+456,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,both exit neural canals
+456,L4-L5,,,ligamentum_flavum_hypertrophy,True,unspecified,unspecified,
+456,L4-L5,,,spinal_canal_stenosis,True,unspecified,unspecified,"""relatively"" not mapped"
+456,L5-S1,,,disc_bulge,True,unspecified,unspecified,Q4
+456,L5-S1,,,disc_protrusion,True,mild,right,small
+456,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+456,L5-S1,,,nerve_root_compression,True,unspecified,bilateral,Q11
+467,L4-L5,,,disc_bulge,True,mild,unspecified,
+467,L5-S1,,,disc_protrusion,True,mild,left,
+467,L5-S1,,,thecal_sac_compression,False,,,Q1 abutting
+467,L5-S1,,,foraminal_stenosis,True,unspecified,left,Q5 encroaching exit canal
+477,L5-S1,,,disc_protrusion,True,unspecified,left,
+477,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+477,L4-L5,,,disc_bulge,True,mild,unspecified,
+477,L4-L5,,,annular_tear,True,unspecified,unspecified,
+486,L3-L4,,,disc_bulge,True,mild,unspecified,
+486,UNSPEC,,,disc_herniation,False,,,"""at other levels"" -> UNSPEC"
+486,UNSPEC,,,spinal_canal_stenosis,False,,,Q6
+487,UNSPEC,,,disc_herniation,False,,,
+487,UNSPEC,,,thecal_sac_compression,False,,,
+487,UNSPEC,,,nerve_root_compression,False,,,
+509,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+509,L4-L5,,,disc_desiccation,True,unspecified,unspecified,
+509,L5-S1,,,disc_desiccation,True,unspecified,unspecified,
+509,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+509,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+509,L4-L5,,,foraminal_stenosis,True,unspecified,unspecified,Q5 singular
+509,L4-L5,,,annular_tear,True,unspecified,unspecified,
+509,L5-S1,,,disc_bulge,True,mild,central,small posterior central
+509,L5-S1,,,thecal_sac_compression,True,mild,unspecified,
+509,L5-S1,,,nerve_root_compression,True,mild,bilateral,Q11
+510,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+510,L4-L5,,,disc_desiccation,True,unspecified,unspecified,"""partial"" not mapped"
+510,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+510,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+510,L4-L5,,,nerve_root_compression,True,unspecified,bilateral,both nerve roots
+512,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+512,UNSPEC,,,disc_desiccation,True,unspecified,unspecified,"lower levels, unnamed"
+512,UNSPEC,,,schmorl_nodes,True,unspecified,unspecified,
+512,L5-S1,,,endplate_degeneration,True,unspecified,unspecified,Modic II
+512,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+512,L4-L5,,,thecal_sac_compression,True,mild,unspecified,
+512,L4-L5,,,nerve_root_compression,True,mild,unspecified,singular root
+512,L5-S1,,,disc_bulge,True,unspecified,unspecified,
+512,L5-S1,,,thecal_sac_compression,True,unspecified,unspecified,
+512,L5-S1,,,foraminal_stenosis,True,unspecified,bilateral,"""neural canals"" plural = foramina"
+515,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+515,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+515,L4-L5,,,annular_tear,True,unspecified,unspecified,
+515,L4-L5,,,thecal_sac_compression,True,mild,unspecified,
+515,UNSPEC,,,thecal_sac_compression,False,,,contradicts L4-L5 line; knee findings ignored
+517,L4-L5,,,disc_bulge,True,mild,unspecified,
+517,L5-S1,,,disc_bulge,True,mild,unspecified,
+517,UNSPEC,,,thecal_sac_compression,False,,,
+517,UNSPEC,,,nerve_root_compression,False,,,
+517,UNSPEC,,,spinal_canal_stenosis,False,,,Q6
+522,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+522,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+522,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,both exit canals
+522,L5-S1,,,disc_bulge,True,mild,unspecified,
+529,UNSPEC,,,other,True,mild,unspecified,"cervical C4-C5 disc bulge, not lumbar"
+529,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,abbreviated m. spasm
+529,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+529,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,
+529,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+534,UNSPEC,,,muscle_spasm,True,unspecified,unspecified,
+534,L5-S1,,,disc_bulge,True,unspecified,unspecified,
+534,L5-S1,,,thecal_sac_compression,True,mild,unspecified,
+534,L5-S1,,,nerve_root_compression,True,mild,bilateral,Q11
+534,L5-S1,,,annular_tear,True,unspecified,unspecified,
+536,L4-L5,,,disc_bulge,True,unspecified,unspecified,
+536,L4-L5,,,thecal_sac_compression,False,,,Q1 abutting
+536,L4-L5,,,foraminal_stenosis,True,unspecified,bilateral,Q5 plural
+547,L4-L5,,,other,True,unspecified,left,enhancing postoperative fibrosis
+547,L4-L5,,,thecal_sac_compression,True,unspecified,unspecified,"by fibrosis, not disc"
+547,L4-L5,,,foraminal_stenosis,True,unspecified,left,Q5
+559,L3-L4,,,disc_protrusion,True,mild,right,
+559,L3-L4,,,thecal_sac_compression,False,,,Q1 abutting
+559,L4-L5,,,disc_protrusion,True,mild,central,
+559,L4-L5,,,thecal_sac_compression,False,,,Q1 abutting
+559,L5-S1,,,disc_protrusion,True,mild,left,
+559,L5-S1,,,thecal_sac_compression,False,,,Q1 abutting
