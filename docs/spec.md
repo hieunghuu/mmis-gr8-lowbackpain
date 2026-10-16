@@ -10,14 +10,14 @@ Hệ thống nhận một ảnh MRI cột sống định dạng NIfTI, chạy [T
 | --- | --- | --- |
 | Frontend | React (Vite) + NiiVue | Upload file, theo dõi trạng thái job, hiển thị ảnh và mask |
 | Backend API | FastAPI, Python ≥ 3.10 | Nhận và kiểm tra file, quản lý job, trả file kết quả |
-| Worker | Thread nền trong cùng process BE, 1 job mỗi lúc | Lấy job từ hàng chờ, gọi CLI TotalSpineSeg, cập nhật trạng thái |
+| Worker | Thread nền trong cùng process BE, 1 job mỗi lúc | Lấy job `pending` cũ nhất từ SQLite, gọi CLI TotalSpineSeg, cập nhật trạng thái |
 | TotalSpineSeg | CLI dựa trên nnU-Net, chạy GPU CUDA | Phân đoạn ảnh, ghi mask ra thư mục output |
-| SQLite | Một file `app.db` | Lưu job và metadata |
+| SQLite | Một file `app.db` | Lưu job và metadata; bảng `jobs` cũng chính là hàng chờ |
 | Lưu trữ file | Thư mục local `data/` | Lưu ảnh input, output, log |
 
 &#91;embedded content: kiến trúc · 6 thành phần, giao thức trên từng cạnh\]
 
-Chỉ Backend API mở cổng HTTP. Worker và TotalSpineSeg không có API mạng: chúng trao đổi với nhau qua hàng chờ trong RAM, SQLite và thư mục file.
+Chỉ Backend API mở cổng HTTP. Worker và TotalSpineSeg không có API mạng: API và worker trao đổi qua SQLite (không có hàng chờ riêng trong RAM), worker và TotalSpineSeg trao đổi qua tham số dòng lệnh và thư mục file.
 
 **Trong phạm vi MVP**
 
@@ -194,7 +194,9 @@ Cả hai trả binary `.nii.gz`. Gọi `/result` khi job chưa `done` thì nhậ
 
 ### 3.6 DELETE /jobs/{job\_id}
 
-Thành công trả `204 No Content`, không có body. Nếu job đang `running` thì trả `409 JOB_RUNNING`. Job `pending` bị xóa sẽ được rút khỏi hàng chờ.
+Thành công trả `204 No Content`, không có body. Nếu job đang `running` thì trả `409 JOB_RUNNING`. Job `pending` bị xóa thì tự ra khỏi hàng chờ, vì hàng chờ chính là các dòng `pending` trong DB.
+
+API xóa bằng `DELETE FROM jobs WHERE id = ? AND status <> 'running'`. Nếu không xóa được dòng nào mà job vẫn tồn tại, nghĩa là worker vừa lấy job đó, thì trả `409 JOB_RUNNING`. Câu lệnh này tránh tình huống xóa đúng lúc worker đổi job sang `running`.
 
 ### 3.7 GET /labels
 
@@ -217,19 +219,27 @@ Một job có đúng 4 trạng thái: `pending`, `running`, `done`, `failed`. Ch
 
 &#91;embedded content: vòng đời job · 4 trạng thái, 2 trạng thái cuối\]
 
-Mọi lỗi trong lúc chạy đều dẫn về `failed`; chỉ job `pending` mới được xếp lại hàng chờ khi BE khởi động lại.
+Mọi lỗi trong lúc chạy đều dẫn về `failed`; job `pending` vẫn nằm trong DB nên vẫn ở trong hàng chờ khi BE khởi động lại.
+
+**Hàng chờ bằng SQLite**
+
+Không có hàng chờ riêng trong RAM: hàng chờ là các dòng `status = 'pending'` trong bảng `jobs`, xếp theo `created_at`. Nhờ vậy, xóa job, khôi phục sau restart và tính `queue_position` đều chỉ là truy vấn trên cùng một bảng.
+
+- Worker lặp: `SELECT id FROM jobs WHERE status = 'pending' ORDER BY created_at LIMIT 1`. Nếu không có job thì ngủ 1 giây rồi hỏi lại.
+- Nhận job bằng `UPDATE jobs SET status = 'running', started_at = ? WHERE id = ? AND status = 'pending'`. Nếu `rowcount = 0` (job vừa bị xóa) thì bỏ qua, quay lại vòng lặp.
+- Độ trễ từ lúc tạo job đến lúc chạy tối đa khoảng 1 giây, không đáng kể so với thời gian phân đoạn.
 
 **Quy tắc chuyển trạng thái**
 
-1. `pending` sang `running`: worker lấy job cũ nhất trong hàng chờ, ghi `started_at`.
+1. `pending` sang `running`: worker lấy job `pending` cũ nhất trong DB, ghi `started_at`.
 2. `running` sang `done`: CLI trả exit code 0 và tìm thấy file mask (mục 5), ghi `finished_at` và `labels_present`.
 3. `running` sang `failed`: CLI trả exit code khác 0, hoặc không có file mask, hoặc chạy quá `JOB_TIMEOUT_SEC` (mặc định 900 giây).
 4. `done` và `failed` là trạng thái cuối, không chuyển tiếp nữa. Muốn chạy lại thì tạo job mới.
 
 **Khi BE khởi động lại**
 
-- Job đang `running` chuyển thành `failed` với code `WORKER_INTERRUPTED`.
-- Job đang `pending` được đưa lại vào hàng chờ theo thứ tự `created_at`.
+- Trước khi bắt đầu vòng lặp, worker chuyển mọi job đang `running` thành `failed` với code `WORKER_INTERRUPTED`.
+- Job đang `pending` không cần xử lý gì: chúng vẫn nằm trong DB và sẽ được chạy theo thứ tự `created_at`.
 
 **Quy tắc polling ở FE**
 
@@ -429,7 +439,7 @@ Toàn bộ hệ thống chạy trên một máy có GPU, trong một process Pyt
 
 - Lúc dev: BE chạy ở cổng 8000, FE dev server chạy ở cổng 5173.
 - Lúc demo: FE build thành file tĩnh và BE phục vụ luôn các file đó. Như vậy chỉ còn 1 cổng và không cần cấu hình CORS.
-- Chỉ chạy 1 process BE: nếu nhiều process thì mỗi process có hàng chờ riêng và sẽ tranh nhau GPU.
+- Chỉ chạy 1 process BE (không dùng `--reload` hay nhiều worker của uvicorn khi demo): mỗi process sẽ có một worker thread, nên nhiều job chạy cùng lúc và tranh nhau GPU/CPU; `--reload` còn khởi động lại process làm job đang chạy thành `WORKER_INTERRUPTED`.
 
 **Có cần Docker không**
 
@@ -457,7 +467,7 @@ FE và BE làm song song được ngay từ ngày đầu: BE dựng mock trả �
 
 **Worker**
 
-- [ ] Hàng chờ 1 thread, lấy job `pending` cũ nhất
+- [ ] 1 worker thread lấy job `pending` cũ nhất từ SQLite (mục 4, hàng chờ bằng SQLite)
 - [ ] Gọi CLI theo mục 5, ghi log, xử lý timeout
 - [ ] Tìm file mask, tính `labels_present`, cập nhật trạng thái
 - [ ] Khôi phục trạng thái khi BE khởi động lại (mục 4)
