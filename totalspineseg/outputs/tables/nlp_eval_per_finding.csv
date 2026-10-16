@@ -1,0 +1,61 @@
+finding,gold,pred,tp,fp,fn,precision,recall,f1,scheme
+annular_tear,5,6,5,1,0,0.8333333333333334,1.0,0.9090909090909091,tầng – khẳng định
+bone_marrow_lesion,1,3,0,3,1,0.0,0.0,0.0,tầng – khẳng định
+disc_bulge,81,81,80,1,1,0.9876543209876543,0.9876543209876543,0.9876543209876543,tầng – khẳng định
+disc_desiccation,15,15,15,0,0,1.0,1.0,1.0,tầng – khẳng định
+disc_herniation,2,2,2,0,0,1.0,1.0,1.0,tầng – khẳng định
+disc_protrusion,23,23,23,0,0,1.0,1.0,1.0,tầng – khẳng định
+disc_space_narrowing,1,1,1,0,0,1.0,1.0,1.0,tầng – khẳng định
+endplate_degeneration,3,3,3,0,0,1.0,1.0,1.0,tầng – khẳng định
+facet_arthropathy,5,4,4,0,1,1.0,0.8,0.888888888888889,tầng – khẳng định
+foraminal_stenosis,49,50,48,2,1,0.96,0.9795918367346939,0.9696969696969697,tầng – khẳng định
+ligamentum_flavum_hypertrophy,4,3,3,0,1,1.0,0.75,0.8571428571428571,tầng – khẳng định
+muscle_spasm,29,29,29,0,0,1.0,1.0,1.0,tầng – khẳng định
+nerve_root_compression,24,26,24,2,0,0.9230769230769231,1.0,0.9600000000000001,tầng – khẳng định
+schmorl_nodes,4,4,4,0,0,1.0,1.0,1.0,tầng – khẳng định
+scoliosis,2,2,2,0,0,1.0,1.0,1.0,tầng – khẳng định
+spinal_canal_stenosis,5,9,5,4,0,0.5555555555555556,1.0,0.7142857142857143,tầng – khẳng định
+spondylolisthesis,4,4,4,0,0,1.0,1.0,1.0,tầng – khẳng định
+tarlov_cyst,1,2,0,2,1,0.0,0.0,0.0,tầng – khẳng định
+thecal_sac_compression,79,80,76,4,3,0.95,0.9620253164556962,0.9559748427672956,tầng – khẳng định
+vertebral_fracture,2,2,2,0,0,1.0,1.0,1.0,tầng – khẳng định
+annular_tear,5,5,5,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+bone_marrow_lesion,1,2,1,1,0,0.5,1.0,0.6666666666666666,bệnh nhân – khẳng định
+disc_bulge,54,54,54,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+disc_desiccation,13,13,13,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+disc_herniation,2,2,2,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+disc_protrusion,21,21,21,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+disc_space_narrowing,1,1,1,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+endplate_degeneration,3,3,3,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+facet_arthropathy,4,4,4,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+foraminal_stenosis,34,36,34,2,0,0.9444444444444444,1.0,0.9714285714285714,bệnh nhân – khẳng định
+ligamentum_flavum_hypertrophy,3,2,2,0,1,1.0,0.6666666666666666,0.8,bệnh nhân – khẳng định
+muscle_spasm,29,29,29,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+nerve_root_compression,19,21,19,2,0,0.9047619047619048,1.0,0.9500000000000001,bệnh nhân – khẳng định
+schmorl_nodes,4,4,4,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+scoliosis,2,2,2,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+spinal_canal_stenosis,3,6,3,3,0,0.5,1.0,0.6666666666666666,bệnh nhân – khẳng định
+spondylolisthesis,4,4,4,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+tarlov_cyst,1,1,1,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+thecal_sac_compression,51,53,49,4,2,0.9245283018867925,0.9607843137254902,0.9423076923076923,bệnh nhân – khẳng định
+vertebral_fracture,2,2,2,0,0,1.0,1.0,1.0,bệnh nhân – khẳng định
+annular_tear,0,0,0,0,0,,,,bệnh nhân – phủ định
+bone_marrow_lesion,1,0,0,0,1,,0.0,0.0,bệnh nhân – phủ định
+disc_bulge,0,0,0,0,0,,,,bệnh nhân – phủ định
+disc_desiccation,0,0,0,0,0,,,,bệnh nhân – phủ định
+disc_herniation,12,12,12,0,0,1.0,1.0,1.0,bệnh nhân – phủ định
+disc_protrusion,2,2,2,0,0,1.0,1.0,1.0,bệnh nhân – phủ định
+disc_space_narrowing,0,0,0,0,0,,,,bệnh nhân – phủ định
+endplate_degeneration,0,0,0,0,0,,,,bệnh nhân – phủ định
+facet_arthropathy,0,0,0,0,0,,,,bệnh nhân – phủ định
+foraminal_stenosis,0,0,0,0,0,,,,bệnh nhân – phủ định
+ligamentum_flavum_hypertrophy,0,0,0,0,0,,,,bệnh nhân – phủ định
+muscle_spasm,0,0,0,0,0,,,,bệnh nhân – phủ định
+nerve_root_compression,21,19,19,0,2,1.0,0.9047619047619048,0.9500000000000001,bệnh nhân – phủ định
+schmorl_nodes,0,0,0,0,0,,,,bệnh nhân – phủ định
+scoliosis,0,0,0,0,0,,,,bệnh nhân – phủ định
+spinal_canal_stenosis,12,11,11,0,1,1.0,0.9166666666666666,0.9565217391304348,bệnh nhân – phủ định
+spondylolisthesis,0,0,0,0,0,,,,bệnh nhân – phủ định
+tarlov_cyst,0,0,0,0,0,,,,bệnh nhân – phủ định
+thecal_sac_compression,22,18,18,0,4,1.0,0.8181818181818182,0.9,bệnh nhân – phủ định
+vertebral_fracture,1,0,0,0,1,,0.0,0.0,bệnh nhân – phủ định

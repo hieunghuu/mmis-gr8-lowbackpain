@@ -194,39 +194,53 @@ cứng và lấn vào các rễ thần kinh đi ra.
 
 ### 5.4. Tần suất bệnh lý (đầu ra của NLP, 515 bệnh nhân)
 
-> ⚠️ Các bảng trong mục này lấy từ **phiên bản NLP trước**. Bộ rule hiện tại
-> (`../totalspineseg/README.md`, bước 5) cho thấy thoát vị đĩa đệm **không phải 0 ca** – có các
-> ca mô tả "sequestrated / extruded / detached disc fragment" (quy ước Q3) – và nhận
-> thêm nhiều cách viết sai chính tả (vd "dissicating disc material"). Số liệu sẽ được
-> cập nhật sau bước 5d (đánh giá trên bộ chuẩn vàng).
+Số liệu từ bộ rule NLP đã được chấm trên bộ chuẩn vàng (F1 = 0,971 ở mức bệnh nhân – xem
+`../totalspineseg/README.md`, bước 5d). Nguồn: `../totalspineseg/outputs/tables/labels_patient.csv`.
 
 | Bệnh lý | Số bệnh nhân | % |
 |---|---:|---:|
-| Chèn ép bao màng cứng (thecal sac compression) | 358 | 69,5 |
-| Phồng đĩa đệm (disc bulge) | 342 | 66,4 |
-| Co cứng cơ (muscle spasm) | 226 | 43,9 |
-| Hẹp lỗ liên hợp (foraminal stenosis) | 206 | 40,0 |
-| Chèn ép rễ thần kinh (nerve root compression) | 147 | 28,5 |
-| Lồi đĩa đệm (disc protrusion) | 139 | 27,0 |
-| Mất nước đĩa đệm (disc desiccation) | 70 | 13,6 |
-| Thoát vị đĩa đệm (disc herniation) | 0 | 0,0 |
+| Phồng đĩa đệm (disc bulge) | 343 | 66,6 |
+| Chèn ép bao màng cứng (thecal sac compression) | 339 | 65,8 |
+| Co cứng cơ (muscle spasm) | 228 | 44,3 |
+| Hẹp lỗ liên hợp (foraminal stenosis) | 219 | 42,5 |
+| Chèn ép rễ thần kinh (nerve root compression) | 148 | 28,7 |
+| Lồi đĩa đệm (disc protrusion) | 137 | 26,6 |
+| Mất nước đĩa đệm (disc desiccation) | 73 | 14,2 |
+| Hẹp ống sống (spinal canal stenosis) | 32 | 6,2 |
+| Rách vòng xơ (annular tear) | 29 | 5,6 |
+| Tổn thương tủy xương (bone marrow lesion) | 29 | 5,6 |
+| Thoái hóa tấm tận (endplate degeneration) | 26 | 5,0 |
+| Trượt đốt sống (spondylolisthesis) | 24 | 4,7 |
+| Phì đại dây chằng vàng | 20 | 3,9 |
+| Nốt Schmorl | 17 | 3,3 |
+| Thoái hóa khớp mặt | 16 | 3,1 |
+| Hẹp khoang đĩa (disc space narrowing) | 14 | 2,7 |
+| **Thoát vị đĩa đệm (disc herniation)** | **10** | **1,9** |
+| Nang Tarlov | 10 | 1,9 |
+| Gãy / lún đốt sống | 9 | 1,7 |
+| Gai xương | 6 | 1,2 |
+| Vẹo cột sống | 5 | 1,0 |
 
-"Herniation" xuất hiện nhiều trong văn bản nhưng **luôn nằm trong câu phủ định**
-("No evidence of disc herniation"), nên sau khi xử lý phủ định không còn ca nào. Bảng
-đầy đủ 17 bệnh lý: phiên bản trước (sẽ thay bằng `labels_patient.csv` ở bước 5d).
+57 bệnh nhân (11,1 %) không có phát hiện khẳng định nào; 201 bệnh nhân (39,0 %) có bệnh ở ≥ 2 tầng.
 
-Số ca theo tầng đĩa đệm (phiên bản trước):
+**Thoát vị đĩa đệm không phải 0 ca** như phiên bản phân tích trước: chữ "herniation" xuất hiện
+nhiều nhưng **luôn nằm trong câu phủ định** ("No evidence of disc herniation"), còn 10 ca thoát vị
+thật được bác sĩ mô tả bằng từ khác – "sequestrated / extruded / detached disc fragment" (quy ước Q3).
 
-| Tầng | Phồng đĩa | Lồi đĩa | Chèn ép bao màng cứng | Chèn ép rễ | Hẹp lỗ liên hợp |
-|---|---:|---:|---:|---:|---:|
-| L1-L2 | 4 | 4 | 6 | 2 | 0 |
-| L2-L3 | 20 | 5 | 18 | 3 | 12 |
-| L3-L4 | 87 | 6 | 69 | 19 | 44 |
-| **L4-L5** | **255** | 54 | **254** | **87** | **153** |
-| **L5-S1** | 126 | **78** | 155 | 72 | 65 |
+Số ca theo tầng đĩa đệm (`labels_level.csv`):
+
+| Tầng | Phồng đĩa | Lồi đĩa | Chèn ép bao màng cứng | Chèn ép rễ | Hẹp lỗ liên hợp | Mất nước đĩa |
+|---|---:|---:|---:|---:|---:|---:|
+| T12-L1 | 1 | 1 | 1 | 0 | 1 | 0 |
+| L1-L2 | 4 | 4 | 5 | 2 | 0 | 0 |
+| L2-L3 | 20 | 4 | 17 | 4 | 12 | 0 |
+| L3-L4 | 88 | 6 | 68 | 23 | 45 | 2 |
+| **L4-L5** | **255** | 54 | **250** | **93** | **157** | 18 |
+| **L5-S1** | 128 | **77** | 146 | 69 | 73 | **20** |
 
 → Bệnh tập trung gần như hoàn toàn ở **hai tầng dưới cùng, L4-L5 và L5-S1**, là đoạn
-chịu lực nhiều nhất khi cúi và nâng vật.
+chịu lực nhiều nhất khi cúi và nâng vật. (Mất nước đĩa thường được ghi chung "dissicating disc
+material" không kèm tầng, nên số theo tầng thấp hơn số bệnh nhân.)
 
 ---
 

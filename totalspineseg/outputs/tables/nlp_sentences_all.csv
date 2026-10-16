@@ -1,0 +1,1773 @@
+patient_id,sentence_id,text,levels,inherited,n_findings
+1,1,"<L4-L5> : degenerative annular disc bulge is noted more to the left side compressing thecal sac, compressing left nerve root and narrowing right neural foramen",L4-L5,False,4
+1,2,evidence of hyperintense signal within the annulus fibrosus at left paramedian/posterolateral area which probably represents a torn annulus,L4-L5,True,1
+2,1,no evidence of disc herniation,,False,1
+2,2,no significant thecal sac or nerve root compression noted,,False,2
+3,1,lss mri,,False,0
+3,2,features of muscle spasm,,False,1
+3,3,small central disc protrusion noted at <L5-S1> level abutting the thecal sac,L5-S1,False,2
+3,4,no significant thecal sac or nerve root compression noted,L5-S1,True,2
+4,1,feature of muscle spasm,,False,1
+4,2,"diffuse disc bulges noted at <L4-L5> & <L5-S1> levels, mildly compressing the thecal sac and encroaching exit nerve roots","L4-L5,L5-S1",False,6
+5,1,lss mri :,,False,0
+5,2,feature of muscle spasm,,False,1
+5,3,"diffuse disc bulge noted at <L4-L5> level ,mildly compressing the thecal sac and both exit nerve roots",L4-L5,False,3
+6,1,lss mri :,,False,0
+6,2,feature of muscle spasm,,False,1
+6,3,"diffuse disc bulge noted at <L4-L5> level, mild compressing thecal sac and both nerve roots",L4-L5,False,3
+6,4,"wide base disc bulges noted at <L5-S1> level, mild compressing thecal sac and both nerve roots",L5-S1,False,3
+7,1,lss mri,,False,0
+7,2,"diffuse disc bulge noted at <L4-L5> level , compressing the thecal sac and exit canals",L4-L5,False,3
+7,3,small central disc protrusion noted at <L5-S1> level,L5-S1,False,1
+7,4,no significant spinal canal narrowing noted,L5-S1,True,1
+8,1,lss mri :,,False,0
+8,2,feature of muscle spasm,,False,1
+8,3,"mild diffuse disc bulge noted at <L4-L5> level , with mild compressing thecal sac",L4-L5,False,2
+8,4,nb:,L4-L5,True,0
+8,5,"about 7 cm, mixed pelvic cyst noted, correlate with us",L4-L5,True,0
+9,1,lss mri,,False,0
+9,2,no evidence of disc herniation,,False,1
+9,3,no significant thecal sac or nerve root compression noted,,False,2
+10,1,lss mri,,False,0
+10,2,no evidence of disc herniation,,False,1
+10,3,no significant thecal sac or nerve root compression noted,,False,2
+11,1,lss mri :,,False,0
+11,2,"about 3*2 cm lesion with inhomogenous signal intensity noted just posterior to l1 vertebral body ,largely compressing the rt side of the thecal sac",,False,1
+11,3,contrast study is advsied,,False,0
+11,4,"diffuse disc bulge noted at <L4-L5> level, compressing the thecal sac and encroaching upon both neural canals",L4-L5,False,3
+11,5,"wide base disc bulge noted at <L5-S1> level, extending to lt lateral recess , compressin the thecal sac and nerve roots, more to left side, associated with ligamentum flavum hypertrophy",L5-S1,False,4
+12,1,lss mri,,False,0
+12,2,"rt paracentral disc protrusion noted at <L4-L5> level, compressing the thecal sac",L4-L5,False,2
+12,3,adequate spinal canal,L4-L5,True,1
+13,1,<L4-L5> broad based central and left paracentral disc protrusion is noted compressing thecal sac and narrowing left neural foramen,L4-L5,False,3
+13,2,<L5-S1> : broad based degenerative central disc bulge is noted indenting thecal sac but not causing significant nerve root compression or foraminal narrowing,L5-S1,False,4
+13,3,dehydrated <L4-L5> and <L5-S1> intervetrebral discs,"L4-L5,L5-S1",False,2
+13,4,vertebral bone marrow signal reconversion is noted,"L4-L5,L5-S1",True,2
+14,1,lss mri :,,False,0
+14,2,feature of muscle spasm,,False,1
+14,3,no significant disc herniation or protrusion seen,,False,2
+14,4,adequate thecal sac,,False,1
+15,1,lumbosacral mri,,False,0
+15,2,mild disc bulge noted at <L5-S1> level,L5-S1,False,1
+15,3,small right foraminal disc protrusion with annular tear is noted,L5-S1,True,2
+15,4,no significant thecal sac or nerve root compression noted,L5-S1,True,2
+16,1,lumbosacral mri,,False,0
+16,2,features of muscle spasm,,False,1
+16,3,dissicating lower disc space noted,,False,1
+16,4,central and left paracentral disc protrusion noted at <L4-L5> level compressing the thecal sac and lt exit nerve root,L4-L5,False,3
+16,5,"diffuse disc bulges noted at the <L5-S1> level , mild compressing the thecal sac and exiting nerve root",L5-S1,False,3
+17,1,"<L5-S1> : left paramedian disc protrusion on top of degenerative annular disc bulge causing compression of thecal sac, compressing left s1 nerve root within lateral recess, compressing left l5 nerve root within left neural foramen and narrowing right neural foramen",L5-S1,False,6
+17,2,<L4-L5> : annular disc bulge is noted compressing thecal sac and narrowing both neural foramina,L4-L5,False,3
+17,3,<L3-L4> : left posterolateral disc bulge is notedslightly narrowing left neural foramen,L3-L4,False,2
+19,1,<L1-L2> : central disc bulge is noted indenting thecal sac,L1-L2,False,2
+19,2,<L3-L4> : right posterolateral disc bulge is noted with end-plate osteophyte formation causing compression of right nerve root within neural foramen,L3-L4,False,4
+19,3,<L5-S1> : right paramedian disc bulge is noted indenting thecal sac,L5-S1,False,2
+20,1,compression fracture is noted involving d12 body with compression of thecal sac and indentation of spinal cord at this level and maximum posterior displacement of posterior border of vertebral body by about 6.5mm,,False,2
+20,2,this fracture is believed to be pathological due to the mottled appearance of vertebral bodies,,False,1
+20,3,<L4-L5> : secondary lumbar canal stenosis is noted due to degenerative annular disc bulge along with hypertrophy of facet joints and ligamenta flaca,L4-L5,False,3
+20,4,compression of right l4 nerve root within right neural foramen due to the above mentioned disc bulge is also noted,L4-L5,True,3
+20,5,"<L5-S1> : degenerative annular disc bulge more toward the right side causing compression of thecal sac, compression of right l5 nerve root within right neural foramen and narrowing of left neural foramen",L5-S1,False,4
+20,6,diffusely altered signal of vertebral bone marrow,L5-S1,True,1
+20,7,further evaluation is advised,L5-S1,True,0
+21,1,"<L5-S1> : left paramedian disc protrusion on top of degenerative annular disc bulge with end-plate osteophytes formation causing compression of thecal sac, compression of left s1 nerve root within lateral recess, and narrowing of neural foramina",L5-S1,False,7
+22,1,lumbosacral mri,,False,0
+22,2,features of muscle spasm,,False,1
+22,3,central and left paracentral disc protrusion noted at the level of <L4-L5>,L4-L5,False,1
+22,4,significantly compressing the thecal sac and the left exit nerve root,L4-L5,True,2
+22,5,and desiccative disc material noted,L4-L5,True,1
+23,1,<L4-L5> <L5-S1> : diffuse disc bulges compressing the thecal sac and encroaching exit canals,"L4-L5,L5-S1",False,6
+24,1,no evidence of disc herniation,,False,1
+24,2,no significant thecal sac or nerve root compression noted,,False,2
+24,3,adequate spinal canal,,False,1
+25,1,<L4-L5> : mild broad based central disc bulge is noted indenting thecal sac,L4-L5,False,2
+25,2,<L5-S1> : central disc protrusion is noted indenting thecal sac,L5-S1,False,2
+25,3,diffuse bone marrow signal reconversion is noted,L5-S1,True,1
+26,1,lss mri,,False,0
+26,2,no evidence of disc herniation,,False,1
+26,3,no signidant thecal sac or nerve root compression noted,,False,2
+27,1,<L2-L3> : broad based right paramedin disc extrusion is noted slightly migrating downwards,L2-L3,False,1
+29,1,mri of the lss,,False,0
+29,2,feature of muscle spasm,,False,1
+29,3,"central disc protrusion noted at d11/d12, obliterating anterior csf spaces and compressing spinal cord and encroaching exit nerve canals",,False,2
+29,4,"diffuse disc bulges noted at <L4-L5> , mild compressing thecal sac and exit nerve roots",L4-L5,False,3
+29,5,"diffuse disc bulges noted at <L5-S1> , compressing thecal sac and exit nerve roots more to lt side",L5-S1,False,3
+30,1,lss mri,,False,0
+30,2,"diffuse disc bulge noted at <L5-S1> level, more to the lt side, compressing the thercal sac and lt exit canal",L5-S1,False,2
+31,1,lss mri :,,False,0
+31,2,"grade i spondylolisthesis of <L5-S1> level, with narrowed disc space",L5-S1,False,2
+31,3,multilevel dissicating disc materials noted,L5-S1,True,1
+31,4,evidence of previus surgery noted at lumbosacra level,L5-S1,True,0
+31,5,"diffuse disc bulges noted at (d12/l1& <L4-L5> & <L5-S1> levels, compressing (contrast study is asuperior","L4-L5,L5-S1",False,2
+32,1,no evidence of disc herniation,,False,1
+32,2,no significant thecal sac or nerve root compression noted,,False,2
+33,1,lss mri,,False,0
+33,2,no evidence of disc herniation noted,,False,1
+33,3,no significant thecal sac or nerve root compression noted,,False,2
+34,1,<L4-L5> : mild central disc protrusion noted abutting the thecal sac,L4-L5,False,2
+35,1,lss mri (with contrast ):follow up,,False,0
+35,2,history of recent & prevoius operations,,False,0
+35,3,"inhomogenous enhancing granulation tissue noted at lt sided of thecal sac ,compressing the lt sided thecal sac and exit neural canal (site of operation ( <L5-S1> )extending posteriorly with small collection",L5-S1,False,2
+35,4,inhomogenous enhancing granulation noted at <L4-L5> left sided,L4-L5,False,0
+36,1,lss mri :,,False,0
+36,2,"there is sequestrated disc fragment (ring enhancing ) noted just posterior to l5 vertebral body below <L4-L5> level ,at lt paracentral thecal sac compressing lt sided thecal sac and exit nerve roots",L4-L5,False,3
+37,1,mri of the lss,,False,0
+37,2,features of muscle spasm noted,,False,1
+37,3,no evidence of disc herniation noted,,False,1
+37,4,no significant thecal sac or nerve root compression noted,,False,2
+38,1,lumbosacral mri,,False,0
+38,2,straightening of the lumbar spine mostly due to muscle spasm,,False,1
+38,3,dehydrated discal material,,False,1
+38,4,right paracentral disc protrusion noted at the <L4-L5> level compressing the thecal sac,L4-L5,False,2
+38,5,right foraminal disc protrusion noted at the <L5-S1> level compressing the right s1 nerve root,L5-S1,False,3
+38,6,incidental finding of subcutaneous lipoma at the level of the l1 vertebra,L5-S1,True,0
+39,1,lss mri,,False,0
+39,2,"mild disc bulges noted at <L4-L5> and <L5-S1> levels, abutting the thecal sac","L4-L5,L5-S1",False,4
+39,3,no significant thecal sac or nerve root compression noted,"L4-L5,L5-S1",True,2
+39,4,adequate spinal canal,"L4-L5,L5-S1",True,1
+40,1,lumbosacral mri,,False,0
+40,2,features of muscle spasm,,False,1
+40,3,partially desiccated <L4-L5> level,L4-L5,False,1
+40,4,"central disc protrusion noted at the <L4-L5> level, partially caudally migration , significant compressing the thecal sac and encroaching exiting neural canal",L4-L5,False,3
+40,5,widely disc bulge noted at <L5-S1> mildly compressing the thecal sac,L5-S1,False,2
+41,1,lumbosacral mri,,False,0
+41,2,"diffuse disc bulges noted at <L4-L5> and <L3-L4> levels, abutting the thecal sac","L4-L5,L3-L4",False,4
+41,3,with mild encroachment of the left exit neural canal at <L4-L5> level,L4-L5,False,1
+41,4,features of muscle spasm noted,L4-L5,True,1
+42,1,mri of the lss,,False,0
+42,2,feature of muscle spasm,,False,1
+42,3,diffuse disc bulge noted at <L3-L4> & <L4-L5> level mildly compressing thecal sac and exit nerve roots,"L3-L4,L4-L5",False,6
+43,1,<L4-L5> : central disc protrusion compressing the thecal sac,L4-L5,False,2
+43,2,<L5-S1> : rt paracentral disc protrusion abutting rt s1 nerve root,L5-S1,False,2
+44,1,lss mri (without contrast):,,False,0
+44,2,"evidence of recent operation noted at lower level ( <L5-S1> ), with soft tissue edema",L5-S1,False,0
+44,3,"central and rt paracentral disc protrusion noted at <L5-S1> level, displacing inferiorly the thecal sac and encroaching rt s1 exit nerve root",L5-S1,False,3
+44,4,"diffuse disc bulge noted at <L4-L5> level extending to lt lateral recess, compressing thecal sac and encroaching upon exit neural canal",L4-L5,False,3
+46,1,no evidence of disc herniation,,False,1
+46,2,no significant thecal sac or nerve root compression noted,,False,2
+47,1,lss mri :,,False,0
+47,2,feature of muscle spasm,,False,1
+47,3,degenerative spondylotic chnages noted,,False,0
+47,4,"multilevel diffuse disc bulges , noteceably noted at <L3-L4> & <L4-L5> level, compressing thecal sac and both nerve roots associated with ligamentum flavum hypertrophy , all leading to secandary spinal canal stenosis","L3-L4,L4-L5",False,10
+47,5,"small lt paracentral disc protrusion noted at <L1-L2> level , mild compressing thecal sac",L1-L2,False,2
+47,6,nb :,L1-L2,True,0
+47,7,lt renal cyst noted,L1-L2,True,0
+48,1,lss mri :,,False,0
+48,2,feature of muscle spasm,,False,1
+48,3,"diffuse disc bulges noted at <L4-L5> & <L5-S1> levels, mildly compressing the thecal sac and both nerve roots","L4-L5,L5-S1",False,6
+50,1,"<L3-L4> , <L5-S1> : diffuse disc bulges, more to the rt side, abutting the thecal sac and encroaching rt exit neural canal","L3-L4,L5-S1",False,6
+50,2,"<L4-L5> : lt paracentral and foraminal disc protrusion, compressing the thecal sac and lt exit neural canal",L4-L5,False,3
+51,1,lss mri,,False,0
+51,2,mild disc bulges noted at <L5-S1> and <L2-L3> levels abutting the thecal sac,"L5-S1,L2-L3",False,4
+51,3,adequate spinal canal,"L5-S1,L2-L3",True,1
+52,1,lumbosacral mri,,False,0
+52,2,feature of muscle spasm,,False,1
+52,3,"diffuse disc bulge noted at <L3-L4> & and <L5-S1> levels, mild compressing the thecal sac and mild encroaching exiting neural canal,associated with annular tear at <L5-S1>","L3-L4,L5-S1",False,8
+53,1,lumbosacral mri,,False,0
+53,2,diffuse disc bulges noted at <L4-L5> and <L5-S1> levels with endplate degeneration,"L4-L5,L5-S1",False,4
+53,3,compressing the thecal sac,"L4-L5,L5-S1",True,2
+55,1,lss mri,,False,0
+55,2,no evidence of disc herniation noted,,False,1
+55,3,no thecal sac or nerve root compression noted,,False,2
+56,1,lss mri,,False,0
+56,2,"enhancing lt paracentral soft tissue noted at <L5-S1> level, mostly granulation tissue, compressing lt s1 nerve root and thecal sac",L5-S1,False,2
+56,3,no definite fractures or subluxation noted,L5-S1,True,1
+57,1,lss mri :,,False,0
+57,2,feature of muscle spasm,,False,1
+57,3,"diffuse disc bulge noted at <L4-L5> level , mildly compressing the thecal sac, and exit nerve roots",L4-L5,False,3
+58,1,lss mri :,,False,0
+58,2,feature of muscle spasm,,False,1
+58,3,"diffuse disc bulge noted at <L4-L5> level, compressing the thecal sac and both nerve roots",L4-L5,False,3
+58,4,"mild diffuse disc bulges noted at <L3-L4> level, mild compressing thecal sac",L3-L4,False,2
+58,5,nb :small tarlove cyst noted at s2 level,L3-L4,True,1
+60,1,c spine and lss mri,,False,0
+60,2,features of muscle spasm,,False,1
+60,3,no evidence of disc herniation,,False,1
+60,4,no significant thecal sac or nerve root compressioon,,False,2
+61,1,lss mri,,False,0
+61,2,"rt paracentral disc protrusion noted at <L4-L5> level, compressing the thecal sac and encroaching upon rt l5 nerve root",L4-L5,False,3
+61,3,adequate spinal,L4-L5,True,0
+61,4,features of muscle spasm,L4-L5,True,1
+62,1,lss mri,,False,0
+62,2,"<L4-L5> : lt paracentral disc protrusion noted, compressing the tyhecal sac and lt exit canal",L4-L5,False,2
+63,1,lss mri:,,False,0
+63,2,feature of muscle spasm,,False,1
+63,3,"mild diffuse disc bulges noted at <L4-L5> & <L5-S1> levels , mild compressing thecal sac and exit nerve roots","L4-L5,L5-S1",False,6
+64,1,lumbosacral mri,,False,0
+64,2,no evidence of disc herniation,,False,1
+64,3,no thecal sac or nerve root compression noted,,False,2
+65,1,<L4-L5> : diffuse disc bulge compressing the thecal sac and exit neural canals,L4-L5,False,3
+67,1,<L4-L5> : diffuse disc bulge noted compressing the thecal sac and encroaching exit canals,L4-L5,False,3
+67,2,<L5-S1> : lt posterolateral disc protrusion noted compressing lt exit canal with lt s1 nerve root,L5-S1,False,3
+68,1,l,,False,0
+68,2,ss mri :,,False,0
+68,3,central of lt paracentral disc protrusion noted at <L4-L5> migrating caudally causing thecal sac at lt nerve roots,L4-L5,False,1
+69,1,<L5-S1> : lt posterolateral disc protrusion noted,L5-S1,False,1
+69,2,no significant thecal sac or nerve root compression noted,L5-S1,True,2
+70,1,<L5-S1> : diffuse disc bulge abutting the thecal sac,L5-S1,False,2
+70,2,no significant thecal sac or nerve root compression noted,L5-S1,True,2
+71,1,multilevel diffuse disc bulges noted compressing the thecal sac and exit canals,,False,3
+71,2,multilevel schmorl's nodules noted,,False,1
+72,1,lss mri :,,False,0
+72,2,feature of muscle spasm,,False,1
+72,3,multiple schmorl nodes,,False,1
+72,4,"<L3-L4> level , diffuse disc bulge , extending to lateral recess, more to lt sided, compressing thecal sac and both nerve roots , more to lt",L3-L4,False,3
+72,5,<L4-L5> & <L5-S1> levels:,"L4-L5,L5-S1",False,0
+72,6,"diffuse disc bulge , extending to lateral recess, compressing thecal sac and both nerve roots","L4-L5,L5-S1",True,6
+73,1,lss mri,,False,0
+73,2,no evidence of disc herniation,,False,1
+73,3,no thecal sac or nerve root compression noted,,False,2
+74,1,lumbosacral mri,,False,0
+74,2,"right paracentral and foraminal disc protrusion noted at <L5-S1> level, compressing the thecal sac and right exit neural canal",L5-S1,False,3
+74,3,diffuse disc bulges noted at <L4-L5> and <L3-L4> levels compressing the thecal sac and exiting neural canals,"L4-L5,L3-L4",False,6
+74,4,multilevel endplate degeneration noted,"L4-L5,L3-L4",True,2
+75,1,lss mri :,,False,0
+75,2,feature of muscle spasm,,False,1
+75,3,"diffuse disc bulges noted at <L5-S1> level, mild compressing thecal sac and nerve roots",L5-S1,False,3
+77,1,lss mri,,False,0
+77,2,mild disc bulge noted at <L4-L5> level abutting the thecal sac,L4-L5,False,2
+77,3,no significant thecal sac or nerve root compression noted,L4-L5,True,2
+78,1,no evidence of disc herniation,,False,1
+78,2,no significant thecal sac or nerve root compression noted,,False,2
+80,1,no evidence of disc herniation,,False,1
+80,2,no significant thecal sac or nerve root compression noted,,False,2
+81,1,lss mri :,,False,0
+81,2,feature of muscle spasm,,False,1
+81,3,"wide base posteriocentral disc bulge noted at <L4-L5> level, copmressing the thecal sac and encroaching upon exit neural canals",L4-L5,False,3
+81,4,"diffuse disc bulge noted at <L3-L4> level, mildly compressing the thecal sac and both nerve roots",L3-L4,False,3
+82,1,lss mri :,,False,0
+82,2,feature of muscle spasm,,False,1
+82,3,no evidence of thecal sac or nerve root roots compression,,False,2
+83,1,lumbosacral mri,,False,0
+83,2,diffuse disc bulge noted at <L4-L5> level compressing the thecal sac and exit neural canals,L4-L5,False,3
+83,3,left paracentral and foraminal disc protrusion noted at <L5-S1> level compressing the thecal sac and left exit neural,L5-S1,False,3
+84,1,mri of the lumbosacral spine,,False,0
+84,2,feature of muscle spasm,,False,1
+84,3,end plate degenerative changes noted,,False,1
+84,4,"grade i spondylolisthesis of l5 over s1 , with bone marrow edema and narrowed disc spaces with irregular end plates",L5-S1,False,4
+84,5,"bulky lt iliopsoas muscle with abnormal signal alteration ? post traumatic , infective…",,False,0
+84,6,diffuse disc bulge noted at <L4-L5> level mild compressing the thecal sac and exit neural canals,L4-L5,False,3
+84,7,adequate spinal canal noted,L4-L5,True,1
+85,1,lss mri,,False,0
+85,2,mild disc bulge noted at <L5-S1> level with rt posterolateral tear,L5-S1,False,1
+85,3,no significant thecal sac or nerve root compression noted,L5-S1,True,2
+85,4,adequate spinal canal,L5-S1,True,1
+86,1,lss mri,,False,0
+86,2,"multilevel, diffuse disc bulges noted ( <L2-L3> , <L3-L4> and <L4-L5> levels), mildly compressing the thecal sac","L2-L3,L3-L4,L4-L5",False,6
+87,1,no evidence of disc herniation,,False,1
+87,2,no significant thecal sac or nerve root compression,,False,2
+88,1,lss mri :,,False,0
+88,2,feature of muscle spasm,,False,1
+88,3,<L4-L5> level :,L4-L5,False,0
+88,4,"partial dissicating disc material noted ,with diffuse disc bulge causing mild compressing thecal sac and encroaching exit neural canals",L4-L5,True,4
+89,1,"<L3-L4> : central disc protrusion noted, largely compressing the thecal sac",L3-L4,False,2
+89,2,"<L4-L5> : rt paracentral disc protrusion noted, compressing the thecal sac and rt exit neural canal",L4-L5,False,3
+89,3,<L5-S1> : mild disc bulge noted,L5-S1,False,1
+90,1,lss mri :,,False,0
+90,2,feature of muscle spasm,,False,1
+90,3,no significant thecal sac or nerve roots compression,,False,2
+90,4,no disc protrusion or herniation seen,,False,2
+90,5,nb :,,False,0
+90,6,small tarlovs cyst,,False,1
+90,7,pelvic cyst noted ? correalte with us,,False,0
+91,1,lss mri :,,False,0
+91,2,scoliosis of lumbar spine noted,,False,1
+91,3,dissicating disc materials,,False,1
+91,4,wedging fracture of l2 vertebral body mostly dut to old insult,,False,1
+91,5,grade ii spondylolisthesis of l4 over l5 level,L4-L5,False,1
+91,6,diffuse disc bulges noted at <L5-S1> level mild compressing thecal sac,L5-S1,False,2
+92,1,lss mri :,,False,0
+92,2,faeture of muscle spasm,,False,1
+92,3,"there is posterio-central disc protrusion noted at <L5-S1> level, largely compressing thecal sac and encroaching both exit neural canal",L5-S1,False,3
+93,1,lss mri,,False,0
+93,2,<L5-S1> : rt paracentral disc protrusion compressing the thecal sac and rt exit neural canal,L5-S1,False,3
+93,3,mild disc bulges noted at <L3-L4> and <L4-L5> levels,"L3-L4,L4-L5",False,2
+94,1,lss mri,,False,0
+94,2,features of muscle spasm,,False,1
+94,3,mild disc bulge noted at <L4-L5> level,L4-L5,False,1
+95,1,mri of the lumbosacral spine,,False,0
+95,2,feature of muscle spasm,,False,1
+95,3,"mild diffuse disc bulges noted at <L4-L5> level,mildly compressing thecal sac and exit nerve root",L4-L5,False,3
+96,1,lss mri,,False,0
+96,2,"lt paracentral disc protrusion noted at <L5-S1> level, abutting the thecal sac and lt s1 nerve root",L5-S1,False,3
+96,3,adequate spinal canal,L5-S1,True,1
+97,1,lss mri:,,False,0
+97,2,feature of muscle spasm,,False,1
+97,3,"wide base focal disc bulge , more to lt sided, noted at <L5-S1> level, compressing thecal sac and both exit nerve roots associated with dehydrated disc material",L5-S1,False,4
+98,1,no evidence of disc herniation,,False,1
+98,2,no significant thecal sac or nerve root compression noted,,False,2
+99,1,lumbosacral mri,,False,0
+99,2,feature of muscle spasm,,False,1
+99,3,multilevel diffuse disc bulging noted noticebly at <L3-L4> & <L4-L5> levels mild compressing thecal sac and exit nerve roots,"L3-L4,L4-L5",False,6
+99,4,dissicating disc material noted,"L3-L4,L4-L5",True,2
+100,1,lss mri,,False,0
+100,2,"diffuse disc bulge noted at <L3-L4> level, more to the lt side, compressing the thecal sac and exit canals",L3-L4,False,3
+100,3,features of muscle spasm,L3-L4,True,1
+101,1,lss mri :,,False,0
+101,2,feature of muscle spasm,,False,1
+101,3,mild diffuse bulge disk <L5-S1> noted,L5-S1,False,1
+101,4,no significant thecal sac or nerve roots compression seen,L5-S1,True,2
+103,1,<L4-L5> : lt posterolateral disc protrusion noted compressing lt exit canal with lt l5 nerve root,L4-L5,False,3
+103,2,mild disc bulges noted at <L3-L4> and <L5-S1> levels,"L3-L4,L5-S1",False,2
+104,1,mri of the lumbosacral spine,,False,0
+104,2,no evidence of disc herniation,,False,1
+104,3,no thecal sac or nerve root compression noted,,False,2
+104,4,adequate spinal canal,,False,1
+105,1,lss mri :,,False,0
+105,2,feature of muscle spasm,,False,1
+105,3,multiple schmorls noted and suggetsive limbus veterba at anterio-superior corner of l4,,False,1
+105,4,"mild diffuse disc bulges noted at <L4-L5> and <L5-S1> levels, mild compressing thecal sac and both nerve roots","L4-L5,L5-S1",False,6
+106,1,lss mri :,,False,0
+106,2,feature of muscle spasm,,False,1
+106,3,no thecal sac or nerve root compression noted,,False,2
+107,1,lss mri :,,False,0
+107,2,feature of muscle spasm,,False,1
+107,3,"wide base disc bulges noted at <L3-L4> level, compressing thecal sac and encroaching neural exit canals",L3-L4,False,3
+107,4,"diffuse disc bulges noted at <L4-L5> level,mild compressing thecal sac and l exit nerve roots",L4-L5,False,3
+108,1,<L4-L5> : central disc protrusion noted compressing the thecal sac,L4-L5,False,2
+109,1,lss mri :,,False,0
+109,2,feature of muscle spasm,,False,1
+109,3,grade i spondylolisthesis of l4 over l5 level,L4-L5,False,1
+109,4,"diffuse disc bulge noted at <L4-L5> level,largely compressing the thecal sac extending to lateral recess , associated with ligametum flavum hypertrophy with encroaching exit neural canals, all leading to secandary spinal canal stenosis ,as well as dehydrated disc materials",L4-L5,False,6
+112,1,"<L5-S1> : mild rt paracentral disc protrusion noted, abutting the thecal sac",L5-S1,False,2
+112,2,<L4-L5> and <L3-L4> : mild disc bulges noted,"L4-L5,L3-L4",False,2
+113,1,lumbosacral mri,,False,0
+113,2,mild disc bulge noted at <L5-S1> level,L5-S1,False,1
+113,3,no significant thecal sac or nerve root compression noted,L5-S1,True,2
+113,4,adequate spinal canal,L5-S1,True,1
+114,1,lss mri,,False,0
+114,2,"<L5-S1> : lt paracentral and foraminal disc protrusion noted, compressing the thecal sac and lt s1 nerve root",L5-S1,False,4
+114,3,features of muscle spasm noted,L5-S1,True,1
+115,1,lss mri,,False,0
+115,2,"multilevel diffuse disc bulges (l4-s1) compressing the thecal sac, noticeably at <L4-L5> where the lt exit canal also appeared compressed",L4-L5,False,3
+116,1,lss mri,,False,0
+116,2,previous surgery noted with transpedicle fixation noted at <L3-L4> level,L3-L4,False,0
+116,3,normal bony alignment,L3-L4,True,0
+116,4,adequate spinal canal with no significant thecal sac or nerve root compression,L3-L4,True,3
+116,5,"enhancing posterior parts of <L4-L5> disc with ioncreased t2 signal, probably discitis",L4-L5,False,0
+117,1,lss mri,,False,0
+117,2,multilevel degenerative end plate changes noted,,False,1
+117,3,mild disc bulge noted at <L4-L5> level,L4-L5,False,1
+117,4,no significant thecal sac or nerve root compression noted,L4-L5,True,2
+117,5,adequate spinal canal,L4-L5,True,1
+117,6,tarlov cyst noted at s2 level,L4-L5,True,1
+118,1,<L3-L4> : mild disc bulge noted,L3-L4,False,1
+118,2,"<L4-L5> : broad based, central and lt paracentral disc protrusion, compressing the thecal sac and lt exit neural canal",L4-L5,False,3
+118,3,"<L5-S1> : central disc protrusion, compressing the thecal sa",L5-S1,False,1
+119,1,lss mri,,False,0
+119,2,l3 and l2 hemangiomas,,False,1
+119,3,"diffuse disc bulge noted at <L4-L5> level, compressing the thecal sac and exit canals",L4-L5,False,3
+119,4,"mild disc bulge noted at <L3-L4> level, compressing the thecal sac and encroaching upon the lt exit canal",L3-L4,False,3
+120,1,<L4-L5> : rt posterolateral disc protrusion with annular tear compressing rt exit neural canal,L4-L5,False,3
+121,1,lss mri :,,False,0
+121,2,feature of muscle spasm,,False,1
+121,3,"diffuse disc bulges noted at <L4-L5> & <L5-S1> levels, mildly compressing the thecal sac and exit nerve roots","L4-L5,L5-S1",False,6
+122,1,no evidence of disc herniation,,False,1
+122,2,no significant thecal sac or nerve root compression noted,,False,2
+123,1,lss mri :,,False,0
+123,2,fea ture of muscle spasm,,False,1
+123,3,"diffuse disc bulge noted at <L4-L5> level, compressing thecal sac extending to lateral recess , with encroaching exit neural canals, as well as dehydrated disc materials",L4-L5,False,5
+124,1,lss mri :,,False,0
+124,2,feature of muscle spasm,,False,1
+124,3,dissicating disc materail at lower level,,False,1
+124,4,lt foraminal disc protrusion noted at <L5-S1> level compressing thecal sac and lt exit nerve root (s1),L5-S1,False,4
+124,5,diffuse disc bulges noted at <L4-L5> level mild compressing thecal sac and both nerve roots,L4-L5,False,3
+125,1,lss mri:,,False,0
+125,2,"lt paracentral ,wide base ,disc bulge noted at <L5-S1> level, compressing the thecal sac and exit neural canal",L5-S1,False,3
+126,1,lss mri :,,False,0
+126,2,degenerative changes,,False,0
+126,3,"multilevel diffuse bulges noteceably at <L2-L3> , <L3-L4> & <L4-L5> levels, compressing the thecal sac and encroaching both exit nerve roots , associated with ligamentum flavum hypertrophy, all leading to secandary spinal canal stenosis","L2-L3,L3-L4,L4-L5",False,15
+127,1,<L4-L5> : diffuse disc bulge noted compressing the thecal sac and exit neural canals,L4-L5,False,3
+128,1,lss mri,,False,0
+128,2,small central disc protrusion noted at <L5-S1> level,L5-S1,False,1
+128,3,diffuse disc bulge noted at <L4-L5> level,L4-L5,False,1
+128,4,no significant thecal sac or nerve root compression noted,L4-L5,True,2
+129,1,<L3-L4> and <L4-L5> : diffuse disc bulges compressing the thecal sac and exit canals,"L3-L4,L4-L5",False,6
+129,2,<L5-S1> : mild disc bulge noted abutting the thecal sac and s1 nerve roots,L5-S1,False,3
+130,1,<L3-L4> and <L4-L5> : mild disc bulges noted,"L3-L4,L4-L5",False,2
+130,2,no significant thecal sac or nerve root compression noted,"L3-L4,L4-L5",True,2
+130,3,adequate spinal canal,"L3-L4,L4-L5",True,1
+131,1,lss mri,,False,0
+131,2,mild disc bulge noted at <L4-L5> level,L4-L5,False,1
+131,3,adequate spinal canal,L4-L5,True,1
+132,1,lss mri,,False,0
+132,2,rt paracentral disc protrusion noted compressing the thecal sac and rt s1 nerve root,,False,3
+133,1,lss mri :,,False,0
+133,2,feature of muscle spasm,,False,1
+133,3,no thecal sac or exit nerev roots compression seen,,False,1
+133,4,no disc herniation or protrusion noted,,False,2
+133,5,nb :,,False,0
+133,6,"pelvic kidney noted ,correlate with us",,False,0
+134,1,lss mri :,,False,0
+134,2,feature of muscle spasm,,False,1
+134,3,"mild diffuse disc bulge noted at <L4-L5> level, mildly compressing the thecal sac and exit nerve roots",L4-L5,False,3
+136,1,lss mri :,,False,0
+136,2,feature of muscle spasm,,False,1
+136,3,"diffuse disc bulge noted at <L4-L5> level, mildly compressing thecalsac and nerve roots",L4-L5,False,2
+137,1,mri of the c,,False,0
+137,2,spine,,False,0
+137,3,features of muscle spasm noted,,False,1
+137,4,multilevel dissecating disc materials,,False,1
+137,5,wide base disc bulges extending more to rt side noted at c4/c5 level with obliterating anterior csf spaces and intending spinal cord and encroaching exit neural canal more to the rt,,False,2
+137,6,multilevel small posterior central disc protrusion noted obliterating anterior csf spaces with annular tears,,False,2
+137,7,mri of the lss,,False,0
+137,8,feature of muscle spasm,,False,1
+137,9,grade i spondylolisthesis of l5 over s1,L5-S1,False,1
+137,10,dissecating disc material <L5-S1> level : diffuse disc bulge noted compressing the thecal sac and exit neural canals associated with annular tear,L5-S1,False,5
+138,1,lss mri :,,False,0
+138,2,feature of muscle spasm,,False,1
+138,3,"small lt paracentral disc protruion noted at d12/l1 , mildly compressing lt exit nerve root",,False,2
+139,1,lss mri,,False,0
+139,2,"small lt paracentral protrusion noted at <L5-S1> level, abutting the thecal sac",L5-S1,False,2
+139,3,no significant thecal sac or nerve root compression noted,L5-S1,True,2
+140,1,lss mri,,False,0
+140,2,"central and to the rt side, disc protrusion noted at <L5-S1> level, compressing the thecal sac and encroaching upon the rt exit canal",L5-S1,False,3
+140,3,features of muscle spasm,L5-S1,True,1
+143,1,lss mri :,,False,0
+143,2,feature of muscle spasm,,False,1
+143,3,no disc protrusion or herniation noted,,False,2
+143,4,no significant thecal sac or nerve roots compression seen,,False,2
+144,1,lss mri :,,False,0
+144,2,feature of muscle spasm,,False,1
+144,3,"posterior central disc protrusion noted at <L5-S1> level, largely compressing thecal sac and encroaching exit neural canals",L5-S1,False,3
+144,4,"small rt paracentral disc protrusion noted at d11/d12 level, mildy compressing the thecal sac",L5-S1,True,2
+145,1,lss mri,,False,0
+145,2,feature of muscle spasm,,False,1
+145,3,"small central disc protrusion , noted at d12/l1 level, obliterating anterior csf space and indenting spinal cord",,False,1
+145,4,partial dissecating disc material noted at lower levels,,False,1
+145,5,wide base disc bulges noted at <L4-L5> levels compressing the thecal sac and exit neural canals,L4-L5,False,3
+145,6,mild diffuse disc bulges noted at <L5-S1> levels mild compressing the thecal sac and exit neural canals with annular tear,L5-S1,False,4
+146,1,lss mri :,,False,0
+146,2,feature of muscle spasm with schmorl nodes,,False,2
+146,3,"posterio-central disc protrusion noted at <L5-S1> level, compressing thecal sac and encroaching exit nerve canal with annular tear and dehtdrated disc material",L5-S1,False,4
+146,4,"diffuse disc bulges note at d12/l1 level, obliterating anterior csf spaces",L5-S1,True,1
+147,1,"<L3-L4> , <L4-L5> , <L5-S1> :","L3-L4,L4-L5,L5-S1",False,0
+147,2,"diffuse disc bulges noted with facet joint hypertrophy, noticeably at <L4-L5> level, compressing the thecal sac and encroaching exit canals",L4-L5,False,4
+147,3,the spinal canal is still adequate,L4-L5,True,1
+148,1,"<L4-L5> : broad based disc protrusion, more to the lt side, compressing the thecal sac and exit canals (largely the lt one)",L4-L5,False,3
+149,1,lumbosacral mri,,False,0
+149,2,mild disc bulge noted at <L5-S1> level abutting both s1 nerve roots,L5-S1,False,2
+149,3,diffuse disc bulge noted at <L4-L5> level compressing the thecal sac and encroaching upon the exit neural canals,L4-L5,False,3
+150,1,lss mri,,False,0
+150,2,"diffuse disc bulge noted at <L4-L5> level, compressing the thecal sac and exit canals",L4-L5,False,3
+150,3,adequate spinal canal,L4-L5,True,1
+151,1,lss mri :,,False,0
+151,2,feature of muscle spasm,,False,1
+151,3,grade i spondylolisthesis of l5 over s1,L5-S1,False,1
+151,4,dissicating disc material noted at lower levels,,False,1
+151,5,"postreior central disc protrusion noted at <L4-L5> level, largely compressing thecal sac more to lt and encroaching exit neural canal",L4-L5,False,3
+151,6,"wide base disc bulge noted at <L5-S1> level, compressing thecal sac and nerve roots , with modic type ii noted & narrowed disc space",L5-S1,False,5
+152,1,lumbosacral mri,,False,0
+152,2,"diffuse disc bulge noted at <L4-L5> level , extending more to the right side compressing the thecal sac and encroaching upon the exiting neural canals, more to rt sided",L4-L5,False,3
+152,3,spondylolisthesis grade 1 seen at l5 over s1,L5-S1,False,1
+152,4,diffuse disc bulge noted at <L5-S1> mild compressing thecal sac and exiting nerve roots,L5-S1,False,3
+152,5,feature of muscle spasm with dissicating disc material noted at lower level,L5-S1,True,2
+153,1,lss mri,,False,0
+153,2,<L4-L5> : diffuse disc bulge compressing the thecal sac and exit canals,L4-L5,False,3
+153,3,"<L5-S1> : mild disc bulge, more to the lt side, encroaching on lt exit canal",L5-S1,False,2
+153,4,adequate spinal canal,L5-S1,True,1
+154,1,"<L4-L5> : mild spondylolisthesis noted with diffuse disc bulge, facet joint and ligamentum flavum hypertrophy, compressing the thecal sac, exit canals and narrowing the spinal canal",L4-L5,False,7
+154,2,<L3-L4> : diffuse disc bulge compressing the thecal sac and exit canals,L3-L4,False,3
+155,1,lss mri :,,False,0
+155,2,feature of muscle spasm,,False,1
+155,3,"multilevel diffuse disc bulges mainly at <L2-L3> , <L3-L4> & <L4-L5> levels compressing thecal sac and both nerve roots","L2-L3,L3-L4,L4-L5",False,9
+156,1,lss and pelvis mri:,,False,0
+156,2,evidence of the previous surgery noted,,False,0
+156,3,no evidence of significant thecal sac or nerve root compression noted,,False,2
+156,4,adequate thecal sac,,False,1
+157,1,mild disc bulge at l4_l5 level,,False,1
+158,1,lumbosacral mri,,False,0
+158,2,feature of muscle spasm noted,,False,1
+158,3,modic type ii noted at the level of the <L4-L5> -,L4-L5,False,1
+158,4,"wide base disc bulge noted at the <L4-L5> level ,extending to the lateral recess compressing the thecal sac and encroaching upon exiting neural canals",L4-L5,False,3
+159,1,lumbosacral mri,,False,0
+159,2,no evidence of disc herniation,,False,1
+159,3,the thecal sac or nerve root compression noted,,False,2
+160,1,feature of muscle spasm,,False,1
+160,2,no significant thecal sac or nerve root compressing,,False,2
+161,1,lss mri :,,False,0
+161,2,feature of muscle spasm,,False,1
+161,3,no significant thyecal sac or nerve root compression,,False,1
+161,4,adequate spinal canal,,False,1
+162,1,lss mri :,,False,0
+162,2,feature of muscle spasm,,False,1
+162,3,endplate degenerative chnages,,False,1
+162,4,<L4-L5> level :narrowed disc space,L4-L5,False,1
+162,5,diffuse disc bulges compressing thecal sac and both nerve roots,L4-L5,True,3
+163,1,<L4-L5> : mild disc bulge noted,L4-L5,False,1
+163,2,no significant thecal sac or nerve root compression noted,L4-L5,True,2
+164,1,mri lss:,,False,0
+164,2,feature of muscle spasm,,False,1
+164,3,endplate modic typei noted at <L4-L5> level with dehyadrated disc material,L4-L5,False,1
+164,4,central and to the rt disc protrusion noted at the <L4-L5> level significantly compression thecal sac and exit nerve roots,L4-L5,False,3
+165,1,no evidence of disc herniation noted,,False,1
+165,2,no significant thecal sac or nerve root compression noted,,False,2
+166,1,lss mri :,,False,0
+166,2,feature of muscle spasm,,False,1
+166,3,"diffuse disc bulge noted at <L4-L5> level, mild compressing thecal and both nerve roots",L4-L5,False,2
+166,4,nb:,L4-L5,True,0
+166,5,lipoma of the filum terminale / filar lipoma is noted,L4-L5,True,0
+167,1,lss mri,,False,0
+167,2,no evidence of disc herniation,,False,1
+167,3,no thecal sac or nerve root compression noted,,False,2
+168,1,"diffuse disc bulge noted at <L4-L5> level, compressing the thecal sac and exit neural canals- more on the lt side",L4-L5,False,3
+168,2,adequate spinal canal,L4-L5,True,1
+169,1,lss mri :,,False,0
+169,2,<L3-L4> level :wide based disc bulge noted with a small soft tissue lesion noted at lt foraminal region ? neurogenic tumour - sequestrated disc,L3-L4,False,2
+169,3,contrast study is recommended,L3-L4,True,0
+169,4,"<L4-L5> level: diffuse disc bulge , extended to rt lateral recess , mild compressing thecal sca and encroaching exit nerve root more to rt",L4-L5,False,2
+170,1,lss mri,,False,0
+170,2,"diffuse disc bulges, at <L4-L5> and <L5-S1> levels, compressing the thecal sac and exit neural canals","L4-L5,L5-S1",False,6
+171,1,lss mri :,,False,0
+171,2,feature of muscle spasm,,False,1
+171,3,"wide base focal disc bulge noted at <L5-S1> level, compressing the thecal sac with annular tear and mild encroaching upon exit neural canal",L5-S1,False,4
+172,1,mri of the lumbosacral spine,,False,0
+172,2,feature of muscle spasm,,False,1
+172,3,desiccated disc material,,False,1
+172,4,modic type ii of <L2-L3> with narrowed disc space,L2-L3,False,2
+172,5,"diffuse disc bulge ,with rt foraminal disc protrusion noted at <L2-L3> level compressing the thecal sac and exit neural canals",L2-L3,False,4
+172,6,with spinal canal stenosis noted,L2-L3,True,1
+172,7,"diffuse disc bulge at <L3-L4> & <L4-L5> levels , mild compressing thecal sac and encroaching exit nerve root , with relatively secondary spinal canal stenosis","L3-L4,L4-L5",False,8
+173,1,old l1 compression fracture noted,,False,1
+173,2,no evidence of disc herniation,,False,1
+173,3,no significant thecal sac or nerve root compression noted,,False,2
+174,1,lss mri :,,False,0
+174,2,feature of muscel spasm,,False,1
+174,3,dissicating discal materials,,False,1
+174,4,modic type ii noted <L2-L3> level,L2-L3,False,1
+174,5,"diffuse disc bulges noted at <L2-L3> & <L4-L5> levels ,compressing the thecal sac ,extending to lateral recess -encroaching upon exit neural canals","L2-L3,L4-L5",False,8
+174,6,"mild disc bulge noted at <L3-L4> level, mildy compressing the thecal sac",L3-L4,False,2
+175,1,lss mri :,,False,0
+175,2,feature of muscle spasm,,False,1
+175,3,dissicating disc materials noted,,False,1
+175,4,"multilevel diffuse disc bulges noted mainly at <L4-L5> & <L5-S1> levels, compressing thecal and encroaching exit neural canal with relatively ligamentum flavum hypertrophy at <L4-L5> level","L4-L5,L5-S1",False,6
+176,1,lss mri,,False,0
+176,2,"<L4-L5> : diffuse disc bulge, more to the lt side, compressing the thecal sac and lt exit canal",L4-L5,False,3
+176,3,adequate spinal canal,L4-L5,True,1
+177,1,no evidence of disc herniation,,False,1
+177,2,no significant thecal sac or nerve root compression noted,,False,2
+177,3,adequate spinal canal,,False,1
+178,1,lumbosacral mri,,False,0
+178,2,"left paracentral disc protrusion noted at <T12-L1> , compressing the thecal sac and encroaching on the left exit neural canal",T12-L1,False,3
+178,3,"mild, diffuse disc bulges noted at <L3-L4> and <L4-L5> level","L3-L4,L4-L5",False,2
+179,1,mild disc bulge noted at <L5-S1> level,L5-S1,False,1
+179,2,adequate spinal canal,L5-S1,True,1
+180,1,lss mri :,,False,0
+180,2,feature of muscle spasm,,False,1
+180,3,mild diffuse disc bulge noted at <L4-L5> level abutting thecal sac,L4-L5,False,2
+180,4,no significant thecal sac or nerve roots compression noted,L4-L5,True,2
+181,1,lss mri :,,False,0
+181,2,feature of muscle spasm,,False,1
+181,3,dissicating disc materials,,False,1
+181,4,"multilevel diffuse disc bulges noted , notceably at <L4-L5> & <L5-S1> , level, compressing the thecal sac and encroaching exit neural canal , associated with ligamentum flavum hypertrophy at <L4-L5> level with secandary spinal canal stenosis","L4-L5,L5-S1",False,10
+181,5,nb : small rt renal cyst,"L4-L5,L5-S1",True,0
+183,1,lss mri,,False,0
+183,2,"multilevel diffuse disc bulges noted, noticeably at <L4-L5> level, where it compresses the thecal sac and exit canals, more to the rt side",L4-L5,False,3
+184,1,lss mri,,False,0
+184,2,"multilevel diffuse disc bulges noted, noticeably at <L4-L5> level, where it compresses the thecal sac and exit canals, more to the rt side",L4-L5,False,3
+185,1,lss mri :,,False,0
+185,2,feature of muscle spasm,,False,1
+185,3,diffuse decreased bone marrow signal intensitie (obese patient ),,False,1
+185,4,"diffuse disc bulge noted, <L4-L5> level, mildy compressing thecal sac and encroaching both exit neural canals",L4-L5,False,3
+186,1,lss mri :,,False,0
+186,2,feature of muscle spasm,,False,1
+186,3,dissicating disc materials noted,,False,1
+186,4,"multilevel diffuse disc bulges, notceably noted at <L3-L4> & <L4-L5> levels, compressing the thecal sac and encroaching upon exit neural canals","L3-L4,L4-L5",False,6
+187,1,lss mri,,False,0
+187,2,"diffuse disc bulges noted at <L4-L5> and <L5-S1> levels, compressing the thecal sac and exit canals","L4-L5,L5-S1",False,6
+187,3,the spinal canal appeared adequate,"L4-L5,L5-S1",True,1
+187,4,l1 hemangioma,"L4-L5,L5-S1",True,2
+188,1,lss mri :,,False,0
+188,2,feature of muscle spasm,,False,1
+188,3,adequate thecal sac,,False,1
+188,4,no disc protrusion or herniation seen,,False,2
+190,1,mri of the l,,False,0
+190,2,spine,,False,0
+190,3,feature of muscle spasm,,False,1
+190,4,dissecating disc material at <L5-S1> with narrowed disc space,L5-S1,False,2
+190,5,"diffuse disc bulge noted at <L5-S1> ,mild compressing thecal sac and exit nerve roots",L5-S1,False,3
+191,1,multilevel diffuse disc bulges with facet joint hypertrophy and ligamentum hypertrophy,,False,2
+191,2,at <L4-L5> level mild spondylolisthesis noted,L4-L5,False,1
+191,3,spinal canal appeared narrow at <L3-L4> and <L4-L5> levels,"L3-L4,L4-L5",False,2
+192,1,multilevel diffuse disc bulges noted with facet joint hypertrophy compressing the thecal sac and encroaching exit canals,,False,4
+192,2,the spinal canal is still adequate,,False,1
+193,1,lss mri,,False,0
+193,2,features of muscle spasm noted,,False,1
+193,3,multilevel schmorl nodes noted,,False,1
+193,4,"lt foraminal disc protrusion noted at <L4-L5> level, compressing the thecal sac and lt l5 nerve root",L4-L5,False,4
+194,1,lss mri,,False,0
+194,2,"small rt parantral disc protrusion noted at <L4-L5> level, comressing the thecal sac",L4-L5,False,1
+194,3,adequate spinal canal,L4-L5,True,1
+195,1,lumbosacral mri,,False,0
+195,2,features of muscle spasm,,False,1
+195,3,multilevel dissicating disc material,,False,1
+195,4,modic type ii at the <L5-S1>,L5-S1,False,1
+195,5,hemangioma of the l1 vertebral body,L5-S1,True,1
+195,6,diffuse disc bulge with right paracentral disc extrusion noted at the <L5-S1> compressing the thecal sac and encroaching upon neural canal,L5-S1,False,4
+195,7,diffuse disc bulge noted at the <L4-L5> mild compressing the thecal sac and there-,L4-L5,False,2
+196,1,lumbosacral mri,,False,0
+196,2,feature of muscle spasm,,False,1
+196,3,scoliosis of the lumbar spine convex to the left side,,False,1
+196,4,dissicating disc material noted,,False,1
+196,5,"multilevel diffuse disc bulge noted mainly at <L2-L3> , <L3-L4> & <L4-L5> levels compressing thecal sac and encroaching exiting neural canal, associated with secondary spinal canal stenosis","L2-L3,L3-L4,L4-L5",False,12
+197,1,lumbosacral mri,,False,0
+197,2,feature of muscle spasm,,False,1
+197,3,scoliosis of the lumbar spine convex to the left side,,False,1
+197,4,dissicating disc material noted,,False,1
+197,5,"multilevel diffuse disc bulge noted mainly at <L2-L3> , <L3-L4> & <L4-L5> levels compressing thecal sac and encroaching exiting neural canal, associated with secondary spinal canal stenosis","L2-L3,L3-L4,L4-L5",False,12
+198,1,rt paracentral disc protrusion noted compressing the thecal sac,,False,2
+199,1,lss mri :,,False,0
+199,2,feaure of muscle spasm,,False,1
+199,3,"multilevel diffuse disc bulges noted nortceably at <L2-L3> & <L4-L5> level, compressing the thecal sac and enroaching upon exit neural canals","L2-L3,L4-L5",False,6
+199,4,"anterior wedging of d12 vertebral body associated with multiple schmorl's nodes, and end plate irregularity , dorsal spine mri is advsied to rule out","L2-L3,L4-L5",True,6
+199,5,schuerman's disease,"L2-L3,L4-L5",True,0
+200,1,<L5-S1> : mild lt paracentral disc protrusion compressing the thecal sac,L5-S1,False,2
+200,2,<L4-L5> : diffuse disc bulge compressing the thecal sac and encroaching exit canals,L4-L5,False,3
+200,3,mild multilevel disc bulges noted elsewhere,L4-L5,True,1
+201,1,lss mri :,,False,0
+201,2,feature of muscle spasm,,False,1
+201,3,"central and to the lt, disc protrusion noted at <L5-S1> level relatively compressing thecal sac and encroaching exit neural canal , with dissicating disc material",L5-S1,False,4
+202,1,<L3-L4> and <L5-S1> : mild disc bulges noted,"L3-L4,L5-S1",False,2
+202,2,no significant thecal sac or nerve root compression noted,"L3-L4,L5-S1",True,2
+203,1,multilevel mild disc bulges noted abutting the thecal sac and encroaching exit canals,,False,3
+203,2,the spinal canal is still adequate,,False,1
+204,1,lss mri,,False,0
+204,2,"central disc protrusions noted at <L3-L4> , <L4-L5> and <L5-S1> levels, compressing the thecal sac","L3-L4,L4-L5,L5-S1",False,6
+204,3,mild disc bulge noted at <L2-L3> level,L2-L3,False,1
+205,1,lss mri :,,False,0
+205,2,feature of muscle spasm,,False,1
+205,3,"diffuse disc bulge noted at <L4-L5> level, compressing the thecal sac extending to lateral recess , more to rt sided with encroaching upon exit neural canal",L4-L5,False,4
+205,4,"mild disc bulge noted at <L5-S1> level, mildy compressing thecal sac",L5-S1,False,2
+207,1,"multilevel diffuse disc bulges noted with facet joint hypertrophy and hypertrophied ligament flava, compressing the thecal sac and exit neural canals with narrowed spinal canal",,False,6
+208,1,lss mri,,False,0
+208,2,<L5-S1> : rt paracentral disc protrusion compressing rt s1 nerve root,L5-S1,False,2
+208,3,<L4-L5> : diffuse disc bulge noted compressing the thecal sac and exit canals with narrow spinal canal,L4-L5,False,4
+208,4,<L3-L4> : mild disc bulge noted,L3-L4,False,1
+209,1,l2 osteoprotic compression fracture with no retrobulge into spinal canal,,False,1
+209,2,no evidence of disc herniation or thecal sac compression,,False,2
+209,3,"high t2 signal intensity involving the sacral ala (? post trauma, inflamatory",,False,0
+209,4,),,False,0
+210,1,lss mri,,False,0
+210,2,no evidence of disc herniation,,False,1
+210,3,no significant thecal sac or nerve root compression,,False,2
+211,1,multilevel mild disc bulges noted abutting the thecal sac and encroaching exit canals,,False,3
+211,2,the spinal canal is still adequate,,False,1
+212,1,lss mri,,False,0
+212,2,no evidence of disc herniation,,False,1
+212,3,no significant thecal sac or nerve root compression,,False,2
+213,1,mri lss,,False,0
+213,2,feature of muscle spasm noted,,False,1
+213,3,diffuse disc bulge noted at <L5-S1> level mild compressing thecal sac and exiting nerve root,L5-S1,False,3
+213,4,dehydrated disc material noted at the same level,L5-S1,True,1
+214,1,lss mri :,,False,0
+214,2,feature of muscle spasm,,False,1
+214,3,"diffuse disc bulges noted at <L4-L5> level, mildly compressing the thecal sac and both exit nerve roots",L4-L5,False,3
+215,1,lss mri,,False,0
+215,2,"mild disc bulge noted at <L5-S1> level, abutting the thecal sac and s1 nerve roots",L5-S1,False,3
+215,3,adequate spinal canal,L5-S1,True,1
+216,1,lss mri:,,False,0
+216,2,feature of muscle spasm,,False,1
+216,3,dissicating disc mayetrials,,False,1
+216,4,"lt paracentral disc protruion noted at d12/l1 level, indenting spinal cord",,False,1
+216,5,"multilevel diffuse disc bulges noted at <L3-L4> & <L4-L5> levels , compressing thecal sac and encroaching exit neural canals","L3-L4,L4-L5",False,6
+217,1,<L3-L4> : rt foraminal disc protrusion compressing rt l4 nerve root,L3-L4,False,3
+217,2,multilevel mild disc bulges noted elsewhere,L3-L4,True,1
+218,1,lss mri :,,False,0
+218,2,feature of muscle spasm,,False,1
+218,3,mild diffuse disc bulge noted at <L5-S1> level,L5-S1,False,1
+218,4,mildly compressing the thecal sac and exit nerve roots,L5-S1,True,2
+219,1,<L5-S1> : mild disc bulge noted,L5-S1,False,1
+219,2,"<L4-L5> : diffuse disc bulge with lt posterolateral annular tear, abutting the thecal sac and encroaching lt exit canal",L4-L5,False,4
+220,1,lss mri,,False,0
+220,2,<L4-L5> : diffuse disc bulge noted compressing the thecal sac and exit canals,L4-L5,False,3
+220,3,<L3-L4> and <L4-L5> : mild disc bulges noted,"L3-L4,L4-L5",False,2
+221,1,no evidence of disc herniation,,False,1
+221,2,no significant thecal sac or nerve root compression noted,,False,2
+222,1,<L4-L5> and <L5-S1> : diffuse disc bulges compressing the thecal sac and exit canals,"L4-L5,L5-S1",False,6
+222,2,<L3-L4> : mild disc bulge noted,L3-L4,False,1
+223,1,lss mri :,,False,0
+223,2,feature of muscel spasm,,False,1
+223,3,multilevel end plates degenerative changes,,False,1
+223,4,schmorl nodes noted,,False,1
+223,5,no significant disc protrusion or herniation seen,,False,2
+223,6,no thecal sac or nerve roots compression,,False,2
+224,1,lss mri :,,False,0
+224,2,feature of muscle spasm,,False,1
+224,3,"diffuse disc bulges noted at <L4-L5> level, mildy compressint the thecal sac and exit nerve root",L4-L5,False,3
+226,1,lss mri,,False,0
+226,2,multilevel mild disc bulges noted,,False,1
+226,3,no significant thecal sac or nerve root compression noted,,False,2
+226,4,adequate spinal canal,,False,1
+227,1,lss mri,,False,0
+227,2,no evidence of disc herniation,,False,1
+227,3,no thecal sac or nerve root compression noted,,False,2
+228,1,<L5-S1> : mild disc bulge noted,L5-S1,False,1
+229,1,lss mri :,,False,0
+229,2,dissicating disc materials,,False,1
+229,3,narrowed disc spaces noted at <L2-L3> & <L3-L4> levels,"L2-L3,L3-L4",False,2
+229,4,grade i spondylolisthesis of l2 over l3 level,L2-L3,False,1
+229,5,"multilevel diffuse disc bulges noticeably at <L3-L4> level ,relatively compressing thecal sac and both nerve roots more at rt sided",L3-L4,False,3
+230,1,marked degenerative changes with kyphoscoliosis,,False,1
+230,2,spondylolisthesis noted at <L2-L3> level,L2-L3,False,1
+232,1,lumbosacral mri,,False,0
+232,2,diffuse disc bulge more to the left side at <L5-S1> level compressing the thecal sac and left exit neural canal,L5-S1,False,3
+232,3,diffuse disc bulge noted at <L3-L4> level compressing the thecal sac and encroaching upon exit neural canals,L3-L4,False,3
+233,1,lss mri,,False,0
+233,2,feature of muscle spasm,,False,1
+233,3,partial dissecating disc materials,,False,1
+233,4,"multilevel diffuse disc bulges noted at <L2-L3> , <L3-L4> & <L5-S1> level, compressing thecal sac and encroaching exit neural canal","L2-L3,L3-L4,L5-S1",False,9
+234,1,lss mri:,,False,0
+234,2,"evidence of bone marrow edema involving l1 vertebral body , extending to the lt sided posterior element ?? bone isotope scan is advised",,False,1
+234,3,"diffuse disc bulges noted at <L4-L5> level, compressing thecal sac and both nerve roots , with ligamentum flavum hypertrophy , leading to secandary spinal canal stensois",L4-L5,False,4
+234,4,"narrowed disc space of <L5-S1> level, with diffuse disc bulge , more to lt sided compressing thecal sac and nerve roots",L5-S1,False,4
+234,5,d12 vertebral body hemangioma ?,L5-S1,True,1
+235,1,lumbosacral mri,,False,0
+235,2,right paracentral and foraminal disc protrusion noted at <L5-S1> level compressing the thecal sac and right exiting neural canal,L5-S1,False,3
+235,3,diffuse disc bulge noted at <L4-L5> level encroaching upon the thecal sac and exiting neural canals,L4-L5,False,3
+236,1,lss mri :,,False,0
+236,2,feature of muscle spasm,,False,1
+236,3,multiple schmorl nodes,,False,1
+236,4,left sided foraminal lumbar disc protrusion noted at <L5-S1> level compressing lt sided thecal sac and the exiting nerve root,L5-S1,False,4
+239,1,lss mri,,False,0
+239,2,"<L5-S1> level: lt paracentral disc protrusion noted, compressing the thecal sac and abutting the lt s1 nerve root",L5-S1,False,3
+240,1,lss mri,,False,0
+240,2,"<L5-S1> : central and more to the lt side, disc protrusion noted, compressing the thecal sac and lt s1 nerve root",L5-S1,False,3
+240,3,"<L4-L5> : diffuse disc bulge noted with rt foraminal disc protrusion, compressing the thecal sac and rt l5 nerve root",L4-L5,False,5
+241,1,lss mri :,,False,0
+241,2,feature of muscle spasm,,False,1
+241,3,"diffuse disc bulge noted at <L4-L5> level, mildly compressing the thecal sac and exit nerve roots",L4-L5,False,3
+242,1,lss mri :,,False,0
+242,2,feature of muscle spasm,,False,1
+242,3,"diffuse disc bulges noted at <L4-L5> & <L5-S1> levels, mild compressing the thecal sac and both nerve roots","L4-L5,L5-S1",False,6
+243,1,lss mri,,False,0
+243,2,feature of muscle spasm,,False,1
+243,3,modic type ii noted at <L4-L5> level,L4-L5,False,1
+243,4,diffuse disc bulges noted at <L4-L5> & <L5-S1> levels compressing the thecal sac and exit neural canals,"L4-L5,L5-S1",False,6
+244,1,lss mri,,False,0
+244,2,"diffuse disc bulge noted at <L4-L5> level, compressing the thecal sac and exit canals",L4-L5,False,3
+245,1,"<L4-L5> : central disc protrusion, compressing the thecal sac",L4-L5,False,2
+246,1,no evidence of disc herniation,,False,1
+246,2,no significant thecal sac or nerve root compression noted,,False,2
+247,1,lss mri :,,False,0
+247,2,feature of muscle spasm,,False,1
+247,3,"diffuse disc bulges noted at <L3-L4> & <L4-L5> levels, mildly compressing the thecal sac and exit nerve roots","L3-L4,L4-L5",False,6
+248,1,lss mri,,False,0
+248,2,mild disc bulge noted at <L5-S1> level,L5-S1,False,1
+248,3,no significant thecal sac or nerve root compression noted,L5-S1,True,2
+249,1,mri of the lss,,False,0
+249,2,feature of muscle spasm,,False,1
+249,3,"spondylolisthesis of l5 over l5 level , with modic type ii endplate",,False,2
+249,4,as well as dissecated disc material,,False,1
+249,5,diffuse disc bulge noted at <L4-L5> level compressing thecal sac and both exit nerve root,L4-L5,False,3
+249,6,"mild diffuse disc bulge noted at <L3-L4> level ,mild compressing thecal sac",L3-L4,False,2
+250,1,lss mri :,,False,0
+250,2,feature of muscle spasm,,False,1
+250,3,<L1-L2> level :,L1-L2,False,0
+250,4,posterior central disc protrusion largly compressing thecal sac and both exit nerve roots,L1-L2,True,3
+250,5,<L5-S1> level:,L5-S1,False,0
+250,6,"lt paracentral disc protruion , migrating caudally ,compressing thecal sca and lt exit nerve roots",L5-S1,True,2
+251,1,lss mri :,,False,0
+251,2,feature of muscle spasm,,False,1
+251,3,"multilevel diffuse disc bulge noted , noticeably at <L3-L4> & at <L4-L5> levels, relatively compressing thecal sac and both exit nerve roots","L3-L4,L4-L5",False,6
+251,4,nb:tarlov cysts noted mainly at rt side,"L3-L4,L4-L5",True,2
+252,1,lss mri l,,False,0
+252,2,"diffusely reduced signal of the bone marrow noted , correalte with bone isotope scan ?",,False,1
+252,3,faeture of muscle spasm,,False,1
+252,4,"wide base disc bulge noted at <L5-S1> level, mildy compressing the thecal sac and both nerve roots",L5-S1,False,3
+253,1,lumbosacral mri,,False,0
+253,2,"diffuse disc bulge noted at <L3-L4> level significantly compressing the thecal sac ,extending to lt lateral recess and encroaching exiting neural canal",L3-L4,False,4
+253,3,diffuse disc bulge noted at <L4-L5> level mild compressing the thecal sac nerve roots,L4-L5,False,3
+254,1,lss mri,,False,0
+254,2,"<L4-L5> : mild spondylolisthesis noted with diffuse disc bulge, compressing the thecal sac and exit canals with narrow spinal canal",L4-L5,False,5
+254,3,diffuse disc bulges noted also at <L3-L4> and <L2-L3> levels,"L3-L4,L2-L3",False,2
+255,1,feature of muscle spasm,,False,1
+255,2,multilevel dissecating disc materials,,False,1
+255,3,"diffuse disc bulge noted at <L3-L4> level , compressing thecal and exit nerve roots more to rt",L3-L4,False,2
+255,4,diffuse disc bulge noted at <L4-L5> compressing the thecal sac and exit nerves root more to lt,L4-L5,False,3
+256,1,d spine mri,,False,0
+256,2,normal bony alignment,,False,0
+256,3,no significant spinal cord or nerve root compression noted,,False,1
+257,1,lss mri,,False,0
+257,2,"central disc protrusion noted at <L5-S1> level, compressing the thecal sac",L5-S1,False,2
+257,3,the spinal canal appeared adequate,L5-S1,True,1
+258,1,lss mri :,,False,0
+258,2,feature of muscle spasm,,False,1
+258,3,"diffuse disc bulge noted at <L4-L5> level, mildly compressing the thecal sac and both nerve roots",L4-L5,False,3
+259,1,mri of the lumbar spine :,,False,0
+259,2,feature of muscle spasm,,False,1
+259,3,"<L4-L5> level: central and rt paracentral disc protrusion noted ,significantly compressing the thecal sac and exit neural canals, associated with annular tear",L4-L5,False,4
+259,4,<L5-S1> level: rt paracentral disc protrusion noted compressing the thecal sac and exit neural canals,L5-S1,False,3
+260,1,lss mri :,,False,0
+260,2,feature of muscle spasm,,False,1
+260,3,"small focal central disc protrusion noted at <L5-S1> level, mild compressing thecal sac",L5-S1,False,2
+261,1,lss mri,,False,0
+261,2,"<L5-S1> : diffuse disc bulge noted, compressing the thecal sac and exit canals, sligthly migrating downward",L5-S1,False,3
+261,3,mild spondylolisthesis noted,L5-S1,True,1
+261,4,"<L4-L5> : lt paracentral disc protrusion noted, compressing the thecal sac and enroaching upon lt exit canal",L4-L5,False,3
+261,5,mild disc bulge noted at <L1-L2> level,L1-L2,False,1
+263,1,lss mri :,,False,0
+263,2,feature of muscle spasm,,False,1
+263,3,grade i spondylolisthesis of l5 over s1 level,L5-S1,False,1
+263,4,dissicating disc materails noted,,False,1
+263,5,"multilevel diffuse disc bulges, notceably at <L4-L5> level,compressing thecal sac and nerve roots",L4-L5,False,3
+263,6,"about 3*1.5 cm, tarlov cyst noted at level of s3 , with impression on posterior aspect",L4-L5,True,1
+264,1,lss mri,,False,0
+264,2,"<L5-S1> : diffuse disc bulge noted, compressing the thecal sac and exit canals, sligthly migrating downward",L5-S1,False,3
+264,3,mild spondylolisthesis noted,L5-S1,True,1
+264,4,"<L4-L5> : lt paracentral disc protrusion noted, compressing the thecal sac and enroaching upon lt exit canal",L4-L5,False,3
+264,5,mild disc bulge noted at <L1-L2> level,L1-L2,False,1
+265,1,lss mri:,,False,0
+265,2,feature of muscle spasm,,False,1
+265,3,dissicating disc materals at multilevel,,False,1
+265,4,endplate modic type ii noted,,False,1
+265,5,large l2 vertebral body hemangioma as well assmaller one s noted,,False,1
+265,6,"posteriocentral disc protruion noted at <L5-S1> level, compressing thecal sac and encroaching both neural canals",L5-S1,False,3
+265,7,"diffuse disc bulges noted at <L4-L5> level, mild compressing thecal sac and both exit nerve roots",L4-L5,False,3
+266,1,"<L4-L5> : lt paracentral disc protrusion, compressing the thecal sac",L4-L5,False,2
+266,2,<T12-L1> : diffuse disc bulge noted abutting the cord,T12-L1,False,1
+267,1,multilevel mild disc bulges noted abutting the thecal sac and encroaching exit canals,,False,3
+267,2,the spinal canal is still adequate,,False,1
+268,1,mri of the lss,,False,0
+268,2,feature of muscle spasm,,False,1
+268,3,"small lt foraminal disc protrusion noted at <L4-L5> level , compressing the lt sided nerves canals",L4-L5,False,2
+269,1,lss mri :,,False,0
+269,2,feature of muscle spasm,,False,1
+269,3,no significant thecal sac or nerve roots compression seen,,False,2
+270,1,lss mri :,,False,0
+270,2,feature of muscle spasm,,False,1
+270,3,dissicating disc material at lower levels,,False,1
+270,4,"central disc protrusion noted at <L4-L5> level, mild caudally migration, compressing thecal sac and both nerve rootys",L4-L5,False,3
+270,5,"central and to the the rt disc protrusion noted at <L5-S1> level, compressing thecal sac and nerve roots",L5-S1,False,3
+271,1,lss mri,,False,0
+271,2,"diffuse disc bulges noted at <L3-L4> and <L4-L5> levels, compressing the thecal sac and exit neural canals","L3-L4,L4-L5",False,6
+272,1,cervical spine mri,,False,0
+272,2,features of muscle spasm,,False,1
+272,3,no significant thecal sac or nerve root compression,,False,2
+272,4,normal signal intensity of the spinal cord,,False,0
+272,5,lumbosacral mri,,False,0
+272,6,small vertebral hemangioma of l3,,False,1
+272,7,diffuse disc bulge noted at the <L4-L5> mild comparison thecal sac,L4-L5,False,1
+274,1,<L3-L4> : narrowed disc space with mild disc bulge,L3-L4,False,2
+274,2,<L4-L5> : rt paracentral disc protrusion compressing the thecal sac and rt exit canal,L4-L5,False,3
+275,1,lumbosacral mri,,False,0
+275,2,feature of muscle spasm noted,,False,1
+275,3,small posterior central disc protrusion noted at <L5-S1> mildly indenting thecal sac and encroaching exiting neural canal,L5-S1,False,3
+275,4,diffuse disc bulge noted at <L4-L5> mild compressing the thecal sac and the needle roots,L4-L5,False,2
+276,1,lss mri :,,False,0
+276,2,feature of muscle spasm,,False,1
+276,3,"central and to left disc protrusion noted at <L2-L3> level, compressing thecal sac and encroaching exit neural canal",L2-L3,False,3
+276,4,"multilevel diffuse disc bulges noted, noteceably at <L4-L5> & <L5-S1> levels , compressing thecal sac and both nerve roots","L4-L5,L5-S1",False,6
+276,5,nb:cystic dilaition of rt pelvicalyceal syetems ? correalte with renal us,"L4-L5,L5-S1",True,0
+277,1,lss mri :,,False,0
+277,2,feature of muscle spasm,,False,1
+277,3,"diffuse disc bulges noted <L4-L5> & <L5-S1> levels , mild compressing thecal sac and nerve roots","L4-L5,L5-S1",False,6
+278,1,lss mri,,False,0
+278,2,"diffuse disc bulge noted at <L5-S1> level, more to the rt side, compressing the thecal sac and rt exit canal",L5-S1,False,3
+279,1,lss mri,,False,0
+279,2,small central disc protrusion noted at <L5-S1> level compressing the thecal sac,L5-S1,False,2
+280,1,mri of the l,,False,0
+280,2,spine,,False,0
+280,3,feature of muscle spasm,,False,1
+280,4,desiccating disc materials,,False,1
+280,5,"diffuse disc bulge noted at <L4-L5> & <L5-S1> levels , mild compressing thecal sac and both exit nerve roots, annular tear","L4-L5,L5-S1",False,8
+281,1,<L4-L5> and <L5-S1> :,"L4-L5,L5-S1",False,0
+281,2,"diffuse disc bulges noted with facet joint hypertrophy, noticeably at <L4-L5> level, compressing the thecal sac and encroaching exit canals",L4-L5,False,4
+281,3,the spinal canal is still adequate,L4-L5,True,1
+282,1,<L5-S1> : central disc protrusion noted compressing the thecal sac and abutting s1 nerve roots,L5-S1,False,3
+283,1,lss mri :,,False,0
+283,2,feature of muscle spasm,,False,1
+283,3,"wide base disc bulge noted at <L5-S1> level, compressing the thecal sac and both nerve roots",L5-S1,False,3
+283,4,"diffuse disc bulge noted at <L4-L5> level, mildly compressing the thecal sac and encroaching exit neural canal",L4-L5,False,3
+284,1,lss mri,,False,0
+284,2,feature of muscle spasm,,False,1
+284,3,small posterior central disc protrusion noted at <L5-S1> level compressing thecal sac and exit nerve roots(dehydrated disc matreial noted),L5-S1,False,4
+284,4,diffuse disc bulge noted at the <L4-L5> mild compressing thecal sac and encroaching both neural canals,L4-L5,False,3
+285,1,lss mri :,,False,0
+285,2,feature of muscle spasm,,False,1
+285,3,"partial loss of l1 vertebral body hieght anteriorly , with no bone marrow edema , mostly old fracture, with no definite thecal sac or exit neural canal compression",,False,4
+285,4,focal bony bruise noted at s3-s4 vertebral bodies? post traumatic,,False,0
+285,5,"mild diffuse disc bulge noted at <L4-L5> level , mild compressing thecal and exit nerve roots",L4-L5,False,2
+286,1,lss mri :,,False,0
+286,2,feature of muscle spasm,,False,1
+286,3,degenerative spondylotic changes,,False,0
+286,4,l1 vertebral body hemangioma noted,,False,1
+286,5,"multilevel diffuse disc bulge noted, noteably at <L3-L4> & <L4-L5> level, compressing the thecal sac and encroaching both exit neural canals associated with ligamentum flavum hypertrophy , all leading releatively secandary spinal canal stenosis","L3-L4,L4-L5",False,10
+286,6,nb:,"L3-L4,L4-L5",True,0
+286,7,small size rt kidney (correalte with us ),"L3-L4,L4-L5",True,0
+287,1,mri of the lss,,False,0
+287,2,feature of muscle spasm,,False,1
+287,3,dissecating disc material <L5-S1> 1,L5-S1,False,1
+287,4,<L4-L5> & <L5-S1> levels : diffuse disc bulge noted compressing the thecal sac and exit neural canals associated with annular tear,"L4-L5,L5-S1",False,8
+288,1,lss mri :,,False,0
+288,2,feature of muscle spasm,,False,1
+288,3,small vertebral body hemangioma of l4,,False,1
+288,4,"central and lt paracentral disc protruion, noted at <L4-L5> level , migrated caudally , compressing thecal sac and lt nerve roots",L4-L5,False,3
+290,1,lss mri :,,False,0
+290,2,diffuse disc bulge noted at <L3-L4> &&l4/s1 level mild compressing thecal sac and exit nerve roots,L3-L4,False,3
+291,1,lss mri,,False,0
+291,2,<L4-L5> : diffuse disc bulge noted compressing the thecal sac and exit canals,L4-L5,False,3
+291,3,<L3-L4> : mild disc bulge noted,L3-L4,False,1
+291,4,adequate spinal canal,L3-L4,True,1
+292,1,"multilevel mild disc bulges noted, largest at <L4-L5> level, where it encroaches the exit neural canals",L4-L5,False,2
+293,1,"multilevel diffuse disc bulges noted with facet joint hypertrophy, noticeably at <L4-L5> level, compressing the thecal sac and encroaching exit canals",L4-L5,False,4
+293,2,the spinal canal is still adequate,L4-L5,True,1
+294,1,"multilevel mild disc bulges noted with facet joint hypertrophy, noticeably at <L4-L5> level (lt side), abutting the thecal sac and encroaching exit canals",L4-L5,False,4
+294,2,the spinal canal is still adequate,L4-L5,True,1
+295,1,lss mri,,False,0
+295,2,no evidence of disc herniation noted,,False,1
+295,3,no significant thecal sac or nerve root compression noted,,False,2
+296,1,lss mri :,,False,0
+296,2,feature of muscle spasm,,False,1
+296,3,"diffuse disc bulge noted at <L4-L5> level, compressing the thecal sac and encroaching both exit neural canal , more to lt sided",L4-L5,False,3
+297,1,lss mri :,,False,0
+297,2,feature of muscle spasm,,False,1
+297,3,"mild diffuse disc bulge noted at <L4-L5> & <L5-S1> levels, mild compressing thecal sac and both nerve roots","L4-L5,L5-S1",False,6
+298,1,lss mri,,False,0
+298,2,feature of muscle spasm,,False,1
+298,3,mild disc bulge noted at <L4-L5> level,L4-L5,False,1
+298,4,no significant thecal sac or nerve root compression noted,L4-L5,True,2
+298,5,adequate spinal canal,L4-L5,True,1
+299,1,lss mri,,False,0
+299,2,"multilevel diffuse disc bulges, abutting the thecal sac and exit canals",,False,3
+299,3,<L3-L4> & <L4-L5>,"L3-L4,L4-L5",False,0
+299,4,no significant thecal sac or nerve root compression,"L3-L4,L4-L5",True,2
+299,5,adequate spinal canal,"L3-L4,L4-L5",True,1
+300,1,lss mri :,,False,0
+300,2,feature of muscle spasm,,False,1
+300,3,no significant thecal sac or nerve roots compression,,False,2
+300,4,tarlov cyst noted at level of s1/s2 level,,False,1
+301,1,lss mri,,False,0
+301,2,features of muscle spasm,,False,1
+301,3,no significant thecal sac or nerve root compression,,False,2
+303,1,lss mri :,,False,0
+303,2,feature of muscle spasm,,False,1
+303,3,dissicating disc materials noted,,False,1
+303,4,"diffuse disc bulge with small lt paracentral disc protrusion noted at <L2-L3> level, compressing the thecal sac and exit nerve roots",L2-L3,False,4
+303,5,"diffuse disc bulges noted at <L3-L4> & <L4-L5> levels , compressing the thecal sac and encroaching upon exit neural canals","L3-L4,L4-L5",False,6
+304,1,lss mri,,False,0
+304,2,no evidence of disc herniation noted,,False,1
+304,3,no significant thecal sac or nerve root compression noted,,False,2
+305,1,lss mri :,,False,0
+305,2,"central and lt paracentral disc protrusion noted at <L5-S1> level , largely compressing the thecal sac and s1 lt exit nerve root",L5-S1,False,3
+305,3,nb:,L5-S1,True,0
+305,4,small tarlov cyst noted at s2 level,L5-S1,True,1
+306,1,lumbosacral mri,,False,0
+306,2,<L3-L4>,L3-L4,False,0
+306,3,diffuse disc bulge with annular tear more to the right side compressing the thecal sac,L3-L4,True,3
+306,4,<L4-L5>,L4-L5,False,0
+306,5,diffuse disc bulge with left paracentral and foraminal protrusion compressing the thecal sac and exit neural canals,L4-L5,True,4
+306,6,<L5-S1>,L5-S1,False,0
+306,7,diffuse bulge with annular tear compressing the thecal sac and exit neural canals more to the right side,L5-S1,True,4
+307,1,lss mri:,,False,0
+307,2,muscle spasm noted,,False,1
+307,3,desiccated disc material noted,,False,1
+307,4,"multilevel diffuse disc bulge noted, notecibly at <L3-L4> and <L4-L5> mildly compressing the thecal sac and significantly encroaching exiting neural canals","L3-L4,L4-L5",False,6
+308,1,lss mri,,False,0
+308,2,"<L5-S1> : diffuse disc bulge, more to the lt side",L5-S1,False,1
+308,3,"<L4-L5> : diffuse disc bulge, compressing the thecal sac and exit canals",L4-L5,False,3
+308,4,"about 1.3 cm, lt paracentral soft tissue fullness noted posterior to lower l4 vertebra, probably detached disc material",L4-L5,True,1
+308,5,contrast re-evaluation is recommended,L4-L5,True,0
+309,1,lumbosacral mri,,False,0
+309,2,no evidence of disc herniation,,False,1
+309,3,no significant thecal sac or nerve root compression noted,,False,2
+310,1,lumbosacral mri,,False,0
+310,2,features of muscle spasm,,False,1
+310,3,no significant thecal sac or nerve root compression,,False,2
+310,4,no disc protrusion or herniation noted,,False,2
+311,1,lss mri :,,False,0
+311,2,feature of muscle spasm,,False,1
+311,3,adequate thecal sac,,False,1
+311,4,no significant disc protrusion or herniation seen,,False,2
+313,1,lss mri :,,False,0
+313,2,feature of muscle spasm,,False,1
+313,3,no significant thecal sac or nerve roots compression,,False,2
+313,4,no disc protrusion or herniation seen,,False,2
+314,1,lss mri :,,False,0
+314,2,feature of muscle spasm,,False,1
+314,3,multiple vertebral bodies hemangiomas noted,,False,1
+314,4,"diffuse disc bulge noted at <L4-L5> level, compression the thecal sac and encroaching both exit neural canals",L4-L5,False,3
+314,5,associated with ligamentum flavum hypertrophy,L4-L5,True,1
+314,6,"diffuse disc bulge noted at <L3-L4> level, mild compressing thecall sac and nerve roots",L3-L4,False,2
+316,1,lss mri :,,False,0
+316,2,feature of muscle spasm,,False,1
+316,3,"diffuse disc bulges noted at <L4-L5> & <L5-S1> levels , mildly compressing the thecal sac and encroaching both nerve roots","L4-L5,L5-S1",False,6
+317,1,lss mri,,False,0
+317,2,"small rt paracentral disc protrusion noted at <L5-S1> level, mildly compressing the thecal sac",L5-S1,False,2
+317,3,adequate spinal canal,L5-S1,True,1
+318,1,lss mri :,,False,0
+318,2,grade i spondylolisthesis of l4 over l5 level noted with end palate degenertaive change,L4-L5,False,1
+319,1,lss mri with contrast,,False,0
+319,2,previous surgery noted,,False,0
+319,3,"mild rt paracentral inhomogenous enhancement noted at <L4-L5> level, mostly postoperative granulatiobn/fibrous tissue",L4-L5,False,0
+320,1,lss mri,,False,0
+320,2,mild disc bulge noted at <L4-L5> level,L4-L5,False,1
+320,3,no significant thecal sac or nerve root compression noted,L4-L5,True,2
+322,1,lss mri :,,False,0
+322,2,feature of muscle spasm,,False,1
+322,3,adequate thecal sac,,False,1
+322,4,no significant disc protrusion or herniation seen,,False,2
+322,5,"diffuse disc bulge noted at d11/d12, obliterating anterior csf spaces",,False,1
+323,1,multilevel diffuse disc bulges compressing the thecal sac and exit neural canals,,False,3
+324,1,mri of the lss,,False,0
+324,2,feature of muscle spasm,,False,1
+324,3,dissicating disc at <L4-L5> level,L4-L5,False,1
+324,4,lt foraminal disc protrusion noted at <L4-L5> level compressing lt sided (thecal sac and exit nerve canal),L4-L5,False,3
+325,1,lss mri,,False,0
+325,2,l2 hemangioma,,False,1
+325,3,no evidence of disc herniation,,False,1
+325,4,no significant thecal sac or nerve root compression,,False,2
+326,1,"<L4-L5> : diffuse disc bulge noted, compressing the thecal sac and exit canals",L4-L5,False,3
+326,2,<L3-L4> : diffuse disc bulge noted abutting the thecal sac,L3-L4,False,2
+329,1,lss mri,,False,0
+329,2,no significant changes noted since 04/01/2016,,False,0
+331,1,<L4-L5> : diffuse disc bulge compressing the thecal sac and encroaching exit canals,L4-L5,False,3
+332,1,no evidence of disc herniation,,False,1
+332,2,no significant thecal sac or nerve root compression noted,,False,2
+333,1,lss mri :,,False,0
+333,2,preveius surgery noted at lower lumbar spine,,False,0
+333,3,degenerative spondolytic changes,,False,0
+333,4,"lt paracentral disc protrusion noted at <L3-L4> level, compressing thecal sac and encroaching exit neural canal",L3-L4,False,3
+333,5,"small abnormal signal alteration noted just posterior to l4 vertebral body appeared low on t1&t2 wi, compressing thecal sac and encroaching upon exit neural canal?appearances suggetsive sequestrated disc , calcifiaction",L3-L4,True,3
+333,6,"ect, contrast study is advsied",L3-L4,True,0
+333,7,narrowed <L5-S1> level with irregular end plates and vacuume phenomina,L5-S1,False,2
+334,1,lss mri,,False,0
+334,2,"<L4-L5> : diffuse disc bulge noted, more to the lt side, compressing the thecal sac and encroaching upon lt exit canal",L4-L5,False,3
+334,3,<L3-L4> : diffuse disc bulge noted compressing the thecal sac and exit canals,L3-L4,False,3
+334,4,multilevel disc bulges noted elswere with end plate degeneration and schmorl nodes,L3-L4,True,3
+335,1,lss mri :,,False,0
+335,2,feature of muscle spasm,,False,1
+335,3,"lt paracentral wide base disc bulge noted at <L4-L5> level , compressing the rt sided thecal sac and exit nerve root",L4-L5,False,3
+336,1,lss mri :,,False,0
+336,2,multilevel dissicating disc materials noted,,False,1
+336,3,degenrative spondolytic chnages,,False,0
+336,4,"diffuse disc bulges noted mostly at <L4-L5> level , compressing the thecal sac and encroaching exit neural canals associated with ligamentum flavum hypertrophy , all leading to secandary spinal canal stenosis",L4-L5,False,5
+336,5,"diffuse disc bulges noted at <L5-S1> level, compressing thecal sac and both nerve roots",L5-S1,False,3
+337,1,lumbosacral mri,,False,0
+337,2,mild disc bulges noted at <L4-L5> and <L5-S1> levels,"L4-L5,L5-S1",False,2
+337,3,no significant thecal sac or nerve root compression noted,"L4-L5,L5-S1",True,2
+337,4,multilevel schmorl's nodules noted,"L4-L5,L5-S1",True,2
+337,5,adequate spinal canal,"L4-L5,L5-S1",True,1
+338,1,lss mri,,False,0
+338,2,"mild disc bulges noted at <L4-L5> and <L5-S1> levels, abutting the thecal sac","L4-L5,L5-S1",False,4
+338,3,the spinal canal appeared adequate,"L4-L5,L5-S1",True,1
+339,1,lss mri :,,False,0
+339,2,feature of muscle spasm,,False,1
+339,3,no definite thecal sca or nerve roots compression noted,,False,1
+339,4,no disc herniation or protrusion noted,,False,2
+340,1,lss mri :,,False,0
+340,2,feature of muscle spasm noted,,False,1
+340,3,central and left paracentral disc protrusion noted at <L3-L4> and <L4-L5> disc space compressing the thecal sac and exite nerve roots,"L3-L4,L4-L5",False,6
+340,4,dissicating disc material noted,"L3-L4,L4-L5",True,2
+341,1,"<L2-L3> , <L3-L4> , <L4-L5> : diffuse disc bulges compressing the thecal sac and encroaching exit canals","L2-L3,L3-L4,L4-L5",False,9
+342,1,lss mri :,,False,0
+342,2,feature of muscle spasm,,False,1
+342,3,"mild diffuse disc bulge noted at <L4-L5> level, mildly compressing thecal sac and nerve roots",L4-L5,False,3
+343,1,<L5-S1> : rt paracentral disc protrusion compressing the thecal sac and rt exit canal,L5-S1,False,3
+343,2,<L4-L5> : diffuse disc bulge noted compressing the thecal sac and encroaching exit canals,L4-L5,False,3
+344,1,previous surgery noted with transpedicle fixation,,False,0
+344,2,enhancing granulation tissue compressing the thecal sac,,False,1
+345,1,lss mri :,,False,0
+345,2,feature of muscle spasm,,False,1
+345,3,"diffuse disc bulge noted at <L4-L5> level, abutting thecal sac",L4-L5,False,2
+346,1,no evidence of disc herniation,,False,1
+346,2,no significant thecal sac or nerve root compression noted,,False,2
+346,3,adequate spinal canal,,False,1
+347,1,lss mri,,False,0
+347,2,"broad based central disc protrusion noted at <L4-L5> level, largely compressing the thecal sac and encroaching upon the exit neural canals",L4-L5,False,3
+347,3,"diffuse disc bulge noted at <L3-L4> level, compressing the thecal sac and exit canals",L3-L4,False,3
+348,1,lss mri :,,False,0
+348,2,feature of muscle spasm,,False,1
+348,3,"mild diffuse disc bulge noted mainly at <L3-L4> & <L4-L5> level, mildly compressing the thecal sac and exit nerve","L3-L4,L4-L5",False,6
+349,1,lss mri,,False,0
+349,2,dehydrated <L4-L5> discal material with features of muscle spasm,L4-L5,False,2
+349,3,no evidence of disc herniation,L4-L5,True,1
+349,4,no significant thecal sac or nerve root compression noted,L4-L5,True,2
+350,1,<L5-S1> : diffuse disc bulge compressing the thecal sac and exit canals,L5-S1,False,3
+351,1,lss mri,,False,0
+351,2,features of muscle spasm noted,,False,1
+351,3,mild disc bulge noted at <L5-S1> level,L5-S1,False,1
+351,4,adequate spinal canal,L5-S1,True,1
+352,1,"multilevel diffuse disc bulges compressing the thecal sac and exit neural canals, largest at <L4-L5> level",L4-L5,False,3
+353,1,lss mri,,False,0
+353,2,"<L4-L5> : diffuse disc bulge noted, more to the rt side, compressing the thecal sac and exit neural canals",L4-L5,False,3
+353,3,"<L3-L4> & <L5-S1> :diffuse disc bulges noted, compressing the thecal sac and exit neural canals","L3-L4,L5-S1",False,6
+354,1,lss mri :,,False,0
+354,2,feature of muscle spasm,,False,1
+354,3,"diffuse decreased bone marrow signals intensity noted , correalte with bone isotope scan",,False,1
+354,4,adequate thecal sac with no exit nerve root compression,,False,2
+354,5,no evidence of disc protrusion or herniation seen,,False,2
+355,1,<L4-L5> : central disc protrusion compressing the thecal sac,L4-L5,False,2
+355,2,<L5-S1> : lt paracentral disc protrusion compressing the thecal sac,L5-S1,False,2
+356,1,lss mri,,False,0
+356,2,"<L5-S1> : diffuse disc bulge noted, compressing the thecal sac and both exit canals",L5-S1,False,3
+356,3,the spinal canal appeared adequate,L5-S1,True,1
+356,4,large anterior bulge of the same abovementioned disc noted,L5-S1,True,1
+356,5,posterior osteophytes noted,L5-S1,True,1
+356,6,type i end plate degeneration noted,L5-S1,True,1
+357,1,lss mri :,,False,0
+357,2,feature of muscle spasm,,False,1
+357,3,no significant thecal sac or nerve roots compression noted,,False,2
+357,4,no disc protrusion or herniation seen,,False,2
+358,1,lumbosacral mri,,False,0
+358,2,features of muscle spasm,,False,1
+358,3,diffuse disc bulge noted at <L4-L5> compressing the thecal sac and encroachment both nerve roots more to the left side,L4-L5,False,3
+359,1,lss mri :,,False,0
+359,2,feature of muscle spasm,,False,1
+359,3,adequate thecal sac,,False,1
+359,4,no significant disc protruion seen,,False,1
+362,1,lss mri,,False,0
+362,2,"central disc protrusion noted at <L5-S1> level, compressing the thecal sac",L5-S1,False,2
+362,3,the spinal canal appeared adequate,L5-S1,True,1
+363,1,lss mri :,,False,0
+363,2,feature of muscle spasm,,False,1
+363,3,"there is posterio-central abnormal extra axial soft tissue lesion noted at level of <L3-L4> , compressing thecal sac ? sequestrated disc , neuroma",L3-L4,False,2
+363,4,others,L3-L4,True,0
+363,5,lss mri with contrast study is advised,L3-L4,True,0
+363,6,"diffuse disc bulge noted at <L4-L5> level, mild compressing thecal sac and both exit nerve roots",L4-L5,False,3
+364,1,lss mri :,,False,0
+364,2,"lt paracentral disc protrusion -sequestrated noted at <L4-L5> level ,caudally migrating , compressing the lt sided thecal sac and exit nerve root , associated with dissicating disc materials",L4-L5,False,5
+365,1,mild disc bulge noted at <L4-L5> level noted more to the rt side,L4-L5,False,1
+365,2,adequate spinal canal,L4-L5,True,1
+366,1,lss mri :,,False,0
+366,2,feature of muscle spasm,,False,1
+366,3,"diffuse disc bulge noted at <L4-L5> level, mild compressing thecal sac and both nerve roots",L4-L5,False,3
+367,1,<L4-L5> and <L5-S1> : diffuse disc bulges noted compressing the thecal sac and encroaching exit neural canals,"L4-L5,L5-S1",False,6
+368,1,"<L3-L4> , <L4-L5> : diffuse disc bulges noted compressing the thecal sac and encroaching exit canals","L3-L4,L4-L5",False,6
+370,1,"<L4-L5> and <L5-S1> : diffuse disc bulges noted, compressing the thecal sac and exit canals","L4-L5,L5-S1",False,6
+371,1,multilevel diffuse disc bulges compressing the thecal sac and exit neural canals,,False,3
+372,1,lumbosacral mri,,False,0
+372,2,mild disc bulges noted at <L3-L4> and <L4-L5> levels,"L3-L4,L4-L5",False,2
+372,3,compressing the thecal sac and encroaching exit neural canals,"L3-L4,L4-L5",True,4
+372,4,facet joint hypertrophy noted at <L5-S1>,L5-S1,False,1
+373,1,lumbosacral mri,,False,0
+373,2,mild disc bulges noted at <L3-L4> and <L4-L5> levels,"L3-L4,L4-L5",False,2
+373,3,compressing the thecal sac and encroaching exit neural canals,"L3-L4,L4-L5",True,4
+373,4,facet joint hypertrophy noted at <L5-S1>,L5-S1,False,1
+375,1,lss mri :,,False,0
+375,2,feature of muscle spasm,,False,1
+375,3,"diffuse disc bulge with posteriocentral disc protrusion ,noted at <L5-S1> level, compressing thecal sac and encroaching exit neural canal",L5-S1,False,4
+375,4,"diffuse disc bulge ,noted at <L3-L4> & <L4-L5> levels, compressing thecal sac and encroaching exit neural canal","L3-L4,L4-L5",False,6
+375,5,nb:multiple small tarlovs cysts noted,"L3-L4,L4-L5",True,2
+377,1,lss mri,,False,0
+377,2,"small, rt paracentral disc protrusion noted at <L5-S1> level, abutting rt s1 nerve root",L5-S1,False,2
+377,3,adequate spinal canal,L5-S1,True,1
+378,1,mri of the lumbosacral spine,,False,0
+378,2,feature of muscle spasm,,False,1
+378,3,wide base central disc bulges noted atl4/l5 level compressing thecal sac and encroaching exit nerves roots,,False,3
+379,1,lss mri :,,False,0
+379,2,feature of muscle spasm,,False,1
+379,3,vertebral bodies hemangioma noted at l2&l3,,False,1
+379,4,"diffuse disc bulges noted at <L3-L4> & <L4-L5> levels, mildly compressing the thecal sac and exit neural canals","L3-L4,L4-L5",False,6
+380,1,mild disc bulge noted at <L4-L5> level,L4-L5,False,1
+380,2,adequate spinal canal,L4-L5,True,1
+381,1,lss mri,,False,0
+381,2,"<L3-L4> : diffuse disc bulge, more to the rt side, compressing the thecal sac and rt exit neural canal",L3-L4,False,3
+381,3,"<L4-L5> : diffuse disc bulge, compressing the thecal sac and exit neural canals",L4-L5,False,3
+381,4,"<L5-S1> : broad-based disc protrusion noted, more to the lt side, compressing the thecal sac and lt exit canal",L5-S1,False,3
+382,1,lss mri :,,False,0
+382,2,feature of muscle spasm,,False,1
+382,3,generalised decreased bone marrow signals noted ? coreralte with bone marrow isotope scan,,False,1
+382,4,"central disc protrusion noted at <L5-S1> level, migrated caudally ,slightly to right side, largely compressing the thecal sac and encroaching exit neural canal",L5-S1,False,3
+382,5,"mild disc bulge noted at <L4-L5> level, mildy compressing thecal sac",L4-L5,False,2
+383,1,lss mri :,,False,0
+383,2,feature of muscle spasm,,False,1
+383,3,"diffuse disc bulge noted at <L5-S1> level, mild compressing thecal sac and nerve roots",L5-S1,False,3
+384,1,lss mri,,False,0
+384,2,no evidence of disc herniation,,False,1
+384,3,no significant thecal sac or nerve root compression,,False,2
+385,1,lss mri :,,False,0
+385,2,"there is significant posterior central disc protruion noted at <L1-L2> level, largely compressing and filling thecal sac with encroaching exit nerve roots",L1-L2,False,3
+386,1,"<L4-L5> : diffuse disc bulge noted with facet joint hypertrophy, compressing the thecal sac and encroaching exit canals",L4-L5,False,4
+386,2,the spinal canal is still adequate,L4-L5,True,1
+387,1,mild disc bulge noted at <L4-L5> level,L4-L5,False,1
+387,2,adequate spinal canal,L4-L5,True,1
+388,1,feature of muscle spasm,,False,1
+388,2,"<L4-L5> level: diffuse disc bulge noted , mild compressing the thecal sac and exit neural canals",L4-L5,False,3
+389,1,mri lss,,False,0
+389,2,feature of muscle spasm,,False,1
+389,3,mild diffuse disc bulge noted at <L4-L5> level,L4-L5,False,1
+389,4,no significant thecal sac or nerve root compression noted,L4-L5,True,2
+390,1,no evidence of disc herniation,,False,1
+390,2,no significant thecal sac or nerve root compression noted,,False,2
+391,1,lss mri :,,False,0
+391,2,feature of muscle spasm,,False,1
+391,3,schmorl nodes noted,,False,1
+391,4,"diffuse disc bulges noted at <L4-L5> level , compressing thecal sac extending to lateral recess with encroaching exit neural canals , with dehydrated disc material",L4-L5,False,5
+392,1,lss mri :,,False,0
+392,2,feature of muscle spasm,,False,1
+392,3,dgenerative spondolytic changes,,False,0
+392,4,"rt paracentral disc protrusion noted at <L4-L5> level, compressing the thecal sac and exit neural canals",L4-L5,False,3
+392,5,"diffuse disc bulges noted at <L3-L4> level, mild compressing the thecal cac and both nerve roots",L3-L4,False,2
+393,1,lss mri :,,False,0
+393,2,faeture of muscle spasm,,False,1
+393,3,no definite thecal sac or nerev root compression,,False,1
+393,4,small tarlov cyst noted,,False,1
+394,1,lss mri,,False,0
+394,2,no evidence of disc herniation,,False,1
+394,3,no thecal sac or nerve root compression noted,,False,2
+395,1,lss mri,,False,0
+395,2,multilevel mild disc bulges noted,,False,1
+395,3,adequate spinal canal,,False,1
+395,4,no significant thecal sac or nerve root compression noted,,False,2
+396,1,<L4-L5> : mild disc bulge noted,L4-L5,False,1
+396,2,<L5-S1> : mild lt paracentral disc protrusion noted abutting the thecal sac and encroaching lt exit canal,L5-S1,False,3
+397,1,lss mri :,,False,0
+397,2,feature of muscle spasm,,False,1
+397,3,"diffuse disc bulges noted at <L4-L5> & <L5-S1> levels, mild compressing thecal sac and both nerve roots","L4-L5,L5-S1",False,6
+399,1,lss mri :,,False,0
+399,2,dissicating disc materials,,False,1
+399,3,grdae i spondylolisthesis of l4 over l5 level,L4-L5,False,1
+399,4,"widw base disc bulge noted at <L4-L5> level, compressing thecal sac and exit nerve roots",L4-L5,False,3
+400,1,lumbosacral mri,,False,0
+400,2,left foraminal disc protrusion noted at <L5-S1> compressing the thecal sac and lt s1 nerve root,L5-S1,False,4
+401,1,lss mri :,,False,0
+401,2,feature of muscle spasm,,False,1
+401,3,grade i spondylolisthesis of l3 over l4 vertebral body as well as modic type i noted,L3-L4,False,2
+401,4,"multilevel diffuse disc bulges noted , noceably at <L4-L5> level, compressing thecal sac and both nerve roots",L4-L5,False,3
+401,5,"scoliosis of lumbar spine noted, convexity to ltside",L4-L5,True,1
+402,1,lss mri,,False,0
+402,2,fearture of muscle spasm,,False,1
+402,3,<L5-S1> level :,L5-S1,False,0
+402,4,"central disc protrusion noted , migrateing caudally , more to lt side, largely compressing the thecal sac and exit nerve roots",L5-S1,True,3
+402,5,dissicating disc materials,L5-S1,True,1
+402,6,modic type ii noted,L5-S1,True,1
+403,1,no evidence of disc herniation,,False,1
+403,2,no significant thecal sac or nerve root compression noted,,False,2
+403,3,adequate spinal canal,,False,1
+404,1,lss mri :,,False,0
+404,2,feature of muscle spasm,,False,1
+404,3,"diffuse disc bulges noted noticeably at <L3-L4> /& <L4-L5> levels, compressing thecal sac and encroaqching both exit neural canals, associated with ligamentum flavum hypertrophy at <L4-L5> level","L3-L4,L4-L5",False,8
+405,1,lss mri,,False,0
+405,2,"multilevel diffuse disc bulges ( <L2-L3> , <L3-L4> , <L4-L5> ), compressing the thecal sac and exit canals","L2-L3,L3-L4,L4-L5",False,9
+405,3,multilevel end plate degenerative changes,"L2-L3,L3-L4,L4-L5",True,3
+406,1,lss mri :,,False,0
+406,2,feature of muscle spasm,,False,1
+406,3,mild diffuse disc bulge noted at <L5-S1> level mildly compressing thecal sac,L5-S1,False,2
+407,1,lss mri,,False,0
+407,2,"mild disc bulges noted at <L4-L5> and <L5-S1> levels, abutting the thecal sac","L4-L5,L5-S1",False,4
+407,3,adequate spinal canal,"L4-L5,L5-S1",True,1
+408,1,no evidence of disc herniation,,False,1
+408,2,no significant thecal sac or nerve root compression noted,,False,2
+409,1,lss mri :,,False,0
+409,2,faeture of muscle spasm,,False,1
+409,3,<L4-L5> level :(disscating disc material ):,L4-L5,False,1
+409,4,"central and lt paracentral disc protruion migrating dawnwoard ,compressing thecal sac and lt exit nerve roots",L4-L5,True,3
+410,1,"compression fracture of l5 vertebra with retrobulge into spinal canal, compressing the thecal sac",,False,2
+411,1,lumbosacral mri,,False,0
+411,2,central disc protrusion noted at <L4-L5> level compressing the thecal sac,L4-L5,False,2
+411,3,mild disc bulge noted at <L5-S1> level,L5-S1,False,1
+411,4,adequate spinal canal,L5-S1,True,1
+411,5,features of muscle spasm noted,L5-S1,True,1
+412,1,lss mri :,,False,0
+412,2,"wide base , rt paracentral ,disc bulge noted at <L4-L5> level , compressing thecal sac and rt exit nerve root",L4-L5,False,3
+412,3,"posterior central disc protrusion noted at <L5-S1> level , with mild cephalic migration, compressing the thecal sac and encroaching exit neuralcanal",L5-S1,False,2
+412,4,"nb:lt pelvic kidney noted , correalte with ultrasound",L5-S1,True,0
+413,1,lss mri,,False,0
+413,2,no evidence of disc herniation noted,,False,1
+413,3,no thecal sac or nerve root compression noted,,False,2
+414,1,lss mri :,,False,0
+414,2,faetuer of muscle spasm,,False,1
+414,3,"diffuse disc bulge noted at <L4-L5> level, extending to lateral recess, compressing thecal sac and exit neural canals with annular tear",L4-L5,False,4
+415,1,"<L3-L4> , <L4-L5> :","L3-L4,L4-L5",False,0
+415,2,"diffuse disc bulges noted with facet joint hypertrophy, noticeably at <L4-L5> level where mild spondylolisthesis noted, compressing the thecal sac and encroaching exit canals",L4-L5,False,5
+415,3,the spinal canal is still adequate,L4-L5,True,1
+416,1,lss mri,,False,0
+416,2,"<L5-S1> : mild disc bulge with lt paracentral annular tear, compressing the thecal sac and encroaching upon lt exit neural canal",L5-S1,False,4
+416,3,<L4-L5> : mild central disc protrusion noted compressing the thecal sac,L4-L5,False,2
+416,4,<L3-L4> : mild disc bulge with posterocentral tear,L3-L4,False,1
+417,1,lss mri,,False,0
+417,2,"small central disc protrusions noted at <L4-L5> amnd <L5-S1> levels, compressing the thecal sac","L4-L5,L5-S1",False,4
+417,3,adequate spinal canal,"L4-L5,L5-S1",True,1
+419,1,<L3-L4> and <L4-L5> : diffuse disc bulges noted compressing the thecal sac and encroaching exit neural canals,"L3-L4,L4-L5",False,6
+419,2,<L5-S1> : mild disc bulge noted,L5-S1,False,1
+420,1,lss mri :,,False,0
+420,2,feature of muscle spasm,,False,1
+420,3,no significant disc protrusion or herniation seen,,False,2
+420,4,no thecal sac or exit nerve root compression noted,,False,2
+420,5,preserved vertebral bodies hieght and bone marrow signal intensity seen,,False,1
+421,1,<L4-L5> : mild spondylolisthesis with secondary disc bulge abutting the thecal sac and encroaching exit canals,L4-L5,False,4
+421,2,<L1-L2> : posterior osteophytes noted abutting the thecal sac,L1-L2,False,2
+422,1,lss mri,,False,0
+422,2,"mild disc bulge noted at <L4-L5> level, abutting the thecal sac and encroaching upon the exit canals",L4-L5,False,3
+422,3,l2 hemangioma,L4-L5,True,1
+422,4,"3.0 cm, lt ovarian cyst",L4-L5,True,0
+423,1,lss mri :,,False,0
+423,2,feature of muscle spasm,,False,1
+423,3,"diffuse disc bulges noted at <L3-L4> & <L4-L5> levels, compressing thecal sac and both nerve roots","L3-L4,L4-L5",False,6
+424,1,lss mri :,,False,0
+424,2,"cetral & rt paracentral disc protrusion noted at <L4-L5> level , largely compressing the rt sided thecal sac and exit nerve root",L4-L5,False,3
+425,1,"<L4-L5> : diffuse disc bulge noted, compressing the thecal sac and exit canals",L4-L5,False,3
+426,1,lss mri :,,False,0
+426,2,"lt paracentral disc protrusion noted at <L4-L5> level, largely compressing (lt) thecal sca and exit nerve root",L4-L5,False,2
+427,1,lss mri :,,False,0
+427,2,feature of muscle spasm,,False,1
+427,3,"posterior central disc protrusion noted at <L4-L5> level, largely compressing the thecal sac and enrcoaching exit neural canal",L4-L5,False,3
+428,1,c,,False,0
+428,2,spine mri :,,False,0
+428,3,feature of muscle spasm,,False,1
+428,4,"wide base disc bulge noted at c5/c6 level, obliterating anterior csf spaces , and encroachong exit neural canal",,False,2
+428,5,lss mri :,,False,0
+428,6,feature of muscle spasm,,False,1
+428,7,dehydrated disc materials at lower levels,,False,1
+428,8,"diffuse disc bulge noted at <L4-L5> level, compressing the thecal sac and encroaching exit neural canal with annular tear",L4-L5,False,4
+429,1,lss mri :,,False,0
+429,2,feature of muscle spasm,,False,1
+429,3,multiple schmorl nodes,,False,1
+429,4,dissicating disc material at <L5-S1> level,L5-S1,False,1
+429,5,"rt paracentral disc protruion noted at <L5-S1> level ,compression thecal sac and rt exit nerve root",L5-S1,False,3
+430,1,lss mri :,,False,0
+430,2,feature of muscle spasm,,False,1
+430,3,"diffuse disc bulge with lt paracentral disc protrusion & sequestration , noted at <L5-S1> , largely compressing the thecal sac and encroaching exit neural canal, with narrowed disc space and dehydrated disc material",L5-S1,False,8
+431,1,lss mri,,False,0
+431,2,diffuse disc bulges noted at <L4-L5> levels compressing the thecal sac,L4-L5,False,2
+431,3,mild spondylolisthesis of l4 over l5 vertebrae,L4-L5,False,1
+432,1,lss mri :,,False,0
+432,2,feature of muscle spasm,,False,1
+432,3,"diffuse disc bulge noted at <L4-L5> level , mild compressing thecal sac and nerve roots",L4-L5,False,3
+433,1,lss mri :,,False,0
+433,2,faeture of muscle spasm,,False,1
+433,3,"wide base disc bulge ,with annular tear noted at <L5-S1> level, compressing teh thecal sac and both nerve roots",L5-S1,False,4
+434,1,lumbosacral mri,,False,0
+434,2,features of muscle spasm,,False,1
+434,3,no significant thecal sac or nerve root compression,,False,2
+435,1,lumbosacral mri,,False,0
+435,2,no evidence of disc herniation,,False,1
+435,3,no thecal sac or nerve root compression,,False,2
+435,4,adequate spinal canal,,False,1
+436,1,lss mri :,,False,0
+436,2,feature of muscle spasm,,False,1
+436,3,"wide base disc bulge noted at <L5-S1> level, compressing the thecal sac and encroaching exit neural canals",L5-S1,False,3
+437,1,lss mri :,,False,0
+437,2,feature of muscle spasm,,False,1
+437,3,"diffuse disc bulges noted at <L4-L5> levels, extending to lateral recess, compressing the thecal sac and both nerve roots",L4-L5,False,3
+438,1,lss mri,,False,0
+438,2,"diffuse disc bulge noted at <L4-L5> level, compressing the thecal sac and encroaching upon exit canals",L4-L5,False,3
+438,3,mild disc bulge noted at <L5-S1> level,L5-S1,False,1
+439,1,lumbosacral mri:,,False,0
+439,2,feature of muscle spasm,,False,1
+439,3,dissicating lower lumbar disc material noted,,False,1
+439,4,<L4-L5> level:,L4-L5,False,0
+439,5,central and right paracentral disc protrusion noted with cephalic migration as well as soft tissue density noted mostly sequestrated disc,L4-L5,True,2
+439,6,compressing the thecal sac and encroaching the right exit neural canals,L4-L5,True,2
+439,7,<L5-S1> level:,L5-S1,False,0
+439,8,wide based disc bulge noted compressing the thecal sac and both nerve root,L5-S1,True,3
+439,9,contrast study lss is advised,L5-S1,True,0
+441,1,lss mri,,False,0
+441,2,"<L4-L5> : diffuse disc bulge, more to the lt side, compressing the thecal sac and encroaching upon lt exit canal",L4-L5,False,3
+441,3,<L5-S1> : mild disc bulge noted,L5-S1,False,1
+442,1,lss mri :,,False,0
+442,2,feature of muscle spasm,,False,1
+442,3,multiple schmorl nodes noted,,False,1
+442,4,dissicating disc materials at lower levels,,False,1
+442,5,"posterior central disc protrusion noted at <L5-S1> level, compressing thecal sac and exit nerve roots more to lt side",L5-S1,False,3
+442,6,diffuse disc bulge with small central protrusion noted at <L4-L5> level compressing thecal sac and both nerve roots,L4-L5,False,4
+443,1,lss mri :,,False,0
+443,2,feature of muscle spasm,,False,1
+443,3,"wide base disc bulge noted at <L5-S1> level, compressing thecal sac and encroaching exit neural canals",L5-S1,False,3
+443,4,si joints mri:,L5-S1,True,0
+443,5,normal smooth articular surface of both scaro iliac joints,L5-S1,True,0
+443,6,normal bone marrow signals intensities,L5-S1,True,1
+443,7,no bony erosion or peri-osteal reaction,L5-S1,True,0
+443,8,intact visualised muscles,L5-S1,True,0
+444,1,lss mri :,,False,0
+444,2,"posterior central disc protrusion noted at <L5-S1> level, crossing & migrating caudally to rt thecal sac, largely compressing the thecal sac and rt s1 nerve root",L5-S1,False,3
+445,1,"nild diffuse disc bulge noted at <L4-L5> level, mild compressing thecal sac and exit nerve root",L4-L5,False,3
+445,2,feature of muscle spasm,L4-L5,True,1
+446,1,lss mri :,,False,0
+446,2,feature of muscle spasm,,False,1
+446,3,discating disc material with degeneraive changes,,False,1
+446,4,"multilevel diffuse disc bulges noted , notceably at <L3-L4> level , compressing",L3-L4,False,1
+446,5,"thecal sac and encroaching upon exit neural canals asoociated with ligementum flavum hypertrophy , all leading to secandary spinal canal stenosis",L3-L4,True,4
+447,1,lss mri :,,False,0
+447,2,evidnece of tranpedicular fixation screws noted at lower dorsal and upper lumbar spines with fractures verretbal bodies (post traumatic ),,False,1
+447,3,"diffuse disc bulges noted at <L4-L5> level compressing thecal sac and both nerve roots associated with ligamentum flavum hypertrophy , all leading to secandary spinal canal stenosis, as well as and to lesser degree at <L3-L4> level","L4-L5,L3-L4",False,10
+447,4,grade i spondylolisthesis of l4 over l5 level,L4-L5,False,1
+448,1,lss mri :,,False,0
+448,2,feature of muscle spasm,,False,1
+448,3,no thecal sac or nerve roots compression seen,,False,2
+448,4,no significant disc protrusion or herniation noted,,False,2
+449,1,lumbosacral mri,,False,0
+449,2,mild disc bulge noted at <L4-L5> level,L4-L5,False,1
+449,3,no significant thecal sac or nerve root compression noted,L4-L5,True,2
+449,4,adequate spinal canal,L4-L5,True,1
+450,1,lss mri :,,False,0
+450,2,feature of muscle spasm,,False,1
+450,3,"lt paracentral disc protrusion noted at <L5-S1> level, compressing lt thecal sac and exit nerve root",L5-S1,False,3
+450,4,(dissicaring disc material noted ),L5-S1,True,1
+450,5,"wide base disc bulge noted at <L4-L5> level, mildly compressing thecal sac and nerve roots",L4-L5,False,3
+451,1,lumbosacral mri,,False,0
+451,2,"central and left paracentral disc protrusion noted at <L4-L5> level , largely compressing the thecal sac and encroaching upon exiting neural canals",L4-L5,False,3
+452,1,lss mri :,,False,0
+452,2,feature of muscle spasm,,False,1
+452,3,dissicating disc material noted at <L5-S1> level,L5-S1,False,1
+452,4,"wide base disc bulge noted at <L5-S1> level, mildy compressing the thecal sac and encroaching upon exit neural canals",L5-S1,False,3
+453,1,lss mri,,False,0
+453,2,central disc protrusion noted at <L5-S1> level compressing the thecal sac,L5-S1,False,2
+454,1,no evidence of disc herniation,,False,1
+454,2,no significant thecal sac or nerve root compression noted,,False,2
+454,3,adequate spinal canal,,False,1
+455,1,lss mri :,,False,0
+455,2,feature of muscle spasm,,False,1
+455,3,multiple schmorl nodes,,False,1
+455,4,"diffuse disc bulge noted at <L4-L5> level, extending to lateral recess , more to rt sided ,compressing the thecal sac and both nerve roots",L4-L5,False,3
+455,5,"diffuse disc bulges with small posterior central disc protrusion noted at <L5-S1> level, compressing thecal sac and both nerve roots",L5-S1,False,4
+456,1,lss mri :,,False,0
+456,2,feature of muscle spasm,,False,1
+456,3,degenerative spondylotic changes,,False,0
+456,4,"multilevel diffuse disc bulge noted, noteably at <L3-L4> & <L4-L5> level, compressing thecal sac and encroaching both exit neural canals associated with ligamentum flavum hypertrophy , all leading releatively secandary spinal canal stenosis","L3-L4,L4-L5",False,10
+456,5,"diffuse disc bulges with small rt paracentral disc protrusion noted at <L5-S1> level , compressing thecal sac and exit nerve roots",L5-S1,False,4
+457,1,lss mri :,,False,0
+457,2,feature of muscle spasm,,False,1
+457,3,"diffuse disc bulges noted at <L4-L5> level, compressing thecal sac and both nerve roots",L4-L5,False,3
+457,4,mild disc bulges noted at <L5-S1> level,L5-S1,False,1
+458,1,lss mri :,,False,0
+458,2,feature of muscle spasm,,False,1
+458,3,"central slightly to rt disc protrusion noted at <L5-S1> , compressing lt thecal sac and exit nerve root",L5-S1,False,3
+459,1,lss mri :,,False,0
+459,2,feature of muscle spasm,,False,1
+459,3,mild diffuse disc bulge noted at <L4-L5> level,L4-L5,False,1
+459,4,no significant thecal sac or nerve root compression noted,L4-L5,True,2
+460,1,lss mri,,False,0
+460,2,no evidence of disc herniation noted,,False,1
+460,3,no significant thecal sac or nerve root compression noted,,False,2
+461,1,lss mri,,False,0
+461,2,no evidence of disc herniation,,False,1
+461,3,no thecal sac or nerve root compression noted,,False,2
+461,4,"small hypointense t1 and t2 lesion noted, probably schmorl nodes",,False,1
+462,1,lss mri,,False,0
+462,2,"mild lt paracentral disc protrusion noted at <L1-L2> level, compressing the thecal sac",L1-L2,False,2
+462,3,no evidence of disc herniation at other levels,L1-L2,True,1
+464,1,lss mri,,False,0
+464,2,no evidence of disc herniation,,False,1
+464,3,no significant thecal sac or nerve root compression,,False,2
+466,1,lss mri:,,False,0
+466,2,feature of muscle spasm,,False,1
+466,3,no significant thecal sac or nerve roots,,False,2
+466,4,nb:relatively decreased bone marrow signals noted ? correalte with bone isotope scan,,False,1
+467,1,<L4-L5> : mild disc bulge noted,L4-L5,False,1
+467,2,<L5-S1> : mild lt paracentral disc protrusion noted abutting the thecal sac and encroaching lt exit canal,L5-S1,False,3
+468,1,cervical mri :,,False,0
+468,2,feature of muscle spasm,,False,1
+468,3,dehydrated discal materials,,False,1
+468,4,"diffuse disc bulges noted at c5/c6 & c6/c7 levels , compressing anterior csf spaces and encroaching upon both exit nerve canals",,False,2
+468,5,lss mri :,,False,0
+468,6,diffuse disc bulge noted at <L4-L5> level compressing the thecal sac and both exit nerve roots,L4-L5,False,3
+468,7,nb:the sacral canal is occupied by a central extradural and non divided cyst with fine wall and without neural element or herniation of meninges,L4-L5,True,1
+468,8,the cyst is very expansive but doses not transgress margins of the sacrum,L4-L5,True,0
+468,9,no connection is visualized between the cyst and the thecal sac,L4-L5,True,1
+468,10,there is no other significant abnormality,L4-L5,True,0
+468,11,appearances mostly represent occult intrasacral meningocele (oim) or sacral meningeal cyst,L4-L5,True,0
+469,1,lss mri :,,False,0
+469,2,degenerative changes noted with dissicating disc materials,,False,1
+469,3,"multilevel diffuse disc bulges noted , noteceably at <L4-L5> level and <L2-L3> levels, compressing the thecal sca and encroaching upon exit neural canals , associated with ligamentum flavum hypertrophy , relatively causing secandary spinal canal stnosis nb:","L4-L5,L2-L3",False,6
+469,4,small rt renal cyst noted,"L4-L5,L2-L3",True,0
+470,1,lss mri,,False,0
+470,2,no evidence of disc herniation,,False,1
+470,3,no significant thecal sac or nerve root compression noted,,False,2
+470,4,adequate spinal canal,,False,1
+471,1,no evidence of disc herniation,,False,1
+471,2,no significant thecal sac or nerve root compression noted,,False,2
+472,1,lss mri :,,False,0
+472,2,feature of muscle spasm,,False,1
+472,3,"diffuse disc bulges noted at <L4-L5> & <L5-S1> levels, compressing the thecal sac and encroaching both exit neural canals","L4-L5,L5-S1",False,6
+473,1,lss mri,,False,0
+473,2,"small central disc protrusion noted at <L5-S1> level, compressing the thecal sac",L5-S1,False,2
+473,3,adequate spinal canal,L5-S1,True,1
+474,1,lss mri :,,False,0
+474,2,feature of muscle spasm,,False,1
+474,3,"modic type i , noted at <L5-S1> level",L5-S1,False,1
+474,4,"diffuse disc bulges noted <L5-S1> level , compressing thecal sac and both exit nerve roots",L5-S1,False,3
+475,1,lss and c,,False,0
+475,2,spine mri,,False,0
+475,3,features of muscle spasm noted in both c,,False,1
+475,4,spine and lss,,False,0
+475,5,mild disc bulge noted at <L4-L5> level,L4-L5,False,1
+476,1,lss and c,,False,0
+476,2,spine mri,,False,0
+476,3,features of muscle spasm noted in both c,,False,1
+476,4,spine and lss,,False,0
+476,5,mild disc bulge noted at <L4-L5> level,L4-L5,False,1
+477,1,"<L5-S1> : lt paracentral disc protrusion, compressing the thecal sac",L5-S1,False,2
+477,2,<L4-L5> : mild disc bulge with annular tear,L4-L5,False,2
+479,1,lss mri :,,False,0
+479,2,feature of muscle spasmز,,False,1
+479,3,relatively generalised decreased bone marrow signals ? correalte with bone isotope scan,,False,1
+479,4,"diffuse disc bulge, noted at <L4-L5> level, compressing the thecal sac and exit neural canals",L4-L5,False,3
+482,1,lss mri :,,False,0
+482,2,"there is anterior wedging fracture of l5 vertebral body noted with bone marrow edema involving the rest of vertebral body extending to pedicles with evidence of paravertebral soft tissue componant with no posterior bulges ??fracture , however bone isotope scan is advised to rule out secandary depostis",,False,3
+482,3,"multilevel diffuse disc bulges noted , at <L2-L3> , <L3-L4> & <L5-S1> levels ,compressing the thecal sac and both exit nerve roots","L2-L3,L3-L4,L5-S1",False,9
+482,4,grade i spodylolisthesis of l5 over s1 level,L5-S1,False,1
+484,1,hip joint & sij mri :,,False,0
+484,2,"feature of lt sided scaroilitis noted(infective = septic sacroiliatis ,tb, brucellosis",,False,0
+484,3,"etc), correalte with lab results and needs clinical correaltion",,False,0
+484,4,preserved both femoral head noted,,False,0
+484,5,lss mri :,,False,0
+484,6,feature of muscle spasm,,False,1
+484,7,no significant thecal sac or nerve roots compression seen,,False,2
+484,8,evidence of left sided gluteal signal alteration noted (old insult ),,False,0
+486,1,lumbosacral mri,,False,0
+486,2,mild disc bulge noted at <L3-L4> level,L3-L4,False,1
+486,3,no evidence of disc herniation at other levels noted,L3-L4,True,1
+486,4,adequate the spinal canal,L3-L4,True,0
+487,1,no evidence of disc herniation,,False,1
+487,2,no significant thecal sac or nerve root compression noted,,False,2
+488,1,lss mri,,False,0
+488,2,"diffuse disc bulge with annular tear noted at <L4-L5> level, abutting the thecal sac",L4-L5,False,3
+488,3,no significant thecal sac or nerve root compression noted,L4-L5,True,2
+488,4,adequate spinal canal,L4-L5,True,1
+492,1,lss mri,,False,0
+492,2,"diffuse disc bulge, more to the rt side, noted at <L4-L5> level, compressing the thecal sac and rt exit neural canal",L4-L5,False,3
+493,1,lumbosacral mri,,False,0
+493,2,diffuse disc bulge noted at <L4-L5> level,L4-L5,False,1
+493,3,mildly compressing the thecal sac and the exit neural canals,L4-L5,True,2
+493,4,the spinal canal appears adequate,L4-L5,True,1
+494,1,"multilevel diffuse disc bulges compressing the thecal sac and encroaching exit neural canals, largest at <L2-L3> level",L2-L3,False,3
+495,1,lss mri :,,False,0
+495,2,feature of muscle spasm,,False,1
+495,3,"diffuse disc bulge noted at <L5-S1> level, extending to lateral recess, more to lt the sided the thecal sac and encroaching upon exit neural canals",L5-S1,False,3
+495,4,"diffuse disc bulge noted at <L4-L5> level, compressing the thecal sac and nerve roots associated with annular tear",L4-L5,False,4
+496,1,lumbosacral mri,,False,0
+496,2,"multilevel diffuse disc bulges noted at <L5-S1> , <L4-L5> and <L3-L4> levels","L5-S1,L4-L5,L3-L4",False,3
+496,3,compressing the thecal sac and exiting neural canals,"L5-S1,L4-L5,L3-L4",True,6
+496,4,"the spinal canal appears narrowed at the <L4-L5> leve, by disc bulge and the facet joint hypertrophy",L4-L5,False,3
+496,5,multilevel endplate degeneration noted,L4-L5,True,1
+497,1,lss mri :,,False,0
+497,2,feature of muscle spasm,,False,1
+497,3,dissicating disc material at <L5-S1> level,L5-S1,False,1
+497,4,"diffuse disc bulge noted at <L5-S1> level, compressing thecal sac and encroaching both exit neural canal",L5-S1,False,3
+497,5,mild diffuse disc bulge noted at <L4-L5> level mild compressing thecal sac & nerve roots,L4-L5,False,3
+499,1,no evidence of disc herniation,,False,1
+499,2,no significant thecal sac or nerve root compression noted,,False,2
+499,3,adequate spinal canal,,False,1
+500,1,lss mri,,False,0
+500,2,mild disc bulge noted at <L2-L3> level abutting the thecal sac,L2-L3,False,2
+500,3,features of muscle spasm,L2-L3,True,1
+501,1,lss mri :,,False,0
+501,2,feature of degenerative changes,,False,0
+501,3,"mutlilevel diffuse disc bulges notceably at <L3-L4> & <L4-L5> levels, compressing the thecal sac and encroaching exit neural canal associated with ligamtum flavum hypertrophy , all leading to secandary spinal canal stenosis","L3-L4,L4-L5",False,10
+502,1,lss mri :,,False,0
+502,2,feature of muscle spasm,,False,1
+502,3,modic type ii end plate degenerative changes of <L4-L5> level noted,L4-L5,False,1
+502,4,"posterior central disc protrusion noted at <L4-L5> level , compressing the thecal sca extending to lateral recess encroaching upon both exit neural canals",L4-L5,False,3
+502,5,"diffuse disc bulge with annular tear noted at <L3-L4> level, mild compressing thecal sac and exit nerve roots",L3-L4,False,4
+502,6,"nb :about 4 cm , ovarian cyst noted",L3-L4,True,0
+503,1,lss mri :,,False,0
+503,2,feature of muscle spasm,,False,1
+503,3,dehydrated disc materials noted at lower levels,,False,1
+503,4,"wide base posterior central disc bulge with annular tear noted at <L4-L5> level, extending to lt lateral recess, compressing the thecal sac and encroaching exit neural canal",L4-L5,False,4
+503,5,mild diffuse dic bulges noted at <L3-L4> & l5/mpressing the thecal sac,L3-L4,False,1
+504,1,lss mri :,,False,0
+504,2,feature of muscle spasm,,False,1
+504,3,"central and lt paracentral disc prortusion noted at <L5-S1> level, compressing the thecal sac and lt (s1) exit nerve root",L5-S1,False,2
+505,1,no evidence of disc herniation,,False,1
+505,2,no significant thecal sac or nerve root compression noted,,False,2
+506,1,lss mri,,False,0
+506,2,"central disc protrusion noted at <L5-S1> level, compressing the thecal sac",L5-S1,False,2
+506,3,features of muscle spasm,L5-S1,True,1
+507,1,lumbosacral mri,,False,0
+507,2,"central disc protrusion and more to the right side, noted at <L4-L5> level, largely compressing the thecal sac and right exit neural canal",L4-L5,False,3
+507,3,"left paracentral disc protrusion noted at <L2-L3> level, compressing the left side of the thecal sac",L2-L3,False,2
+508,1,lss mri :,,False,0
+508,2,feature of muscle spasm,,False,1
+508,3,dissicating disc material at <L4-L5> level:,L4-L5,False,1
+508,4,"diffuse disc bulge noted at <L4-L5> level , extending to lateral recess, compressing thecal sac , and largely encroaching upon exit neural canal associated with annular tear",L4-L5,False,4
+509,1,lss mri :,,False,0
+509,2,feature of muscle spasm,,False,1
+509,3,dissicating disc materials at <L4-L5> & <L5-S1> levels,"L4-L5,L5-S1",False,2
+509,4,"diffuse disc bulge noted at <L4-L5> level, compressing the thecal sac and encroaching upon exit neural canal , with annular tear",L4-L5,False,4
+509,5,"small posterior central disc bulge noted at <L5-S1> level, mildly compressing the thecal sac and exit nerve roots",L5-S1,False,3
+510,1,lss mri :,,False,0
+510,2,feature of muscle spasm,,False,1
+510,3,partial dissicating disc material noted at <L4-L5> level,L4-L5,False,1
+510,4,"diffuse disc bulg noted at <L4-L5> level, compressing thecal sac andd both nerve roots",L4-L5,False,3
+512,1,lumbosacral mri,,False,0
+512,2,feature of muscle spasm,,False,1
+512,3,desiccative disc material noted at the lower levels,,False,1
+512,4,multiple schmorl's nodule noted,,False,1
+512,5,modic type ii noted at the <L5-S1>,L5-S1,False,1
+512,6,<L4-L5> leve:l,L4-L5,False,0
+512,7,"wide based disc bulge noted ,mildly compressing the thecal sac and exiting nerve root",L4-L5,True,3
+512,8,<L5-S1> level:,L5-S1,False,0
+512,9,diffuse disc bulge noted compressing the thecal sac and encroaching upon the neural canals,L5-S1,True,3
+514,1,lss mri :,,False,0
+514,2,feature of muscle spasm,,False,1
+514,3,"diffuse disc bulges noted at <L4-L5> & <L5-S1> levels, mildly compressing the thecal sac and both exit nerve roots","L4-L5,L5-S1",False,6
+515,1,mri of the lumbar spine :,,False,0
+515,2,feature of muscle spasm,,False,1
+515,3,"<L4-L5> level: diffuse bulge noted, with annular tear mild compressing the thecal sac",L4-L5,False,3
+515,4,no significant thecal sac compression,L4-L5,True,1
+515,5,rt knee mri :,L4-L5,True,0
+515,6,tear of posterior horn of medial meniscus,L4-L5,True,0
+515,7,joint effusion noted,L4-L5,True,0
+515,8,no other abnormality seen,L4-L5,True,0
+516,1,"multilevel diffuse disc bulges with facet joint hypertrophy noted compressing the thecal sac and exit neural canals, noticeably at <L4-L5> level",L4-L5,False,4
+517,1,lss mri,,False,0
+517,2,mild diosc bulges noted at <L4-L5> and <L5-S1> levels,"L4-L5,L5-S1",False,2
+517,3,no sigificant thecal sac or nerve root compressuion noted,"L4-L5,L5-S1",True,2
+517,4,adequate spinal canal,"L4-L5,L5-S1",True,1
+518,1,lss mri,,False,0
+518,2,multilevel mild disc bulges noted,,False,1
+518,3,no significant thecal sac or nerve root compression noted,,False,2
+518,4,tarlov cyst- s2 level,,False,1
+519,1,lss mri:,,False,0
+519,2,feature of muscle spasm,,False,1
+519,3,"diffuse disc bulges noted at <L4-L5> & <L5-S1> level, mildly compressing thecal sac and exit nerve roots","L4-L5,L5-S1",False,6
+520,1,lss mri,,False,0
+520,2,"<L5-S1> : rt paracentral disc protrusion, compressing the thecal sac and rt exit neural canal",L5-S1,False,3
+520,3,mild disc bulge noted at <L4-L5> level,L4-L5,False,1
+521,1,lss and pelvis mri,,False,0
+521,2,no evidence of disc herniation,,False,1
+521,3,no significant thecal sac or nerve root compression noted,,False,2
+521,4,preserved si joints,,False,0
+521,5,features of pid noted,,False,0
+522,1,lss mri,,False,0
+522,2,"<L4-L5> : diffuse disc bulge noted, compressing the thecal nsac and both exit canals",L4-L5,False,2
+522,3,<L5-S1> : mild disc bulge noted,L5-S1,False,1
+523,1,<L5-S1> : lt paracentral disc protrusion compressing the thecal sac and lt exit neural canal,L5-S1,False,3
+524,1,lss mri :,,False,0
+524,2,feature of muscle spasm,,False,1
+524,3,multiple schmorl nodes,,False,1
+524,4,"wide base disc bulge noted at <L4-L5> level, compressing thecal sac more at rt side with encroaching exit neural canal",L4-L5,False,3
+524,5,"mild diffuse disc bulge noted at <L5-S1> level, mild compressing thecal sca and both nerve roots",L5-S1,False,2
+525,1,c,,False,0
+525,2,spine mri :,,False,0
+525,3,feature of muscle spasm,,False,1
+525,4,"rt paracentral disc protrusion with annular tear noted at c5/c6 level, ablitertaing anterior csf space with indenting spinal cord with mild encroaching exit neural canal",,False,3
+525,5,lss mri (contrast):,,False,0
+525,6,evidnece of previus opertaion at rt sided ( <L4-L5> level):,L4-L5,False,0
+525,7,"central and rt paracentral inhomogenous enhancing struture noted at <L4-L5> level, compressing thecal sac and rt exit neural canal , mostly post opertaive fibrous -granulation tissue",L4-L5,False,2
+526,1,lss mri,,False,0
+526,2,no evidence of disc herniation,,False,1
+526,3,no thecal sac or nerve root compression,,False,2
+527,1,lumbosacral mri,,False,0
+527,2,features of muscle spasm,,False,1
+527,3,dissicating disc material noted,,False,1
+527,4,"multilevel diffuse disc bulge noted mainly at <L2-L3> , <L3-L4> and <L4-L5> levels compressing thecal sac and encroaching exiting neural canals","L2-L3,L3-L4,L4-L5",False,9
+527,5,relatively secondary spinal stenosis noted at the <L4-L5> level,L4-L5,False,1
+528,1,lss mri :,,False,0
+528,2,features of muscle spasm,,False,1
+528,3,"mild diffuse disc bulge noted at <L4-L5> level, mildly compressing the thecal sac and exit nerve roots",L4-L5,False,3
+528,4,"diffusely reduced signal of bone marrow noted, mostly non-specific - however, correlate with bone isotope scan",L4-L5,True,1
+529,1,c4-c5,,False,0
+529,2,mild disc bulge noted compressing anterior csf space with features iof m,,False,1
+529,3,spasm,,False,1
+529,4,<L4-L5> : diffuse disc bulge compressing the thecal sac and exit canals,L4-L5,False,3
+531,1,lss mri :,,False,0
+531,2,feature of muscle spasm,,False,1
+531,3,dissicating disc materials noted at <L4-L5> & <L5-S1> levels,"L4-L5,L5-S1",False,2
+531,4,"posteriocentral disc protrusion noted at <L5-S1> level, largely compressing the thecal and encroaching both neural canals",L5-S1,False,2
+531,5,mild diffuse disc bulge noted at <L4-L5> level,L4-L5,False,1
+532,1,lss mri :,,False,0
+532,2,feature of muscle spasm,,False,1
+532,3,dissicating disc materials,,False,1
+532,4,"rt paracentral disc protrotion , slight caudal migratition noted at <L4-L5> level, compressing rt thecal sac & l5 nerve root",L4-L5,False,2
+533,1,<L4-L5> : diffuse disc bulges noted compressing the thecal sac and encroaching exit neural canals,L4-L5,False,3
+534,1,lss mri :,,False,0
+534,2,feature of muscle spasm,,False,1
+534,3,"wide base disc bulge noted at <L5-S1> level, mildy compressing the thecal sac and exit nerve roots associated with annular tear",L5-S1,False,4
+536,1,<L4-L5> : diffuse disc bulge noted abutting the thecal sac and encroaching exit canals,L4-L5,False,3
+537,1,lss mri :,,False,0
+537,2,"mild diffuse disc bulge noted at <L4-L5> level, mildly compressing thecal sac",L4-L5,False,2
+538,1,lss mri :,,False,0
+538,2,feature of muscle spasm,,False,1
+538,3,no significant thecal sac or nerve root compression seen,,False,2
+538,4,no disc herniation or protruion noted,,False,2
+539,1,"<L5-S1> , <L4-L5> :","L5-S1,L4-L5",False,0
+539,2,"diffuse disc bulges noted with facet joint hypertrophy, compressing the thecal sac and encroaching exit canals","L5-S1,L4-L5",True,8
+539,3,the spinal canal is still adequate,"L5-S1,L4-L5",True,1
+540,1,lss mri,,False,0
+540,2,no evidence of disc herniation,,False,1
+540,3,no significant thecal sac or nerve root compression noted,,False,2
+541,1,lumbosacral mri,,False,0
+541,2,mild disc bulge at the <L5-S1> level,L5-S1,False,1
+541,3,abutting the thecal sac,L5-S1,True,1
+541,4,no significant thecal sac or nerve root compression noted,L5-S1,True,2
+542,1,lss mri :,,False,0
+542,2,"diffuse disc bulge with central and to the rt disc protrusion ,noted at <L5-S1> level, compressing thecal sac and encroaching exit neural canal",L5-S1,False,4
+543,1,lss mri :,,False,0
+543,2,feature of muscle spasm,,False,1
+543,3,dissicating disc materials noted,,False,1
+543,4,narrowed disc space of <L5-S1> level,L5-S1,False,1
+543,5,"multilevel diffuse disc bulges noteceably at <L4-L5> & <L5-S1> levels, compressing the thecal sac and encroaching upon exit neural canals with ligamentum flavum hypertrophy","L4-L5,L5-S1",False,8
+543,6,"nb:small hypointense lesion noted at s2 vertebral body , mostly bony scleorois like bony island","L4-L5,L5-S1",True,0
+545,1,no evidence of disc herniation,,False,1
+545,2,no significant thecal sac or nerve root compression noted,,False,2
+546,1,lss mri :,,False,0
+546,2,feature of muscle spasm,,False,1
+546,3,"mild diffuse disc bulge noted at <L4-L5> level, mild cpmpressing thecal sac and nervce roots",L4-L5,False,1
+546,4,nb :,L4-L5,True,0
+546,5,"about 4 cm, sub mucosal fibroid noted",L4-L5,True,0
+547,1,lumbosacral mri,,False,0
+547,2,there is inhomogeneously enhancing soft tissue in the left paracentral and foraminal area at <L4-L5> level,L4-L5,False,0
+547,3,mostly fibrosis compressing the thecal sac and left exit neural canal,L4-L5,True,2
+548,1,lss mri,,False,0
+548,2,features of muscle spasm,,False,1
+548,3,"mild disc bulge noted at <L5-S1> level, abutting the thecal sac",L5-S1,False,2
+548,4,no signicant thecal sac or nerve root compression noted,L5-S1,True,2
+549,1,<L3-L4> : posterior osteophytes abutting the thecal sac with narrow disc space,L3-L4,False,3
+550,1,lss mri,,False,0
+550,2,"diffuse disc bulges noted at <L3-L4> and <L4-L5> levels, compressing the thecal sac and exit canals","L3-L4,L4-L5",False,6
+551,1,no evidence of disc herniation,,False,1
+551,2,no significant thecal sac or nerve root compression noted,,False,2
+551,3,adequate spinal canal,,False,1
+552,1,mild disc bulge noted at <L4-L5> and <L1-L2> level,"L4-L5,L1-L2",False,2
+552,2,no significant thecal sac or nerve root compression noted,"L4-L5,L1-L2",True,2
+555,1,lumbosacral spine mri,,False,0
+555,2,no evidence of disc herniation,,False,1
+555,3,no significant thecal sac or nerve root compression noted,,False,2
+555,4,adequate spinal canal,,False,1
+556,1,lss mri :,,False,0
+556,2,feature of muscle spasm,,False,1
+556,3,"central disc protrusion more to rt sided noted at <L5-S1> level ,largely compressing the thecal sac and exit nerve roots with narrowed disc space",L5-S1,False,4
+556,4,"diffuse disc bulge noted at <L4-L5> level, mildly compressing the thecal sac and both nerve roots associated with annular tear",L4-L5,False,4
+557,1,lss mri,,False,0
+557,2,no evidence of disc herniation noted,,False,1
+557,3,no significant thecal sac or nerve root compression noted,,False,2
+558,1,lss mri :,,False,0
+558,2,feature of muscel spasm,,False,1
+558,3,generalised decreased bone marrow signals intensities noted ? correalte with bone isotope scan,,False,1
+558,4,"mild diffuse disc bulges noted at <L4-L5> level , abutting thecal sac",L4-L5,False,2
+559,1,<L3-L4> : mild rt paracentral disc protrusion abutting the thecal sac,L3-L4,False,2
+559,2,<L4-L5> : mild central disc protrusion abutting the thecal sac,L4-L5,False,2
+559,3,<L5-S1> : mild lt paracentral disc protrusion abutting the thecal sac,L5-S1,False,2
+560,1,lss mri :,,False,0
+560,2,faeture of muscle spasm,,False,1
+560,3,<L5-S1> level :(dissicating disc material ):,L5-S1,False,1
+560,4,"central disc protruion relatively upwatd migration ,mild compressing thecal sac and exit nerve root",L5-S1,True,3
+561,1,mri lss,,False,0
+561,2,feature of muscle spasm,,False,1
+561,3,dissicating disc material noted at <L4-L5> and <L5-S1>,"L4-L5,L5-S1",False,2
+561,4,wide base disc bulge noted at the <L4-L5> level there is mild compressing thecal sac and encroaching the neural canals,L4-L5,False,3
+562,1,mild disc bulges noted at l23-l3 and <L4-L5> levels,L4-L5,False,1
+563,1,"<L4-L5> : diffuse disc bulge with lt paracentral disc protrusion, compressing the thecal sac and encroaching lt exit canal",L4-L5,False,4
+563,2,<L5-S1> : mild disc bulge noted,L5-S1,False,1
+564,1,lumbosacral mri,,False,0
+564,2,feature of muscle spasm,,False,1
+564,3,diffuse disc bulge noted at <L3-L4> and <L4-L5> levels with mild compressing thecal sac and encroaching upon exiting neural canals,"L3-L4,L4-L5",False,6
+564,4,small vertebral bodies hemangioma noted,"L3-L4,L4-L5",True,2
+565,1,lss mri,,False,0
+565,2,"diffuse disc bulge noted at <L4-L5> level, compressing the thecal sac and exit canals",L4-L5,False,3
+567,1,<L4-L5> : diffuse disc bulges noted compressing the thecal sac and encroaching exit neural canals,L4-L5,False,3
+568,1,lss mri :,,False,0
+568,2,feature of muscle spasm,,False,1
+568,3,"diffuse disc bulges noted at <L4-L5> level, mild compressing thecal sac and nerve roots",L4-L5,False,3
+569,1,lss mri,,False,0
+569,2,"mutlivel diffuse disc bulges noted in the lower lss, noticeably at <L4-L5> , compressing the thecal sac and encroaching upon exit canals",L4-L5,False,3
+570,1,"<L3-L4> , <L4-L5> :","L3-L4,L4-L5",False,0
+570,2,mild disc bulges noted compressing the thecal sac and encroaching exit canals,"L3-L4,L4-L5",True,6
+570,3,the spinal canal is still adequate,"L3-L4,L4-L5",True,1
+571,1,lss mri :,,False,0
+571,2,"wedging fractures of l2& l4 vetrebal bodies , with bone marrow edema without significant thecal sac",,False,3
+571,3,"multilevel diffuse disc bulges notecibly at <L4-L5> levels , compressing thecal sac and both exit nerves roots with relatively secandary spinal canal stenosis",L4-L5,False,4
+572,1,"<L3-L4> , <L4-L5> and <L5-S1> : diffuse disc bulges noted, compressing the thecal sac and exit canals","L3-L4,L4-L5,L5-S1",False,9
+573,1,lss mri :,,False,0
+573,2,feature of muscle spasm,,False,1
+573,3,preveius operation at <L4-L5> level ( fenestration),L4-L5,False,0
+573,4,"diffuse disc bulge noted at <L4-L5> level, mildly compressing the thecal sac and encroaching upon exit neural canal with annular tear",L4-L5,False,4
+573,5,no definite abnormal enhancing lesion could be seen,L4-L5,True,0
+575,1,mri of the l,,False,0
+575,2,spine,,False,0
+575,3,feature of muscle spasm,,False,1
+575,4,desiccating disc materials with degenerative changes,,False,1
+575,5,"diffuse disc bulge noted at <L4-L5> ,with posterior osteophytes compressing thecal sac and both exit nerve roots, associated with ligamentum flavum hypertrophy , all leading to secondary spinal canal stenosis",L4-L5,False,6
+575,6,"diffuse disc bulge noted at <L5-S1> level, mild compressing thecal sac and exit nerve roost",L5-S1,False,3
+575,7,d11/d12. showed ligamentum flavum hypertrophy,L5-S1,True,1
