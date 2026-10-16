@@ -12,7 +12,7 @@ Kiểm tra mỗi ca (chi tiết: README mục 4):
   transitional    có đốt L6 (6 đốt thắt lưng) -> loại khỏi phân tích theo tầng
 use_level = qc_pass và không transitional -> dùng cho bước 8 (ghép theo tầng).
 
-Chạy (từ thư mục totalspineseg/):  python src/s05_tss_qc.py
+Chạy (từ thư mục totalspineseg/):  python src/segmentation/s05_tss_qc.py
 """
 import random
 import shutil
@@ -28,8 +28,8 @@ import numpy as np
 import pandas as pd
 import SimpleITK as sitk
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import OUTPUTS, NIFTI, FIGURES, SEED, T_SEG
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # src/
+from common import OUTPUTS, NIFTI, F_SEG, SEED, T_SEG
 
 ZIP = OUTPUTS / "kaggle" / "tss_sag_results.zip"
 # Ca chạy lại trên CPU sau khi sửa quy tắc chọn series ở bước 2 - GHI ĐÈ kết quả Kaggle:
@@ -192,11 +192,11 @@ def main():
             .reindex([NAMES[l] for l in [2] + ORDER + [91]]).to_string())
 
     random.seed(SEED)
-    montage(sorted(random.sample(pids, 20)), FIGURES / "qc_s05_random.png",
+    montage(sorted(random.sample(pids, 20)), F_SEG / "qc_random.png",
             "TotalSpineSeg - 20 ca ngẫu nhiên (seed 2026)")
     flagged = qc[~qc.qc_pass | qc.transitional].patient_id.tolist()
     flagged += qc[qc.qc_pass & (qc.volume_outlier != "")].patient_id.tolist()
-    montage(flagged[:20], FIGURES / "qc_s05_flagged.png",
+    montage(flagged[:20], F_SEG / "qc_flagged.png",
             "TotalSpineSeg - ca lỗi / đốt chuyển tiếp (trước), cảnh báo thể tích (sau)")
 
 

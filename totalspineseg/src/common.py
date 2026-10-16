@@ -17,16 +17,18 @@ REPORT_XLSX = DATA / "Radiologists Report.xlsx"
 
 OUTPUTS = CODE / "outputs"
 TABLES = OUTPUTS / "tables"
-# bảng kết quả chia theo bước của pipeline
-T_DICOM = TABLES / "1_dicom"
-T_SEG = TABLES / "3_segmentation"
-T_NLP = TABLES / "5_nlp"
-T_MEAS = TABLES / "7_measurements"
-T_ANALYSIS = TABLES / "8_analysis"
 FIGURES = OUTPUTS / "figures"
+# bảng và hình chia theo nhóm, trùng tên thư mục con trong src/
+T_DICOM, F_DICOM = TABLES / "dicom", FIGURES / "dicom"
+T_SEG, F_SEG = TABLES / "segmentation", FIGURES / "segmentation"
+T_NLP = TABLES / "nlp"
+T_MEAS, F_MEAS = TABLES / "measurements", FIGURES / "measurements"
+T_ANALYSIS, F_ANALYSIS = TABLES / "analysis", FIGURES / "analysis"
 NIFTI = OUTPUTS / "nifti"
+GOLD_DIR = CODE / "annotations"      # nhãn chuẩn vàng cho NLP (s06 tạo mẫu, s08 chấm)
 
-for _d in (T_DICOM, T_SEG, T_NLP, T_MEAS, T_ANALYSIS, FIGURES, NIFTI):
+for _d in (T_DICOM, T_SEG, T_NLP, T_MEAS, T_ANALYSIS,
+           F_DICOM, F_SEG, F_MEAS, F_ANALYSIS, NIFTI):
     _d.mkdir(parents=True, exist_ok=True)
 
 SEED = 2026

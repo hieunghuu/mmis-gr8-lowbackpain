@@ -49,7 +49,7 @@ thậm chí hàng trăm file ảnh.
   hình cánh bướm hai bên là cơ lưng.
 
 Vì mặt **sagittal** cho thấy toàn bộ các tầng đĩa đệm trong một lát, nó được ưu
-tiên dùng để phân đoạn bằng TotalSpineSeg (xem `../totalspineseg/README.md`, bước 2).
+tiên dùng để phân đoạn bằng TotalSpineSeg (xem `../totalspineseg/README.md`, mục 1.2).
 
 ### "T1" và "T2" là gì?
 Máy MRI có thể chụp cùng một vị trí theo nhiều "chế độ" khác nhau, gọi là chuỗi
@@ -104,9 +104,9 @@ Một số bệnh nhân có **nhiều hơn 1 lần đi chụp** (nhiều thư m�
 | Dung lượng | ~12,5 GB |
 
 (Số bệnh nhân, tổng số lát, tuổi/giới đã kiểm chứng lại bằng pipeline hiện tại –
-`dicom_index.csv`, `patient_features.csv` – xem `../totalspineseg/README.md`, bước 1 và 7. Các con
+`dicom_index.csv`, `patient_features.csv` – xem `../totalspineseg/README.md`, bước 1 và 4. Các con
 số còn lại lấy từ phiên bản phân tích trước, có thể lệch nhẹ do cách đếm, vd số lát
-localizer: bước 1 đếm 5.544 localizer + 1.895 POSDISP.)
+localizer: s01 đếm 5.544 localizer + 1.895 POSDISP.)
 
 ---
 
@@ -127,7 +127,7 @@ localizer: bước 1 đếm 5.544 localizer + 1.895 POSDISP.)
 
 Mỗi dòng là đoạn văn bản bác sĩ X-quang viết khi đọc ảnh. Đây là dữ liệu **phi cấu
 trúc** (câu văn tự nhiên, không phải bảng số), nên trong `totalspineseg/` có hẳn một module NLP
-(`src/nlp_rules.py`, `src/s02_nlp_extract.py`) để đọc và "dịch" các câu này thành
+(`src/nlp/nlp_rules.py`, `src/nlp/s07_nlp_extract.py`) để đọc và "dịch" các câu này thành
 nhãn có cấu trúc: bệnh gì, ở tầng nào, bên nào, mức độ nào, có phủ định hay không.
 
 ### 5.2. Ví dụ ghi chú thật (kèm bản dịch)
@@ -195,7 +195,7 @@ cứng và lấn vào các rễ thần kinh đi ra.
 ### 5.4. Tần suất bệnh lý (đầu ra của NLP, 515 bệnh nhân)
 
 Số liệu từ bộ rule NLP đã được chấm trên bộ chuẩn vàng (F1 = 0,971 ở mức bệnh nhân – xem
-`../totalspineseg/README.md`, bước 5d). Nguồn: `../totalspineseg/outputs/tables/5_nlp/labels_patient.csv`.
+`../totalspineseg/README.md`, mục 3.11). Nguồn: `../totalspineseg/outputs/tables/nlp/labels_patient.csv`.
 
 | Bệnh lý | Số bệnh nhân | % |
 |---|---:|---:|

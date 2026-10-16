@@ -8,7 +8,7 @@ mỗi phiên tối đa 12 giờ).
 
 ```bash
 cd totalspineseg
-python src/s04_pack_for_kaggle.py     # -> outputs/kaggle/lumbar_sag_nifti.zip (1,2 GB, 515 file)
+python src/segmentation/s04_pack_for_kaggle.py     # -> outputs/kaggle/lumbar_sag_nifti.zip (1,2 GB, 515 file)
 ```
 
 ## 2. Tài khoản Kaggle

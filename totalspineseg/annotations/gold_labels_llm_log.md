@@ -2,7 +2,7 @@
 
 ## File này là gì?
 
-Để đo độ chính xác của bộ rule NLP (bước 5), cần một **bộ đáp án**: 80 ghi chú bác sĩ được
+Để đo độ chính xác của bộ rule NLP (bước 3), cần một **bộ đáp án**: 80 ghi chú bác sĩ được
 gán nhãn cẩn thận, độc lập với bộ rule. Bộ đáp án này do **Claude Opus 5.5** (mô hình ngôn ngữ
 lớn) gán theo đúng hướng dẫn và quy ước của nhóm. Vì người gán không phải con người/chuyên gia
 y khoa, bộ nhãn được gọi là **"silver standard"** (chuẩn bạc) thay vì "gold standard" – cần nêu rõ
@@ -88,7 +88,7 @@ Các điểm còn mở sau lần gán nhãn đầu đã được nhóm quyết �
 
 | Mục | Quyết định | Đã làm |
 |---|---|---|
-| **"extending to the lateral recess"** (BN 174: L2-L3, L4-L5; BN 253: L3-L4) | Không tính là hẹp ống sống – "extending to" chỉ là **vị trí** (README 5.4.1) | **Bỏ 3 dòng** khỏi `gold_labels_llm.xlsx` và `.csv` (426 → 423 dòng) |
-| C3 – "exit canals" số nhiều → `bilateral` | Chấp nhận | Mở rộng quy ước **Q11** (README 5.5, sheet `QuyUoc`); bộ rule cập nhật theo |
+| **"extending to the lateral recess"** (BN 174: L2-L3, L4-L5; BN 253: L3-L4) | Không tính là hẹp ống sống – "extending to" chỉ là **vị trí** (README 3.4.1) | **Bỏ 3 dòng** khỏi `gold_labels_llm.xlsx` và `.csv` (426 → 423 dòng) |
+| C3 – "exit canals" số nhiều → `bilateral` | Chấp nhận | Mở rộng quy ước **Q11** (README 3.5, sheet `QuyUoc`); bộ rule cập nhật theo |
 | A1 – câu phủ định khuôn mẫu không có tầng → `UNSPEC` | Chấp nhận | Thêm quy ước **Q12**; bộ rule không còn kế thừa tầng cho phát hiện phủ định; phần phủ định được chấm ở **mức bệnh nhân** |
-| B1 – gán theo nghĩa thay vì theo chữ | Chấp nhận – đáp án phải theo nghĩa | Ghi vào giới hạn của rule (README 5.9) |
+| B1 – gán theo nghĩa thay vì theo chữ | Chấp nhận – đáp án phải theo nghĩa | Ghi vào giới hạn của rule (README 3.9) |

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """S01 - Lập chỉ mục header DICOM của toàn bộ MRI_Data (không đọc pixel).
 
-Mỗi file .ima -> 1 dòng trong outputs/tables/1_dicom/dicom_index.csv.
+Mỗi file .ima -> 1 dòng trong outputs/tables/dicom/dicom_index.csv.
 
 * patient_id lấy từ TÊN THƯ MỤC (0001 -> 1), vì tag PatientID đã bị ẩn danh (rỗng).
 * Mặt cắt (plane) tính từ ImageOrientationPatient: pháp tuyến = tích có hướng của
@@ -11,8 +11,8 @@ Mỗi file .ima -> 1 dòng trong outputs/tables/1_dicom/dicom_index.csv.
   EchoTime: T2 có TE dài (> 60 ms), T1 có TE ngắn.
 * Localizer và POSDISP (ảnh phụ trợ) được đánh cờ để loại ở bước sau.
 
-Chạy (từ thư mục totalspineseg/):  python src/s01_index_dicom.py
-Chỉ in lại tóm tắt:        python src/s01_index_dicom.py --summary
+Chạy (từ thư mục totalspineseg/):  python src/dicom/s01_index_dicom.py
+Chỉ in lại tóm tắt:        python src/dicom/s01_index_dicom.py --summary
 """
 import sys
 from multiprocessing import Pool
@@ -22,7 +22,7 @@ import numpy as np
 import pandas as pd
 import pydicom
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # src/
 from common import MRI_DIR, T_DICOM
 
 PLANES = np.array(["SAG", "COR", "AX"])

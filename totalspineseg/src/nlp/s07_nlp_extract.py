@@ -5,12 +5,12 @@ Mặc định CHỈ chạy tập dev (435 ghi chú) - tập gold không được
 Dùng --all ở bước 5d (sau khi đã chốt rule) để chạy cả 515 ghi chú.
 
 Đầu ra (hậu tố _dev hoặc _all):
-  outputs/tables/5_nlp/nlp_findings_long_<tập>.csv   mỗi phát hiện 1 dòng
-  outputs/tables/5_nlp/nlp_sentences_<tập>.csv       mỗi câu 1 dòng (tầng gán, số phát hiện)
-  outputs/tables/5_nlp/nlp_unmatched_<tập>.csv       câu KHÔNG khớp bệnh nào -> đọc để bổ sung mẫu
-  outputs/tables/5_nlp/nlp_typo_hits_<tập>.csv       số lần sửa từng lỗi chính tả
+  outputs/tables/nlp/nlp_findings_long_<tập>.csv   mỗi phát hiện 1 dòng
+  outputs/tables/nlp/nlp_sentences_<tập>.csv       mỗi câu 1 dòng (tầng gán, số phát hiện)
+  outputs/tables/nlp/nlp_unmatched_<tập>.csv       câu KHÔNG khớp bệnh nào -> đọc để bổ sung mẫu
+  outputs/tables/nlp/nlp_typo_hits_<tập>.csv       số lần sửa từng lỗi chính tả
 
-Chạy (từ thư mục totalspineseg/):  python src/s07_nlp_extract.py [--all]
+Chạy (từ thư mục totalspineseg/):  python src/nlp/s07_nlp_extract.py [--all]
 """
 import re
 import sys
@@ -18,9 +18,9 @@ from pathlib import Path
 
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # src/
 from common import REPORT_XLSX, T_NLP
-import nlp_rules
+from nlp import nlp_rules
 
 # câu tiêu đề / không mang thông tin bệnh - không tính là "chưa khớp"
 TRIVIAL = re.compile(r"^(?:l\.?s\.?s|lss|lumbo-?sacral|lumbar|l-?spine|mri|spine|of|\W)*"

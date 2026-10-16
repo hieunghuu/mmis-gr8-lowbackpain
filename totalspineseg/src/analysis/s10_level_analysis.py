@@ -9,7 +9,7 @@
 * Ca lệch (trong cùng tầng): "nghi bỏ sót" = không ghi nhưng bất thường hơn trung vị nhóm có
   ghi; "số đo không ủng hộ" = có ghi nhưng bình thường hơn trung vị nhóm không ghi.
 
-Chạy (từ thư mục totalspineseg/):  python src/s10_level_analysis.py
+Chạy (từ thư mục totalspineseg/):  python src/analysis/s10_level_analysis.py
 """
 import sys
 from pathlib import Path
@@ -22,8 +22,8 @@ import pandas as pd
 from scipy.stats import mannwhitneyu, spearmanr
 from sklearn.metrics import roc_auc_score, roc_curve
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import FIGURES, T_ANALYSIS, T_MEAS, T_NLP, T_SEG
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # src/
+from common import F_ANALYSIS, T_ANALYSIS, T_MEAS, T_NLP, T_SEG
 
 LEVELS = ["T12-L1", "L1-L2", "L2-L3", "L3-L4", "L4-L5", "L5-S1"]
 MAIN_LEVELS = ["L4-L5", "L5-S1"]
@@ -221,7 +221,7 @@ def fig_boxplots(df, assoc):
     fig.suptitle("Số đo từ ảnh ở tầng bác sĩ có ghi bệnh so với không ghi (513 BN, chuẩn hóa z trong từng tầng)",
                  fontsize=11, color=INK)
     fig.tight_layout()
-    fig.savefig(FIGURES / "fig8_assoc_boxplots.png", dpi=130, facecolor=SURFACE)
+    fig.savefig(F_ANALYSIS / "assoc_boxplots.png", dpi=130, facecolor=SURFACE)
     plt.close(fig)
 
 
@@ -246,7 +246,7 @@ def fig_roc(df):
     _style(ax)
     ax.xaxis.grid(True, color=GRID, lw=0.8)
     fig.tight_layout()
-    fig.savefig(FIGURES / "fig8_roc.png", dpi=130, facecolor=SURFACE)
+    fig.savefig(F_ANALYSIS / "roc.png", dpi=130, facecolor=SURFACE)
     plt.close(fig)
 
 
@@ -278,7 +278,7 @@ def fig_patient(p):
     for ax in axs:
         _style(ax)
     fig.tight_layout()
-    fig.savefig(FIGURES / "fig8_patient.png", dpi=130, facecolor=SURFACE)
+    fig.savefig(F_ANALYSIS / "patient.png", dpi=130, facecolor=SURFACE)
     plt.close(fig)
 
 
@@ -302,7 +302,7 @@ def fig_discordance(dis):
     ax.legend(fontsize=8, frameon=False, labelcolor=INK, loc="upper right")
     _style(ax)
     fig.tight_layout()
-    fig.savefig(FIGURES / "fig8_discordance.png", dpi=130, facecolor=SURFACE)
+    fig.savefig(F_ANALYSIS / "discordance.png", dpi=130, facecolor=SURFACE)
     plt.close(fig)
 
 
@@ -337,7 +337,7 @@ def main():
     fig_roc(df)
     fig_patient(p)
     fig_discordance(dis)
-    print("\nĐã lưu bảng analysis_*.csv và hình fig8_*.png")
+    print("\nĐã lưu bảng analysis_*.csv và hình figures/analysis/*.png")
 
 
 if __name__ == "__main__":
