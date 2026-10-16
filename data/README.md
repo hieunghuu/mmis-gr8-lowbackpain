@@ -15,8 +15,8 @@ thức y khoa**. Nếu bạn chỉ cần biết "trong này có gì" để dùng
 
 Hai phần này **mô tả cùng một nhóm bệnh nhân**: ảnh cho máy "nhìn", ghi chú cho biết
 bác sĩ con người đã kết luận gì khi nhìn ảnh đó. Trong `totalspineseg/`, module NLP đọc
-ghi chú Excel để tạo nhãn (label), rồi dùng nhãn đó để huấn luyện một mô hình học
-từ ảnh.
+ghi chú Excel để tạo nhãn (label) theo từng tầng đĩa đệm, rồi ghép nhãn đó với số đo tự động
+từ ảnh để xem hai nguồn khớp nhau đến đâu.
 
 Nguồn dữ liệu gốc: *Lumbar Spine MRI Dataset*, Sudirman *et al.*, Mendeley Data 2019
 (xem trích dẫn đầy đủ ở `../totalspineseg/README.md`, mục "Nguồn dữ liệu và trích dẫn").

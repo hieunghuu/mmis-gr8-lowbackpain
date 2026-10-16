@@ -1,11 +1,11 @@
 # Phụ thuộc Python cho pipeline chính (đã kiểm tra trên Python 3.13, Windows 11, CPU)
-# TotalSpineSeg cài riêng trong .venv-tss (xem README, bước 3)
+# TotalSpineSeg cài riêng trong .venv-tss (xem README, mục 2.1)
 numpy>=2.0
 pandas>=2.2
 openpyxl>=3.1          # đọc Radiologists Report.xlsx, tạo file Excel gán nhãn
 pydicom>=3.0           # đọc header và pixel DICOM
 SimpleITK>=2.4         # ghi NIfTI đúng hình học, đọc mask
-scipy>=1.13            # bước 7: khối liền, co mask khi đo đạc
+scipy>=1.13            # bước 4: khối liền, co mask khi đo đạc
 matplotlib>=3.9        # hình QC
-scikit-learn>=1.5      # bước 8: AUC, ROC
-psutil>=5.9            # bước 3: đo RAM khi chạy thử TotalSpineSeg
+scikit-learn>=1.5      # bước 5: AUC, ROC
+psutil>=5.9            # bước 2: đo RAM khi chạy thử TotalSpineSeg
