@@ -7,12 +7,12 @@
 * KHÔNG in nội dung ghi chú ra màn hình - giữ tập gold "chưa ai nhìn" khi viết rule (5b).
 
 Đầu ra
-  outputs/tables/5_nlp/nlp_split.csv        patient_id, stratum, split (dev / gold)
-  data/gold/gold_annotation.xlsx      HuongDan / NhanBenh / QuyUoc / ViDu / Notes / Labels
+  outputs/tables/nlp/nlp_split.csv        patient_id, stratum, split (dev / gold)
+  annotations/gold_annotation.xlsx      HuongDan / NhanBenh / QuyUoc / ViDu / Notes / Labels
                                       (+ sheet ẩn Lists cho danh sách thả xuống)
 
 Chi tiết thiết kế: README mục 5.5 (quy ước) và 5.7 (chia dữ liệu).
-Chạy (từ thư mục totalspineseg/):  python src/s06_gold_sample.py
+Chạy (từ thư mục totalspineseg/):  python src/nlp/s06_gold_sample.py
 """
 import re
 import sys
@@ -26,10 +26,9 @@ from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import CODE, REPORT_XLSX, SEED, T_NLP
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # src/
+from common import GOLD_DIR, REPORT_XLSX, SEED, T_NLP
 
-GOLD_DIR = CODE / "data" / "gold"
 N_GOLD = 80
 
 LEVEL_RE = re.compile(r"\b(?:t12|l[1-5])\s*[-/ ]\s*(?:l?[1-5]|s1?)\b", re.I)

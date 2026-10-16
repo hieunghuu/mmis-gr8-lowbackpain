@@ -14,9 +14,9 @@ Script này chạy bằng Python chính, gọi totalspineseg như một tiến t
 mẫu RAM (tổng cả cây tiến trình) mỗi 0,5 giây.
 
 Chạy (từ thư mục totalspineseg/):
-    python src/s03_tss_pilot.py sag 1 2 100 230 300     # ảnh sagittal
-    python src/s03_tss_pilot.py ax 1                     # mọi khối axial của BN 1
-Kết quả: outputs/tss_pilot/<tên>/  + 1 dòng log trong outputs/tables/3_segmentation/tss_pilot_log.csv
+    python src/segmentation/s03_tss_pilot.py sag 1 2 100 230 300     # ảnh sagittal
+    python src/segmentation/s03_tss_pilot.py ax 1                     # mọi khối axial của BN 1
+Kết quả: outputs/tss_pilot/<tên>/  + 1 dòng log trong outputs/tables/segmentation/tss_pilot_log.csv
 """
 import shutil
 import subprocess
@@ -27,7 +27,7 @@ from pathlib import Path
 import pandas as pd
 import psutil
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # src/
 from common import CODE, NIFTI, OUTPUTS, T_SEG
 
 TSS_EXE = CODE / ".venv-tss" / "Scripts" / "totalspineseg.exe"

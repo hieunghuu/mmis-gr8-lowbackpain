@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""S09 - Bước 5d: chấm bộ rule NLP trên bộ gold và tạo nhãn cuối cho bước 8 (README mục 5.11).
+"""S08 - Bước 5d: chấm bộ rule NLP trên bộ gold và tạo nhãn cuối cho bước 8 (README mục 5.11).
 
 Ba cách chấm:
   tầng - khẳng định       (patient, level, finding), present = TRUE        -> chỉ số chính
@@ -7,25 +7,25 @@ Ba cách chấm:
   bệnh nhân - phủ định    (patient, finding) có dòng phủ định và KHÔNG có dòng khẳng định
 Không chấm nhãn other, none (rule không sinh hai nhãn này).
 
-Đầu vào:  outputs/tables/5_nlp/nlp_findings_long_all.csv  (chạy trước: python src/s07_nlp_extract.py --all)
-          data/gold/gold_labels_llm.csv
-Đầu ra:   outputs/tables/5_nlp/nlp_eval_summary.csv      micro / macro theo từng cách chấm
-          outputs/tables/5_nlp/nlp_eval_per_finding.csv  P / R / F1 từng bệnh
-          outputs/tables/5_nlp/nlp_eval_errors.csv       mọi FP / FN ở mức tầng, kèm câu gốc
-          outputs/tables/5_nlp/labels_level.csv          nhãn cuối theo tầng (515 ghi chú)
-          outputs/tables/5_nlp/labels_patient.csv        nhãn cuối theo bệnh nhân
+Đầu vào:  outputs/tables/nlp/nlp_findings_long_all.csv  (chạy trước: python src/nlp/s07_nlp_extract.py --all)
+          annotations/gold_labels_llm.csv
+Đầu ra:   outputs/tables/nlp/nlp_eval_summary.csv      micro / macro theo từng cách chấm
+          outputs/tables/nlp/nlp_eval_per_finding.csv  P / R / F1 từng bệnh
+          outputs/tables/nlp/nlp_eval_errors.csv       mọi FP / FN ở mức tầng, kèm câu gốc
+          outputs/tables/nlp/labels_level.csv          nhãn cuối theo tầng (515 ghi chú)
+          outputs/tables/nlp/labels_patient.csv        nhãn cuối theo bệnh nhân
 
-Chạy (từ thư mục totalspineseg/):  python src/s09_nlp_eval.py
+Chạy (từ thư mục totalspineseg/):  python src/nlp/s08_nlp_eval.py
 """
 import sys
 from pathlib import Path
 
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import CODE, REPORT_XLSX, T_NLP
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # src/
+from common import GOLD_DIR, REPORT_XLSX, T_NLP
 
-GOLD = CODE / "data" / "gold" / "gold_labels_llm.csv"
+GOLD = GOLD_DIR / "gold_labels_llm.csv"
 SKIP = {"other", "none"}
 LEVELS = ["T12-L1", "L1-L2", "L2-L3", "L3-L4", "L4-L5", "L5-S1", "UNSPEC"]
 

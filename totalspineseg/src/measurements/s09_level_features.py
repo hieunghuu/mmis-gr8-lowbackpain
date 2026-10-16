@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""S08 - Bước 7: tính số đo theo tầng đĩa đệm từ mask TotalSpineSeg (README mục 7).
+"""S09 - Bước 7: tính số đo theo tầng đĩa đệm từ mask TotalSpineSeg (README mục 7).
 
 Đo trên mặt phẳng sagittal của các lát GIỮA (lát nhiều voxel ống sống nhất và 2 lát kề),
 trong tọa độ mm thật. Mỗi tầng có hệ trục riêng: u = trục dài của đĩa (PCA, trước -> sau),
 v = vuông góc (chân -> đầu). Thân đốt = phần nhãn đốt nằm trước ống sống (bỏ mỏm gai).
 
-Chạy (từ thư mục totalspineseg/):  python src/s08_level_features.py
+Chạy (từ thư mục totalspineseg/):  python src/measurements/s09_level_features.py
 """
 import sys
 from multiprocessing import Pool
@@ -19,8 +19,8 @@ import pandas as pd
 import SimpleITK as sitk
 from scipy import ndimage
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import OUTPUTS, NIFTI, FIGURES, T_DICOM, T_MEAS, T_SEG
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # src/
+from common import OUTPUTS, NIFTI, F_MEAS, T_DICOM, T_MEAS, T_SEG
 
 TSS = OUTPUTS / "tss" / "sag" / "step2_output"
 # tầng -> (nhãn đĩa, nhãn đốt trên, nhãn đốt dưới)
@@ -259,7 +259,7 @@ def qc_overlay(pids):
     fig.suptitle("Trục u (vàng) / v (xanh lá) của từng đĩa, mép sau đĩa (đỏ), mép sau thân đốt (tím), "
                  "ống sống (cyan)", fontsize=9)
     fig.tight_layout()
-    fig.savefig(FIGURES / "qc_s08_overlay.png", dpi=120)
+    fig.savefig(F_MEAS / "qc_overlay.png", dpi=120)
     plt.close(fig)
 
 
@@ -275,7 +275,7 @@ def qc_distributions(lf):
         ax.tick_params(labelsize=7)
     fig.suptitle("Phân bố số đo theo tầng (513 ca use_level)", fontsize=10)
     fig.tight_layout()
-    fig.savefig(FIGURES / "qc_s08_distributions.png", dpi=110)
+    fig.savefig(F_MEAS / "qc_distributions.png", dpi=110)
     plt.close(fig)
 
 
@@ -319,7 +319,7 @@ def main():
           f"nữ {(pf.sex == 'F').mean() * 100:.1f}%")
     qc_distributions(use)
     qc_overlay(QC_PATIENTS)
-    print("Đã lưu level_features.csv, patient_features.csv, qc_s08_overlay.png, qc_s08_distributions.png")
+    print("Đã lưu level_features.csv, patient_features.csv, qc_overlay.png, qc_distributions.png")
 
 
 if __name__ == "__main__":
