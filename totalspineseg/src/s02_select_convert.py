@@ -36,8 +36,8 @@ khi ghi .nii.gz. Kiểm tra khoảng cách giữa các lát có đều không.
 ------
 outputs/nifti/sag/0001.nii.gz
 outputs/nifti/ax/0001_b1.nii.gz, 0001_b2.nii.gz ... (b1 = khối cao nhất, gần đầu)
-outputs/tables/series_selected.csv     - series chọn cho mỗi BN + lý do
-outputs/tables/nifti_volumes.csv       - mỗi file NIfTI 1 dòng (kích thước, spacing, QC)
+outputs/tables/1_dicom/series_selected.csv     - series chọn cho mỗi BN + lý do
+outputs/tables/1_dicom/nifti_volumes.csv       - mỗi file NIfTI 1 dòng (kích thước, spacing, QC)
 outputs/figures/qc_s02_geometry.png    - vị trí các khối axial chiếu lên ảnh sagittal
 
 Chạy (từ thư mục totalspineseg/):  python src/s02_select_convert.py
@@ -55,7 +55,7 @@ import pydicom
 import SimpleITK as sitk
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import MRI_DIR, TABLES, FIGURES, NIFTI
+from common import MRI_DIR, FIGURES, NIFTI, T_DICOM
 
 SAG_DIR = NIFTI / "sag"
 AX_DIR = NIFTI / "ax"
@@ -67,7 +67,7 @@ QC_PATIENTS = [1, 2, 100, 230, 300, 450]
 
 # ----------------------------------------------------------------- chọn series
 def load_candidates():
-    df = pd.read_csv(TABLES / "dicom_index.csv", low_memory=False)
+    df = pd.read_csv(T_DICOM / "dicom_index.csv", low_memory=False)
     df = df[~df.is_localizer & ~df.is_posdisp
             & df.series_desc.str.lower().str.contains("t2_tse")
             & df.plane.isin(["SAG", "AX"])].copy()
@@ -260,13 +260,13 @@ def main():
     AX_DIR.mkdir(parents=True, exist_ok=True)
     cand = load_candidates()
     sel = choose(series_table(cand))
-    sel.to_csv(TABLES / "series_selected.csv", index=False)
+    sel.to_csv(T_DICOM / "series_selected.csv", index=False)
     print(f"Đã chọn series cho {len(sel)} bệnh nhân -> series_selected.csv")
 
     with Pool(8) as pool:
         res = pool.map(convert_patient, list(jobs(sel, cand)), chunksize=4)
     vols = pd.DataFrame([r for rs in res for r in rs])
-    vols.to_csv(TABLES / "nifti_volumes.csv", index=False)
+    vols.to_csv(T_DICOM / "nifti_volumes.csv", index=False)
 
     print("\n=== TÓM TẮT ===")
     err = vols[vols.kind == "error"]

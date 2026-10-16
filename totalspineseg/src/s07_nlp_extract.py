@@ -5,10 +5,10 @@ Mặc định CHỈ chạy tập dev (435 ghi chú) - tập gold không được
 Dùng --all ở bước 5d (sau khi đã chốt rule) để chạy cả 515 ghi chú.
 
 Đầu ra (hậu tố _dev hoặc _all):
-  outputs/tables/nlp_findings_long_<tập>.csv   mỗi phát hiện 1 dòng
-  outputs/tables/nlp_sentences_<tập>.csv       mỗi câu 1 dòng (tầng gán, số phát hiện)
-  outputs/tables/nlp_unmatched_<tập>.csv       câu KHÔNG khớp bệnh nào -> đọc để bổ sung mẫu
-  outputs/tables/nlp_typo_hits_<tập>.csv       số lần sửa từng lỗi chính tả
+  outputs/tables/5_nlp/nlp_findings_long_<tập>.csv   mỗi phát hiện 1 dòng
+  outputs/tables/5_nlp/nlp_sentences_<tập>.csv       mỗi câu 1 dòng (tầng gán, số phát hiện)
+  outputs/tables/5_nlp/nlp_unmatched_<tập>.csv       câu KHÔNG khớp bệnh nào -> đọc để bổ sung mẫu
+  outputs/tables/5_nlp/nlp_typo_hits_<tập>.csv       số lần sửa từng lỗi chính tả
 
 Chạy (từ thư mục totalspineseg/):  python src/s07_nlp_extract.py [--all]
 """
@@ -19,7 +19,7 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import REPORT_XLSX, TABLES
+from common import REPORT_XLSX, T_NLP
 import nlp_rules
 
 # câu tiêu đề / không mang thông tin bệnh - không tính là "chưa khớp"
@@ -33,7 +33,7 @@ def main():
     d.columns = ["patient_id", "note"]
     d = d.dropna(subset=["note"])
     d["patient_id"] = d.patient_id.astype(int)
-    split = pd.read_csv(TABLES / "nlp_split.csv")
+    split = pd.read_csv(T_NLP / "nlp_split.csv")
     d = d.merge(split, on="patient_id")
     if which == "dev":
         d = d[d.split == "dev"]
@@ -46,11 +46,11 @@ def main():
     fl, sl = pd.DataFrame(rows), pd.DataFrame(sents)
     um = sl[(sl.n_findings == 0) & ~sl.text.str.match(TRIVIAL)]
 
-    fl.to_csv(TABLES / f"nlp_findings_long_{which}.csv", index=False)
-    sl.to_csv(TABLES / f"nlp_sentences_{which}.csv", index=False)
-    um.to_csv(TABLES / f"nlp_unmatched_{which}.csv", index=False)
+    fl.to_csv(T_NLP / f"nlp_findings_long_{which}.csv", index=False)
+    sl.to_csv(T_NLP / f"nlp_sentences_{which}.csv", index=False)
+    um.to_csv(T_NLP / f"nlp_unmatched_{which}.csv", index=False)
     pd.Series(nlp_rules.TYPO_HITS, name="n").rename_axis("pattern").to_csv(
-        TABLES / f"nlp_typo_hits_{which}.csv")
+        T_NLP / f"nlp_typo_hits_{which}.csv")
 
     print(f"=== Rule trên tập {which}: {d.patient_id.nunique()} ghi chú, {len(sl)} câu ===")
     print(f"Phát hiện: {len(fl)} dòng | khẳng định {fl.present.sum()} | phủ định {(~fl.present).sum()}")

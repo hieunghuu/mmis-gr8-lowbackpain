@@ -23,7 +23,7 @@ import zipfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import CODE, OUTPUTS, TABLES
+from common import CODE, OUTPUTS, T_SEG
 
 REPO = "hieunghuu/mmis-gr8-lowbackpain"
 TAG = "v0.1-tss-masks"
@@ -61,7 +61,7 @@ def pack(commit=None):
 
     files = {f"step2_output/{p.name}": p for p in masks}
     files.update({f"step1_levels/{p.name}": p for p in levels})
-    files["tss_qc.csv"] = TABLES / "tss_qc.csv"
+    files["tss_qc.csv"] = T_SEG / "tss_qc.csv"
     manifest = {
         "tag": TAG, "created": dt.date.today().isoformat(), "code_commit": commit or git_commit(),
         "n_cases": len(masks),
@@ -104,7 +104,7 @@ def fetch(previews):
             data = z.read(arc)
             if hashlib.sha256(data).hexdigest() != digest:
                 raise SystemExit(f"Sai SHA-256: {arc} - hãy tải lại")
-            out = TABLES / arc if arc == "tss_qc.csv" else TSS / arc
+            out = T_SEG / arc if arc == "tss_qc.csv" else TSS / arc
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_bytes(data)
     print(f"Đã giải nén {manifest['n_cases']} ca vào {TSS} (code commit {manifest['code_commit']}, "

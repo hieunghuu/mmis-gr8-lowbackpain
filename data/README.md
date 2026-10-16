@@ -195,7 +195,7 @@ cứng và lấn vào các rễ thần kinh đi ra.
 ### 5.4. Tần suất bệnh lý (đầu ra của NLP, 515 bệnh nhân)
 
 Số liệu từ bộ rule NLP đã được chấm trên bộ chuẩn vàng (F1 = 0,971 ở mức bệnh nhân – xem
-`../totalspineseg/README.md`, bước 5d). Nguồn: `../totalspineseg/outputs/tables/labels_patient.csv`.
+`../totalspineseg/README.md`, bước 5d). Nguồn: `../totalspineseg/outputs/tables/5_nlp/labels_patient.csv`.
 
 | Bệnh lý | Số bệnh nhân | % |
 |---|---:|---:|

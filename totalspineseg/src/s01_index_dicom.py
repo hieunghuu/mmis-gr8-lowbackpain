@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """S01 - Lập chỉ mục header DICOM của toàn bộ MRI_Data (không đọc pixel).
 
-Mỗi file .ima -> 1 dòng trong outputs/tables/dicom_index.csv.
+Mỗi file .ima -> 1 dòng trong outputs/tables/1_dicom/dicom_index.csv.
 
 * patient_id lấy từ TÊN THƯ MỤC (0001 -> 1), vì tag PatientID đã bị ẩn danh (rỗng).
 * Mặt cắt (plane) tính từ ImageOrientationPatient: pháp tuyến = tích có hướng của
@@ -23,7 +23,7 @@ import pandas as pd
 import pydicom
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import MRI_DIR, TABLES
+from common import MRI_DIR, T_DICOM
 
 PLANES = np.array(["SAG", "COR", "AX"])
 
@@ -109,7 +109,7 @@ def main():
         recs = pool.map(read_header, files, chunksize=200)
     df = pd.DataFrame(recs).sort_values(
         ["patient_id", "study_dir", "series_number", "instance"]).reset_index(drop=True)
-    out = TABLES / "dicom_index.csv"
+    out = T_DICOM / "dicom_index.csv"
     df.to_csv(out, index=False)
     print(f"Đã ghi {out} ({len(df):,} dòng)")
     summarize(df)
@@ -171,6 +171,6 @@ def summarize(df):
 
 if __name__ == "__main__":
     if "--summary" in sys.argv:   # chỉ in lại tóm tắt từ CSV đã có
-        summarize(pd.read_csv(TABLES / "dicom_index.csv", low_memory=False))
+        summarize(pd.read_csv(T_DICOM / "dicom_index.csv", low_memory=False))
     else:
         main()

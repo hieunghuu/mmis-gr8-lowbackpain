@@ -17,10 +17,16 @@ REPORT_XLSX = DATA / "Radiologists Report.xlsx"
 
 OUTPUTS = CODE / "outputs"
 TABLES = OUTPUTS / "tables"
+# bảng kết quả chia theo bước của pipeline
+T_DICOM = TABLES / "1_dicom"
+T_SEG = TABLES / "3_segmentation"
+T_NLP = TABLES / "5_nlp"
+T_MEAS = TABLES / "7_measurements"
+T_ANALYSIS = TABLES / "8_analysis"
 FIGURES = OUTPUTS / "figures"
 NIFTI = OUTPUTS / "nifti"
 
-for _d in (TABLES, FIGURES, NIFTI):
+for _d in (T_DICOM, T_SEG, T_NLP, T_MEAS, T_ANALYSIS, FIGURES, NIFTI):
     _d.mkdir(parents=True, exist_ok=True)
 
 SEED = 2026
