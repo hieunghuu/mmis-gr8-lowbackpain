@@ -20,7 +20,7 @@ import SimpleITK as sitk
 from scipy import ndimage
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import OUTPUTS, NIFTI, TABLES, FIGURES
+from common import OUTPUTS, NIFTI, FIGURES, T_DICOM, T_MEAS, T_SEG
 
 TSS = OUTPUTS / "tss" / "sag" / "step2_output"
 # tầng -> (nhãn đĩa, nhãn đốt trên, nhãn đốt dưới)
@@ -280,7 +280,7 @@ def qc_distributions(lf):
 
 
 def main():
-    qc = pd.read_csv(TABLES / "tss_qc.csv")
+    qc = pd.read_csv(T_SEG / "tss_qc.csv")
     pids = qc.patient_id.tolist()
     with Pool(8) as pool:
         res = pool.map(process, pids, chunksize=4)
@@ -288,8 +288,8 @@ def main():
     lf = lf.merge(qc[["patient_id", "use_level"]], on="patient_id")
     pf = pd.DataFrame([o["patient"] for o in res])
 
-    sel = pd.read_csv(TABLES / "series_selected.csv")
-    di = pd.read_csv(TABLES / "dicom_index.csv", low_memory=False,
+    sel = pd.read_csv(T_DICOM / "series_selected.csv")
+    di = pd.read_csv(T_DICOM / "dicom_index.csv", low_memory=False,
                      usecols=["patient_id", "study_dir", "series_dir", "age", "sex"])
     demo = (di.merge(sel[["patient_id", "study_dir", "sag_series"]],
                      left_on=["patient_id", "study_dir", "series_dir"],
@@ -302,8 +302,8 @@ def main():
             "disc_post_bulge_mm", "canal_ap_mm", "canal_csa_approx_mm2", "listhesis_mm",
             "listhesis_pct", "vb_upper_height_mm", "vb_lower_height_mm"]
     lf = lf.reindex(columns=cols)
-    lf.to_csv(TABLES / "level_features.csv", index=False)
-    pf.to_csv(TABLES / "patient_features.csv", index=False)
+    lf.to_csv(T_MEAS / "level_features.csv", index=False)
+    pf.to_csv(T_MEAS / "patient_features.csv", index=False)
 
     use = lf[lf.use_level]
     print(f"=== Bước 7: {lf.patient_id.nunique()} BN, {len(lf)} dòng (use_level: {use.patient_id.nunique()} BN) ===")

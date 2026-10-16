@@ -16,7 +16,7 @@ mẫu RAM (tổng cả cây tiến trình) mỗi 0,5 giây.
 Chạy (từ thư mục totalspineseg/):
     python src/s03_tss_pilot.py sag 1 2 100 230 300     # ảnh sagittal
     python src/s03_tss_pilot.py ax 1                     # mọi khối axial của BN 1
-Kết quả: outputs/tss_pilot/<tên>/  + 1 dòng log trong outputs/tables/tss_pilot_log.csv
+Kết quả: outputs/tss_pilot/<tên>/  + 1 dòng log trong outputs/tables/3_segmentation/tss_pilot_log.csv
 """
 import shutil
 import subprocess
@@ -28,7 +28,7 @@ import pandas as pd
 import psutil
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import CODE, NIFTI, OUTPUTS, TABLES
+from common import CODE, NIFTI, OUTPUTS, T_SEG
 
 TSS_EXE = CODE / ".venv-tss" / "Scripts" / "totalspineseg.exe"
 TSS_DATA = CODE / ".tss_data"
@@ -72,7 +72,7 @@ def main():
     print(f"\nMã thoát {code} | {secs:.0f} giây ({secs / len(files):.0f} giây/file) | "
           f"RAM đỉnh {peak:.2f} GB / {psutil.virtual_memory().total / 2**30:.1f} GB")
 
-    log = TABLES / "tss_pilot_log.csv"
+    log = T_SEG / "tss_pilot_log.csv"
     row = pd.DataFrame([{"run": name, "kind": kind, "n_files": len(files),
                          "exit_code": code, "seconds": round(secs, 1),
                          "sec_per_file": round(secs / len(files), 1),

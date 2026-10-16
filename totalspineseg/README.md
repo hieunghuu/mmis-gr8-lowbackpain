@@ -27,7 +27,7 @@ Giải thích về bộ dữ liệu, giải phẫu và thuật ngữ y khoa: xem
 | 5d | `s09_nlp_eval.py` – chấm rule trên gold: **F1 0,959** (tầng – khẳng định), 0,971 (bệnh nhân); nhãn cuối 515 ghi chú ([mục 5.11](#511-bước-5d--chấm-bộ-rule-trên-bộ-gold-và-tạo-nhãn-cuối-s09_nlp_evalpy)) | ✅ Xong |
 | 6 | Tải kết quả Kaggle về, kiểm tra đủ 515 ca – gộp vào bước 4 | ✅ Xong |
 | 7 | `s08_level_features.py` – 13 số đo theo tầng + góc ưỡn – [mục 7](#7-bước-7--tính-số-đo-theo-tầng-từ-mask-s08_level_featurespy--thiết-kế) | ✅ Xong |
-| 8 | Ghép, phân tích, biểu đồ | ⏳ |
+| 8 | `s10_level_analysis.py` – ghép số đo ảnh × nhãn văn bản, phân tích – [mục 8](#8-bước-8--ghép-ảnh--văn-bản-phân-tích-s10_level_analysispy--thiết-kế) | ✅ Xong |
 
 ---
 
@@ -256,6 +256,40 @@ Sau đó chạy tiếp `s05` → `s08` (cần ảnh gốc + `s01`, `s02` cho bư
 Người tạo release dùng `python src/s00_shared_data.py --pack` để đóng gói lại từ
 `outputs/tss/sag/` (zip + `MANIFEST.json` ghi commit, ngày, số ca, SHA-256 từng file).
 
+### Bảng kết quả (`outputs/tables/`)
+
+Các bảng chia thư mục con theo bước của pipeline. **⭐ = bảng dùng cho báo cáo hoặc làm đầu vào
+cho bước sau**; các bảng còn lại là số liệu trung gian để kiểm tra / chạy lại.
+
+| Thư mục | Bảng | Script tạo | Dùng để |
+|---|---|---|---|
+| `1_dicom/` | `dicom_index.csv` | s01 | Danh mục 48.345 file ảnh (bệnh nhân, mặt cắt, T1/T2…) – 24 MB, không đưa lên Git |
+| | `series_selected.csv` | s02 | Series T2 được chọn cho từng bệnh nhân |
+| | `nifti_volumes.csv` | s02 | Thông số từng file NIfTI (số lát, pixel, QC khoảng cách lát) |
+| `3_segmentation/` | `tss_pilot_log.csv` | s03 | Thời gian, RAM khi chạy thử TotalSpineSeg |
+| | ⭐ `tss_qc.csv` | s05 | Ca nào đạt QC; cột `use_level` = 513 ca dùng được theo tầng |
+| | `tss_label_stats.csv` | s05 | Thể tích, trọng tâm từng đốt / đĩa |
+| `5_nlp/` | `nlp_split.csv` | s06 | Ghi chú thuộc tập dev hay gold |
+| | `nlp_findings_long_{dev,all}.csv` | s07 | Mỗi phát hiện rule tìm được 1 dòng, kèm câu gốc (`dev` = 435 ghi chú, `all` = 515) |
+| | `nlp_sentences_{dev,all}.csv` | s07 | Từng câu: tầng gán, số phát hiện |
+| | `nlp_unmatched_{dev,all}.csv` | s07 | Câu rule chưa hiểu – để bổ sung mẫu |
+| | `nlp_typo_hits_{dev,all}.csv` | s07 | Số lần sửa từng lỗi chính tả |
+| | ⭐ `nlp_eval_summary.csv` | s09 | **F1 tổng** của bộ rule trên bộ gold |
+| | ⭐ `nlp_eval_per_finding.csv` | s09 | F1 từng bệnh |
+| | `nlp_eval_errors.csv` | s09 | 28 lỗi của rule, kèm câu gốc |
+| | ⭐ `labels_level.csv` | s09 | **Nhãn cuối theo tầng** – đầu vào bước 8 |
+| | ⭐ `labels_patient.csv` | s09 | **Nhãn cuối theo bệnh nhân** – bảng tần suất bệnh |
+| `7_measurements/` | ⭐ `level_features.csv` | s08 | **13 số đo mỗi tầng** – đầu vào bước 8 |
+| | `patient_features.csv` | s08 | Góc ưỡn, tuổi, giới |
+| `8_analysis/` | `analysis_level_dataset.csv` | s10 | Bảng đã ghép số đo × nhãn (trung gian) |
+| | ⭐ `analysis_assoc.csv` | s10 | **AUC, ngưỡng** từng cặp số đo ↔ nhãn |
+| | ⭐ `analysis_discordance.csv` | s10 | **Số ca lệch** giữa ảnh và báo cáo |
+| | `analysis_discordance_cases.csv` | s10 | Danh sách từng ca lệch (để bác sĩ xem lại) |
+| | ⭐ `analysis_patient.csv` | s10 | Tuổi ↔ tín hiệu đĩa, góc ưỡn ↔ co cứng cơ |
+
+Đường dẫn các thư mục này khai báo trong `src/common.py` (`T_DICOM`, `T_SEG`, `T_NLP`, `T_MEAS`,
+`T_ANALYSIS`).
+
 Mọi đường dẫn khai báo trong `src/common.py`. Các script dùng đa tiến trình (16 luồng
 CPU); thời gian ở trên đo trên máy CPU 16 luồng, RAM 7,3 GB.
 
@@ -310,7 +344,7 @@ Ví dụ BN 0001: T2 SAG có hàng (0, 1, 0), cột (−0,03, 0, −1) → pháp
 sinh) để loại.
 
 ### Đầu ra
-`outputs/tables/dicom_index.csv` – 48.345 dòng × 38 cột (mỗi file `.ima` một dòng).
+`outputs/tables/1_dicom/dicom_index.csv` – 48.345 dòng × 38 cột (mỗi file `.ima` một dòng).
 In lại tóm tắt mà không đọc lại file: `python src/s01_index_dicom.py --summary`.
 
 ### Kết quả
@@ -427,8 +461,8 @@ nghiêng khác nhau rồi coi là một ram thẳng → hình học sai). Mỗi 
 |---|---|
 | `outputs/nifti/sag/0001.nii.gz` | 515 khối sagittal |
 | `outputs/nifti/ax/0001_b1.nii.gz`, `_b2`, … | 1.823 khối axial; `b1` = khối cao nhất (gần đầu), số tăng dần xuống dưới |
-| `outputs/tables/series_selected.csv` | Series được chọn cho mỗi BN, số ứng viên, có cùng study không |
-| `outputs/tables/nifti_volumes.csv` | Mỗi file NIfTI một dòng: số lát, spacing, số lát trùng đã bỏ, QC khoảng cách |
+| `outputs/tables/1_dicom/series_selected.csv` | Series được chọn cho mỗi BN, số ứng viên, có cùng study không |
+| `outputs/tables/1_dicom/nifti_volumes.csv` | Mỗi file NIfTI một dòng: số lát, spacing, số lát trùng đã bỏ, QC khoảng cách |
 | `outputs/figures/qc_s02_geometry.png` | Vị trí các khối axial chiếu lên ảnh sagittal |
 
 `outputs/nifti/` nằm trong `.gitignore` (ảnh y tế, ~2,1 GB).
@@ -540,8 +574,8 @@ ghi lại biến thể giải phẫu – rủi ro sai tầng mà hệ thống t�
 | File | Nội dung |
 |---|---|
 | `outputs/tss/sag/step2_output/`, `step1_levels/`, `preview/` | Kết quả gộp 515 ca, một nơi duy nhất cho các bước sau |
-| `outputs/tables/tss_qc.csv` | Mỗi ca một dòng: các cờ lỗi, `issues`, `qc_pass`, `transitional`, `use_level` |
-| `outputs/tables/tss_label_stats.csv` | Mỗi (ca, nhãn) một dòng: thể tích mm³, trọng tâm (x, y, z) mm, tỉ lệ khối liền lớn nhất – dùng lại ở bước 7 |
+| `outputs/tables/3_segmentation/tss_qc.csv` | Mỗi ca một dòng: các cờ lỗi, `issues`, `qc_pass`, `transitional`, `use_level` |
+| `outputs/tables/3_segmentation/tss_label_stats.csv` | Mỗi (ca, nhãn) một dòng: thể tích mm³, trọng tâm (x, y, z) mm, tỉ lệ khối liền lớn nhất – dùng lại ở bước 7 |
 | `outputs/figures/qc_s05_random.png` | Preview 20 ca ngẫu nhiên (seed 2026) |
 | `outputs/figures/qc_s05_flagged.png` | Preview các ca bị gắn cờ (tối đa 20) |
 
@@ -807,7 +841,7 @@ hiện khẳng định nào), `multilevel`.
 
 | Bước | Việc | Đầu ra |
 |---|---|---|
-| **5a** | `s06_gold_sample.py` – tách 80 ghi chú gold (phân tầng theo tỉ lệ) + tạo file Excel để nhóm gán nhãn | `outputs/tables/nlp_split.csv`, `data/gold/gold_annotation.xlsx` |
+| **5a** | `s06_gold_sample.py` – tách 80 ghi chú gold (phân tầng theo tỉ lệ) + tạo file Excel để nhóm gán nhãn | `outputs/tables/5_nlp/nlp_split.csv`, `data/gold/gold_annotation.xlsx` |
 | **5b** | `nlp_rules.py` + `s07_nlp_extract.py` – cài đặt rule, chạy trên tập dev, đọc câu chưa khớp, lặp | `nlp_findings_long_dev.csv`, `nlp_sentences_dev.csv`, `nlp_unmatched_dev.csv`, `nlp_typo_hits_dev.csv` |
 | **5c** | *(Tạm hoãn)* trích xuất bằng LLM theo cùng schema + quy ước | – |
 | **5d** | Khi có gold: chấm rule, phân tích lỗi; chạy rule trên toàn bộ 515 → nhãn cuối | `nlp_eval_*.csv`, `labels_level.csv`, `labels_patient.csv` |
@@ -968,7 +1002,7 @@ với nhãn bác sĩ (bước 5) theo khóa `(patient_id, level)`.
 
 ### Đầu vào
 - `outputs/tss/sag/step2_output/*.nii.gz` – mask 515 ca; `outputs/nifti/sag/*.nii.gz` – ảnh T2 gốc (để đo tín hiệu).
-- `outputs/tables/tss_qc.csv` – cột `use_level` (513 ca dùng được theo tầng).
+- `outputs/tables/3_segmentation/tss_qc.csv` – cột `use_level` (513 ca dùng được theo tầng).
 
 ### Nguyên tắc đo
 - **Chỉ đo trên mặt phẳng sagittal** của các lát **giữa** (lát có nhiều voxel ống sống nhất và
@@ -1014,8 +1048,8 @@ Với L5-S1, "thân đốt dưới" là phần trên của xương cùng (S1).
 ### Đầu ra
 | File | Nội dung |
 |---|---|
-| `outputs/tables/level_features.csv` | Mỗi `(patient_id, level)` một dòng + `use_level` |
-| `outputs/tables/patient_features.csv` | Mỗi bệnh nhân một dòng: `lordosis_deg`, `age`, `sex` |
+| `outputs/tables/7_measurements/level_features.csv` | Mỗi `(patient_id, level)` một dòng + `use_level` |
+| `outputs/tables/7_measurements/patient_features.csv` | Mỗi bệnh nhân một dòng: `lordosis_deg`, `age`, `sex` |
 | `outputs/figures/qc_s08_overlay.png` | Overlay đo đạc trên lát giữa của vài ca |
 | `outputs/figures/qc_s08_distributions.png` | Phân bố số đo theo tầng |
 
@@ -1071,3 +1105,144 @@ nhãn đốt **nằm trước thành trước ống sống** (trong cùng dải 
 Cả 4 số đo lệch **đúng chiều** với nhãn bác sĩ → số đo có giá trị để phân tích ở bước 8.
 
 ![Overlay đo đạc](outputs/figures/qc_s08_overlay.png)
+
+---
+
+## 8. Bước 8 – Ghép ảnh × văn bản, phân tích (`s10_level_analysis.py`) – thiết kế
+
+### Câu hỏi cần trả lời
+1. **Số đo từ ảnh có khớp với nhận xét của bác sĩ không?** Ở tầng bác sĩ ghi có bệnh, số đo
+   khác bao nhiêu so với tầng không ghi?
+2. **Ngưỡng nào phân biệt tốt nhất?** So với ngưỡng y văn (nếu có).
+3. **Ca lệch nhau** – số đo rất bất thường nhưng báo cáo không nhắc (và ngược lại) – bao nhiêu,
+   ở tầng nào? → ý nghĩa cho kiểm soát chất lượng báo cáo (góc MIS).
+4. Yếu tố bệnh nhân: tuổi ↔ thoái hóa đĩa; góc ưỡn ↔ co cứng cơ.
+
+### Dữ liệu ghép
+- `level_features.csv` (bước 7) – chỉ ca `use_level` (513 BN) và 6 tầng T12-L1 … L5-S1.
+- `labels_level.csv` (bước 5d) – ghép theo `(patient_id, level)`; tầng không có trong bảng nhãn
+  → mọi bệnh = 0 (**không được nhắc**, nhãn yếu – Q10).
+- `labels_patient.csv`, `patient_features.csv` – cho phân tích mức bệnh nhân.
+
+### Cặp số đo ↔ nhãn được kiểm định
+
+| Nhãn bác sĩ | Số đo (bước 7) | Chiều kỳ vọng ở tầng có bệnh |
+|---|---|---|
+| `disc_desiccation` | `disc_csf_ratio`, `disc_vb_ratio` | Thấp hơn (đĩa tối) |
+| `disc_space_narrowing` | `dhi`, `disc_height_mm` | Thấp hơn |
+| `disc_bulge`, `disc_protrusion`, `disc_herniation` | `disc_post_bulge_mm` | Cao hơn (nhô ra sau) |
+| `thecal_sac_compression`, `spinal_canal_stenosis` | `canal_ap_mm`, `canal_csa_approx_mm2` | Thấp hơn (ống hẹp) |
+| `spondylolisthesis` | `listhesis_mm` | Cao hơn (trượt ra trước) |
+| `foraminal_stenosis`, `nerve_root_compression` | `disc_post_bulge_mm`, `dhi` | Gián tiếp – lỗ liên hợp không đo được trên lát sagittal giữa |
+| `muscle_spasm` (mức bệnh nhân) | `lordosis_deg` | Thấp hơn (cột sống thẳng) |
+
+### Phương pháp
+- **Mức tầng khác nhau sẵn** (đĩa L4-L5 cao hơn L1-L2, ống sống hẹp dần xuống dưới…) mà bệnh lại
+  tập trung ở L4-L5, L5-S1 → so sánh gộp mọi tầng sẽ lẫn hiệu ứng "tầng". Vì vậy mỗi số đo được
+  **chuẩn hóa z trong từng tầng** (trừ trung bình, chia độ lệch chuẩn của tầng đó) trước khi gộp;
+  đồng thời báo cáo riêng cho L4-L5 và L5-S1.
+- Mỗi cặp: trung vị nhóm có/không, **AUC** (khả năng số đo phân biệt hai nhóm; 0,5 = ngẫu nhiên),
+  kiểm định Mann–Whitney, **ngưỡng Youden** (tối đa độ nhạy + độ đặc hiệu − 1) trên giá trị gốc
+  của từng tầng chính.
+- **Ca lệch** (so trong cùng tầng):
+  - "**Nghi bỏ sót**": bác sĩ **không ghi** nhưng số đo **bất thường hơn trung vị của nhóm có
+    ghi** – tức trông giống một ca bệnh điển hình.
+  - "**Số đo không ủng hộ**": bác sĩ **có ghi** nhưng số đo ở phía **bình thường hơn trung vị của
+    nhóm không ghi**.
+  - Không dùng phân vị của chính nhóm không ghi làm ngưỡng: khi đó luôn có đúng ~5 % số tầng bị
+    đánh dấu theo định nghĩa, kết quả vô nghĩa.
+- Mức bệnh nhân: tương quan Spearman tuổi ↔ tín hiệu đĩa (trung bình 5 tầng thắt lưng), tuổi ↔
+  số phát hiện; Mann–Whitney + AUC góc ưỡn ↔ co cứng cơ.
+
+### Đầu ra
+| File | Nội dung |
+|---|---|
+| `outputs/tables/8_analysis/analysis_level_dataset.csv` | Bảng ghép (BN × tầng): số đo, z trong tầng, nhãn |
+| `outputs/tables/8_analysis/analysis_assoc.csv` | Mỗi cặp số đo ↔ nhãn × phạm vi (gộp z / L4-L5 / L5-S1): n, trung vị, AUC, p, ngưỡng |
+| `outputs/tables/8_analysis/analysis_discordance.csv` | Các tầng lệch giữa số đo và báo cáo |
+| `outputs/tables/8_analysis/analysis_patient.csv` | Kết quả mức bệnh nhân (tuổi, góc ưỡn) |
+| `outputs/figures/fig8_*.png` | Biểu đồ cho báo cáo |
+
+### Giới hạn
+- Nhãn 0 là "không được nhắc", không phải "đã kiểm tra là bình thường" → AUC là **cận dưới**.
+- Số đo chỉ trên sagittal; hẹp lỗ liên hợp / chèn ép rễ chỉ có số đo gián tiếp.
+- Đây là phân tích **liên quan**, không phải mô hình chẩn đoán; chưa kiểm định ngoài bộ dữ liệu.
+
+### Kết quả bước 8
+
+Chạy: `python src/s10_level_analysis.py` (vài giây). 513 bệnh nhân × 6 tầng = 3.078 tầng.
+
+#### 1. Số đo từ ảnh khớp với nhận xét của bác sĩ đến đâu?
+
+AUC gộp 6 tầng (chuẩn hóa z trong tầng; 0,5 = ngẫu nhiên, 1 = phân biệt hoàn hảo):
+
+| Nhãn bác sĩ (số tầng có ghi) | Số đo | AUC | Mức độ khớp |
+|---|---|---|---|
+| Hẹp khoang đĩa (15) | DHI | **0,97** | Rất mạnh |
+| Hẹp ống sống (47) | Đường kính trước–sau ống sống | **0,88** | Mạnh |
+| Lồi đĩa (145) | Nhô sau của đĩa | **0,87** | Mạnh |
+| Thoát vị đĩa (10) | Nhô sau của đĩa | 0,83 | Mạnh (ít ca) |
+| Mất nước đĩa (40) | Tín hiệu đĩa / dịch não tủy | 0,77 | Khá |
+| Hẹp lỗ liên hợp (288) | Nhô sau (gián tiếp) | 0,76 | Khá |
+| Phồng đĩa (495) | Nhô sau | 0,65 | Vừa |
+| Chèn ép bao màng cứng (485) | Đường kính ống sống | 0,68 | Vừa |
+| Chèn ép rễ (191) | Nhô sau (gián tiếp) | 0,64 | Yếu – rễ thần kinh không thấy trên lát sagittal giữa |
+
+Mọi cặp đều lệch **đúng chiều** kỳ vọng, p < 0,001 (trừ trượt đốt gộp). Bệnh **mô tả hình thái rõ**
+(lồi, hẹp ống, hẹp khoang) khớp mạnh; nhận xét **chung chung** ("diffuse bulge", "compressing the
+thecal sac" – gặp ở > 60 % bệnh nhân) khớp yếu hơn.
+
+Theo tầng chính (giá trị gốc, ngưỡng Youden):
+
+| Nhãn – số đo | Tầng | Trung vị có ghi / không ghi | AUC | Ngưỡng | Độ nhạy / đặc hiệu |
+|---|---|---|---|---|---|
+| Hẹp khoang đĩa – DHI | L5-S1 | 0,14 / 0,27 | 0,95 | < 0,18 | 0,89 / 0,94 |
+| Trượt đốt – độ trượt | **L4-L5** | +2,9 / −2,0 mm | **0,99** | > −0,5 mm | 1,00 / 0,95 |
+| Phồng/lồi/thoát vị – nhô sau | L4-L5 | 1,26 / 0,45 mm | 0,78 | > 0,85 mm | 0,68 / 0,78 |
+| Phồng/lồi/thoát vị – nhô sau | L5-S1 | 0,45 / −0,73 mm | 0,80 | > −0,20 mm | 0,73 / 0,77 |
+| Chèn ép bao màng cứng – ống sống | L4-L5 | 8,4 / 11,2 mm | 0,77 | < 10,8 mm | 0,84 / 0,56 |
+| Mất nước đĩa – tín hiệu | L5-S1 | 0,11 / 0,21 | 0,82 | < 0,14 | 0,85 / 0,71 |
+
+Ngưỡng là của **bộ dữ liệu và cách đo này** (thang đo tương đối – xem giới hạn bước 7), không thay
+thế ngưỡng y văn.
+
+**Hai số đo không dùng được ở L5-S1** (phát hiện nhờ phân tích theo tầng): độ trượt (AUC 0,35, ngược
+chiều – thân đốt dưới là xương cùng, hình học khác) và đường kính ống sống cho chèn ép (AUC 0,56 – bao
+màng cứng sắp kết thúc ở đoạn này). Hai cặp này bị loại khỏi phân tích ca lệch.
+
+#### 2. Ca lệch giữa số đo và báo cáo (L4-L5, L5-S1; chỉ cặp có AUC tại tầng ≥ 0,7)
+
+| Nhãn – tầng | Nghi bỏ sót (không ghi nhưng số đo như ca bệnh điển hình) | Số đo không ủng hộ (có ghi nhưng số đo như ca bình thường) |
+|---|---|---|
+| Mất nước đĩa – L5-S1 | 56 tầng (12,3 %) | 1 (5,0 %) |
+| Hẹp khoang đĩa – L5-S1 | 13 (2,6 %) | 0 |
+| Phồng/lồi/thoát vị – L4-L5 | 20 (10,7 %) | 49 (16,1 %) |
+| Phồng/lồi/thoát vị – L5-S1 | 17 (5,8 %) | 28 (14,4 %) |
+| Chèn ép bao màng cứng – L4-L5 | 29 (11,7 %) | 28 (11,2 %) |
+| Trượt đốt – L4-L5 | 1 (0,2 %) | 0 |
+
+"Nghi bỏ sót" đã loại các bệnh nhân bác sĩ ghi bệnh đó **không kèm tầng** (vd "dissicating disc
+material" – 39 BN ở L5-S1). Danh sách từng ca: `analysis_discordance_cases.csv`.
+
+Ý nghĩa: **mất nước đĩa bị ghi thiếu nhiều nhất** – 1/8 số đĩa L5-S1 không được nhắc có tín hiệu tối
+như đĩa được bác sĩ ghi mất nước. Đây đúng là chỗ một hệ thống đo tự động có thể **gợi ý bác sĩ xem
+lại** (kịch bản C ở mục Kiến trúc). Ngược lại, 11–16 % tầng ghi phồng đĩa / chèn ép có số đo như bình
+thường – phản ánh các nhận xét khuôn mẫu ("diffuse disc bulge … compressing the thecal sac") và giới
+hạn của lát sagittal giữa.
+
+#### 3. Yếu tố bệnh nhân
+
+- **Tuổi ↔ tín hiệu đĩa: ρ = −0,70** (Spearman, p < 0,001) – rất mạnh. Trung vị tín hiệu đĩa giảm
+  từ 0,32 (dưới 30 tuổi) xuống 0,15 (≥ 60 tuổi); tỉ lệ được ghi mất nước đĩa tăng từ 2 % lên 24 %;
+  số phát hiện trung bình tăng từ 2,5 lên 4,7.
+- **Góc ưỡn ↔ "muscle spasm": AUC 0,50** – **không có liên quan**. Trung vị góc ưỡn 42,2° (có ghi) so
+  với 42,0° (không ghi). Nhận xét "co cứng cơ" (44 % ghi chú; 214/227 ghi chú dùng đúng cụm "Feature(s) of muscle
+  spasm") có thể là câu khuôn mẫu, không phản ánh độ thẳng cột sống đo được – hoặc góc ưỡn tính từ trục đĩa chưa đủ
+  nhạy. Đây là một **kết quả âm tính** đáng nêu.
+
+#### Hình
+
+![Số đo theo nhãn](outputs/figures/fig8_assoc_boxplots.png)
+![ROC](outputs/figures/fig8_roc.png)
+![Tuổi và góc ưỡn](outputs/figures/fig8_patient.png)
+![Ca lệch](outputs/figures/fig8_discordance.png)

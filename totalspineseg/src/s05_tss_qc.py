@@ -29,7 +29,7 @@ import pandas as pd
 import SimpleITK as sitk
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import OUTPUTS, NIFTI, TABLES, FIGURES, SEED
+from common import OUTPUTS, NIFTI, FIGURES, SEED, T_SEG
 
 ZIP = OUTPUTS / "kaggle" / "tss_sag_results.zip"
 # Ca chạy lại trên CPU sau khi sửa quy tắc chọn series ở bước 2 - GHI ĐÈ kết quả Kaggle:
@@ -175,8 +175,8 @@ def main():
     qc["qc_pass"] = qc.issues == ""
     # dùng cho phân tích THEO TẦNG (bước 8): đạt QC và không có đốt chuyển tiếp
     qc["use_level"] = qc.qc_pass & ~qc.transitional
-    qc.to_csv(TABLES / "tss_qc.csv", index=False)
-    st.to_csv(TABLES / "tss_label_stats.csv", index=False)
+    qc.to_csv(T_SEG / "tss_qc.csv", index=False)
+    st.to_csv(T_SEG / "tss_label_stats.csv", index=False)
 
     print("\n=== TÓM TẮT QC ===")
     print(f"Số ca: {len(qc)} | ĐẠT: {qc.qc_pass.sum()} | LỖI: {(~qc.qc_pass).sum()}")

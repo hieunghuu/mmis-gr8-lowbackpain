@@ -7,13 +7,13 @@ Ba cách chấm:
   bệnh nhân - phủ định    (patient, finding) có dòng phủ định và KHÔNG có dòng khẳng định
 Không chấm nhãn other, none (rule không sinh hai nhãn này).
 
-Đầu vào:  outputs/tables/nlp_findings_long_all.csv  (chạy trước: python src/s07_nlp_extract.py --all)
+Đầu vào:  outputs/tables/5_nlp/nlp_findings_long_all.csv  (chạy trước: python src/s07_nlp_extract.py --all)
           data/gold/gold_labels_llm.csv
-Đầu ra:   outputs/tables/nlp_eval_summary.csv      micro / macro theo từng cách chấm
-          outputs/tables/nlp_eval_per_finding.csv  P / R / F1 từng bệnh
-          outputs/tables/nlp_eval_errors.csv       mọi FP / FN ở mức tầng, kèm câu gốc
-          outputs/tables/labels_level.csv          nhãn cuối theo tầng (515 ghi chú)
-          outputs/tables/labels_patient.csv        nhãn cuối theo bệnh nhân
+Đầu ra:   outputs/tables/5_nlp/nlp_eval_summary.csv      micro / macro theo từng cách chấm
+          outputs/tables/5_nlp/nlp_eval_per_finding.csv  P / R / F1 từng bệnh
+          outputs/tables/5_nlp/nlp_eval_errors.csv       mọi FP / FN ở mức tầng, kèm câu gốc
+          outputs/tables/5_nlp/labels_level.csv          nhãn cuối theo tầng (515 ghi chú)
+          outputs/tables/5_nlp/labels_patient.csv        nhãn cuối theo bệnh nhân
 
 Chạy (từ thư mục totalspineseg/):  python src/s09_nlp_eval.py
 """
@@ -23,7 +23,7 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import CODE, REPORT_XLSX, TABLES
+from common import CODE, REPORT_XLSX, T_NLP
 
 GOLD = CODE / "data" / "gold" / "gold_labels_llm.csv"
 SKIP = {"other", "none"}
@@ -87,7 +87,7 @@ def final_labels(pred):
 
 
 def main():
-    pred = pd.read_csv(TABLES / "nlp_findings_long_all.csv")
+    pred = pd.read_csv(T_NLP / "nlp_findings_long_all.csv")
     gold = pd.read_csv(GOLD)
     gold = gold[~gold.finding.isin(SKIP)]
     gold_ids = set(gold.patient_id)
@@ -117,10 +117,10 @@ def main():
                             {"scheme": "bệnh nhân – phủ định", **s_pn}])
     summary["severity_acc"] = [sev_acc, None, None]
     summary["side_acc"] = [side_acc, None, None]
-    summary.to_csv(TABLES / "nlp_eval_summary.csv", index=False)
+    summary.to_csv(T_NLP / "nlp_eval_summary.csv", index=False)
     per = pd.concat([t_lvl.assign(scheme="tầng – khẳng định"), t_pa.assign(scheme="bệnh nhân – khẳng định"),
                      t_pn.assign(scheme="bệnh nhân – phủ định")])
-    per.to_csv(TABLES / "nlp_eval_per_finding.csv", index=False)
+    per.to_csv(T_NLP / "nlp_eval_per_finding.csv", index=False)
 
     # lỗi ở mức tầng (khẳng định), kèm câu gốc
     notes = pd.read_excel(REPORT_XLSX)
@@ -133,11 +133,11 @@ def main():
            + [{"type": "FN", "patient_id": k[0], "level": k[1], "finding": k[2],
                "rule_evidence": "", "gold_comment": cm.get(k, "")} for k in sorted(gk - pk)])
     err = pd.DataFrame(err).merge(notes, on="patient_id", how="left")
-    err.to_csv(TABLES / "nlp_eval_errors.csv", index=False)
+    err.to_csv(T_NLP / "nlp_eval_errors.csv", index=False)
 
     lvl, pat = final_labels(pred)
-    lvl.to_csv(TABLES / "labels_level.csv", index=False)
-    pat.to_csv(TABLES / "labels_patient.csv", index=False)
+    lvl.to_csv(T_NLP / "labels_level.csv", index=False)
+    pat.to_csv(T_NLP / "labels_patient.csv", index=False)
 
     pd.set_option("display.width", 160)
     print(f"=== Bước 5d: chấm trên {len(gold_ids)} ghi chú gold ({len(gold)} dòng nhãn, bỏ other/none) ===")

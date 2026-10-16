@@ -1,0 +1,340 @@
+type,label,measure,level,patient_id,value
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,7,0.0899830237030983
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,29,0.0945489630103111
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,35,0.093206949532032
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,36,0.0847261995077133
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,52,0.0987654328346252
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,53,0.078625701367855
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,84,0.0492537319660186
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,92,0.0994397774338722
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,93,0.0965517237782478
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,103,0.0977415740489959
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,126,0.0858085826039314
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,132,0.0714786276221275
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,139,0.0678233429789543
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,146,0.1036931797862052
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,202,0.0934579446911811
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,207,0.0955465584993362
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,220,0.0921971797943115
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,221,0.0870026499032974
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,228,0.0560560561716556
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,234,0.0690525323152542
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,239,0.0845697298645973
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,242,0.0918220952153205
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,243,0.0930531993508338
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,250,0.097701147198677
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,257,0.0685302093625068
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,275,0.106032907962799
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,286,0.0854250416159629
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,294,0.0847682133316993
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,305,0.0977961421012878
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,316,0.0775305107235908
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,333,0.1038961037993431
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,334,0.0960365831851959
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,341,0.104895107448101
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,343,0.10333863645792
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,344,0.0556414201855659
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,355,0.0823170766234397
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,363,0.0810810774564743
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,370,0.0856720805168151
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,371,0.0790826380252838
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,375,0.0931174084544181
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,377,0.0986111089587211
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,381,0.1006711423397064
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,401,0.1014131307601928
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,405,0.0860383287072181
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,408,0.0809898748993873
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,419,0.0920046344399452
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,423,0.079658605158329
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,436,0.1022236943244934
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,445,0.0870870873332023
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,448,0.104617603123188
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,474,0.1022364199161529
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,477,0.1012145727872848
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,494,0.0920008644461631
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,496,0.0574712641537189
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,520,0.105067066848278
+nghi bỏ sót,disc_desiccation,disc_csf_ratio,L5-S1,549,0.1007194221019744
+số đo không ủng hộ,disc_desiccation,disc_csf_ratio,L5-S1,429,0.2454024702310562
+nghi bỏ sót,disc_space_narrowing,dhi,L5-S1,53,0.0838783094662968
+nghi bỏ sót,disc_space_narrowing,dhi,L5-S1,62,0.1362284709919989
+nghi bỏ sót,disc_space_narrowing,dhi,L5-S1,69,0.1292212340807327
+nghi bỏ sót,disc_space_narrowing,dhi,L5-S1,101,0.131444934936545
+nghi bỏ sót,disc_space_narrowing,dhi,L5-S1,108,0.1334646838505215
+nghi bỏ sót,disc_space_narrowing,dhi,L5-S1,194,0.1385676792722715
+nghi bỏ sót,disc_space_narrowing,dhi,L5-S1,195,0.1006350164523738
+nghi bỏ sót,disc_space_narrowing,dhi,L5-S1,243,0.1159690330284593
+nghi bỏ sót,disc_space_narrowing,dhi,L5-S1,263,0.1140546099252241
+nghi bỏ sót,disc_space_narrowing,dhi,L5-S1,379,0.1109188387224452
+nghi bỏ sót,disc_space_narrowing,dhi,L5-S1,380,0.1091654901538577
+nghi bỏ sót,disc_space_narrowing,dhi,L5-S1,382,0.1282101095285635
+nghi bỏ sót,disc_space_narrowing,dhi,L5-S1,496,0.1302049417762765
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L1-L2,230,3.241473697965567
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L1-L2,469,2.788562027746865
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,43,1.123373545251873
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,47,1.7503758278049446
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,187,1.0817645295388123
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,200,2.503359508485822
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,217,1.2941906082276269
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,334,1.1177790357789164
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,392,1.4528367284330024
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,455,1.0643171560148377
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,486,1.1258518368321866
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,496,1.7032590834433812
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,499,1.7770997811203522
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,562,1.0711078707892767
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,564,1.1719209318172474
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,570,1.1550370216052848
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L2-L3,572,1.1499514826107031
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L2-L3,254,-0.3745297525177982
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,6,1.6360090608140183
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,31,1.4563906464279892
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,69,1.806567921216768
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,94,2.084219197569009
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,128,1.4561235018941296
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,147,1.4890811850646912
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,193,1.6207605485089367
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,199,1.5040470797013086
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,200,1.4354291418721807
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,243,1.702576613347535
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,263,2.155502905341507
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,292,1.6420549198156102
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,296,1.5834892445566346
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,329,2.205348118353701
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,336,1.8914414157879629
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,344,1.4707838527232084
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,352,1.5040789862629893
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,415,2.526629341352628
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,449,1.425662489346358
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,494,1.9657263090487265
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,516,1.4444402534534715
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,549,3.2415367130024464
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L3-L4,571,1.9297005810295147
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L3-L4,17,0.0063577153018385
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L3-L4,50,0.1449777638282654
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L3-L4,93,0.0183087474267509
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L3-L4,314,0.0947259564053659
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L3-L4,379,-0.3732921193778331
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L3-L4,381,0.0762002039745723
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L3-L4,423,0.1008258317507326
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,21,2.181904007051756
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,70,1.2914217841107778
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,85,1.4734066357034763
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,91,1.3542926982688073
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,217,1.3435459420467453
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,230,2.968250114634703
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,236,1.4895439886290411
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,246,1.5425224246045843
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,250,1.3361081168443256
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,256,1.4628087513216848
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,278,1.69200264913011
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,317,1.348240419356852
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,318,2.8519874251969384
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,329,2.72603070503372
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,333,1.712088419666742
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,344,1.5997301217116586
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,393,1.377241262602734
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,446,1.2733964029382818
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,460,1.412974261124674
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L4-L5,532,1.5379970780990495
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,4,0.2521655860639704
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,8,0.380311569361961
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,11,-0.9672005996614635
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,12,-0.0590569968955136
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,17,0.3002750874853497
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,23,0.1314893146129634
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,36,0.2378665673040529
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,39,0.160123765336678
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,42,0.3237673970032801
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,57,-0.1721028838054312
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,62,0.3390322083135757
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,63,-0.1716235573607143
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,84,0.3323740286545167
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,103,0.4101575676482216
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,107,0.3458840390446802
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,136,0.2810036365382835
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,174,0.4337791165219009
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,183,0.3256934713016033
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,214,0.1350326354255244
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,241,0.3688524546146983
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,242,-0.2619742685113131
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,263,-0.1812758221608028
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,268,0.0133902493171689
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,277,0.1861971996720459
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,316,-0.375386752168783
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,320,0.4175511178351136
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,337,0.4217044031499632
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,338,0.0155002864041478
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,342,-0.2857878582782547
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,345,0.288538219280877
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,373,0.2634611978317203
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,379,-0.0278098335300249
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,387,0.0038669946139364
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,397,0.3404730297655547
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,401,-0.8548745576380483
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,405,0.3211737601125186
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,445,0.3214196167631193
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,475,0.3648538881296517
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,476,0.2124487876950311
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,497,0.074060850273085
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,501,0.1634952700519605
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,514,0.2890137936826207
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,515,0.1643993546907474
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,519,-0.2238079137962785
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,520,-0.0132844984760609
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,529,0.1448761219820102
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,537,0.1015744789433163
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,546,0.0200998271546737
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L4-L5,568,-0.1176117318587195
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,56,1.840728012489532
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,84,1.4060104036588648
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,217,0.5463196254452818
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,220,0.5517118688624016
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,221,0.7540872621637682
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,256,0.5322786349695576
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,263,1.3068932068657482
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,294,1.2655305223992208
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,333,2.339984776471592
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,344,0.804351313288791
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,352,0.8312074658024784
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,421,1.0024711764601548
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,426,0.538328247406092
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,446,0.886966121236636
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,449,1.4928995814533683
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,469,1.1506254786594248
+nghi bỏ sót,disc_displacement,disc_post_bulge_mm,L5-S1,504,1.4889534521832497
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,4,-0.8143056295788256
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,11,-1.611150724655861
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,15,-0.8822678975795455
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,39,-1.3878307973666288
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,48,-1.3627374063643778
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,63,-1.0852679765447242
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,101,-0.7724691178679279
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,175,-1.6399413354808985
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,205,-0.9822322994612378
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,215,-0.8971591448427176
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,248,-1.6336134423294588
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,277,-0.8377473082785265
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,278,-1.0707416698774637
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,308,-1.0502292321661528
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,338,-2.2773823929781827
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,406,-0.957326814099499
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,416,-0.9103873250078288
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,439,-0.7963838473453109
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,452,-1.549372666808619
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,457,-1.828362598894504
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,472,-1.3630004648715044
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,514,-0.9132123827275328
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,517,-0.7451246505740059
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,519,-1.301715479780393
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,524,-1.5182631363057268
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,534,-1.2872464755444888
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,548,-0.8351940993360181
+số đo không ủng hộ,disc_displacement,disc_post_bulge_mm,L5-S1,575,-1.568306541343631
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L1-L2,126,6.513129695215164
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L1-L2,155,7.57649780871968
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L1-L2,193,8.772786936412261
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L1-L2,196,8.70632642931823
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L1-L2,199,8.241102879660003
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L1-L2,230,6.047906145556938
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L1-L2,372,8.772786936412261
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L1-L2,373,8.639865922224196
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L1-L2,415,8.241102879660003
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L1-L2,421,8.639865922224196
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L1-L2,446,8.772786936412261
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L1-L2,527,8.241102879660003
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L2-L3,74,7.244195273249519
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L2-L3,191,6.646050709403228
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L2-L3,200,5.981445638462906
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L2-L3,216,7.310655780343551
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L2-L3,254,4.519314482394195
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L2-L3,334,6.9118927377793575
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L2-L3,401,0.1329210141880645
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L2-L3,404,7.177734766155487
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L2-L3,446,6.9118927377793575
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,109,5.981445638462906
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,147,7.443576794531616
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,150,6.778971723591293
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,191,6.11436665265097
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,195,5.848524624274841
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,200,7.177734766155487
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,208,6.646050709403228
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,217,5.848524624274841
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,219,5.981445638462906
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,222,5.981445638462906
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,254,5.782064117180809
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,281,5.050998539146454
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,320,7.310655780343551
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,326,5.715603610086776
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,336,3.721788397265808
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,415,5.582682595898712
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,422,6.646050709403228
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,431,6.9118927377793575
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,437,7.310655780343551
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,494,6.513129695215164
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,503,6.11436665265097
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,516,6.9118927377793575
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L3-L4,571,6.513129695215164
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L3-L4,50,13.026259390430328
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L3-L4,58,11.03244417760936
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L3-L4,251,12.095812291113877
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L3-L4,290,11.564128234361618
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L3-L4,307,10.899523163421296
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,27,7.443576794531616
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,31,6.9118927377793575
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,46,8.108181865471938
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,56,8.174642372565971
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,68,7.310655780343551
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,128,7.975260851283874
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,144,7.443576794531616
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,169,4.120551439830002
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,175,7.310655780343551
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,191,4.319932961112098
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,232,8.241102879660003
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,248,7.975260851283874
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,256,7.975260851283874
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,278,7.57649780871968
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,292,5.981445638462906
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,309,7.8423398370958095
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,320,6.380208681027099
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,329,7.8423398370958095
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,333,5.250380060428551
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,350,8.108181865471938
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,407,5.782064117180809
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,408,7.310655780343551
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,426,7.8423398370958095
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,446,6.778971723591293
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,469,7.310655780343551
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,502,5.715603610086776
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,517,8.241102879660003
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,520,8.241102879660003
+nghi bỏ sót,thecal_sac_compression,canal_ap_mm,L4-L5,522,5.449761581710647
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,6,14.089627503934844
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,8,12.7604173620542
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,17,11.697049248549682
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,36,11.298286205985487
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,44,11.697049248549682
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,48,11.298286205985487
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,84,13.292101418806457
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,95,11.829970262737746
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,99,11.962891276925811
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,134,15.41883764581549
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,235,11.564128234361618
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,251,12.893338376242262
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,258,11.829970262737746
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,277,11.431207220173553
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,280,12.095812291113877
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,297,11.829970262737746
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,335,15.817600688379684
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,348,12.22873330530194
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,382,12.361654319490004
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,388,11.298286205985487
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,397,12.361654319490004
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,412,11.431207220173553
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,414,11.962891276925811
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,428,12.7604173620542
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,432,12.627496347866137
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,441,12.893338376242262
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,445,12.05859375
+số đo không ủng hộ,thecal_sac_compression,canal_ap_mm,L4-L5,533,13.42502243299452
+nghi bỏ sót,spondylolisthesis,listhesis_mm,L4-L5,575,3.112351992957489

@@ -7,7 +7,7 @@
 * KHÔNG in nội dung ghi chú ra màn hình - giữ tập gold "chưa ai nhìn" khi viết rule (5b).
 
 Đầu ra
-  outputs/tables/nlp_split.csv        patient_id, stratum, split (dev / gold)
+  outputs/tables/5_nlp/nlp_split.csv        patient_id, stratum, split (dev / gold)
   data/gold/gold_annotation.xlsx      HuongDan / NhanBenh / QuyUoc / ViDu / Notes / Labels
                                       (+ sheet ẩn Lists cho danh sách thả xuống)
 
@@ -27,7 +27,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import CODE, REPORT_XLSX, TABLES, SEED
+from common import CODE, REPORT_XLSX, SEED, T_NLP
 
 GOLD_DIR = CODE / "data" / "gold"
 N_GOLD = 80
@@ -354,7 +354,7 @@ def main():
         gold_ids += rng.choice(ids, size=k, replace=False).tolist()
     d["split"] = np.where(d.patient_id.isin(gold_ids), "gold", "dev")
     d[["patient_id", "stratum", "split"]].sort_values("patient_id").to_csv(
-        TABLES / "nlp_split.csv", index=False)
+        T_NLP / "nlp_split.csv", index=False)
 
     example_pid = next(p for p in EXAMPLES if p in set(d.loc[d.split == "dev", "patient_id"]))
     example_note = d.loc[d.patient_id == example_pid, "note"].iloc[0]
@@ -369,7 +369,7 @@ def main():
     neg = d.note.str.contains(r"\bno\b|without|\bnot\b", case=False, regex=True)
     print(f"Gold có câu phủ định: {int((neg & (d.split == 'gold')).sum())} / {N_GOLD}")
     print(f"Ví dụ mẫu: BN {example_pid} (tập dev)")
-    print(f"Đã ghi {TABLES / 'nlp_split.csv'}")
+    print(f"Đã ghi {T_NLP / 'nlp_split.csv'}")
     print(f"Đã ghi {out}")
 
 
