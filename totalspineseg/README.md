@@ -21,9 +21,10 @@ Giải thích về bộ dữ liệu, giải phẫu và thuật ngữ y khoa: xem
 | 3 | `s03_tss_pilot.py` – cài TotalSpineSeg, chạy thử trên CPU (BN 1: phân đoạn tốt, **~15 phút/ca**) | ✅ Xong |
 | 3b | `s04_pack_for_kaggle.py` + [`kaggle/`](kaggle/README.md) – chạy trên Kaggle GPU (T4): **514/515 ca, ~18 s/ca, 2 giờ 41 phút**. Ca thiếu (BN 515) do chọn nhầm series phóng to → sửa quy tắc bước 2, chạy lại riêng ca này trên CPU | ✅ Xong |
 | 4 | `s05_tss_qc.py` – gộp kết quả 515 ca, QC phân đoạn: **514/515 đạt, 513 dùng được theo tầng** – [mục 4](#4-bước-4--qc-kết-quả-phân-đoạn-totalspineseg-s05_tss_qcpy) | ✅ Xong |
-| 5 | NLP ghi chú → nhãn theo tầng, **bằng rule** (LLM tạm hoãn) – thiết kế: [mục 5](#5-bước-5--trích-xuất-nhãn-từ-ghi-chú-bác-sĩ-bằng-rule-thiết-kế) | 🔄 Đang làm |
-| 5a | `s06_gold_sample.py` – tách 435 dev / 80 gold, tạo `data/gold/gold_annotation.xlsx` | ✅ Xong – **chờ nhóm gán nhãn gold** |
+| 5 | NLP ghi chú → nhãn theo tầng, **bằng rule** (LLM tạm hoãn) – thiết kế: [mục 5](#5-bước-5--trích-xuất-nhãn-từ-ghi-chú-bác-sĩ-bằng-rule-thiết-kế) | ✅ Xong |
+| 5a | `s06_gold_sample.py` – tách 435 dev / 80 gold, tạo `data/gold/gold_annotation.xlsx`; nhãn gold do Claude Opus 5.5 gán (silver standard) | ✅ Xong |
 | 5b | `nlp_rules.py` + `s07_nlp_extract.py` – bộ rule, lặp 4 vòng trên dev ([mục 5.10](#510-bước-5b--cài-đặt-và-kết-quả-trên-tập-dev)) | ✅ Xong (dev) – chấm trên gold ở 5d |
+| 5d | `s09_nlp_eval.py` – chấm rule trên gold: **F1 0,959** (tầng – khẳng định), 0,971 (bệnh nhân); nhãn cuối 515 ghi chú ([mục 5.11](#511-bước-5d--chấm-bộ-rule-trên-bộ-gold-và-tạo-nhãn-cuối-s09_nlp_evalpy)) | ✅ Xong |
 | 6 | Tải kết quả Kaggle về, kiểm tra đủ 515 ca – gộp vào bước 4 | ✅ Xong |
 | 7 | `s08_level_features.py` – 13 số đo theo tầng + góc ưỡn – [mục 7](#7-bước-7--tính-số-đo-theo-tầng-từ-mask-s08_level_featurespy--thiết-kế) | ✅ Xong |
 | 8 | Ghép, phân tích, biểu đồ | ⏳ |
@@ -881,6 +882,81 @@ quan cột sống và phần lớn thuộc nhóm không có nhãn (mục 5.9). 1
   T12-L1 3, UNSPEC 333 – tập trung ở 2 tầng dưới, khớp y văn.
 - Đây là **tự kiểm tra trên dev**, chưa phải đánh giá chính thức – F1 thật sẽ đo trên 80 ghi chú
   gold ở bước 5d, khi nhóm gán nhãn xong.
+
+### 5.11. Bước 5d – chấm bộ rule trên bộ gold và tạo nhãn cuối (`s09_nlp_eval.py`)
+
+**Nguyên tắc:** bộ rule được **đóng băng** ở commit `c67d625` (PR #3) trước khi chấm. Điểm báo cáo
+là điểm của bộ rule này. Nếu sau đó sửa rule dựa trên lỗi thấy ở bộ gold, phải ghi riêng là kết
+quả "sau khi chỉnh" (điểm sẽ bị thổi phồng vì rule đã "nhìn" đề thi).
+
+**Đầu vào:** `nlp_findings_long_all.csv` (rule chạy trên cả 515 ghi chú, `s07 --all`) và
+`data/gold/gold_labels_llm.csv` (423 dòng, 80 ghi chú). Không chấm nhãn `other`, `none` (rule
+không sinh hai nhãn này).
+
+**Ba cách chấm:**
+
+| Mức | Đơn vị so khớp | Dùng để |
+|---|---|---|
+| **Tầng – khẳng định** | `(patient, level, finding)` với `present = TRUE` | Đúng thứ bước 8 dùng (ghép số đo theo tầng) – **chỉ số chính** |
+| **Bệnh nhân – khẳng định** | `(patient, finding)`: có ít nhất 1 dòng khẳng định | So với các nghiên cứu khác (thường chấm ở mức bệnh nhân) |
+| **Bệnh nhân – phủ định** | `(patient, finding)`: có dòng phủ định và **không** có dòng khẳng định | Chấm phần phủ định (theo Q12 phủ định nằm ở `UNSPEC`) |
+
+Với mỗi mức: precision, recall, F1 cho từng bệnh và tổng hợp micro (gộp mọi bệnh) / macro (trung
+bình các bệnh có trong gold). Với các cặp khẳng định khớp ở mức tầng: tỉ lệ đúng `severity`, `side`.
+
+**Phân tích lỗi:** mọi FP (rule có, gold không) và FN (gold có, rule không) ở mức tầng – kèm câu gốc –
+ghi vào `nlp_eval_errors.csv`, rồi phân loại nguyên nhân.
+
+**Nhãn cuối (cho bước 8):** từ kết quả rule trên cả 515 ghi chú:
+- `labels_level.csv` – mỗi `(patient_id, level)` một dòng, mỗi bệnh một cột: `1` = khẳng định,
+  `0` = không nhắc hoặc phủ định (nhãn yếu, Q10).
+- `labels_patient.csv` – mỗi bệnh nhân một dòng: `1` nếu khẳng định ở bất kỳ tầng nào; kèm
+  `n_findings`, `normal_study` (không có phát hiện khẳng định nào), `multilevel` (≥ 2 tầng có bệnh).
+
+Chạy: `python src/s07_nlp_extract.py --all` rồi `python src/s09_nlp_eval.py`.
+
+#### Kết quả (bộ rule ở commit `c67d625`, chấm trên 79 ghi chú gold)
+
+Một ghi chú gold chỉ có nhãn `other` nên không tham gia chấm → 79 ghi chú, 414 dòng nhãn.
+
+| Cách chấm | Precision | Recall | **F1 micro** | F1 macro |
+|---|---|---|---|---|
+| **Tầng – khẳng định** (chỉ số chính) | 0,946 | 0,973 | **0,959** | 0,862 |
+| Bệnh nhân – khẳng định | 0,955 | 0,988 | **0,971** | 0,950 |
+| Bệnh nhân – phủ định | 1,000 | 0,873 | **0,932** | 0,687 |
+
+Thuộc tính trên 330 cặp khẳng định khớp ở mức tầng: **mức độ đúng 98,2 %**, **bên đúng 93,6 %**.
+
+Theo bệnh (tầng – khẳng định): các bệnh phổ biến đều F1 ≥ 0,95 – phồng đĩa 0,988 (81 dòng
+gold), chèn ép bao màng cứng 0,956 (79), hẹp lỗ liên hợp 0,970 (49), co cứng cơ 1,000 (29), chèn
+ép rễ 0,960 (24), lồi đĩa 1,000 (23), mất nước đĩa 1,000 (15). F1 macro bị kéo xuống bởi vài bệnh
+hiếm có 1–5 dòng gold: hẹp ống sống 0,714, tổn thương tủy xương 0,000, nang Tarlov 0,000 (xem lỗi).
+
+**Phân tích lỗi** (19 FP + 9 FN ở mức tầng, `nlp_eval_errors.csv`):
+
+| Nguyên nhân | FP | FN | Ví dụ |
+|---|---|---|---|
+| "abutting" (chạm) đi cùng động từ chèn ép khác trong câu → bị tính là chèn ép (Q1) | 4 | – | "abutting the thecal sac **and encroaching** exit canals" |
+| Phát hiện gắn với **đốt** (tủy xương, nang Tarlov) bị kế thừa tầng đĩa của câu trước; đáp án ghi `UNSPEC` | 4 | 2 | "multiple small tarlov cysts" sau câu có L3-L4, L4-L5 |
+| Mẫu hẹp ống sống quá rộng ("compressing … extending to lateral recess", "canal … narrowed disc space") | 4 | – | |
+| Câu khuôn mẫu **mất chữ "No"** (giới hạn đã biết, 5.9) | 2 | – | "The thecal sac or nerve root compression noted" |
+| "foraminal" là **vị trí** của khối lồi, không phải hẹp lỗ liên hợp | 2 | – | "Lt foraminal disc protrusion …" |
+| Câu nhắc 2 tầng nhưng phát hiện chỉ thuộc 1 tầng | 1 | – | "… L3/L4 & L5-S1 levels … with annular tear at L5-S1" |
+| Câu "bình thường" dạng "preserved … marrow signal" bị hiểu là có bệnh | 1 | – | |
+| Thoát vị **cột sống cổ** (C4-C5) nhắc trong ghi chú | 1 | – | |
+| Dòng tiêu đề tầng riêng ("L3-L4, L4-L5:") – câu sau có tầng riêng nên không kế thừa | – | 4 | |
+| Lỗi chính tả / viết thiếu chưa có trong bảng sửa ("thecal nsac", "thecal and …", "ligamentum hypertrophy") | – | 3 | |
+
+Phần **phủ định** (9 FN mức bệnh nhân) do cùng các nguyên nhân: "abutting" đi kèm động từ khác (4),
+câu mất chữ "No" (2), "preserved … signal" (2), "Adequate the spinal canal" (cách viết lạ, 1).
+Precision phủ định = 1,000: rule không bao giờ gán nhầm một phát hiện có thật thành phủ định.
+
+Rule **không được sửa** sau khi chấm – các nguyên nhân trên là hướng cải tiến (nếu sửa, phải ghi
+điểm "sau khi chỉnh" riêng).
+
+**Nhãn cuối (515 ghi chú):** `labels_level.csv` 1.029 dòng `(patient_id, level)`;
+`labels_patient.csv` 515 bệnh nhân – 57 ca không có phát hiện khẳng định nào, 201 ca bệnh ở ≥ 2
+tầng. Tần suất từng bệnh: xem `../data/README.md` mục 5.4.
 
 ---
 
