@@ -1,9 +1,9 @@
-# Du lieu goc - KHONG commit (12,5 GB anh y te). Chi giu data/README.md va data/assets/
+# Dữ liệu gốc - KHÔNG commit (12,5 GB ảnh y tế). Chỉ giữ data/README.md và data/assets/
 data/*
 !data/README.md
 !data/assets/
 
-# Ket qua trung gian lon / anh y te da chuyen doi - tao lai bang script
+# Kết quả trung gian lớn / ảnh y tế đã chuyển đổi - tạo lại bằng script
 totalspineseg/outputs/nifti/
 totalspineseg/outputs/tss/
 totalspineseg/outputs/kaggle/
@@ -13,7 +13,7 @@ totalspineseg/outputs/cache/
 totalspineseg/outputs/*.log
 totalspineseg/outputs/tables/dicom_index.csv
 
-# Moi truong TotalSpineSeg (~1,2 GB) va trong so mo hinh (~4 GB)
+# Môi trường TotalSpineSeg (~1,2 GB) và trọng số mô hình (~4 GB)
 totalspineseg/.venv-tss/
 totalspineseg/.tss_data/
 
@@ -24,7 +24,7 @@ __pycache__/
 venv/
 .ipynb_checkpoints/
 
-# He dieu hanh / editor
+# Hệ điều hành / editor
 .DS_Store
 Thumbs.db
 .vscode/

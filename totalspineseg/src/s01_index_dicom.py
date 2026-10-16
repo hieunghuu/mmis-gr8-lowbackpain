@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
-"""S01 - Lap chi muc header DICOM cua toan bo MRI_Data (khong doc pixel).
+"""S01 - Lập chỉ mục header DICOM của toàn bộ MRI_Data (không đọc pixel).
 
-Moi file .ima -> 1 dong trong outputs/tables/dicom_index.csv.
+Mỗi file .ima -> 1 dòng trong outputs/tables/dicom_index.csv.
 
-* patient_id lay tu TEN THU MUC (0001 -> 1), vi tag PatientID da bi an danh (rong).
-* Mat cat (plane) tinh tu ImageOrientationPatient: phap tuyen = tich co huong cua
-  vector hang va vector cot; truc nao lon nhat thi la mat cat do
-  (x -> SAG, y -> COR, z -> AX). Khong tin ten thu muc.
-* Trong so (weighting) lay tu SeriesDescription (t1/t2), kiem tra cheo bang
-  EchoTime: T2 co TE dai (> 60 ms), T1 co TE ngan.
-* Localizer va POSDISP (anh phu tro) duoc danh co de loai o buoc sau.
+* patient_id lấy từ TÊN THƯ MỤC (0001 -> 1), vì tag PatientID đã bị ẩn danh (rỗng).
+* Mặt cắt (plane) tính từ ImageOrientationPatient: pháp tuyến = tích có hướng của
+  vector hàng và vector cột; trục nào lớn nhất thì là mặt cắt đó
+  (x -> SAG, y -> COR, z -> AX). Không tin tên thư mục.
+* Trọng số (weighting) lấy từ SeriesDescription (t1/t2), kiểm tra chéo bằng
+  EchoTime: T2 có TE dài (> 60 ms), T1 có TE ngắn.
+* Localizer và POSDISP (ảnh phụ trợ) được đánh cờ để loại ở bước sau.
 
-Chay (tu thu muc totalspineseg/):  python src/s01_index_dicom.py
-Chi in lai tom tat:        python src/s01_index_dicom.py --summary
+Chạy (từ thư mục totalspineseg/):  python src/s01_index_dicom.py
+Chỉ in lại tóm tắt:        python src/s01_index_dicom.py --summary
 """
 import sys
 from multiprocessing import Pool
@@ -54,7 +54,7 @@ def read_header(path):
     }
     try:
         d = pydicom.dcmread(path, stop_before_pixels=True)
-    except Exception as e:  # file hong
+    except Exception as e:  # file hỏng
         rec["error"] = str(e)[:200]
         return rec
 
@@ -104,73 +104,73 @@ def read_header(path):
 
 def main():
     files = sorted(MRI_DIR.glob("*/*/*/*.ima"))
-    print(f"Tim thay {len(files):,} file .ima trong {MRI_DIR}")
+    print(f"Tìm thấy {len(files):,} file .ima trong {MRI_DIR}")
     with Pool() as pool:
         recs = pool.map(read_header, files, chunksize=200)
     df = pd.DataFrame(recs).sort_values(
         ["patient_id", "study_dir", "series_number", "instance"]).reset_index(drop=True)
     out = TABLES / "dicom_index.csv"
     df.to_csv(out, index=False)
-    print(f"Da ghi {out} ({len(df):,} dong)")
+    print(f"Đã ghi {out} ({len(df):,} dòng)")
     summarize(df)
 
 
 def axial_blocks(g):
-    """So khoi nghieng trong 1 series axial = so huong lat khac nhau."""
+    """Số khối nghiêng trong 1 series axial = số hướng lát khác nhau."""
     return g[["iop_cx", "iop_cy", "iop_cz"]].round(2).drop_duplicates().shape[0]
 
 
 def summarize(df):
-    print("\n=== TOM TAT ===")
+    print("\n=== TÓM TẮT ===")
     if "error" in df:
-        print(f"File loi khong doc duoc: {df['error'].notna().sum()}")
+        print(f"File lỗi không đọc được: {df['error'].notna().sum()}")
     main_imgs = df[~df.is_localizer & ~df.is_posdisp]
-    print(f"Benh nhan: {df.patient_id.nunique()}")
-    print(f"Lat cat: tong {len(df):,} | localizer {df.is_localizer.sum():,} | "
-          f"posdisp {df.is_posdisp.sum():,} | anh chinh {len(main_imgs):,}")
-    print("\nAnh chinh theo mat cat x trong so (so lat):")
+    print(f"Bệnh nhân: {df.patient_id.nunique()}")
+    print(f"Lát cắt: tổng {len(df):,} | localizer {df.is_localizer.sum():,} | "
+          f"posdisp {df.is_posdisp.sum():,} | ảnh chính {len(main_imgs):,}")
+    print("\nẢnh chính theo mặt cắt x trọng số (số lát):")
     print(pd.crosstab(main_imgs.plane, main_imgs.weighting).to_string())
 
     bad = main_imgs[~main_imgs.weighting_te_ok]
-    print(f"\nLat co ten series mau thuan voi EchoTime: {len(bad)}")
+    print(f"\nLát có tên series mâu thuẫn với EchoTime: {len(bad)}")
     if len(bad):
         print(bad.groupby(["series_desc"]).size().head(10).to_string())
 
     studies = df.groupby("patient_id").study_dir.nunique()
-    print(f"\nBenh nhan co >1 study: {(studies > 1).sum()}")
+    print(f"\nBệnh nhân có >1 study: {(studies > 1).sum()}")
 
-    # Chuoi chinh can dung: T2 TSE (khong phai TIRM/STIR, TrueFISP, CISS...).
-    # Xet tren MOI study, vi thu tu ten thu muc khong noi len study nao la cot song
-    # (vd BN 230 co study ABDOMEN_ dung truoc L-SPINE_).
+    # Chuỗi chính cần dùng: T2 TSE (không phải TIRM/STIR, TrueFISP, CISS...).
+    # Xét trên MỌI study, vì thứ tự tên thư mục không nói lên study nào là cột sống
+    # (vd BN 230 có study ABDOMEN_ đứng trước L-SPINE_).
     t2 = main_imgs[main_imgs.series_desc.str.lower().str.contains("t2_tse")]
     has_sag = t2[t2.plane == "SAG"].groupby("patient_id").series_dir.nunique()
     has_ax = t2[t2.plane == "AX"].groupby("patient_id").series_dir.nunique()
     pids = df.patient_id.unique()
-    print(f"Co T2 TSE SAG: {has_sag.reindex(pids).gt(0).sum()} / {len(pids)} "
+    print(f"Có T2 TSE SAG: {has_sag.reindex(pids).gt(0).sum()} / {len(pids)} "
           f"(>1 series: {(has_sag > 1).sum()})")
-    print(f"Co T2 TSE AX : {has_ax.reindex(pids).gt(0).sum()} / {len(pids)} "
+    print(f"Có T2 TSE AX : {has_ax.reindex(pids).gt(0).sum()} / {len(pids)} "
           f"(>1 series: {(has_ax > 1).sum()})")
     missing = sorted(set(pids) - set(has_sag.index))
     if missing:
-        print(f"  Thieu T2 TSE SAG: {missing}")
+        print(f"  Thiếu T2 TSE SAG: {missing}")
     missing = sorted(set(pids) - set(has_ax.index))
     if missing:
-        print(f"  Thieu T2 TSE AX : {missing}")
+        print(f"  Thiếu T2 TSE AX : {missing}")
     mislabeled = t2[t2.series_desc.str.lower().str.contains("sag") & (t2.plane != "SAG")]
-    print(f"Lat ten 'sag' nhung huong thuc te KHONG phai SAG: {len(mislabeled)} "
+    print(f"Lát tên 'sag' nhưng hướng thực tế KHÔNG phải SAG: {len(mislabeled)} "
           f"(BN {sorted(mislabeled.patient_id.unique())})")
 
     blocks = t2[t2.plane == "AX"].groupby(["patient_id", "series_dir"]).apply(
         axial_blocks, include_groups=False)
-    print("\nSo khoi nghieng trong moi series T2 AX (so series):")
+    print("\nSố khối nghiêng trong mỗi series T2 AX (số series):")
     print(blocks.value_counts().sort_index().to_string())
 
     n_sag = t2[t2.plane == "SAG"].groupby(["patient_id", "series_dir"]).size()
-    print(f"\nSo lat moi series T2 SAG: min {n_sag.min()}, trung vi {n_sag.median():.0f}, max {n_sag.max()}")
+    print(f"\nSố lát mỗi series T2 SAG: min {n_sag.min()}, trung vị {n_sag.median():.0f}, max {n_sag.max()}")
 
 
 if __name__ == "__main__":
-    if "--summary" in sys.argv:   # chi in lai tom tat tu CSV da co
+    if "--summary" in sys.argv:   # chỉ in lại tóm tắt từ CSV đã có
         summarize(pd.read_csv(TABLES / "dicom_index.csv", low_memory=False))
     else:
         main()

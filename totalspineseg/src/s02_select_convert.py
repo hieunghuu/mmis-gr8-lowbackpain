@@ -1,46 +1,46 @@
 # -*- coding: utf-8 -*-
-"""S02 - Chon series T2 TSE SAG + T2 TSE AX cho moi benh nhan, chuyen sang NIfTI.
+"""S02 - Chọn series T2 TSE SAG + T2 TSE AX cho mỗi bệnh nhân, chuyển sang NIfTI.
 
-Quy tac chon (dua tren dicom_index.csv cua s01)
+Quy tắc chọn (dựa trên dicom_index.csv của s01)
 -----------------------------------------------
-* Chi xet anh chinh (bo localizer, POSDISP), ten series chua "t2_tse"
-  (bo t2_tirm/STIR, trufi, ciss... vi do tuong phan khac).
-* Mat cat lay theo HUONG THUC TE (cot plane tu ImageOrientationPatient), khong theo ten.
-* SAG: uu tien study "L-SPINE*", roi truong nhin (FOV = Rows x PixelSpacing) >= 250 mm,
-  roi series co nhieu lat nhat, hoa thi lay series chup SAU (SeriesNumber lon hon -
-  thuong la chup lai vi lan dau bi rung). Dieu kien FOV loai anh chup phong to
-  (vd BN 515: t2_tse_sag_448, FOV 160 mm, 25 lat) - khong du moc giai phau de
-  TotalSpineSeg danh so tang.
-  Truoc so lat con xet: tam series SAG cach tam vung anh axial (cung study) <= 100 mm.
-  Anh axial luon chup tai cac dia that lung, nen dieu kien nay loai series SAG dat o
-  vung khac (vd BN 420: series nguc C7-T12, lech 237 mm; BN 542: lech xuong chau 109 mm).
-  Dung nguong (khong xep "gan nhat") de khong doi lua chon cua cac BN co series chup
-  lai cung vi tri (chi lech vai mm).
-* AX: uu tien CUNG study voi SAG da chon (de chung he toa do), roi study L-SPINE,
-  roi nhieu lat nhat, roi series chup sau.
+* Chỉ xét ảnh chính (bỏ localizer, POSDISP), tên series chứa "t2_tse"
+  (bỏ t2_tirm/STIR, trufi, ciss... vì độ tương phản khác).
+* Mặt cắt lấy theo HƯỚNG THỰC TẾ (cột plane từ ImageOrientationPatient), không theo tên.
+* SAG: ưu tiên study "L-SPINE*", rồi trường nhìn (FOV = Rows x PixelSpacing) >= 250 mm,
+  rồi series có nhiều lát nhất, hòa thì lấy series chụp SAU (SeriesNumber lớn hơn -
+  thường là chụp lại vì lần đầu bị rung). Điều kiện FOV loại ảnh chụp phóng to
+  (vd BN 515: t2_tse_sag_448, FOV 160 mm, 25 lát) - không đủ mốc giải phẫu để
+  TotalSpineSeg đánh số tầng.
+  Trước số lát còn xét: tâm series SAG cách tâm vùng ảnh axial (cùng study) <= 100 mm.
+  Ảnh axial luôn chụp tại các đĩa thắt lưng, nên điều kiện này loại series SAG đặt ở
+  vùng khác (vd BN 420: series ngực C7-T12, lệch 237 mm; BN 542: lệch xuống chậu 109 mm).
+  Dùng ngưỡng (không xếp "gần nhất") để không đổi lựa chọn của các BN có series chụp
+  lại cùng vị trí (chỉ lệch vài mm).
+* AX: ưu tiên CÙNG study với SAG đã chọn (để chung hệ tọa độ), rồi study L-SPINE,
+  rồi nhiều lát nhất, rồi series chụp sau.
 
-Tach khoi axial
+Tách khối axial
 ---------------
-Mot series T2 AX thuong gom 3-5 khoi, moi khoi nghieng song song mot dia dem.
-Lat duoc gom khoi theo huong (ImageOrientationPatient lam tron 2 chu so), roi tach
-tiep khi co khoang nhay vi tri lon (2 khoi cho 2 dia co the trung goc nghieng).
-Moi khoi -> 1 file NIfTI rieng. Trong 1 series SAG neu co >1 huong thi giu khoi lon nhat.
+Một series T2 AX thường gồm 3-5 khối, mỗi khối nghiêng song song một đĩa đệm.
+Lát được gom khối theo hướng (ImageOrientationPatient làm tròn 2 chữ số), rồi tách
+tiếp khi có khoảng nhảy vị trí lớn (2 khối cho 2 đĩa có thể trùng góc nghiêng).
+Mỗi khối -> 1 file NIfTI riêng. Trong 1 series SAG nếu có >1 hướng thì giữ khối lớn nhất.
 
 Ghi NIfTI
 ---------
-Lat sap theo vi tri that doc phap tuyen (ImagePositionPatient . normal), khong theo
-InstanceNumber. Huong, goc, spacing lay tu header -> SimpleITK tu doi LPS sang RAS
-khi ghi .nii.gz. Kiem tra khoang cach giua cac lat co deu khong.
+Lát sắp theo vị trí thật dọc pháp tuyến (ImagePositionPatient . normal), không theo
+InstanceNumber. Hướng, gốc, spacing lấy từ header -> SimpleITK tự đổi LPS sang RAS
+khi ghi .nii.gz. Kiểm tra khoảng cách giữa các lát có đều không.
 
-Dau ra
+Đầu ra
 ------
 outputs/nifti/sag/0001.nii.gz
-outputs/nifti/ax/0001_b1.nii.gz, 0001_b2.nii.gz ... (b1 = khoi cao nhat, gan dau)
-outputs/tables/series_selected.csv     - series chon cho moi BN + ly do
-outputs/tables/nifti_volumes.csv       - moi file NIfTI 1 dong (kich thuoc, spacing, QC)
-outputs/figures/qc_s02_geometry.png    - vi tri cac khoi axial chieu len anh sagittal
+outputs/nifti/ax/0001_b1.nii.gz, 0001_b2.nii.gz ... (b1 = khối cao nhất, gần đầu)
+outputs/tables/series_selected.csv     - series chọn cho mỗi BN + lý do
+outputs/tables/nifti_volumes.csv       - mỗi file NIfTI 1 dòng (kích thước, spacing, QC)
+outputs/figures/qc_s02_geometry.png    - vị trí các khối axial chiếu lên ảnh sagittal
 
-Chay (tu thu muc totalspineseg/):  python src/s02_select_convert.py
+Chạy (từ thư mục totalspineseg/):  python src/s02_select_convert.py
 """
 import sys
 from multiprocessing import Pool
@@ -60,12 +60,12 @@ from common import MRI_DIR, TABLES, FIGURES, NIFTI
 SAG_DIR = NIFTI / "sag"
 AX_DIR = NIFTI / "ax"
 IOP = ["iop_rx", "iop_ry", "iop_rz", "iop_cx", "iop_cy", "iop_cz"]
-MIN_SAG_FOV_MM = 250      # 510/515 series SAG chuan co FOV 280 mm
-MAX_SAG_AX_DIST_MM = 100  # tam SAG phai gan vung anh axial (cac dia that lung)
+MIN_SAG_FOV_MM = 250      # 510/515 series SAG chuẩn có FOV 280 mm
+MAX_SAG_AX_DIST_MM = 100  # tâm SAG phải gần vùng ảnh axial (các đĩa thắt lưng)
 QC_PATIENTS = [1, 2, 100, 230, 300, 450]
 
 
-# ----------------------------------------------------------------- chon series
+# ----------------------------------------------------------------- chọn series
 def load_candidates():
     df = pd.read_csv(TABLES / "dicom_index.csv", low_memory=False)
     df = df[~df.is_localizer & ~df.is_posdisp
@@ -73,7 +73,7 @@ def load_candidates():
             & df.plane.isin(["SAG", "AX"])].copy()
     df["lspine"] = df.study_dir.str.upper().str.startswith("L-SPINE")
     df["fov_mm"] = df.rows * df.px_row_mm
-    # toa do z (dau-chan, mm) cua TAM lat = goc + nua hang x huong cot + nua cot x huong hang
+    # tọa độ z (đầu-chân, mm) của TÂM lát = gốc + nửa hàng x hướng cột + nửa cột x hướng hàng
     df["center_z"] = (df.ipp_z + df.rows / 2 * df.px_row_mm * df.iop_cz
                       + df.cols / 2 * df.px_col_mm * df.iop_rz)
     df["orient_key"] = df[IOP].round(2).astype(str).agg(",".join, axis=1)
@@ -88,7 +88,7 @@ def series_table(df):
                    fov_mm=("fov_mm", "first"),
                    center_z=("center_z", "mean"),
                    n_files=("file", "size"),
-                   # dem vi tri lat khac nhau, vi co series bi luu trung moi lat 2 lan
+                   # đếm vị trí lát khác nhau, vì có series bị lưu trùng mỗi lát 2 lần
                    n_slices=("slice_location", lambda s: s.round(1).nunique()),
                    n_blocks=("orient_key", "nunique"))
               .reset_index())
@@ -99,7 +99,7 @@ def choose(st):
     for pid, g in st.groupby("patient_id"):
         sag = g[g.plane == "SAG"].copy()
         sag["fov_ok"] = sag.fov_mm >= MIN_SAG_FOV_MM
-        # tam vung anh axial cua tung study (trung binh theo so lat)
+        # tâm vùng ảnh axial của từng study (trung bình theo số lát)
         axg = g[g.plane == "AX"]
         ax_z = ((axg.center_z * axg.n_files).groupby(axg.study_dir).sum()
                 / axg.n_files.groupby(axg.study_dir).sum())
@@ -130,7 +130,7 @@ def choose(st):
 
 # ----------------------------------------------------------------- ghi NIfTI
 def build_volume(files):
-    """Danh sach file .ima cung huong -> sitk.Image 3D dung hinh hoc."""
+    """Danh sách file .ima cùng hướng -> sitk.Image 3D đúng hình học."""
     ds = [pydicom.dcmread(f) for f in files]
     iop = np.array(ds[0].ImageOrientationPatient, float)
     r, c = iop[:3], iop[3:]
@@ -139,8 +139,8 @@ def build_volume(files):
     order = np.argsort(pos, kind="stable")
     ds = [ds[i] for i in order]
     pos = pos[order]
-    # 19 BN co moi lat bi luu 2 lan (pixel giong het, chi khac SOPInstanceUID):
-    # bo lat trung vi tri, giu ban dau tien
+    # 19 BN có mỗi lát bị lưu 2 lần (pixel giống hệt, chỉ khác SOPInstanceUID):
+    # bỏ lát trùng vị trí, giữ bản đầu tiên
     keep = np.r_[True, np.diff(pos) > 0.01]
     n_dup = int((~keep).sum())
     ds = [d for d, k in zip(ds, keep) if k]
@@ -153,8 +153,8 @@ def build_volume(files):
     dz = float(np.median(gaps)) if len(gaps) else float(ds[0].SliceThickness)
     uniform = bool(len(gaps) == 0 or np.abs(gaps - dz).max() < 0.1)
 
-    img = sitk.GetImageFromArray(arr.astype(np.int16))   # (z, hang, cot)
-    ps = [float(x) for x in ds[0].PixelSpacing]           # [giua hang, giua cot]
+    img = sitk.GetImageFromArray(arr.astype(np.int16))   # (z, hàng, cột)
+    ps = [float(x) for x in ds[0].PixelSpacing]           # [giữa hàng, giữa cột]
     img.SetSpacing((ps[1], ps[0], dz))
     img.SetOrigin(tuple(float(x) for x in ds[0].ImagePositionPatient))
     img.SetDirection(tuple(np.column_stack([r, c, n]).ravel()))
@@ -177,7 +177,7 @@ def convert_patient(args):
         out.append({"patient_id": pid, "kind": "sag", "block": 0, "file": path.name, **qc})
 
         built = [build_volume(f) for f in ax_blocks]
-        built.sort(key=lambda t: -t[1]["center_z"])          # b1 = khoi cao nhat
+        built.sort(key=lambda t: -t[1]["center_z"])          # b1 = khối cao nhất
         for i, (img, qc) in enumerate(built, 1):
             path = AX_DIR / f"{pid:04d}_b{i}.nii.gz"
             sitk.WriteImage(img, str(path), useCompression=True)
@@ -188,12 +188,12 @@ def convert_patient(args):
 
 
 def split_by_gap(g):
-    """Hai khoi cho 2 dia khac nhau co the trung goc nghieng -> bi gom chung.
-    Tach tiep khi khoang cach giua 2 lat lien ke > 1,5 lan khoang cach thuong."""
+    """Hai khối cho 2 đĩa khác nhau có thể trùng góc nghiêng -> bị gom chung.
+    Tách tiếp khi khoảng cách giữa 2 lát liền kề > 1,5 lần khoảng cách thường."""
     n = np.cross(g[IOP[:3]].values[0], g[IOP[3:]].values[0])
     pos = g[["ipp_x", "ipp_y", "ipp_z"]].values @ n
     g = g.assign(_pos=pos).sort_values("_pos")
-    # bo vi tri trung (lat luu 2 lan) truoc khi tinh khoang cach
+    # bỏ vị trí trùng (lát lưu 2 lần) trước khi tính khoảng cách
     u = np.unique(g._pos.round(2).values)
     if len(u) < 3:
         return [g]
@@ -208,7 +208,7 @@ def jobs(sel, cand):
         pid = s.patient_id
         c = cand[cand.patient_id == pid]
         sag = c[(c.study_dir == s.study_dir) & (c.series_dir == s.sag_series)]
-        # SAG co >1 huong: giu khoi lon nhat
+        # SAG có >1 hướng: giữ khối lớn nhất
         sag = sag[sag.orient_key == sag.orient_key.value_counts().idxmax()]
         ax = c[(c.study_dir == s.ax_study_dir) & (c.series_dir == s.ax_series)]
         root = MRI_DIR / f"{pid:04d}"
@@ -217,13 +217,13 @@ def jobs(sel, cand):
         yield (s.to_dict(), f(sag), [f(b) for b in blocks])
 
 
-# ----------------------------------------------------------------- QC hinh hoc
+# ----------------------------------------------------------------- QC hình học
 def axial_line_on_sag(sag, ax):
-    """Giao tuyen giua lat giua cua khoi axial va anh sagittal, theo toa do pixel sag."""
+    """Giao tuyến giữa lát giữa của khối axial và ảnh sagittal, theo tọa độ pixel sag."""
     mid = ax.GetSize()[2] // 2
     cx, cy = (ax.GetSize()[0] - 1) / 2, (ax.GetSize()[1] - 1) / 2
     pts = []
-    for t in np.linspace(-cy, cy, 40):     # di doc huong cot cua anh axial (truoc -> sau)
+    for t in np.linspace(-cy, cy, 40):     # đi dọc hướng cột của ảnh axial (trước -> sau)
         p = ax.TransformContinuousIndexToPhysicalPoint((cx, cy + t, mid))
         i = sag.TransformPhysicalPointToContinuousIndex(p)
         pts.append((i[0], i[1]))
@@ -235,7 +235,7 @@ def qc_figure(vols):
     fig, axes = plt.subplots(1, len(pids), figsize=(3.2 * len(pids), 4))
     for axp, pid in zip(np.atleast_1d(axes), pids):
         sag = sitk.ReadImage(str(SAG_DIR / f"{pid:04d}.nii.gz"))
-        # doc lai tu NIfTI (RAS) de kiem tra luon viec ghi file
+        # đọc lại từ NIfTI (RAS) để kiểm tra luôn việc ghi file
         a = sitk.GetArrayFromImage(sag)
         mid = a.shape[0] // 2
         axp.imshow(a[mid], cmap="gray",
@@ -247,11 +247,11 @@ def qc_figure(vols):
                      color="yellow", fontsize=7, va="center")
         axp.set_title(f"BN {pid:04d}", fontsize=9)
         axp.axis("off")
-    fig.suptitle("Vi tri cac khoi axial (vach mau) chieu len lat sagittal giua", fontsize=10)
+    fig.suptitle("Vị trí các khối axial (vạch màu) chiếu lên lát sagittal giữa", fontsize=10)
     fig.tight_layout()
     out = FIGURES / "qc_s02_geometry.png"
     fig.savefig(out, dpi=130)
-    print(f"Da luu {out}")
+    print(f"Đã lưu {out}")
 
 
 # ----------------------------------------------------------------- main
@@ -261,36 +261,36 @@ def main():
     cand = load_candidates()
     sel = choose(series_table(cand))
     sel.to_csv(TABLES / "series_selected.csv", index=False)
-    print(f"Da chon series cho {len(sel)} benh nhan -> series_selected.csv")
+    print(f"Đã chọn series cho {len(sel)} bệnh nhân -> series_selected.csv")
 
     with Pool(8) as pool:
         res = pool.map(convert_patient, list(jobs(sel, cand)), chunksize=4)
     vols = pd.DataFrame([r for rs in res for r in rs])
     vols.to_csv(TABLES / "nifti_volumes.csv", index=False)
 
-    print("\n=== TOM TAT ===")
+    print("\n=== TÓM TẮT ===")
     err = vols[vols.kind == "error"]
-    print(f"Loi: {len(err)}")
+    print(f"Lỗi: {len(err)}")
     if len(err):
         print(err[["patient_id", "error"]].to_string(index=False))
     ok = vols[vols.kind != "error"]
     dup = ok[ok.n_dup_dropped > 0]
-    print(f"BN co lat bi luu trung (da bo): {dup.patient_id.nunique()} "
-          f"({int(dup.n_dup_dropped.sum())} lat)")
-    print(f"File NIfTI: SAG {(ok.kind == 'sag').sum()} | AX {(ok.kind == 'ax').sum()} khoi")
-    print(f"BN co >1 ung vien SAG: {(sel.sag_n_candidates > 1).sum()} | "
-          f">1 ung vien AX: {(sel.ax_n_candidates > 1).sum()} | "
-          f"AX khac study voi SAG: {(~sel.ax_same_study).sum()}")
-    print("\nSo khoi axial / BN:")
+    print(f"BN có lát bị lưu trùng (đã bỏ): {dup.patient_id.nunique()} "
+          f"({int(dup.n_dup_dropped.sum())} lát)")
+    print(f"File NIfTI: SAG {(ok.kind == 'sag').sum()} | AX {(ok.kind == 'ax').sum()} khối")
+    print(f"BN có >1 ứng viên SAG: {(sel.sag_n_candidates > 1).sum()} | "
+          f">1 ứng viên AX: {(sel.ax_n_candidates > 1).sum()} | "
+          f"AX khác study với SAG: {(~sel.ax_same_study).sum()}")
+    print("\nSố khối axial / BN:")
     print(ok[ok.kind == "ax"].groupby("patient_id").size().value_counts().sort_index().to_string())
-    print("\nSo lat moi khoi axial:")
+    print("\nSố lát mỗi khối axial:")
     print(ok[ok.kind == "ax"].n_slices.value_counts().sort_index().to_string())
     for k in ["sag", "ax"]:
         v = ok[ok.kind == k]
-        print(f"\n{k.upper()}: lat {v.n_slices.min()}-{v.n_slices.max()} | "
+        print(f"\n{k.upper()}: lát {v.n_slices.min()}-{v.n_slices.max()} | "
               f"pixel {v.sp_x.min():.2f}-{v.sp_x.max():.2f} mm | "
-              f"khoang cach lat {v.sp_z.min():.2f}-{v.sp_z.max():.2f} mm | "
-              f"khong deu: {(~v.gap_uniform.astype(bool)).sum()}")
+              f"khoảng cách lát {v.sp_z.min():.2f}-{v.sp_z.max():.2f} mm | "
+              f"không đều: {(~v.gap_uniform.astype(bool)).sum()}")
     qc_figure(ok)
 
 

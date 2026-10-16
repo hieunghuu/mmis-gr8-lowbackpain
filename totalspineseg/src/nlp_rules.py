@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
-"""Module rule trich xuat nhan tu ghi chu bac si X-quang (README muc 5).
+"""Module rule trích xuất nhãn từ ghi chú bác sĩ X-quang (README mục 5).
 
-Pipeline 6 buoc:
-  1. chuan hoa van ban (chu thuong, sua loi chinh ta, chuan hoa ten tang -> <L4-L5>)
-  2. tach cau (xuong dong, dau cham, //, ;)
-  3. gan tang cho cau (moi tang trong cau; ke thua cau truoc; UNSPEC)
-  4. nhan dien benh bang tu dien regex
-  5. phu dinh kieu NegEx (pham vi trong doan, cat o but/however/...)
-  6. muc do va ben
+Pipeline 6 bước:
+  1. chuẩn hóa văn bản (chữ thường, sửa lỗi chính tả, chuẩn hóa tên tầng -> <L4-L5>)
+  2. tách câu (xuống dòng, dấu chấm, //, ;)
+  3. gán tầng cho câu (mọi tầng trong câu; kế thừa câu trước; UNSPEC)
+  4. nhận diện bệnh bằng từ điển regex
+  5. phủ định kiểu NegEx (phạm vi trong đoạn, cắt ở but/however/...)
+  6. mức độ và bên
 
-Ham chinh: extract(note) -> (findings: list[dict], sentences: list[dict])
+Hàm chính: extract(note) -> (findings: list[dict], sentences: list[dict])
 """
 import re
 from collections import Counter
 
-# ----------------------------------------------------------------- 1. chuan hoa
-# Loi chinh ta gap trong tap dev (dem so lan sua o TYPO_HITS)
+# ----------------------------------------------------------------- 1. chuẩn hóa
+# Lỗi chính tả gặp trong tập dev (đếm số lần sửa ở TYPO_HITS)
 TYPO_FIXES = {
     r"\btehcal\b": "thecal", r"\bthecla\b": "thecal", r"\btheca\b": "thecal",
     r"\bcompres+i+ng\b": "compressing", r"\bcompres+ion\b": "compression",
@@ -45,7 +45,7 @@ TYPO_FIXES = {
 TYPO_HITS = Counter()
 
 _LV_PART2 = {"s": "S1", "s1": "S1"}
-_END = r"(?=\b|levels?\b)"                                   # cho phep dinh chu: l5/s1levels
+_END = r"(?=\b|levels?\b)"                                   # cho phép dính chữ: l5/s1levels
 LEVEL_RE = re.compile(
     rf"\b(t12|l[1-5])\s*(?:-|/|\\|–)\s*(l?[1-5]|s1?){_END}"   # L4-L5, L4/5, L5/S1, L5-S
     rf"|\b(t12|l[1-5])\s?(l[1-5]|s1){_END}",                   # L4L5, L5S1
@@ -72,7 +72,7 @@ def normalize(text):
     t = text.replace("\r", "\n").lower()
     for pat, rep in TYPO_FIXES.items():
         def _fix(m, pat=pat, rep=rep):
-            if m.group(0) != rep:            # chi dem khi tu thuc su bi doi
+            if m.group(0) != rep:            # chỉ đếm khi từ thực sự bị đổi
                 TYPO_HITS[pat] += 1
             return rep
         t = re.sub(pat, _fix, t)
@@ -83,7 +83,7 @@ def normalize(text):
         return f" <{lv}> " if lv else m.group(0)
 
     t = LEVEL_RE.sub(_lv, t)
-    # dai tang: <L3-L4> to <L5-S1>  -> liet ke du
+    # dải tầng: <L3-L4> to <L5-S1>  -> liệt kê đủ
     def _range(m):
         i, j = VALID_LEVELS.index(m.group(1)), VALID_LEVELS.index(m.group(2))
         return " " + " ".join(f"<{x}>" for x in VALID_LEVELS[min(i, j):max(i, j) + 1]) + " "
@@ -91,7 +91,7 @@ def normalize(text):
     return re.sub(r"[ \t]+", " ", t)
 
 
-# ----------------------------------------------------------------- 2. tach cau
+# ----------------------------------------------------------------- 2. tách câu
 def split_sentences(t):
     parts = re.split(r"\n+|//+|;|(?<!\d)\.(?!\d)", t)
     out = []
@@ -102,31 +102,31 @@ def split_sentences(t):
     return out
 
 
-# ----------------------------------------------------------------- 4. tu dien benh
+# ----------------------------------------------------------------- 4. từ điển bệnh
 VERB_COMP = r"(?:compress\w*|indent\w*|effac\w*|displac\w*|impinge?\w*|encroach\w*|press\w* (?:on|upon)|deform\w*)"
 THECAL = r"(?:thecal|dural)\s+sac"
-# "exit nerve canal" la lo lien hop, khong phai re than kinh
+# "exit nerve canal" là lỗ liên hợp, không phải rễ thần kinh
 ROOT = r"(?:(?:exit(?:ing)?|travers\w*|descending)\s+)?(?:[lst]\d\s+)?nerve\s+roots?|exit(?:ing)?\s+nerves?(?!\s+canal)"
-# "lateral recess" (ngach ben) thuoc ong song, KHONG phai lo lien hop (README 5.4.1)
+# "lateral recess" (ngách bên) thuộc ống sống, KHÔNG phải lỗ liên hợp (README 5.4.1)
 FORAMEN = (r"(?:neural\s+|intervertebral\s+|neuro\s?)?foram\w*"
            r"|exit(?:ing)?\s+(?:neural\s+|nerve\s+)?canals?|neural\s+canals?")
 
-# Moi benh: danh sach (regex, kieu). kieu "obj": can dong tu chen ep trong cung doan.
+# Mỗi bệnh: danh sách regex; khớp mẫu đầu tiên là đủ.
 FINDINGS = {
     "disc_bulge": [r"\bbulg\w*"],
     "disc_protrusion": [r"\bprotru\w*"],
     "disc_herniation": [r"\bherniat\w*", r"\bextru\w*", r"\bsequest\w*", r"detached\s+disc"],
     "annular_tear": [r"annular\s+(?:tear|fissure)", r"torn\s+annul\w*", r"annul\w*\s+(?:tear|fissure)",
                      r"(?:hyperintense|high)\s+(?:t2\s+)?signal\b[^.]*annul\w*"],
-    # "dissicating / dissecating / disscating / discating / dissicaring disc material" (~35 lan
-    # trong dev) = desiccating; mau khong khop "disc at", "discal"
+    # "dissicating / dissecating / disscating / discating / dissicaring disc material" (~35 lần
+    # trong dev) = desiccating; mẫu không khớp "disc at", "discal"
     "disc_desiccation": [r"desiccat\w*", r"dehydrat\w*", r"\bdi(?:s+[ie]?c+|sc)a[tr]\w*",
                          r"degenerat\w*\s+(?:dis[ck]|changes? of the dis[ck])",
                          r"loss of (?:the )?(?:normal )?(?:t2 )?(?:high )?signal"],
     "spinal_canal_stenosis": [r"canal\s+stenosis", r"stenosis of (?:the )?(?:spinal )?canal",
                               r"narrow\w*\s+(?:of\s+)?(?:the\s+)?(?:spinal\s+|central\s+)?canal",
                               r"(?:spinal|central)\s+(?:canal\s+)?stenosis", r"\bcanal\b[^.]*\bnarrow\w*",
-                              # ngach ben: chi tinh khi co tu chi hep/chen ep, khong tinh "extending to"
+                              # ngách bên: chỉ tính khi có từ chỉ hẹp/chèn ép, không tính "extending to"
                               r"(?:narrow\w*|compress\w*|encroach\w*|stenos\w*)[^.]{0,40}lateral\s+recess",
                               r"lateral\s+recess\w*[^.]{0,20}(?:narrow\w*|stenos\w*)"],
     "muscle_spasm": [r"muscle\s+spasm", r"\bspasm\b", r"straighten\w*[^.]*lordo\w*", r"loss of[^.]*lordo\w*"],
@@ -148,26 +148,26 @@ FINDINGS = {
     "disc_space_narrowing": [r"narrow\w*\s+(?:of\s+(?:the\s+)?)?(?:inter\s?vertebral\s+)?dis[ck]\s+spaces?",
                              r"dis[ck]\s+spaces?\s+narrow\w*", r"narrowed\s+<[A-Z0-9-]+>"],
 }
-# Chen ep: doi tuong + dong tu (trong cung doan)
+# Chèn ép: cần đối tượng + động từ chèn ép trong cùng đoạn
 OBJ_FINDINGS = {
     "thecal_sac_compression": THECAL,
     "nerve_root_compression": ROOT,
     "foraminal_stenosis": FORAMEN,
 }
-GLOBAL_FINDINGS = {"muscle_spasm", "scoliosis"}    # luon UNSPEC, khong ke thua tang
+GLOBAL_FINDINGS = {"muscle_spasm", "scoliosis"}    # luôn UNSPEC, không kế thừa tầng
 
-# ----------------------------------------------------------------- 5. phu dinh
+# ----------------------------------------------------------------- 5. phủ định
 NEG_PRE = re.compile(r"\b(?:no|not|without|negative for|free of|neither|nor)\b")
 NEG_POST = re.compile(r"\b(?:(?:is|are|was|were)\s+)?(?:not\s+(?:seen|noted|present|identified|detected|evident)|absent|ruled out)\b")
 SCOPE_CUT = re.compile(r"\b(?:but|however|although|though|except|while|whereas|apart from)\b")
-NORMAL_CUES = [  # phu dinh gian tiep -> (benh, regex)
+NORMAL_CUES = [  # phủ định gián tiếp -> (bệnh, regex)
     ("spinal_canal_stenosis", r"\b(?:adequate|normal|preserved|maintained|patent)\s+(?:spinal\s+|central\s+)?canal"),
     ("spinal_canal_stenosis", r"\bcanal\b[^.]*\b(?:adequate|normal|patent)\b"),
     ("thecal_sac_compression", r"\b(?:adequate|normal|preserved)\s+(?:thecal|dural)\s+sac"),
 ]
 ABUT = r"\babut\w*|\btouch\w*|\bcontact\w*"
 
-# ----------------------------------------------------------------- 6. muc do / ben
+# ----------------------------------------------------------------- 6. mức độ / bên
 SEVERITY = [("severe", r"\b(?:severe\w*|significant\w*|marked\w*|large\w*|largely|gross\w*|critical\w*)\b"),
             ("moderate", r"\bmoderate\w*\b"),
             ("mild", r"\b(?:mild\w*|minimal\w*|minor|small|slight\w*|tiny|subtle)\b")]
@@ -183,13 +183,13 @@ LISTHESIS_LV = re.compile(r"\b(l[1-5])\s+(?:over|on)\s+(l[1-5]|s1)\b")
 
 
 def _segments(s):
-    """Cat cau thanh doan theo tu cat pham vi phu dinh. Tra ve [(start, end)]."""
+    """Cắt câu thành đoạn theo từ cắt phạm vi phủ định. Trả về [(start, end)]."""
     cuts = [0] + [m.start() for m in SCOPE_CUT.finditer(s)] + [len(s)]
     return [(a, b) for a, b in zip(cuts, cuts[1:]) if b > a]
 
 
 def _negated(seg, pos):
-    """Benh tai vi tri pos trong doan seg co bi phu dinh khong."""
+    """Bệnh tại vị trí pos trong đoạn seg có bị phủ định không."""
     for m in NEG_PRE.finditer(seg):
         if m.start() < pos:
             return True
@@ -200,8 +200,8 @@ PHRASE_CUT = re.compile(r",|\band\b|\bwith\b|\bassociated\b|\balong\b|:|\(|\)|&"
 
 
 def _phrase(seg, pos, end):
-    """Cum tu rieng cua mot benh: cat o dau phay / and / with / associated ...
-    Tranh 'muon nham' muc do / ben cua benh khac trong cung cau."""
+    """Cụm từ riêng của một bệnh: cắt ở dấu phẩy / and / with / associated ...
+    Tránh 'mượn nhầm' mức độ / bên của bệnh khác trong cùng câu."""
     left = max([m.end() for m in PHRASE_CUT.finditer(seg, 0, pos)], default=0)
     right = min([m.start() for m in PHRASE_CUT.finditer(seg, end)], default=len(seg))
     return left, right
@@ -218,13 +218,13 @@ def _nearest(text, pos, table):
 
 
 def _attributes(seg, finding, pos, matched):
-    """Muc do va ben cua mot benh, chi tim trong cum tu cua no."""
+    """Mức độ và bên của một bệnh, chỉ tìm trong cụm từ của nó."""
     end = pos + len(matched)
     a, b = _phrase(seg, pos, end)
     side_txt = seg[a:b]
     if finding in OBJ_FINDINGS:
-        # muc do lay tu dong tu chi phoi gan nhat dung truoc doi tuong:
-        # "mildly compressing the thecal sac and both nerve roots" -> ca hai deu mild
+        # mức độ lấy từ động từ chi phối gần nhất đứng trước đối tượng:
+        # "mildly compressing the thecal sac and both nerve roots" -> cả hai đều mild
         verbs = [m for m in re.finditer(VERB_COMP + r"|\bnarrow\w*|\bstenos\w*", seg) if m.start() < pos]
         if verbs:
             v = verbs[-1].start()
@@ -234,7 +234,9 @@ def _attributes(seg, finding, pos, matched):
     else:
         sev_txt, sev_pos = side_txt, pos - a
     severity = _nearest(sev_txt, sev_pos, SEVERITY)
-    if finding == "nerve_root_compression" and re.search(r"roots\b|nerves\b", matched) \
+    plural = {"nerve_root_compression": r"roots\b|nerves\b",
+              "foraminal_stenosis": r"canals\b|foramina\b"}  # Q11 (mở rộng cho "exit canals")
+    if finding in plural and re.search(plural[finding], matched) \
             and not re.search(r"\b(?:left|lt|right|rt)\b", side_txt):
         side = "bilateral"                                   # Q11
     else:
@@ -243,7 +245,7 @@ def _attributes(seg, finding, pos, matched):
 
 
 def _finding_hits(seg):
-    """Tra ve [(finding, pos, matched_text)] trong mot doan."""
+    """Trả về [(finding, pos, matched_text)] trong một đoạn."""
     hits = []
     for f, pats in FINDINGS.items():
         for p in pats:
@@ -260,10 +262,10 @@ def _finding_hits(seg):
             hits.append((f, m.start(), m.group(0)))
         elif f != "foraminal_stenosis" and (has_verb or re.search(r"compression", seg)):
             hits.append((f, m.start(), m.group(0)))
-        elif re.search(ABUT, seg):                           # Q1: cham != chen ep
+        elif re.search(ABUT, seg):                           # Q1: chạm != chèn ép
             hits.append((f + "|abut", m.start(), m.group(0)))
         elif f != "foraminal_stenosis" and NEG_PRE.search(seg[:m.start()]):
-            # cau phu dinh viet thieu: "no significant thecal sac or nerve roots"
+            # câu phủ định viết thiếu: "no significant thecal sac or nerve roots"
             hits.append((f, m.start(), m.group(0)))
     for f, pat in NORMAL_CUES:
         m = re.search(pat, seg)
@@ -297,7 +299,9 @@ def extract(note):
                     f, forced_neg = f.split("|")[0], True
                 present = not (forced_neg or _negated(seg, pos))
                 sev, side = _attributes(seg, f, pos, matched) if present else ("unspecified", "unspecified")
-                lvls = ["UNSPEC"] if (f in GLOBAL_FINDINGS or not levels) else levels
+                # Q12: phủ định trong câu KHÔNG có tầng -> UNSPEC (không kế thừa tầng câu trước)
+                lvls = ["UNSPEC"] if (f in GLOBAL_FINDINGS or not levels
+                                      or (inherited and not present)) else levels
                 for lv in lvls:
                     findings.append({
                         "sentence_id": sid, "level": lv,
@@ -307,13 +311,13 @@ def extract(note):
                         "severity": sev, "side": side,
                         "evidence": s.strip(),
                     })
-        # cau co tang that su -> lam moc ke thua cho cau sau
+        # câu có tầng thật sự -> làm mốc kế thừa cho câu sau
         own = list(dict.fromkeys(LEVEL_TOKEN.findall(s)))
         if own:
             prev_levels = own
         sentences.append({"sentence_id": sid, "text": s, "levels": ",".join(levels),
                           "inherited": inherited, "n_findings": len(findings) - n_before})
-    # gop trung (cung tang + benh + present) giu dong dau
+    # gộp trùng (cùng tầng + bệnh + present), giữ dòng đầu
     seen, uniq = set(), []
     for f in findings:
         k = (f["level"], f["finding"], f["present"])

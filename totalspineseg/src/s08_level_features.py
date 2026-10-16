@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""S08 - Buoc 7: tinh so do theo tang dia dem tu mask TotalSpineSeg (README muc 7).
+"""S08 - Bước 7: tính số đo theo tầng đĩa đệm từ mask TotalSpineSeg (README mục 7).
 
-Do tren mat phang sagittal cua cac lat GIUA (lat nhieu voxel ong song nhat va 2 lat ke),
-trong toa do mm that. Moi tang co he truc rieng: u = truc dai cua dia (PCA, truoc -> sau),
-v = vuong goc (chan -> dau). Than dot = khoi lien lon nhat cua nhan dot (bo mo gai).
+Đo trên mặt phẳng sagittal của các lát GIỮA (lát nhiều voxel ống sống nhất và 2 lát kề),
+trong tọa độ mm thật. Mỗi tầng có hệ trục riêng: u = trục dài của đĩa (PCA, trước -> sau),
+v = vuông góc (chân -> đầu). Thân đốt = phần nhãn đốt nằm trước ống sống (bỏ mỏm gai).
 
-Chay (tu thu muc totalspineseg/):  python src/s08_level_features.py
+Chạy (từ thư mục totalspineseg/):  python src/s08_level_features.py
 """
 import sys
 from multiprocessing import Pool
@@ -23,12 +23,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import OUTPUTS, NIFTI, TABLES, FIGURES
 
 TSS = OUTPUTS / "tss" / "sag" / "step2_output"
-# tang -> (nhan dia, nhan dot tren, nhan dot duoi)
+# tầng -> (nhãn đĩa, nhãn đốt trên, nhãn đốt dưới)
 LEVELS = {"T12-L1": (91, 32, 41), "L1-L2": (92, 41, 42), "L2-L3": (93, 42, 43),
           "L3-L4": (94, 43, 44), "L4-L5": (95, 44, 45), "L5-S1": (100, 45, 50)}
-CANAL = (1, 2)            # tuy + ong song (o T12-L1, L1-L2 con tuy song)
-BAND_MM = 2.0             # dai +-2 mm quanh tam dia de do ong song
-BODY_BAND_MM = 6.0        # phan than dot sat dia de lay mep sau
+CANAL = (1, 2)            # tủy + ống sống (ở T12-L1, L1-L2 còn tủy sống)
+BAND_MM = 2.0             # dải +-2 mm quanh tâm đĩa để đo ống sống
+BODY_BAND_MM = 6.0        # phần thân đốt sát đĩa để lấy mép sau
 MIN_PX = 20
 QC_PATIENTS = [1, 100, 300, 450]
 
@@ -42,7 +42,7 @@ def largest_cc(mask):
 
 
 def slice_coords(img, k, shape):
-    """Toa do vat ly (y, z) LPS cua moi pixel trong lat k."""
+    """Tọa độ vật lý (y, z) LPS của mỗi pixel trong lát k."""
     o = np.array(img.GetOrigin())
     d = np.array(img.GetDirection()).reshape(3, 3)
     sx, sy, sz = img.GetSpacing()
@@ -57,10 +57,10 @@ def disc_axes(y, z):
     c = pts.mean(0)
     w, vec = np.linalg.eigh(np.cov((pts - c).T))
     e1 = vec[:, np.argmax(w)]
-    if e1[0] < 0:            # +u = phia sau (y LPS duong)
+    if e1[0] < 0:            # +u = phía sau (y LPS dương)
         e1 = -e1
     ev = np.array([-e1[1], e1[0]])
-    if ev[1] < 0:            # +v = len dau (z LPS duong)
+    if ev[1] < 0:            # +v = lên đầu (z LPS dương)
         ev = -ev
     return c, e1, ev
 
@@ -78,7 +78,7 @@ def area_over_length(u, px_area):
 
 
 def measure_slice(M, I, img, k, disc, up, lo, bodies, px_area, sz, keep_pts=False):
-    """Do 1 tang tren 1 lat. Tra ve dict so do (hoac None)."""
+    """Đo 1 tầng trên 1 lát. Trả về dict số đo (hoặc None)."""
     dm = M[k] == disc
     if dm.sum() < MIN_PX:
         return None
@@ -95,8 +95,8 @@ def measure_slice(M, I, img, k, disc, up, lo, bodies, px_area, sz, keep_pts=Fals
     cm = np.isin(M[k], CANAL)
     cu, cv = proj(Y[cm], Z[cm], c, e1, ev) if cm.any() else (np.array([]), np.array([]))
 
-    # than dot ke. Nhan dot gom ca cung sau/mo gai (o lat giua, va con noi voi than dot qua
-    # cuong o ~55 % so dot) -> CHI giu pixel nam TRUOC thanh truoc cua ong song.
+    # thân đốt kề. Nhãn đốt gồm cả cung sau/mỏm gai (ở lát giữa, và còn nối với thân đốt qua
+    # cuống ở ~55 % số đốt) -> CHỈ giữ pixel nằm TRƯỚC thành trước của ống sống.
     edges = {}
     for name, lab in (("upper", up), ("lower", lo)):
         bm = bodies.get(lab)
@@ -123,11 +123,11 @@ def measure_slice(M, I, img, k, disc, up, lo, bodies, px_area, sz, keep_pts=Fals
         r["listhesis_mm"] = lo_e["post"] - up_e["post"]
         r["listhesis_pct"] = 100 * r["listhesis_mm"] / lo_e["depth"] if lo_e["depth"] > 0 else np.nan
 
-    # ong song trong dai +-2 mm quanh tam dia
+    # ống sống trong dải +-2 mm quanh tâm đĩa
     if cm.sum():
         band = np.abs(cv) <= BAND_MM
         r["canal_ap_mm"] = band.sum() * px_area / (2 * BAND_MM) if band.sum() else np.nan
-        # tin hieu dich nao tuy: phan vi 75 cua ong song trong +-10 mm
+        # tín hiệu dịch não tủy: phân vị 75 của ống sống trong +-10 mm
         csf = I[k][cm][np.abs(cv) <= 10]
         csf_sig = np.percentile(csf, 75) if len(csf) > 10 else np.nan
     else:
@@ -139,7 +139,7 @@ def measure_slice(M, I, img, k, disc, up, lo, bodies, px_area, sz, keep_pts=Fals
     bm = bodies.get(up)
     if bm is not None and bm[k].sum() >= MIN_PX:
         body_k = bm[k].copy()
-        if cm.any():          # chi phan than dot (truoc ong song) cho tin hieu
+        if cm.any():          # chỉ phần thân đốt (trước ống sống) cho tín hiệu
             ya = np.percentile(Y[cm], 2)
             body_k &= Y < ya
         vb_core = ndimage.binary_erosion(body_k if body_k.sum() >= MIN_PX else bm[k], iterations=2)
@@ -153,7 +153,7 @@ def measure_slice(M, I, img, k, disc, up, lo, bodies, px_area, sz, keep_pts=Fals
 
 
 def canal_csa(M, img, c, e1, ev, px_area, sz):
-    """Dien tich cat ngang ong song XAP XI: the tich ong song trong dai / chieu cao dai."""
+    """Diện tích cắt ngang ống sống XẤP XỈ: thể tích ống sống trong dải / chiều cao dải."""
     n = 0
     for k in range(M.shape[0]):
         cm = np.isin(M[k], CANAL)
@@ -201,7 +201,7 @@ def process(pid, keep_pts=False):
         axes[lv] = mid["_axis"]
         if keep_pts and "_pts" in mid:
             pts[lv] = mid["_pts"]
-        # dien tich ong song xap xi: dung truc cua lat giua
+        # diện tích ống sống xấp xỉ: dùng trục của lát giữa
         dm = M[k_mid] == disc
         if dm.sum() >= MIN_PX:
             Y, Z = slice_coords(img, k_mid, M[k_mid].shape)
@@ -209,7 +209,7 @@ def process(pid, keep_pts=False):
             row["canal_csa_approx_mm2"] = canal_csa(M, img, c, e1, ev, px_area, sz)
         hu, hl = row.get("vb_upper_height_mm"), row.get("vb_lower_height_mm")
         if lv == "L5-S1":
-            hl = None                      # xuong cung khong co "chieu cao than dot"
+            hl = None                      # xương cùng không có "chiều cao thân đốt"
         hs = [h for h in (hu, hl) if h is not None and np.isfinite(h)]
         row["dhi"] = row.get("disc_height_mm", np.nan) / np.mean(hs) if hs else np.nan
         rows.append(row)
@@ -224,9 +224,9 @@ def process(pid, keep_pts=False):
     return out
 
 
-# ----------------------------------------------------------------- hinh QC
+# ----------------------------------------------------------------- hình QC
 def to_pixel(img, k, y, z):
-    """(y, z) vat ly tren lat k -> (cot, hang) pixel."""
+    """(y, z) vật lý trên lát k -> (cột, hàng) pixel."""
     o = np.array(img.GetOrigin())
     d = np.array(img.GetDirection()).reshape(3, 3)
     sx, sy, sz = img.GetSpacing()
@@ -254,10 +254,10 @@ def qc_overlay(pids):
                 bp = to_pixel(img, k, *(c + e1 * e["post"]))
                 ax.plot(*bp, "m+", ms=6)
             ax.text(*to_pixel(img, k, *(c - e1 * p["L"] * 0.9)), lv, color="white", fontsize=6)
-        ax.set_title(f"BN {pid:04d} - lat giua {k}", fontsize=9)
+        ax.set_title(f"BN {pid:04d} - lát giữa {k}", fontsize=9)
         ax.axis("off")
-    fig.suptitle("Truc u (vang) / v (xanh la) cua tung dia, mep sau dia (do), mep sau than dot (tim), "
-                 "ong song (cyan)", fontsize=9)
+    fig.suptitle("Trục u (vàng) / v (xanh lá) của từng đĩa, mép sau đĩa (đỏ), mép sau thân đốt (tím), "
+                 "ống sống (cyan)", fontsize=9)
     fig.tight_layout()
     fig.savefig(FIGURES / "qc_s08_overlay.png", dpi=120)
     plt.close(fig)
@@ -273,7 +273,7 @@ def qc_distributions(lf):
         ax.boxplot(data, tick_labels=[l.replace("-", "\n") for l in order], showfliers=False)
         ax.set_title(col, fontsize=9)
         ax.tick_params(labelsize=7)
-    fig.suptitle("Phan bo so do theo tang (513 ca use_level)", fontsize=10)
+    fig.suptitle("Phân bố số đo theo tầng (513 ca use_level)", fontsize=10)
     fig.tight_layout()
     fig.savefig(FIGURES / "qc_s08_distributions.png", dpi=110)
     plt.close(fig)
@@ -306,20 +306,20 @@ def main():
     pf.to_csv(TABLES / "patient_features.csv", index=False)
 
     use = lf[lf.use_level]
-    print(f"=== Buoc 7: {lf.patient_id.nunique()} BN, {len(lf)} dong (use_level: {use.patient_id.nunique()} BN) ===")
-    print("Thieu theo tang:", lf.groupby("level").missing.apply(lambda s: s.notna().sum()).to_dict())
-    print("\nTrung vi theo tang (use_level):")
+    print(f"=== Bước 7: {lf.patient_id.nunique()} BN, {len(lf)} dòng (use_level: {use.patient_id.nunique()} BN) ===")
+    print("Thiếu theo tầng:", lf.groupby("level").missing.apply(lambda s: s.notna().sum()).to_dict())
+    print("\nTrung vị theo tầng (use_level):")
     show = ["disc_height_mm", "dhi", "disc_csf_ratio", "disc_post_bulge_mm", "canal_ap_mm",
             "canal_csa_approx_mm2", "listhesis_mm", "vb_upper_height_mm"]
     print(use.groupby("level")[show].median().reindex(list(LEVELS)).round(2).to_string())
     print("\nNaN (use_level):", use[show].isna().sum().to_dict())
-    print(f"\nGoc uon (L1-L2 vs L5-S1): trung vi {pf.lordosis_deg.median():.1f} do, "
+    print(f"\nGóc ưỡn (L1-L2 vs L5-S1): trung vị {pf.lordosis_deg.median():.1f} độ, "
           f"IQR {pf.lordosis_deg.quantile(.25):.1f}-{pf.lordosis_deg.quantile(.75):.1f}")
-    print(f"Tuoi: {pf.age.min():.0f}-{pf.age.max():.0f}, trung vi {pf.age.median():.0f}; "
-          f"nu {(pf.sex == 'F').mean() * 100:.1f}%")
+    print(f"Tuổi: {pf.age.min():.0f}-{pf.age.max():.0f}, trung vị {pf.age.median():.0f}; "
+          f"nữ {(pf.sex == 'F').mean() * 100:.1f}%")
     qc_distributions(use)
     qc_overlay(QC_PATIENTS)
-    print("Da luu level_features.csv, patient_features.csv, qc_s08_overlay.png, qc_s08_distributions.png")
+    print("Đã lưu level_features.csv, patient_features.csv, qc_s08_overlay.png, qc_s08_distributions.png")
 
 
 if __name__ == "__main__":

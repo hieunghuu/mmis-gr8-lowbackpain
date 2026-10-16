@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-"""S00 - Dong goi / tai mask TotalSpineSeg dung chung qua GitHub Release.
+"""S00 - Đóng gói / tải mask TotalSpineSeg dùng chung qua GitHub Release.
 
-Mask 515 ca ton ~2,7 gio GPU (Kaggle) + 30 phut CPU de tao lai (buoc 3) -> chia se san qua
-release `v0.1-tss-masks` cua repo hieunghuu/mmis-gr8-lowbackpain.
+Mask 515 ca tốn ~2,7 giờ GPU (Kaggle) + 30 phút CPU để tạo lại (bước 3) -> chia sẻ sẵn qua
+release `v0.1-tss-masks` của repo hieunghuu/mmis-gr8-lowbackpain.
 
-  --pack [--commit X] Dong goi outputs/tss/sag/ -> outputs/release/*.zip (nguoi tao release)
-  --fetch             Tai tss_sag_masks_515.zip tu release, kiem tra SHA-256, giai nen vao
+  --pack [--commit X] Đóng gói outputs/tss/sag/ -> outputs/release/*.zip (người tạo release)
+  --fetch             Tải tss_sag_masks_515.zip từ release, kiểm tra SHA-256, giải nén vào
                       outputs/tss/sag/ (step2_output/, step1_levels/) + tss_qc.csv
-  --fetch --previews  Tai them anh preview (1 anh/ca) vao outputs/tss/sag/preview/
+  --fetch --previews  Tải thêm ảnh preview (1 ảnh/ca) vào outputs/tss/sag/preview/
 
-Chay (tu thu muc goc code):  python src/s00_shared_data.py --fetch
+Chạy (từ thư mục totalspineseg/):  python src/s00_shared_data.py --fetch
 """
 import argparse
 import datetime as dt
@@ -51,7 +51,7 @@ def git_commit():
         return "unknown"
 
 
-# ----------------------------------------------------------------- dong goi
+# ----------------------------------------------------------------- đóng gói
 def pack(commit=None):
     masks = sorted((TSS / "step2_output").glob("*.nii.gz"))
     levels = sorted((TSS / "step1_levels").glob("*.nii.gz"))
@@ -65,14 +65,14 @@ def pack(commit=None):
     manifest = {
         "tag": TAG, "created": dt.date.today().isoformat(), "code_commit": commit or git_commit(),
         "n_cases": len(masks),
-        "source": "TotalSpineSeg (neuropoly) tren T2 TSE SAG; 512 ca Kaggle T4 + BN 420, 515, 542 "
-                  "chay lai tren CPU sau khi sua quy tac chon series (README buoc 2, 4)",
-        "labels": "1 tuy, 2 ong song, 41-45 L1-L5, 46 L6, 50 xuong cung, 91 T12-L1, 92-95 L1-L2..L4-L5, "
+        "source": "TotalSpineSeg (neuropoly) trên T2 TSE SAG; 512 ca Kaggle T4 + BN 420, 515, 542 "
+                  "chạy lại trên CPU sau khi sửa quy tắc chọn series (README bước 2, 4)",
+        "labels": "1 tủy, 2 ống sống, 41-45 L1-L5, 46 L6, 50 xương cùng, 91 T12-L1, 92-95 L1-L2..L4-L5, "
                   "96 L5-L6, 100 L5-S1",
-        "qc": "tss_qc.csv: qc_pass 514/515, use_level 513/515 (BN 113, 245 co 6 dot that lung)",
+        "qc": "tss_qc.csv: qc_pass 514/515, use_level 513/515 (BN 113, 245 có 6 đốt thắt lưng)",
         "sha256": {k: sha256(p) for k, p in files.items()},
     }
-    # ZIP_STORED: .nii.gz da nen san
+    # ZIP_STORED: .nii.gz đã nén sẵn
     with zipfile.ZipFile(RELEASE_DIR / MASKS_ZIP, "w", zipfile.ZIP_STORED) as z:
         for arc, p in files.items():
             z.write(p, arc)
@@ -86,10 +86,10 @@ def pack(commit=None):
     print(f"masks {len(masks)} | levels {len(levels)} | previews {len(previews)} | commit {manifest['code_commit']}")
 
 
-# ----------------------------------------------------------------- tai ve
+# ----------------------------------------------------------------- tải về
 def download(name, dest):
     url = f"{BASE_URL}/{name}"
-    print(f"Tai {url}")
+    print(f"Tải {url}")
     with urllib.request.urlopen(url) as r, open(dest, "wb") as f:
         shutil.copyfileobj(r, f)
     return dest
@@ -103,17 +103,17 @@ def fetch(previews):
         for arc, digest in manifest["sha256"].items():
             data = z.read(arc)
             if hashlib.sha256(data).hexdigest() != digest:
-                raise SystemExit(f"Sai SHA-256: {arc} - tai lai")
+                raise SystemExit(f"Sai SHA-256: {arc} - hãy tải lại")
             out = TABLES / arc if arc == "tss_qc.csv" else TSS / arc
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_bytes(data)
-    print(f"Da giai nen {manifest['n_cases']} ca vao {TSS} (code commit {manifest['code_commit']}, "
-          f"tao ngay {manifest['created']}); SHA-256 khop {len(manifest['sha256'])} file")
+    print(f"Đã giải nén {manifest['n_cases']} ca vào {TSS} (code commit {manifest['code_commit']}, "
+          f"tạo ngày {manifest['created']}); SHA-256 khớp {len(manifest['sha256'])} file")
     if previews:
         zpath = download(PREVIEWS_ZIP, RELEASE_DIR / PREVIEWS_ZIP)
         with zipfile.ZipFile(zpath) as z:
             z.extractall(TSS)
-        print(f"Da giai nen preview vao {TSS / 'preview'}")
+        print(f"Đã giải nén preview vào {TSS / 'preview'}")
 
 
 def main():
@@ -122,7 +122,7 @@ def main():
     g.add_argument("--pack", action="store_true")
     g.add_argument("--fetch", action="store_true")
     ap.add_argument("--previews", action="store_true")
-    ap.add_argument("--commit", help="commit cua code da tao mask (khi thu muc khong phai repo git)")
+    ap.add_argument("--commit", help="commit của code đã tạo mask (khi thư mục không phải repo git)")
     a = ap.parse_args()
     pack(a.commit) if a.pack else fetch(a.previews)
 
