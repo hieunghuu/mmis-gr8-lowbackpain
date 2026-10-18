@@ -1,0 +1,223 @@
+{
+  "qc": {
+    "ok": true,
+    "warnings": []
+  },
+  "levels": [
+    {
+      "level": "T12-L1",
+      "missing": null,
+      "measures": {
+        "disc_height_mm": 4.743,
+        "dhi": 0.18,
+        "disc_csf_ratio": 0.48,
+        "disc_vb_ratio": 1.028,
+        "disc_post_bulge_mm": -0.777,
+        "canal_ap_mm": 13.824,
+        "canal_csa_approx_mm2": 211.185,
+        "listhesis_mm": -0.092
+      },
+      "suggestions": []
+    },
+    {
+      "level": "L1-L2",
+      "missing": null,
+      "measures": {
+        "disc_height_mm": 5.772,
+        "dhi": 0.211,
+        "disc_csf_ratio": 0.375,
+        "disc_vb_ratio": 0.88,
+        "disc_post_bulge_mm": -0.257,
+        "canal_ap_mm": 12.495,
+        "canal_csa_approx_mm2": 208.633,
+        "listhesis_mm": -0.39
+      },
+      "suggestions": []
+    },
+    {
+      "level": "L2-L3",
+      "missing": null,
+      "measures": {
+        "disc_height_mm": 6.593,
+        "dhi": 0.23,
+        "disc_csf_ratio": 0.338,
+        "disc_vb_ratio": 0.878,
+        "disc_post_bulge_mm": -0.344,
+        "canal_ap_mm": 10.501,
+        "canal_csa_approx_mm2": 155.677,
+        "listhesis_mm": -0.697
+      },
+      "suggestions": []
+    },
+    {
+      "level": "L3-L4",
+      "missing": null,
+      "measures": {
+        "disc_height_mm": 8.366,
+        "dhi": 0.303,
+        "disc_csf_ratio": 0.807,
+        "disc_vb_ratio": 0.859,
+        "disc_post_bulge_mm": 1.455,
+        "canal_ap_mm": 6.38,
+        "canal_csa_approx_mm2": 80.391,
+        "listhesis_mm": -1.665
+      },
+      "suggestions": [
+        {
+          "label": "spinal_canal_stenosis",
+          "label_vi": "Hẹp ống sống",
+          "measure": "canal_ap_mm",
+          "measure_vi": "ống sống trước–sau (mm)",
+          "value": 6.38,
+          "rule": "<=",
+          "threshold": 7.975,
+          "threshold_unit": "gốc",
+          "percentile": 6,
+          "confidence": "cao",
+          "sensitivity": 0.9,
+          "specificity": 0.86,
+          "ppv": 0.13
+        },
+        {
+          "label": "disc_displacement",
+          "label_vi": "Phồng / lồi / thoát vị",
+          "measure": "disc_post_bulge_mm",
+          "measure_vi": "nhô sau (mm)",
+          "value": 1.455,
+          "rule": ">=",
+          "threshold": 0.715,
+          "threshold_unit": "gốc",
+          "percentile": 89,
+          "confidence": "cao",
+          "sensitivity": 0.77,
+          "specificity": 0.79,
+          "ppv": 0.45
+        },
+        {
+          "label": "disc_bulge",
+          "label_vi": "Phồng đĩa",
+          "measure": "disc_post_bulge_mm",
+          "measure_vi": "nhô sau (mm)",
+          "value": 1.455,
+          "rule": ">=",
+          "threshold": 0.59,
+          "threshold_unit": "gốc",
+          "percentile": 89,
+          "confidence": "cao",
+          "sensitivity": 0.76,
+          "specificity": 0.77,
+          "ppv": 0.41
+        },
+        {
+          "label": "thecal_sac_compression",
+          "label_vi": "Chèn ép bao màng cứng",
+          "measure": "canal_csa_approx_mm2",
+          "measure_vi": "diện tích ống sống (mm²)",
+          "value": 80.391,
+          "rule": "<=",
+          "threshold": 132.708,
+          "threshold_unit": "gốc",
+          "percentile": 5,
+          "confidence": "cao",
+          "sensitivity": 0.71,
+          "specificity": 0.77,
+          "ppv": 0.32
+        },
+        {
+          "label": "foraminal_stenosis",
+          "label_vi": "Hẹp lỗ liên hợp",
+          "measure": "disc_post_bulge_mm",
+          "measure_vi": "nhô sau (mm)",
+          "value": 1.455,
+          "rule": ">=",
+          "threshold": 0.715,
+          "threshold_unit": "gốc",
+          "percentile": 89,
+          "confidence": "vừa",
+          "sensitivity": 0.76,
+          "specificity": 0.75,
+          "ppv": 0.22
+        },
+        {
+          "label": "nerve_root_compression",
+          "label_vi": "Chèn ép rễ",
+          "measure": "disc_post_bulge_mm",
+          "measure_vi": "nhô sau (mm)",
+          "value": 1.455,
+          "rule": ">=",
+          "threshold": 0.919,
+          "threshold_unit": "gốc",
+          "percentile": 89,
+          "confidence": "vừa",
+          "sensitivity": 0.77,
+          "specificity": 0.8,
+          "ppv": 0.15
+        },
+        {
+          "label": "disc_protrusion",
+          "label_vi": "Lồi đĩa",
+          "measure": "disc_post_bulge_mm",
+          "measure_vi": "nhô sau (mm)",
+          "value": 1.455,
+          "rule": ">=",
+          "threshold": 0.512,
+          "threshold_unit": "z",
+          "percentile": 89,
+          "confidence": "cao",
+          "sensitivity": 1.0,
+          "specificity": 0.81,
+          "ppv": 0.06
+        }
+      ]
+    },
+    {
+      "level": "L4-L5",
+      "missing": null,
+      "measures": {
+        "disc_height_mm": 9.371,
+        "dhi": 0.309,
+        "disc_csf_ratio": 0.362,
+        "disc_vb_ratio": 0.868,
+        "disc_post_bulge_mm": 0.555,
+        "canal_ap_mm": 8.573,
+        "canal_csa_approx_mm2": 94.427,
+        "listhesis_mm": -2.973
+      },
+      "suggestions": [
+        {
+          "label": "thecal_sac_compression",
+          "label_vi": "Chèn ép bao màng cứng",
+          "measure": "canal_ap_mm",
+          "measure_vi": "ống sống trước–sau (mm)",
+          "value": 8.573,
+          "rule": "<=",
+          "threshold": 10.767,
+          "threshold_unit": "gốc",
+          "percentile": 32,
+          "confidence": "vừa",
+          "sensitivity": 0.76,
+          "specificity": 0.6,
+          "ppv": 0.64
+        }
+      ]
+    },
+    {
+      "level": "L5-S1",
+      "missing": null,
+      "measures": {
+        "disc_height_mm": 6.197,
+        "dhi": 0.201,
+        "disc_csf_ratio": 0.309,
+        "disc_vb_ratio": 0.643,
+        "disc_post_bulge_mm": -0.377,
+        "canal_ap_mm": 6.58,
+        "canal_csa_approx_mm2": 65.078,
+        "listhesis_mm": -3.211
+      },
+      "suggestions": []
+    }
+  ],
+  "lordosis_deg": 40.4,
+  "disclaimer": "Gợi ý từ số đo trên ảnh, không phải chẩn đoán; bác sĩ cần xem lại.",
+  "error": null
+}
