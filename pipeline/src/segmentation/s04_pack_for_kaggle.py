@@ -8,7 +8,7 @@ Kaggle Notebook GPU nhanh hơn nhiều và miễn phí.
 Upload file zip này thành một Kaggle Dataset (PRIVATE), rồi chạy notebook
 kaggle/tss_kaggle.ipynb. Hướng dẫn đầy đủ: kaggle/README.md
 
-Chạy (từ thư mục totalspineseg/):  python src/segmentation/s04_pack_for_kaggle.py
+Chạy (từ thư mục pipeline/):  python src/segmentation/s04_pack_for_kaggle.py
 """
 import sys
 import zipfile

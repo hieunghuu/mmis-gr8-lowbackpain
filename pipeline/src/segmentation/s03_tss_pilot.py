@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """S03 - Chạy thử TotalSpineSeg trên vài ca để đo thời gian, RAM và xem kết quả.
 
-TotalSpineSeg cài trong môi trường riêng totalspineseg/.venv-tss (Python 3.12):
+TotalSpineSeg cài trong môi trường riêng pipeline/.venv-tss (Python 3.12):
     uv venv .venv-tss --python 3.12
     uv pip install --python .venv-tss/Scripts/python.exe torch --index-url https://download.pytorch.org/whl/cpu
     uv pip install --python .venv-tss/Scripts/python.exe "totalspineseg[nnunetv2]"
@@ -10,12 +10,12 @@ TotalSpineSeg cài trong môi trường riêng totalspineseg/.venv-tss (Python 3
  venv đang chạy script (Python 3.12) - script tìm totalspineseg cạnh sys.executable.)
 (kornia 0.8.x bỏ kornia.core.Tensor mà auglab - phụ thuộc của TotalSpineSeg - cần,
  gây ImportError khi nạp mô hình.)
-Trọng số mô hình tự tải lần đầu vào totalspineseg/.tss_data.
+Trọng số mô hình tự tải lần đầu vào pipeline/.tss_data.
 
 Script này chạy bằng Python chính, gọi totalspineseg như một tiến trình con và lấy
 mẫu RAM (tổng cả cây tiến trình) mỗi 0,5 giây.
 
-Chạy (từ thư mục totalspineseg/):
+Chạy (từ thư mục pipeline/):
     python src/segmentation/s03_tss_pilot.py sag 1 2 100 230 300     # ảnh sagittal
     python src/segmentation/s03_tss_pilot.py ax 1                     # mọi khối axial của BN 1
 Kết quả: outputs/tss_pilot/<tên>/  + 1 dòng log trong outputs/tables/segmentation/tss_pilot_log.csv

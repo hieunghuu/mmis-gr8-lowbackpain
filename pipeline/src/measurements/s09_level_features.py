@@ -5,7 +5,7 @@
 trong tọa độ mm thật. Mỗi tầng có hệ trục riêng: u = trục dài của đĩa (PCA, trước -> sau),
 v = vuông góc (chân -> đầu). Thân đốt = phần nhãn đốt nằm trước ống sống (bỏ mỏm gai).
 
-Chạy (từ thư mục totalspineseg/):  python src/measurements/s09_level_features.py
+Chạy (từ thư mục pipeline/):  python src/measurements/s09_level_features.py
 """
 import sys
 from multiprocessing import Pool
@@ -166,8 +166,13 @@ def canal_csa(M, img, c, e1, ev, px_area, sz):
 
 
 def process(pid, keep_pts=False):
-    m = sitk.ReadImage(str(TSS / f"{pid:04d}.nii.gz"), sitk.sitkUInt8)
-    img = sitk.ReadImage(str(NIFTI / "sag" / f"{pid:04d}.nii.gz"), sitk.sitkFloat32)
+    return measure_case(TSS / f"{pid:04d}.nii.gz", NIFTI / "sag" / f"{pid:04d}.nii.gz", keep_pts, pid)
+
+
+def measure_case(mask_path, image_path, keep_pts=False, pid=None):
+    """Đo một ca bất kỳ từ file mask + ảnh sagittal (dùng chung cho s09 và ai/analyze.py)."""
+    m = sitk.ReadImage(str(mask_path), sitk.sitkUInt8)
+    img = sitk.ReadImage(str(image_path), sitk.sitkFloat32)
     M, I = sitk.GetArrayFromImage(m), sitk.GetArrayFromImage(img)
     sx, sy, sz = img.GetSpacing()
     px_area = sx * sy

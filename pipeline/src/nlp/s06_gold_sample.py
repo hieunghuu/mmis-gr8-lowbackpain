@@ -12,7 +12,7 @@
                                       (+ sheet ẩn Lists cho danh sách thả xuống)
 
 Chi tiết thiết kế: README mục 5.5 (quy ước) và 5.7 (chia dữ liệu).
-Chạy (từ thư mục totalspineseg/):  python src/nlp/s06_gold_sample.py
+Chạy (từ thư mục pipeline/):  python src/nlp/s06_gold_sample.py
 """
 import re
 import sys

@@ -9,7 +9,7 @@ try:
 except AttributeError:
     pass
 
-CODE = Path(__file__).resolve().parents[1]          # totalspineseg/
+CODE = Path(__file__).resolve().parents[1]          # pipeline/
 ROOT = CODE.parent                                   # gốc repo
 DATA = ROOT / "data"           # Windows không phân biệt hoa/thường; Linux thì có
 MRI_DIR = DATA / "MRI_Data" / "01_MRI_Data"

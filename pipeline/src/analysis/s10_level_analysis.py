@@ -9,7 +9,7 @@
 * Ca lệch (trong cùng tầng): "nghi bỏ sót" = không ghi nhưng bất thường hơn trung vị nhóm có
   ghi; "số đo không ủng hộ" = có ghi nhưng bình thường hơn trung vị nhóm không ghi.
 
-Chạy (từ thư mục totalspineseg/):  python src/analysis/s10_level_analysis.py
+Chạy (từ thư mục pipeline/):  python src/analysis/s10_level_analysis.py
 """
 import sys
 from pathlib import Path

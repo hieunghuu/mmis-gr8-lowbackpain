@@ -4,18 +4,18 @@ data/*
 !data/assets/
 
 # Kết quả trung gian lớn / ảnh y tế đã chuyển đổi - tạo lại bằng script
-totalspineseg/outputs/nifti/
-totalspineseg/outputs/tss/
-totalspineseg/outputs/kaggle/
-totalspineseg/outputs/release/
-totalspineseg/outputs/tss_pilot/
-totalspineseg/outputs/cache/
-totalspineseg/outputs/*.log
-totalspineseg/outputs/tables/dicom/dicom_index.csv
+pipeline/outputs/nifti/
+pipeline/outputs/tss/
+pipeline/outputs/kaggle/
+pipeline/outputs/release/
+pipeline/outputs/tss_pilot/
+pipeline/outputs/cache/
+pipeline/outputs/*.log
+pipeline/outputs/tables/dicom/dicom_index.csv
 
 # Môi trường TotalSpineSeg (~1,2 GB) và trọng số mô hình (~4 GB)
-totalspineseg/.venv-tss/
-totalspineseg/.tss_data/
+pipeline/.venv-tss/
+pipeline/.tss_data/
 
 # Python
 __pycache__/

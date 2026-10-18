@@ -15,7 +15,7 @@ Không chấm nhãn other, none (rule không sinh hai nhãn này).
           outputs/tables/nlp/labels_level.csv          nhãn cuối theo tầng (515 ghi chú)
           outputs/tables/nlp/labels_patient.csv        nhãn cuối theo bệnh nhân
 
-Chạy (từ thư mục totalspineseg/):  python src/nlp/s08_nlp_eval.py
+Chạy (từ thư mục pipeline/):  python src/nlp/s08_nlp_eval.py
 """
 import sys
 from pathlib import Path
