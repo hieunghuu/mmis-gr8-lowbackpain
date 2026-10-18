@@ -12,7 +12,7 @@ Kiểm tra mỗi ca (chi tiết: README mục 4):
   transitional    có đốt L6 (6 đốt thắt lưng) -> loại khỏi phân tích theo tầng
 use_level = qc_pass và không transitional -> dùng cho bước 8 (ghép theo tầng).
 
-Chạy (từ thư mục totalspineseg/):  python src/segmentation/s05_tss_qc.py
+Chạy (từ thư mục pipeline/):  python src/segmentation/s05_tss_qc.py
 """
 import random
 import shutil

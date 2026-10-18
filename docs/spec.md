@@ -4,7 +4,7 @@ Oct 16, 2026 · @Hieu
 
 ## 1. Tổng quan và phạm vi
 
-Hệ thống nhận một ảnh MRI cột sống định dạng NIfTI, chạy [TotalSpineSeg](https://github.com/neuropoly/totalspineseg) dưới dạng job nền, rồi trả về mask phân đoạn đốt sống, đĩa đệm, tủy sống và ống sống để xem chồng lên ảnh gốc trên web. Tài liệu này là hợp đồng giữa các thành phần: dev FE và BE làm song song được, chỉ cần bám đúng endpoint, payload và trạng thái mô tả ở đây.
+Hệ thống nhận một ảnh MRI cột sống định dạng NIfTI, chạy [TotalSpineSeg](https://github.com/neuropoly/totalspineseg) dưới dạng job nền, rồi trả về mask phân đoạn đốt sống, đĩa đệm, tủy sống và ống sống để xem chồng lên ảnh gốc trên web. Sau phân đoạn, hệ thống đo theo từng tầng đĩa đệm và gợi ý bệnh có thể có ở mỗi tầng (mục 5, phân tích sau segmentation). Tài liệu này là hợp đồng giữa các thành phần: dev FE và BE làm song song được, chỉ cần bám đúng endpoint, payload và trạng thái mô tả ở đây.
 
 | Thành phần | Công nghệ đề xuất | Trách nhiệm |
 | --- | --- | --- |
@@ -12,6 +12,7 @@ Hệ thống nhận một ảnh MRI cột sống định dạng NIfTI, chạy [T
 | Backend API | FastAPI, Python ≥ 3.10 | Nhận và kiểm tra file, quản lý job, trả file kết quả |
 | Worker | Thread nền trong cùng process BE, 1 job mỗi lúc | Lấy job `pending` cũ nhất từ SQLite, gọi CLI TotalSpineSeg, cập nhật trạng thái |
 | TotalSpineSeg | CLI dựa trên nnU-Net, chạy GPU CUDA | Phân đoạn ảnh, ghi mask ra thư mục output |
+| Phân tích | Python (`ai/analyze.py`), chạy CPU trong worker | Từ ảnh + mask: QC tầng, số đo theo tầng, gợi ý bệnh theo bảng ngưỡng |
 | SQLite | Một file `app.db` | Lưu job và metadata; bảng `jobs` cũng chính là hàng chờ |
 | Lưu trữ file | Thư mục local `data/` | Lưu ảnh input, output, log |
 
@@ -25,12 +26,14 @@ Chỉ Backend API mở cổng HTTP. Worker và TotalSpineSeg không có API mạ
 - Xử lý tuần tự, mỗi lúc 1 job trên 1 GPU.
 - Không có đăng nhập; hệ thống chỉ chạy trên localhost hoặc mạng nội bộ.
 - FE xem ảnh gốc, mask và chú thích nhãn.
+- Phân tích sau segmentation: số đo theo tầng (T12-L1 … L5-S1) và gợi ý bệnh kèm độ tin cậy, chỉ cho ảnh sagittal T2 cột sống thắt lưng. Đây là **gợi ý để bác sĩ xem lại, không phải chẩn đoán**.
 
 **Ngoài phạm vi MVP**
 
 - Upload DICOM (để ở giai đoạn 2, xem mục 5).
 - Nhiều người dùng, phân quyền, nhiều GPU, kết nối PACS.
-- Chỉnh sửa mask, đo đạc, mô hình chẩn đoán phía sau segmentation.
+- Chỉnh sửa mask; đo đạc thủ công trên viewer.
+- Gợi ý bệnh cho ảnh axial (mặt cắt ngang) hoặc ảnh không phải cột sống thắt lưng.
 
 ## 2. Quy ước chung
 
@@ -149,7 +152,8 @@ Khi hoàn thành:
     "input_url": "/api/v1/jobs/7c9e6679-7425-40de-944b-e07fc1f90ae7/input",
     "segmentation_url": "/api/v1/jobs/7c9e6679-7425-40de-944b-e07fc1f90ae7/result",
     "labels_url": "/api/v1/labels",
-    "labels_present": [1, 2, 41, 42, 43, 44, 45, 50, 92, 93, 94, 95, 100]
+    "labels_present": [1, 2, 41, 42, 43, 44, 45, 50, 92, 93, 94, 95, 100],
+    "analysis": { "...": "xem mục 3.3.1" }
   },
   "error": null
 }
@@ -172,6 +176,63 @@ Khi lỗi:
 ```
 
 `labels_present` là danh sách nhãn thực sự xuất hiện trong mask, do worker tính ra. FE dựa vào đó để chỉ hiện chú thích cho những cấu trúc mà ảnh có.
+
+#### 3.3.1 `result.analysis`
+
+Kết quả phân tích sau segmentation (mục 5). Là `null` khi job chạy với `iso=true` hoặc `step1_only=true`, vì khi đó mask không đo được. Ví dụ (rút gọn còn 1 tầng, 1 gợi ý; thực tế luôn có 6 tầng):
+
+```json
+{
+  "qc": { "ok": true, "warnings": [] },
+  "levels": [
+    {
+      "level": "L4-L5",
+      "missing": null,
+      "measures": {
+        "disc_height_mm": 3.542, "dhi": 0.127, "disc_csf_ratio": 0.109, "disc_vb_ratio": 0.279,
+        "disc_post_bulge_mm": 1.776, "canal_ap_mm": 8.108, "canal_csa_approx_mm2": 111.016,
+        "listhesis_mm": -1.743
+      },
+      "suggestions": [
+        {
+          "label": "foraminal_stenosis",
+          "label_vi": "Hẹp lỗ liên hợp",
+          "measure": "disc_post_bulge_mm",
+          "measure_vi": "nhô sau (mm)",
+          "value": 1.776,
+          "rule": ">=",
+          "threshold": 1.119,
+          "threshold_unit": "gốc",
+          "percentile": 79,
+          "confidence": "vừa",
+          "sensitivity": 0.71,
+          "specificity": 0.72,
+          "ppv": 0.53
+        }
+      ]
+    }
+  ],
+  "lordosis_deg": 43.9,
+  "disclaimer": "Gợi ý từ số đo trên ảnh, không phải chẩn đoán; bác sĩ cần xem lại.",
+  "error": null
+}
+```
+
+| Trường | Ý nghĩa |
+| --- | --- |
+| `qc.ok` | `false` khi thiếu đốt / đĩa, có đốt chuyển tiếp (6 đốt thắt lưng) hoặc thứ tự tầng sai. Khi đó vẫn có `measures` nhưng mọi `suggestions` rỗng, vì không chắc đánh số tầng |
+| `qc.warnings[]` | `{code, message}`, code ở mục 8 (cảnh báo phân tích) |
+| `levels[]` | Luôn 6 tầng theo thứ tự `T12-L1`, `L1-L2`, `L2-L3`, `L3-L4`, `L4-L5`, `L5-S1` |
+| `levels[].missing` | `null`, hoặc `"disc"` / `"mid_slices"` khi tầng đó không đo được (`measures` rỗng) |
+| `levels[].measures` | Số đo của tầng; số đo nào không tính được thì không có key. Đơn vị nằm trong tên (`_mm`, `_mm2`); `dhi`, `disc_csf_ratio`, `disc_vb_ratio` là tỉ số |
+| `suggestions[].label`, `label_vi` | Mã bệnh và tên tiếng Việt để hiển thị |
+| `suggestions[].measure`, `value`, `rule`, `threshold` | Quy tắc đã khớp: `value rule threshold`. Khi `threshold_unit = "z"` thì ngưỡng là z-score trong tầng, `value` vẫn là giá trị gốc |
+| `suggestions[].percentile` | Vị trí của `value` so với 513 bệnh nhân cùng tầng (5 = thấp nhất 5 %, 95 = cao nhất 5 %; giới hạn trong 5–95) |
+| `suggestions[].confidence` | `"cao"` / `"vừa"`, theo cận dưới khoảng tin cậy 95 % của AUC (≥ 0,80 / ≥ 0,70) |
+| `suggestions[].sensitivity`, `specificity`, `ppv` | Độ nhạy, độ đặc hiệu, PPV của quy tắc này khi kiểm chứng chéo trên bệnh nhân chưa dùng để học |
+| `lordosis_deg` | Góc ưỡn thắt lưng (độ), giữa trục đĩa L1-L2 và L5-S1 |
+| `disclaimer` | Câu FE bắt buộc hiển thị cạnh bảng gợi ý |
+| `error` | `null`, hoặc `{code, message}` khi phân tích lỗi (mục 8). Khi đó `qc` là `null`, `levels` rỗng |
 
 ### 3.4 GET /jobs
 
@@ -232,7 +293,7 @@ Không có hàng chờ riêng trong RAM: hàng chờ là các dòng `status = 'p
 **Quy tắc chuyển trạng thái**
 
 1. `pending` sang `running`: worker lấy job `pending` cũ nhất trong DB, ghi `started_at`.
-2. `running` sang `done`: CLI trả exit code 0 và tìm thấy file mask (mục 5), ghi `finished_at` và `labels_present`.
+2. `running` sang `done`: CLI trả exit code 0 và tìm thấy file mask (mục 5), chạy xong bước phân tích, ghi `finished_at`, `labels_present` và `analysis`. Phân tích lỗi **không** làm job `failed`: job vẫn `done` (mask vẫn xem được), lỗi nằm trong `analysis.error`.
 3. `running` sang `failed`: CLI trả exit code khác 0, hoặc không có file mask, hoặc chạy quá `JOB_TIMEOUT_SEC` (mặc định 900 giây).
 4. `done` và `failed` là trạng thái cuối, không chuyển tiếp nữa. Muốn chạy lại thì tạo job mới.
 
@@ -295,6 +356,31 @@ output/
 
 Mặc định, mask được resample về không gian của ảnh input, nên FE overlay trực tiếp được. Cờ `--iso` cho mask ở độ phân giải gốc của model là 1 mm đẳng hướng. MVP giữ mặc định `iso=false`.
 
+**Phân tích sau segmentation**
+
+Sau khi tìm thấy mask, worker gọi trong cùng process (không qua subprocess):
+
+```python
+from ai.segment import segment
+from ai.analyze import analyze, AnalysisError
+
+seg = segment(input_path, output_dir, iso=iso, step1=step1_only, timeout=JOB_TIMEOUT_SEC)
+if iso or step1_only:
+    analysis = None
+else:
+    try:
+        analysis = analyze(input_path, seg.mask_path)          # dict, mục 3.3.1
+    except AnalysisError as e:
+        analysis = {"qc": None, "levels": [], "lordosis_deg": None, "disclaimer": None,
+                    "error": {"code": e.code, "message": e.message}}
+```
+
+- `analyze()` chạy CPU, vài giây mỗi ca; không cần GPU.
+- Các bước: kiểm tra hình học (mask cùng lưới với ảnh, ảnh sagittal), QC nhãn, đo 8 số đo cho mỗi tầng (cùng code đo `pipeline/src/measurements/s09_level_features.py`), so với bảng ngưỡng.
+- Bảng ngưỡng học từ 513 bệnh nhân của bộ dữ liệu (README `pipeline` mục 6), nằm trong `pipeline/outputs/tables/analysis/` (`threshold_rules.csv`, `threshold_cv_by_level.csv`, `measure_reference.csv`). BE chỉ đọc, không sửa.
+- Mỗi (bệnh, tầng) dùng đúng 1 quy tắc: ngưỡng riêng của tầng nếu có, không thì ngưỡng z chung.
+- Quy tắc có PPV < 0,05 khi kiểm chứng chéo (với ngưỡng z chung: PPV tại đúng tầng đó) bị bỏ qua, nên không bao giờ có gợi ý với `ppv` < 0,05.
+
 **Giai đoạn 2: nhận DICOM**
 
 Thêm một bước trước khi gọi CLI: nhận file `.zip` chứa 1 series, giải nén vào `input/dicom/`, rồi chuyển sang `.nii.gz` bằng dcm2niix. Nếu ra nhiều hơn 1 file NIfTI thì báo lỗi `MULTIPLE_SERIES`. Phần còn lại giữ nguyên.
@@ -320,6 +406,7 @@ CREATE TABLE IF NOT EXISTS jobs (
   opt_iso           INTEGER NOT NULL DEFAULT 0,     -- 0/1
   opt_step1         INTEGER NOT NULL DEFAULT 0,     -- 0/1
   labels_present    TEXT,                           -- JSON array, ví dụ "[1,2,41]"
+  analysis          TEXT,                           -- JSON object mục 3.3.1, NULL nếu không phân tích
   error_code        TEXT,
   error_message     TEXT,
   log_tail          TEXT,
@@ -383,7 +470,17 @@ Với ảnh cột sống thắt lưng, các nhãn thường gặp là 41–45, 5
 1. Trang upload: chọn file, 2 checkbox tùy chọn (`iso`, `step1_only`), nút gửi.
 2. Trang job: hiện trạng thái, vị trí trong hàng chờ, thời gian đã chạy; khi `failed` thì hiện `error.message`.
 3. Viewer: mở khi `done`, gồm 3 mặt cắt kèm chú thích nhãn.
-4. Danh sách job: lấy từ `GET /jobs`, có nút xóa.
+4. Bảng phân tích cạnh viewer (từ `result.analysis`, mục 3.3.1).
+5. Danh sách job: lấy từ `GET /jobs`, có nút xóa.
+
+**Bảng phân tích**
+
+- Mỗi tầng một dòng (T12-L1 trên cùng). Cột: tầng, các gợi ý (`label_vi`, nhãn độ tin cậy `cao` / `vừa`), nút mở chi tiết.
+- Chi tiết một gợi ý: `measure_vi` = `value` (`rule` `threshold`), "cao hơn / thấp hơn `percentile` % bệnh nhân cùng tầng", độ nhạy / độ đặc hiệu / PPV.
+- Bấm vào tầng thì viewer nhảy tới đĩa đệm tầng đó (nhãn 91–95, 100).
+- Luôn hiện `disclaimer` ngay trên bảng.
+- `qc.ok = false`: hiện các `qc.warnings[].message` thay cho gợi ý, vẫn cho xem số đo.
+- `analysis = null`: hiện "Không có phân tích (chỉ có khi `iso` và `step1_only` đều tắt)". `analysis.error` khác `null`: hiện `error.message`.
 
 ## 8. Bảng mã lỗi
 
@@ -413,6 +510,22 @@ Có hai loại lỗi. Lỗi request trả về ngay qua HTTP status kèm body `e
 | `WORKER_INTERRUPTED` | BE bị restart khi job đang chạy | Tạo lại job |
 | `MULTIPLE_SERIES` | Giai đoạn 2: file zip DICOM ra nhiều hơn 1 series | Chỉ upload 1 series |
 
+**Lỗi phân tích** (trong `analysis.error`, job vẫn `done`)
+
+| Code | Khi nào | FE hiển thị gợi ý |
+| --- | --- | --- |
+| `GEOMETRY_MISMATCH` | Mask không cùng lưới với ảnh | Chạy lại với `iso=false` |
+| `NOT_SAGITTAL` | Ảnh không phải mặt cắt sagittal | Chỉ phân tích ảnh sagittal T2 thắt lưng |
+| `ANALYSIS_FAILED` | Lỗi khác khi đo | Báo lỗi hệ thống; mask vẫn xem được |
+
+**Cảnh báo phân tích** (trong `analysis.qc.warnings`, không có gợi ý)
+
+| Code | Khi nào |
+| --- | --- |
+| `MISSING_STRUCTURE` | Thiếu đốt L1–L5, xương cùng, hoặc đĩa L1-L2 … L5-S1 |
+| `TRANSITIONAL_VERTEBRA` | Có đốt L6 (6 đốt thắt lưng): không chắc đánh số tầng |
+| `LEVEL_ORDER` | Thứ tự đốt / đĩa từ đầu xuống chân không hợp lệ |
+
 ## 9. Môi trường chạy và triển khai
 
 Toàn bộ hệ thống chạy trên một máy có GPU, trong một process Python. Docker không bắt buộc cho MVP.
@@ -423,6 +536,7 @@ Toàn bộ hệ thống chạy trên một máy có GPU, trong một process Pyt
 - Gói totalspineseg cài kèm extra `nnunetv2`, để giữ đúng phiên bản nnU-Net đã được kiểm thử.
 - Muốn dùng GPU CUDA thì cần PyTorch bản nhỏ hơn 2.6.
 - BE cần một thư viện đọc được NIfTI để kiểm tra file upload.
+- Phân tích cần thêm `numpy`, `pandas`, `SimpleITK`, `scipy`, `matplotlib` (xem `pipeline/requirements.txt`). BE chạy từ gốc repo để `ai/analyze.py` tìm được `pipeline/src/` và các bảng ngưỡng.
 
 **Biến môi trường**
 
@@ -463,13 +577,14 @@ FE và BE làm song song được ngay từ ngày đầu: BE dựng mock trả �
 - [ ] `GET /jobs/{job_id}`, `GET /jobs`, `DELETE /jobs/{job_id}` theo đúng payload mục 3
 - [ ] `GET /jobs/{job_id}/input`, `/result`, `GET /labels`
 - [ ] Dùng chung format lỗi ở mục 2 và mã lỗi ở mục 8
-- [ ] Mock mode (`MOCK_WORKER=1`): job tự `done` sau 5 giây, trả lại chính ảnh input làm mask, để FE test trước khi có GPU
+- [ ] Mock mode (`MOCK_WORKER=1`): job tự `done` sau 5 giây, trả lại chính ảnh input làm mask và `analysis` mẫu ở mục 3.3.1, để FE test trước khi có GPU
 
 **Worker**
 
 - [ ] 1 worker thread lấy job `pending` cũ nhất từ SQLite (mục 4, hàng chờ bằng SQLite)
 - [ ] Gọi CLI theo mục 5, ghi log, xử lý timeout
 - [ ] Tìm file mask, tính `labels_present`, cập nhật trạng thái
+- [ ] Gọi `analyze()` sau segmentation (mục 5), lưu JSON vào cột `analysis`; lỗi phân tích không làm job `failed`
 - [ ] Khôi phục trạng thái khi BE khởi động lại (mục 4)
 - [ ] Script warm-up tải sẵn weights vào `TOTALSPINESEG_DATA`
 
@@ -478,11 +593,13 @@ FE và BE làm song song được ngay từ ngày đầu: BE dựng mock trả �
 - [ ] Trang upload, có báo lỗi validate
 - [ ] Trang job: poll theo quy tắc ở mục 4, giữ `job_id` trên URL
 - [ ] Viewer NiiVue: ảnh nền, mask, LUT từ `/labels`, thanh opacity, chú thích nhãn
+- [ ] Bảng phân tích theo tầng (mục 7): gợi ý, độ tin cậy, chi tiết, cảnh báo QC, disclaimer
 - [ ] Danh sách job có nút xóa
 
 **Tiêu chí hoàn thành MVP**
 
 - [ ] Upload 1 ảnh MRI sagittal cột sống thắt lưng, sau đó thấy mask L1–L5, sacrum và các đĩa đệm chồng đúng lên ảnh gốc
+- [ ] Cùng ảnh đó có bảng phân tích 6 tầng; ảnh có 6 đốt thắt lưng (vd BN 113 của bộ dữ liệu) chỉ hiện cảnh báo, không có gợi ý
 - [ ] Đo và ghi lại thời gian chạy thực tế của một job trên GPU dùng để demo
 - [ ] Restart BE giữa chừng thì không mất job `pending`, job `running` chuyển thành `failed`
 - [ ] Cả 9 lỗi request ở mục 8 đều tái hiện được bằng `curl`

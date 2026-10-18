@@ -2,7 +2,7 @@
 
 Giải thích ngắn gọn về bộ dữ liệu trong thư mục này, viết cho người **không có kiến
 thức y khoa**. Nếu bạn chỉ cần biết "trong này có gì" để dùng lại code ở
-`../totalspineseg`, đọc phần 1–3 là đủ. Phần 5–8 giải thích ghi chú bác sĩ, giải phẫu cột sống và từ điển thuật ngữ Anh – Việt.
+`../pipeline`, đọc phần 1–3 là đủ. Phần 5–8 giải thích ghi chú bác sĩ, giải phẫu cột sống và từ điển thuật ngữ Anh – Việt.
 
 ---
 
@@ -14,12 +14,12 @@ thức y khoa**. Nếu bạn chỉ cần biết "trong này có gì" để dùng
 | `Radiologists Report.xlsx` | Ghi chú (văn bản tự do) của bác sĩ X-quang, mô tả những gì họ thấy trên ảnh của từng bệnh nhân (575 dòng, 515 có ghi chú) | Excel |
 
 Hai phần này **mô tả cùng một nhóm bệnh nhân**: ảnh cho máy "nhìn", ghi chú cho biết
-bác sĩ con người đã kết luận gì khi nhìn ảnh đó. Trong `totalspineseg/`, module NLP đọc
+bác sĩ con người đã kết luận gì khi nhìn ảnh đó. Trong `pipeline/`, module NLP đọc
 ghi chú Excel để tạo nhãn (label) theo từng tầng đĩa đệm, rồi ghép nhãn đó với số đo tự động
 từ ảnh để xem hai nguồn khớp nhau đến đâu.
 
 Nguồn dữ liệu gốc: *Lumbar Spine MRI Dataset*, Sudirman *et al.*, Mendeley Data 2019
-(xem trích dẫn đầy đủ ở `../totalspineseg/README.md`, mục "Nguồn dữ liệu và trích dẫn").
+(xem trích dẫn đầy đủ ở `../pipeline/README.md`, mục "Nguồn dữ liệu và trích dẫn").
 
 ---
 
@@ -49,7 +49,7 @@ thậm chí hàng trăm file ảnh.
   hình cánh bướm hai bên là cơ lưng.
 
 Vì mặt **sagittal** cho thấy toàn bộ các tầng đĩa đệm trong một lát, nó được ưu
-tiên dùng để phân đoạn bằng TotalSpineSeg (xem `../totalspineseg/README.md`, mục 1.2).
+tiên dùng để phân đoạn bằng TotalSpineSeg (xem `../pipeline/README.md`, mục 1.2).
 
 ### "T1" và "T2" là gì?
 Máy MRI có thể chụp cùng một vị trí theo nhiều "chế độ" khác nhau, gọi là chuỗi
@@ -104,7 +104,7 @@ Một số bệnh nhân có **nhiều hơn 1 lần đi chụp** (nhiều thư m�
 | Dung lượng | ~12,5 GB |
 
 (Số bệnh nhân, tổng số lát, tuổi/giới đã kiểm chứng lại bằng pipeline hiện tại –
-`dicom_index.csv`, `patient_features.csv` – xem `../totalspineseg/README.md`, bước 1 và 4. Các con
+`dicom_index.csv`, `patient_features.csv` – xem `../pipeline/README.md`, bước 1 và 4. Các con
 số còn lại lấy từ phiên bản phân tích trước, có thể lệch nhẹ do cách đếm, vd số lát
 localizer: s01 đếm 5.544 localizer + 1.895 POSDISP.)
 
@@ -126,7 +126,7 @@ localizer: s01 đếm 5.544 localizer + 1.895 POSDISP.)
 > kiểu số nguyên trước khi join.
 
 Mỗi dòng là đoạn văn bản bác sĩ X-quang viết khi đọc ảnh. Đây là dữ liệu **phi cấu
-trúc** (câu văn tự nhiên, không phải bảng số), nên trong `totalspineseg/` có hẳn một module NLP
+trúc** (câu văn tự nhiên, không phải bảng số), nên trong `pipeline/` có hẳn một module NLP
 (`src/nlp/nlp_rules.py`, `src/nlp/s07_nlp_extract.py`) để đọc và "dịch" các câu này thành
 nhãn có cấu trúc: bệnh gì, ở tầng nào, bên nào, mức độ nào, có phủ định hay không.
 
@@ -195,7 +195,7 @@ cứng và lấn vào các rễ thần kinh đi ra.
 ### 5.4. Tần suất bệnh lý (đầu ra của NLP, 515 bệnh nhân)
 
 Số liệu từ bộ rule NLP đã được chấm trên bộ chuẩn vàng (F1 = 0,971 ở mức bệnh nhân – xem
-`../totalspineseg/README.md`, mục 3.11). Nguồn: `../totalspineseg/outputs/tables/nlp/labels_patient.csv`.
+`../pipeline/README.md`, mục 3.11). Nguồn: `../pipeline/outputs/tables/nlp/labels_patient.csv`.
 
 | Bệnh lý | Số bệnh nhân | % |
 |---|---:|---:|
@@ -423,4 +423,4 @@ yếu ở nhãn chèn ép rễ thần kinh.
 
 Thư mục này bị `.gitignore` loại khỏi commit vì hai lý do: dung lượng lớn
 (~12,5 GB) và đây là **dữ liệu y tế**. Cách tải lại dữ liệu gốc và chạy toàn bộ
-pipeline được mô tả chi tiết trong [`../totalspineseg/README.md`](../totalspineseg/README.md).
+pipeline được mô tả chi tiết trong [`../pipeline/README.md`](../pipeline/README.md).

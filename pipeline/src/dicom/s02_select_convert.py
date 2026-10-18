@@ -40,7 +40,7 @@ outputs/tables/dicom/series_selected.csv     - series chọn cho mỗi BN + lý 
 outputs/tables/dicom/nifti_volumes.csv       - mỗi file NIfTI 1 dòng (kích thước, spacing, QC)
 outputs/figures/dicom/qc_geometry.png   - vị trí các khối axial chiếu lên ảnh sagittal
 
-Chạy (từ thư mục totalspineseg/):  python src/dicom/s02_select_convert.py
+Chạy (từ thư mục pipeline/):  python src/dicom/s02_select_convert.py
 """
 import sys
 from multiprocessing import Pool

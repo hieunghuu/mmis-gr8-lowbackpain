@@ -26,6 +26,7 @@ Giải thích về bộ dữ liệu, giải phẫu và thuật ngữ y khoa: xem
 | | `nlp/s08_nlp_eval.py` | Chấm rule trên gold: **F1 0,959** (tầng – khẳng định), 0,971 (bệnh nhân); nhãn cuối 515 ghi chú ([mục 3.11](#311-s08_nlp_evalpy--chấm-bộ-rule-trên-bộ-gold-và-tạo-nhãn-cuối)) | ✅ Xong |
 | [4. Số đo](#4-bước-4--tính-số-đo-theo-tầng-từ-mask-srcmeasurements) | `measurements/s09_level_features.py` | 13 số đo theo tầng + góc ưỡn | ✅ Xong |
 | [5. Phân tích](#5-bước-5--ghép-ảnh--văn-bản-phân-tích-srcanalysis) | `analysis/s10_level_analysis.py` | Ghép số đo ảnh × nhãn văn bản, phân tích | ✅ Xong |
+| [6. Gợi ý bệnh](#6-bước-6--gợi-ý-bệnh-theo-tầng-từ-ảnh-srcanalysiss11_threshold_rulespy) | `analysis/s11_threshold_rules.py` | Học ngưỡng số đo → gợi ý bệnh theo tầng khi chỉ có ảnh, kiểm chứng chéo theo bệnh nhân: **35/54 tổ hợp dùng được** | ✅ Xong |
 
 `src/common.py` khai báo đường dẫn dùng chung; `src/s00_shared_data.py` tải / đóng gói mask dùng
 chung trong nhóm (mục 0). Tên thư mục con trong `src/`, `outputs/tables/`, `outputs/figures/` trùng
@@ -210,14 +211,14 @@ mmis-gr8-lowbackpain/      # gốc repo
 ├── data/
 │   ├── MRI_Data/01_MRI_Data/0001 … 0575/    # ảnh DICOM (.ima), 515 bệnh nhân
 │   └── Radiologists Report.xlsx
-└── totalspineseg/                            # thư mục này (code + kết quả)
+└── pipeline/                                 # thư mục này (code + kết quả)
     ├── src/
     │   ├── common.py, s00_shared_data.py     # dùng chung
     │   ├── dicom/                            # bước 1: s01, s02
     │   ├── segmentation/                     # bước 2: s03, s04, s05
     │   ├── nlp/                              # bước 3: nlp_rules.py, s06, s07, s08
     │   ├── measurements/                     # bước 4: s09
-    │   └── analysis/                         # bước 5: s10
+    │   └── analysis/                         # bước 5, 6: s10, s11
     ├── annotations/                          # nhãn chuẩn vàng cho NLP (s06, s08)
     ├── kaggle/                               # notebook chạy TotalSpineSeg trên GPU
     └── outputs/                              # do script sinh ra
@@ -226,7 +227,7 @@ mmis-gr8-lowbackpain/      # gốc repo
 ```
 
 ```bash
-cd totalspineseg
+cd pipeline
 pip install -r requirements.txt
 python src/dicom/s01_index_dicom.py        # ~2 phút
 python src/dicom/s02_select_convert.py     # ~2 phút
@@ -264,7 +265,7 @@ python src/s00_shared_data.py --fetch              # mask -> outputs/tss/sag/, k
 python src/s00_shared_data.py --fetch --previews   # them anh preview
 ```
 
-Sau đó chạy tiếp `s05` → `s10` (cần ảnh gốc + `s01`, `s02` cho bước đo tín hiệu ở `s09`).
+Sau đó chạy tiếp `s05` → `s11` (cần ảnh gốc + `s01`, `s02` cho bước đo tín hiệu ở `s09`).
 Người tạo release dùng `python src/s00_shared_data.py --pack` để đóng gói lại từ
 `outputs/tss/sag/` (zip + `MANIFEST.json` ghi commit, ngày, số ca, SHA-256 từng file).
 
@@ -298,6 +299,9 @@ cho bước sau**; các bảng còn lại là số liệu trung gian để kiể
 | | ⭐ `analysis_discordance.csv` | s10 | **Số ca lệch** giữa ảnh và báo cáo |
 | | `analysis_discordance_cases.csv` | s10 | Danh sách từng ca lệch (để bác sĩ xem lại) |
 | | ⭐ `analysis_patient.csv` | s10 | Tuổi ↔ tín hiệu đĩa, góc ưỡn ↔ co cứng cơ |
+| | ⭐ `threshold_rules.csv` | s11 | **Ngưỡng gợi ý bệnh theo tầng** + số liệu kiểm chứng chéo |
+| | `threshold_cv_by_level.csv` | s11 | Ngưỡng z chung: kiểm chứng chéo tách theo tầng |
+| | `measure_reference.csv` | s11 | Trung bình, độ lệch chuẩn, phân vị số đo theo tầng (tính z cho BN mới) |
 
 Đường dẫn các thư mục này khai báo trong `src/common.py` (`T_*` cho bảng, `F_*` cho hình).
 Các script dùng đa tiến trình (16 luồng CPU); thời gian ở trên đo trên máy CPU 16 luồng, RAM 7,3 GB.
@@ -1289,3 +1293,106 @@ hạn của lát sagittal (mặt cắt dọc) giữa.
 ![ROC](outputs/figures/analysis/roc.png)
 ![Tuổi và góc ưỡn](outputs/figures/analysis/patient.png)
 ![Ca lệch](outputs/figures/analysis/discordance.png)
+
+---
+
+## 6. Bước 6 – Gợi ý bệnh theo tầng từ ảnh (`src/analysis/s11_threshold_rules.py`)
+
+### Mục đích
+Tình huống: **bệnh nhân mới chỉ có ảnh MRI (chụp cộng hưởng từ), chưa có báo cáo** của bác sĩ
+X-quang:
+
+```
+Ảnh MRI mới → TotalSpineSeg → số đo theo tầng (s09) → so với bảng ngưỡng học từ 513 BN
+            → "nghi <bệnh> tại <tầng>" + độ tin cậy
+```
+
+Bước 5 trả lời "số đo có **liên quan** với nhãn không"; bước 6 biến liên quan đó thành **quy tắc
+gợi ý** và đo xem quy tắc đúng đến đâu trên bệnh nhân **chưa dùng để học**. Đây là công cụ **sàng
+lọc / gợi ý xem lại**, không phải chẩn đoán (xem kịch bản C ở đầu README).
+
+### Đầu vào
+- Bảng ghép của s10 (`build_dataset()`): 513 BN `use_level` × 6 tầng = 3.078 tầng.
+- 16 cặp bệnh ↔ số đo `PAIRS` của s10, kèm **chiều kỳ vọng** – đặt trước theo kiến thức y khoa,
+  không chọn từ dữ liệu.
+
+### Phương pháp
+Mỗi gợi ý dựa trên **một** số đo; thứ duy nhất được học là **ngưỡng**. Với mỗi tổ hợp
+(bệnh, số đo, phạm vi):
+
+- **Hai loại phạm vi:**
+  - **Riêng theo tầng** (vd `L4-L5`): ngưỡng trên giá trị gốc (mm, mm², tỉ số). Chỉ học khi tầng
+    đó có ≥ 10 tầng có bệnh (`MIN_POS`).
+  - **z chung** (`z_all`): số đo chuẩn hóa z trong từng tầng, **một** ngưỡng cho cả 6 tầng – dùng
+    cho các tầng trên, nơi quá ít ca bệnh để học ngưỡng riêng.
+- **Ngưỡng Youden** (tối đa độ nhạy + độ đặc hiệu − 1).
+- **① Kiểm chứng chéo (cross-validation)** – ngưỡng có dùng được cho bệnh nhân mới không?
+  - `StratifiedGroupKFold` 5 phần, **chia theo bệnh nhân** (mọi tầng của một BN cùng một phần,
+    tránh rò rỉ giữa các tầng của cùng người), giữ tỉ lệ ca bệnh giữa các phần.
+  - Mỗi vòng: học ngưỡng trên 4 phần (~410 BN), gắn cờ "nghi bệnh" trên phần còn lại (~103 BN).
+    Với `z_all`, trung bình / độ lệch chuẩn để tính z **chỉ lấy từ phần học**.
+  - Gộp dự đoán 5 phần → độ nhạy, độ đặc hiệu, PPV (giá trị dự đoán dương), tỉ lệ bị gắn cờ;
+    lặp 5 lần với cách chia khác nhau (seed 2026 + lần lặp), lấy trung bình → cột `cv_*`.
+- **② Khoảng tin cậy 95 % của AUC** – bootstrap 1.000 lần **theo bệnh nhân** (bốc BN có hoàn lại,
+  giữ cả 6 tầng). AUC của một số đo không phụ thuộc ngưỡng nên không cần tách học / kiểm tra.
+- **③ Ngưỡng cuối** – học Youden trên **toàn bộ** 513 BN: đây là ngưỡng dùng thật (cột
+  `threshold`). Số liệu trên chính dữ liệu học (`*_insample`) lạc quan; `optimism_j` = J
+  in-sample − J kiểm chứng chéo đo độ lạc quan đó.
+- **④ Lọc** – dùng tổ hợp khi cận dưới KTC 95 % của AUC ≥ 0,70 (`use`); độ tin cậy **cao** khi
+  ≥ 0,80, còn lại **vừa**.
+
+#### Vì sao không chia train / validation / test cố định
+- **Không có gì để tinh chỉnh** → không cần tập validation: cặp và chiều đặt trước, các hằng số
+  (`MIN_POS`, `MIN_AUC_LOW`, `HIGH_AUC_LOW`) cố định trước khi chạy.
+- **Ít ca bệnh** → tập test cố định quá nhỏ: vd mất nước đĩa đệm (disc desiccation) tại L4-L5 chỉ
+  có 18 tầng có bệnh; tách 20 % làm test còn 3–4 ca, độ nhạy chỉ nhận 0 / 33 / 67 / 100 %.
+- Kiểm chứng chéo lặp lại cho **mỗi BN đúng một lần làm "bệnh nhân mới"** trong mỗi lần lặp, nên
+  vẫn là đánh giá trên dữ liệu chưa thấy nhưng dùng hết 513 BN.
+
+### Đầu ra (`outputs/tables/analysis/`)
+| File | Nội dung |
+|---|---|
+| `threshold_rules.csv` | **Bảng quy tắc gợi ý**: mỗi dòng một tổ hợp (bệnh, số đo, phạm vi) – quy tắc (`<=` / `>=`), ngưỡng, `n_pos` / `n_neg`, AUC + KTC 95 %, số liệu in-sample, `cv_sens` / `cv_spec` / `cv_ppv` / `cv_flag_rate`, `optimism_j`, `use`, `confidence` |
+| `threshold_cv_by_level.csv` | Ngưỡng `z_all`: số liệu kiểm chứng chéo tách theo từng tầng |
+| `measure_reference.csv` | Trung bình, độ lệch chuẩn, phân vị 5…95 của mỗi số đo theo tầng – để tính z cho BN mới và hiển thị "thấp hơn x % BN cùng tầng" |
+
+### Kết quả bước 6
+
+Chạy: `python src/analysis/s11_threshold_rules.py` (~5 phút, chủ yếu do bootstrap; chạy lại
+cho kết quả giống hệt nhờ seed cố định).
+
+**35/54 tổ hợp đủ mạnh để gợi ý** – 19 độ tin cậy cao, 16 vừa, 19 không dùng. Độ lạc quan
+`optimism_j` trung vị 0,05 (tối đa 0,18): ngưỡng học trên toàn bộ dữ liệu chỉ tốt hơn một chút so
+với trên bệnh nhân chưa thấy.
+
+Một số quy tắc mạnh nhất (độ nhạy / độ đặc hiệu / PPV lấy từ kiểm chứng chéo):
+
+| Bệnh | Quy tắc | Tầng | AUC (KTC 95 %) | Độ nhạy | Độ đặc hiệu | PPV |
+|---|---|---|---|---|---|---|
+| Trượt đốt sống (spondylolisthesis) | độ trượt ≥ −0,51 mm | L4-L5 | 0,99 (0,98–) | 0,89 | 0,96 | 0,32 |
+| Hẹp khoang đĩa (disc space narrowing) | DHI (chỉ số chiều cao đĩa) z ≤ −1,56 | mọi tầng | 0,97 (0,94–) | 0,81 | 0,95 | 0,08 |
+| Chèn ép bao màng cứng (thecal sac compression) | ống sống trước–sau ≤ 9,0 mm | L2-L3 | 0,97 (0,95–) | 0,88 | 0,90 | 0,22 |
+| Hẹp ống sống (spinal canal stenosis) | ống sống trước–sau ≤ 8,0 mm | L3-L4 | 0,96 (0,93–) | 0,90 | 0,86 | 0,13 |
+| Hẹp ống sống | diện tích ống sống ≤ 84 mm² | L4-L5 | 0,90 (0,83–) | 0,79 | 0,87 | 0,24 |
+| Lồi đĩa đệm (disc protrusion) | nhô sau ≥ 0,27 mm | L5-S1 | 0,89 (0,86–) | 0,84 | 0,83 | 0,47 |
+| Mất nước đĩa đệm (disc desiccation) | tín hiệu đĩa / DNT (dịch não tủy) ≤ 0,14 | L5-S1 | 0,82 (0,74–) | 0,71 | 0,74 | 0,10 |
+
+(AUC là in-sample, chỉ ghi cận dưới KTC; với ngưỡng theo tầng AUC không phụ thuộc việc học.)
+
+Không đạt (cận dưới KTC < 0,70): phồng đĩa đệm (disc bulge) ở L4-L5 / L5-S1, chèn ép bao màng
+cứng ở L5-S1, hẹp lỗ liên hợp (foraminal stenosis) theo DHI, chèn ép rễ thần kinh (nerve root
+compression) ở L4-L5 – khớp với bước 5: các bệnh này chỉ có số đo gián tiếp hoặc rất phổ biến
+ở tầng dưới nên khó tách bằng một ngưỡng.
+
+### Giới hạn
+- **PPV thấp ở bệnh hiếm**: vd mất nước đĩa đệm theo ngưỡng `z_all` có PPV ≈ 0,03 – phần lớn
+  tầng bị gắn cờ là báo động giả. Chỉ dùng để gợi ý xem lại, luôn hiển thị kèm độ tin cậy.
+- **Ngưỡng `z_all` gắn cờ gần như cùng tỉ lệ ở mọi tầng**, kể cả tầng hầu như không có bệnh: vd hẹp
+  ống sống theo đường kính trước–sau gắn cờ 26–30 % số tầng ở mọi tầng, cả T12-L1 (0 ca bệnh)
+  (`threshold_cv_by_level.csv`). Ưu tiên ngưỡng riêng theo tầng khi có.
+- **Lọc `use` dùng KTC tính trên toàn bộ dữ liệu** → số liệu của các tổ hợp được giữ có thể hơi lạc
+  quan (chọn "người thắng" rồi báo cáo điểm của chính họ). Mức lệch nhỏ vì lọc theo cận dưới KTC;
+  chặt chẽ hơn thì cần đưa bước lọc vào trong kiểm chứng chéo (nested CV).
+- AUC tính trong kiểm chứng chéo chưa được lưu ra file (chỉ lưu độ nhạy / độ đặc hiệu / PPV).
+- Kế thừa giới hạn bước 5: nhãn 0 là "không được nhắc"; chỉ số đo sagittal (mặt cắt dọc); chưa
+  kiểm định ngoài bộ dữ liệu.

@@ -10,7 +10,7 @@ Dùng --all ở bước 5d (sau khi đã chốt rule) để chạy cả 515 ghi 
   outputs/tables/nlp/nlp_unmatched_<tập>.csv       câu KHÔNG khớp bệnh nào -> đọc để bổ sung mẫu
   outputs/tables/nlp/nlp_typo_hits_<tập>.csv       số lần sửa từng lỗi chính tả
 
-Chạy (từ thư mục totalspineseg/):  python src/nlp/s07_nlp_extract.py [--all]
+Chạy (từ thư mục pipeline/):  python src/nlp/s07_nlp_extract.py [--all]
 """
 import re
 import sys

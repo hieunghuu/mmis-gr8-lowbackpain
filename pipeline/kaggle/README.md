@@ -7,7 +7,7 @@ mỗi phiên tối đa 12 giờ).
 ## 1. Chuẩn bị file (trên máy)
 
 ```bash
-cd totalspineseg
+cd pipeline
 python src/segmentation/s04_pack_for_kaggle.py     # -> outputs/kaggle/lumbar_sag_nifti.zip (1,2 GB, 515 file)
 ```
 
@@ -54,7 +54,7 @@ Theo dõi ở trang notebook → *Versions*.
 ## 7. Tải kết quả
 
 Version chạy xong → tab **Output** → tải `tss_sag_results.zip`, đặt vào
-`totalspineseg/outputs/kaggle/`. Bên trong:
+`pipeline/outputs/kaggle/`. Bên trong:
 
 ```
 tss_sag/

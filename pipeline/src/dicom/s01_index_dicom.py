@@ -11,7 +11,7 @@ Mỗi file .ima -> 1 dòng trong outputs/tables/dicom/dicom_index.csv.
   EchoTime: T2 có TE dài (> 60 ms), T1 có TE ngắn.
 * Localizer và POSDISP (ảnh phụ trợ) được đánh cờ để loại ở bước sau.
 
-Chạy (từ thư mục totalspineseg/):  python src/dicom/s01_index_dicom.py
+Chạy (từ thư mục pipeline/):  python src/dicom/s01_index_dicom.py
 Chỉ in lại tóm tắt:        python src/dicom/s01_index_dicom.py --summary
 """
 import sys

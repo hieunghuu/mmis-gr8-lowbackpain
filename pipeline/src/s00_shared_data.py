@@ -9,7 +9,7 @@ release `v0.1-tss-masks` của repo hieunghuu/mmis-gr8-lowbackpain.
                       outputs/tss/sag/ (step2_output/, step1_levels/) + tss_qc.csv
   --fetch --previews  Tải thêm ảnh preview (1 ảnh/ca) vào outputs/tss/sag/preview/
 
-Chạy (từ thư mục totalspineseg/):  python src/s00_shared_data.py --fetch
+Chạy (từ thư mục pipeline/):  python src/s00_shared_data.py --fetch
 """
 import argparse
 import datetime as dt
