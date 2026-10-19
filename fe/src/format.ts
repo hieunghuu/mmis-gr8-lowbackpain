@@ -3,7 +3,6 @@ import type { JobStatus, LabelGroup, MeasureKey } from './types'
 export const fmt = (n: number, maxDigits = 2) =>
   n.toLocaleString('vi-VN', { maximumFractionDigits: maxDigits, minimumFractionDigits: 0 })
 
-/** "2026-10-19T12:30:00Z" -> "2026-10-19 12:30:00" (UTC) */
 export const formatUtc = (iso: string) => iso.replace('T', ' ').replace('Z', '')
 
 export const formatSize = (bytes: number) => `${fmt(bytes / 1048576, 1)} MB`
@@ -31,7 +30,6 @@ export const GROUP_NAME: Record<LabelGroup, string> = {
 }
 export const GROUP_ORDER: LabelGroup[] = ['vertebra', 'disc', 'cord', 'canal']
 
-/** Nhãn voxel của đĩa đệm từng tầng (spec mục 7: 91–95 và 100). */
 export const DISC_LABEL: Record<string, number> = {
   'T12-L1': 91,
   'L1-L2': 92,
@@ -48,7 +46,6 @@ export const STATUS_TEXT: Record<JobStatus, string> = {
   failed: 'Failed',
 }
 
-/** Gợi ý hiển thị cho lỗi job và lỗi phân tích (spec mục 8). */
 export const JOB_ERROR_HINT: Record<string, string> = {
   SEGMENTATION_FAILED: 'Thử lại. Nếu lặp lại thì gửi đoạn log cho người phụ trách.',
   OUTPUT_NOT_FOUND: 'Lỗi hệ thống, hãy báo cho người phụ trách.',

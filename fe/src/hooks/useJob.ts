@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { ApiError, getJob } from '../api'
 import type { Job } from '../types'
 
-const FAST_MS = 3000 // spec mục 4: hỏi lại mỗi 3 giây
-const SLOW_MS = 10000 // sau 2 phút chưa xong thì giãn ra 10 giây
+const FAST_MS = 3000
+const SLOW_MS = 10000
 const SLOW_AFTER_MS = 120000
 
 interface State {
@@ -11,7 +11,6 @@ interface State {
   error: ApiError | null
 }
 
-/** Theo dõi một job theo quy tắc polling của spec. Dừng khi done/failed hoặc job không còn (404). */
 export function useJob(jobId: string): State {
   const [state, setState] = useState<State>({ job: null, error: null })
 

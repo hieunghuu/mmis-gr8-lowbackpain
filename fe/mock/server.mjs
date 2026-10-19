@@ -1,8 +1,3 @@
-// Mock BE theo docs/spec.md (mục 3, 4, 8) để FE chạy được khi chưa có GPU / BE thật.
-// Không phụ thuộc thư viện nào: node mock/server.mjs  (cổng 8000, đổi bằng PORT).
-// Ảnh nền và mask đều dùng ai/demo/0100_seg.nii.gz (giống MOCK_WORKER=1 của spec),
-// analysis lấy từ ai/demo/analysis_0100.json.
-
 import http from 'node:http'
 import { readFileSync } from 'node:fs'
 import { randomUUID } from 'node:crypto'
@@ -18,13 +13,11 @@ const PORT = Number(process.env.PORT ?? 8000)
 const PREFIX = '/api/v1'
 const MAX_UPLOAD = 200 * 1024 * 1024
 const MAX_PENDING = 20
-const PENDING_MS = 3000 // từ lúc tạo đến lúc chạy
-const RUNNING_MS = 5000 // thời gian chạy giả lập
+const PENDING_MS = 3000
+const RUNNING_MS = 5000
 
 const ms = (iso) => new Date(iso).getTime()
 const iso = (t) => new Date(t).toISOString().replace(/\.\d{3}Z$/, 'Z')
-
-/* ---------- dữ liệu ---------- */
 
 const LABELS_PRESENT = [1, 2, 32, 41, 42, 43, 44, 45, 50, 91, 92, 93, 94, 95, 100]
 
@@ -56,14 +49,12 @@ function seed(filename, status, minutesAgo, extra = {}) {
   const created = now - minutesAgo * 60000
   const id = randomUUID()
   const job = { id, filename, size: 18350212, iso: false, step1: false, created: iso(created), ...extra }
-  job.forced = status // trạng thái cố định cho job mẫu
+  job.forced = status
   jobs.set(id, job)
 }
 seed('sub-0100_T2w.nii.gz', 'done', 60, { duration: 155 })
 seed('sub-0113_T2w.nii.gz', 'done', 95, { duration: 161 })
 seed('sub-0102_T2w.nii.gz', 'failed', 130, { duration: 48 })
-
-/* ---------- trạng thái job ---------- */
 
 function stateOf(job) {
   if (job.forced) return job.forced
@@ -116,8 +107,6 @@ function view(job) {
   }
   return base
 }
-
-/* ---------- HTTP ---------- */
 
 const cors = {
   'Access-Control-Allow-Origin': process.env.CORS_ORIGINS ?? 'http://localhost:5173',

@@ -7,7 +7,6 @@ import { JOB_ERROR_HINT, formatUtc, mmss } from '../format'
 import { useJob } from '../hooks/useJob'
 import type { Job, Label } from '../types'
 
-// NiiVue nặng (~1 MB): chỉ tải khi mở một job đã xong.
 const Viewer = lazy(() => import('../components/Viewer'))
 
 const STEPS = ['pending', 'running', 'done'] as const
@@ -143,7 +142,6 @@ function ViewerPlaceholder() {
   )
 }
 
-// Cache nhãn: bảng nhãn không đổi trong một phiên.
 let labelsPromise: Promise<Label[]> | null = null
 const loadLabels = () => (labelsPromise ??= getLabels().catch((e) => ((labelsPromise = null), Promise.reject(e))))
 
@@ -166,7 +164,6 @@ function Done({ job }: { job: Job }) {
 
   const analysis = result.analysis
   const levels = analysis?.levels ?? []
-  // Mặc định mở tầng đầu tiên có gợi ý, không có thì tầng đầu tiên.
   const defaultLevel = levels.find((l) => l.suggestions.length)?.level ?? levels[0]?.level ?? ''
   useEffect(() => setLevel(defaultLevel), [defaultLevel])
 

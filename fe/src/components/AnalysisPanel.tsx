@@ -87,7 +87,6 @@ export default function AnalysisPanel({ analysis, level, onSelect }: Props) {
   )
 }
 
-/** Mỗi bệnh một lần, lấy gợi ý có PPV cao nhất. */
 function topSuggestions(l: LevelAnalysis): Suggestion[] {
   const seen = new Set<string>()
   return [...l.suggestions]

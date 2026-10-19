@@ -1,5 +1,3 @@
-// Kiểu dữ liệu theo docs/spec.md mục 3 và 8. Đây là hợp đồng với BE: sửa spec thì sửa file này.
-
 export type JobStatus = 'pending' | 'running' | 'done' | 'failed'
 
 export type Confidence = 'cao' | 'vừa'
@@ -22,7 +20,6 @@ export interface Suggestion {
   value: number
   rule: '>=' | '<='
   threshold: number
-  /** "z": ngưỡng là z-score trong tầng, value vẫn là giá trị gốc */
   threshold_unit: 'gốc' | 'z'
   percentile: number
   confidence: Confidence

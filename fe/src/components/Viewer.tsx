@@ -8,7 +8,6 @@ interface Props {
   segUrl: string
   labels: Label[]
   labelsPresent: number[]
-  /** Tầng đang chọn trong bảng phân tích; viewer nhảy tới đĩa đệm của tầng này. */
   level: string | null
 }
 
@@ -25,7 +24,6 @@ function hexToRgb(hex: string): [number, number, number] {
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255]
 }
 
-/** Bảng màu nhãn của NiiVue: chỉ số = giá trị voxel. Nhóm bị ẩn có alpha 0. */
 function buildLut(labels: Label[], hidden: Set<LabelGroup>) {
   const max = Math.max(...labels.map((l) => l.value))
   const lut = new Uint8ClampedArray((max + 1) * 4)
@@ -38,7 +36,6 @@ function buildLut(labels: Label[], hidden: Set<LabelGroup>) {
   return { lut, min: 0, max, labels: names }
 }
 
-/** Tâm (theo chỉ số voxel của lưới RAS) của một nhãn trong mask; null nếu nhãn không có. */
 function centroid(img: ArrayLike<number>, dims: number[], label: number): [number, number, number] | null {
   const [nx, ny, nz] = [dims[1], dims[2], dims[3]]
   let n = 0, sx = 0, sy = 0, sz = 0
@@ -65,7 +62,6 @@ export default function Viewer({ inputUrl, segUrl, labels, labelsPresent, level 
   const [opacity, setOpacity] = useState(100)
   const [hidden, setHidden] = useState<Set<LabelGroup>>(new Set())
 
-  // Chú thích chỉ liệt kê nhóm có nhãn xuất hiện trong mask (labels_present).
   const legend = useMemo(() => {
     const present = new Set(labelsPresent)
     return GROUP_ORDER.flatMap((g) => {
@@ -74,7 +70,6 @@ export default function Viewer({ inputUrl, segUrl, labels, labelsPresent, level 
     })
   }, [labels, labelsPresent])
 
-  // Nạp ảnh nền và mask. URL của API không có đuôi file nên phải khai báo name .nii.gz.
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -130,13 +125,11 @@ export default function Viewer({ inputUrl, segUrl, labels, labelsPresent, level 
     nv.updateGLVolume()
   }, [hidden, ready, labels])
 
-  // Bấm tầng trong bảng thì nhảy tới tâm đĩa đệm của tầng đó.
   useEffect(() => {
     const nv = nvRef.current
     if (!ready || !nv || !level) return
     const label = DISC_LABEL[level]
     const seg = nv.volumes[1]
-    // vox2frac nhận chỉ số voxel của lưới RAS đã sắp lại, không phải thứ tự trong file.
     const dims = seg.dimsRAS
     if (!label || !dims) return
     const c = centroid(seg.img2RAS(), dims, label)

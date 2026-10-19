@@ -6,7 +6,6 @@ import { formatSize } from '../format'
 
 const MAX_MB = 200
 
-/** Kiểm tra phía FE theo đúng mã lỗi của BE (spec mục 8) để báo sớm. */
 function validate(file: File): { code: string; message: string } | null {
   if (!/\.(nii|nii\.gz)$/i.test(file.name))
     return { code: 'INVALID_FILE_TYPE', message: `Chỉ chấp nhận file .nii hoặc .nii.gz. File ${file.name} không hợp lệ.` }

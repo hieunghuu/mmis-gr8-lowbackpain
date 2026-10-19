@@ -1,50 +1,46 @@
-# Frontend – Spine MRI Viewer
+# Frontend
 
-React + TypeScript (Vite) + NiiVue. Làm theo hợp đồng ở [`../docs/spec.md`](../docs/spec.md) (mục 3 API, mục 7 FE, mục 8 mã lỗi).
+Giao diện web cho hệ thống phân đoạn MRI cột sống. Viết bằng React, TypeScript và Vite, xem ảnh bằng NiiVue. API làm theo `docs/spec.md`.
 
-## Chạy
+## Chạy thử
 
-Cần Node ≥ 20.19.
+Cần Node 20.19 trở lên. Mở hai terminal:
 
 ```bash
 cd fe
 npm install
-npm run mock     # terminal 1: mock BE ở :8000 (chưa cần GPU)
-npm run dev      # terminal 2: FE ở http://localhost:5173
+npm run mock    # BE giả, cổng 8000
+npm run dev     # FE, mở http://localhost:5173
 ```
 
-Mock dùng `ai/demo/0100_seg.nii.gz` làm cả ảnh nền lẫn mask (giống `MOCK_WORKER=1` của spec) và `ai/demo/analysis_0100.json` làm `result.analysis`. Vì ảnh nền ở đây cũng là mask nên viewer chưa nhìn giống ảnh MRI thật; khi nối BE thật thì ảnh nền là ảnh người dùng tải lên.
+Mock có sẵn vài job mẫu và dùng dữ liệu BN 0100 trong `ai/demo`. Ảnh nền của mock chính là file mask nên viewer chưa giống ảnh MRI thật.
 
-Các lệnh khác: `npm run build` (kiểm tra kiểu rồi build ra `dist/`), `npm run preview`.
+## Dùng BE thật
 
-## Nối BE thật
-
-FE chỉ gọi `/api/v1/...`. Lúc dev Vite chuyển tiếp `/api` sang BE, nên đổi từ mock sang BE thật chỉ cần trỏ proxy:
+Không chạy `npm run mock`, bật BE ở cổng 8000 rồi chạy `npm run dev`. Nếu BE ở chỗ khác:
 
 ```bash
-VITE_PROXY_TARGET=http://localhost:8000 npm run dev   # BE thật chạy ở cổng 8000
+VITE_PROXY_TARGET=http://<host>:<cổng> npm run dev
 ```
 
-- Lúc demo: `npm run build`, để BE phục vụ thư mục `dist/` (một cổng, không cần CORS). Route phía FE là `/`, `/jobs`, `/jobs/:jobId`, nên BE cần trả `index.html` cho các đường dẫn không phải `/api`.
-- BE khác origin: đặt `VITE_API_BASE_URL=http://<host>:8000/api/v1` (xem `.env.example`) và bật CORS cho origin của FE.
+## Build
 
-## Cấu trúc
-
-```
-src/
-├── types.ts            kiểu dữ liệu đúng như spec mục 3 và 8
-├── api/                chỗ duy nhất gọi HTTP (client.ts: lỗi + URL, index.ts: 7 endpoint)
-├── hooks/useJob.ts     polling theo spec mục 4 (3 giây, sau 2 phút thì 10 giây, dừng khi done/failed/404)
-├── hooks/useHealth.ts  GET /health cho thanh trạng thái
-├── components/         Layout, Viewer (NiiVue), AnalysisPanel, StatusTag, ErrorBox
-├── pages/              UploadPage, JobPage (/jobs/:jobId), JobListPage
-└── styles.css          không bo góc, chỉ giao diện sáng
-mock/server.mjs         mock BE theo spec, không phụ thuộc thư viện
+```bash
+npm run build
 ```
 
-## Chưa làm / cần lưu ý
+Kết quả nằm trong `dist/`. Khi demo, cho BE phục vụ thư mục này và trả `index.html` cho mọi đường dẫn không bắt đầu bằng `/api`.
 
-- Viewer: chưa kiểm tra với ảnh MRI sagittal T2 thật (mock dùng mask làm ảnh nền).
-- Ẩn/hiện theo nhóm đang tách theo 4 nhóm của `/labels` (đốt sống, đĩa đệm, tủy, ống sống).
-- Gợi ý bệnh luôn đi kèm `disclaimer` của BE; nếu BE không trả thì không hiện, nên BE cần trả đủ trường này.
+## Thư mục
+
+- `src/api`: nơi duy nhất gọi API
+- `src/pages`: trang tải lên, trang job, danh sách job
+- `src/components`: viewer NiiVue, bảng phân tích, các phần dùng chung
+- `src/hooks`: polling trạng thái job và `/health`
+- `src/types.ts`: kiểu dữ liệu theo spec
+- `mock/server.mjs`: BE giả
+
+## Chưa có
+
+- Chưa thử với ảnh MRI sagittal T2 thật.
 - Chưa có test tự động.
