@@ -46,6 +46,7 @@ export default function Layout() {
           <NavLink to="/jobs" end>
             Danh sách job
           </NavLink>
+          <NavLink to="/huong-dan">Hướng dẫn</NavLink>
         </div>
       </nav>
       <main>
