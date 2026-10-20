@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "mock": "node mock/server.mjs"
+    "mock": "node mock/server.mjs",
+    "check:api": "node scripts/check-api.ts"
   },
   "dependencies": {
     "@niivue/niivue": "^0.69.0",
