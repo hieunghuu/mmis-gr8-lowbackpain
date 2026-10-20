@@ -2,6 +2,8 @@
 
 Giao diện web cho hệ thống phân đoạn MRI cột sống. Viết bằng React, TypeScript và Vite, xem ảnh bằng NiiVue. API làm theo `docs/spec.md`.
 
+Cách dùng giao diện: [docs/huong-dan-su-dung.md](docs/huong-dan-su-dung.md).
+
 ## Chạy thử
 
 Cần Node 20.19 trở lên. Mở hai terminal:
