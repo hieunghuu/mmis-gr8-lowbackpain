@@ -1,40 +1,35 @@
 # Frontend
 
-Giao diện web cho hệ thống phân đoạn MRI cột sống. Viết bằng React, TypeScript và Vite, xem ảnh bằng NiiVue. API làm theo `docs/spec.md`.
+Web UI for the spine MRI segmentation system. React, TypeScript, Vite and NiiVue. The API follows `docs/spec.md`.
 
-Cách dùng giao diện: [docs/huong-dan-su-dung.md](docs/huong-dan-su-dung.md).
+User guide (Vietnamese): [docs/huong-dan-su-dung.md](docs/huong-dan-su-dung.md)
 
-## Chạy thử
+## Run
 
-Cần Node 20.19 trở lên. Mở hai terminal:
+Node 22.18 or newer. Use two terminals:
 
 ```bash
 cd fe
 npm install
-npm run mock    # BE giả, cổng 8000
-npm run dev     # FE, mở http://localhost:5173
+npm run mock    # fake backend on port 8000
+npm run dev     # open http://localhost:5173
 ```
 
-Mock có sẵn vài job mẫu và dùng dữ liệu BN 0100 trong `ai/demo`. Ảnh nền của mock chính là file mask nên viewer chưa giống ảnh MRI thật.
+The mock uses the sample data in `ai/demo`.
 
-## Dùng BE thật
+## Use the real backend
 
-Không chạy `npm run mock`, bật BE ở cổng 8000 rồi chạy `npm run dev`. Nếu BE ở chỗ khác:
+Stop the mock and run the backend on port 8000. If the backend runs somewhere else, create `fe/.env.local`:
+
+```
+VITE_PROXY_TARGET=http://<host>:<port>
+```
+
+Check that the backend matches the spec:
 
 ```bash
-VITE_PROXY_TARGET=http://<host>:<cổng> npm run dev
+npm run check:api -- http://<host>:<port>/api/v1
 ```
-
-Kiểm tra BE có đúng spec không:
-
-```bash
-npm run check:api                                   # mặc định http://localhost:8000/api/v1
-npm run check:api -- http://<host>:<cổng>/api/v1
-```
-
-Script gọi lần lượt các endpoint, thử vài lỗi (404, sai đuôi file, sai tùy chọn), tải ảnh mẫu lên, chờ job xong rồi xóa. Mục nào sai spec sẽ in ra trường bị sai. Muốn dùng ảnh khác thì đặt `SAMPLE=đường/dẫn/ảnh.nii.gz`.
-
-Nếu BE trả thiếu vài trường không bắt buộc, FE tự dùng giá trị mặc định. Nếu sai trường bắt buộc (ví dụ `status` lạ, job `done` mà không có `result`), FE hiện lỗi `CONTRACT_MISMATCH` kèm tên trường.
 
 ## Build
 
@@ -42,19 +37,10 @@ Nếu BE trả thiếu vài trường không bắt buộc, FE tự dùng giá tr
 npm run build
 ```
 
-Kết quả nằm trong `dist/`. Khi demo, cho BE phục vụ thư mục này và trả `index.html` cho mọi đường dẫn không bắt đầu bằng `/api`.
+Output is in `dist/`. The backend must return `index.html` for every path that does not start with `/api`.
 
-## Thư mục
+## Notes for backend and AI
 
-- `src/api`: nơi duy nhất gọi API, `validate.ts` kiểm tra dữ liệu BE trả về
-- `src/pages`: trang tải lên, trang job, danh sách job
-- `src/components`: viewer NiiVue, bảng phân tích, các phần dùng chung
-- `src/hooks`: polling trạng thái job và `/health`
-- `src/types.ts`: kiểu dữ liệu theo spec
-- `mock/server.mjs`: BE giả
-- `scripts/check-api.ts`: kiểm tra BE theo spec
-
-## Chưa có
-
-- Chưa thử với ảnh MRI sagittal T2 thật.
-- Chưa có test tự động.
+- This branch only changes `fe/`.
+- If the API changes, update `docs/spec.md` first, then `src/types.ts` and `src/api/validate.ts`.
+- The mock and `check:api` read `ai/demo/0100_seg.nii.gz` and `ai/demo/analysis_0100.json`. Tell the FE team if these files move.

@@ -6,8 +6,14 @@ import path from 'node:path'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const demoDir = path.resolve(here, '../../ai/demo')
-const MASK = readFileSync(path.join(demoDir, '0100_seg.nii.gz'))
-const ANALYSIS = JSON.parse(readFileSync(path.join(demoDir, 'analysis_0100.json'), 'utf8'))
+let MASK, ANALYSIS
+try {
+  MASK = readFileSync(path.join(demoDir, '0100_seg.nii.gz'))
+  ANALYSIS = JSON.parse(readFileSync(path.join(demoDir, 'analysis_0100.json'), 'utf8'))
+} catch {
+  console.error(`Mock cần ai/demo/0100_seg.nii.gz và ai/demo/analysis_0100.json (tìm ở ${demoDir}).`)
+  process.exit(1)
+}
 
 const PORT = Number(process.env.PORT ?? 8000)
 const PREFIX = '/api/v1'
