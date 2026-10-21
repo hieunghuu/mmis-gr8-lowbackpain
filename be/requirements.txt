@@ -1,0 +1,14 @@
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+python-multipart>=0.0.20,<1
+nibabel>=5.3,<6
+numpy>=2.0
+pandas>=2.2
+SimpleITK>=2.4
+scipy>=1.13
+matplotlib>=3.9
+psutil>=5.9
+
+# TotalSpineSeg nên cài trong môi trường Python 3.12 có PyTorch/CUDA phù hợp:
+# pip install "torch<2.6" --index-url https://download.pytorch.org/whl/cu124
+# pip install "totalspineseg[nnunetv2]" "kornia<0.8"
