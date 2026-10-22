@@ -5,6 +5,7 @@ import shutil
 from pathlib import Path
 
 from fastapi import UploadFile
+from fastapi.concurrency import run_in_threadpool
 
 from .errors import ApiError
 
@@ -30,16 +31,20 @@ class Storage:
             raise ValueError("path escapes data directory")
         return path
 
-    async def save_upload(self, upload: UploadFile, job_id: str) -> tuple[str, int]:
+    async def save_upload(self, upload: UploadFile, job_id: str) -> tuple[str, int, dict | None]:
+        """Lưu ảnh upload thành input/{job_id}.nii.gz; trả (đường dẫn tương đối, số byte, series DICOM đã chọn | None)."""
         name = Path(upload.filename or "").name
         lower = name.lower()
-        if not (lower.endswith(".nii") or lower.endswith(".nii.gz")):
-            raise ApiError(400, "INVALID_FILE_TYPE", "Chỉ chấp nhận file .nii hoặc .nii.gz", {"filename": name})
+        is_zip = lower.endswith(".zip")
+        if not (is_zip or lower.endswith(".nii") or lower.endswith(".nii.gz")):
+            raise ApiError(400, "INVALID_FILE_TYPE",
+                           "Chỉ chấp nhận file .nii, .nii.gz hoặc .zip (DICOM của một lần chụp)", {"filename": name})
 
         root = self.job_dir(job_id)
         input_dir = root / "input"
         input_dir.mkdir(parents=True, exist_ok=False)
-        temp = input_dir / ("upload.nii.gz.part.nii.gz" if lower.endswith(".nii.gz") else "upload.part.nii")
+        temp = input_dir / ("upload.zip" if is_zip else
+                            "upload.nii.gz.part.nii.gz" if lower.endswith(".nii.gz") else "upload.part.nii")
         size = 0
         try:
             with temp.open("xb") as dst:
@@ -50,11 +55,15 @@ class Storage:
                                        {"max_mb": self.max_bytes // 2**20})
                     dst.write(chunk)
             if size == 0:
-                raise ApiError(400, "INVALID_NIFTI", "File NIfTI rỗng")
+                raise ApiError(400, "INVALID_ZIP" if is_zip else "INVALID_NIFTI", "File rỗng")
             target = input_dir / f"{job_id}.nii.gz"
-            self._validate_and_normalize(temp, target, lower.endswith(".gz"))
+            dicom = None
+            if is_zip:   # đọc header + dựng ảnh mất ~0,2-2 s -> không chặn event loop
+                dicom = await run_in_threadpool(self._convert_dicom, temp, target)
+            else:
+                self._validate_and_normalize(temp, target, lower.endswith(".gz"))
             relative = target.relative_to(self.data_dir).as_posix()
-            return relative, size
+            return relative, size, dicom
         except Exception:
             shutil.rmtree(root, ignore_errors=True)
             raise
@@ -90,6 +99,18 @@ class Storage:
             raise
         except Exception as exc:
             raise ApiError(400, "INVALID_NIFTI", f"Không đọc được file NIfTI: {exc}") from None
+
+    @staticmethod
+    def _convert_dicom(zip_path: Path, target: Path) -> dict:
+        from ai.dicom_to_nifti import ConvertError, convert
+
+        try:
+            info = convert(zip_path, target)
+        except ConvertError as exc:
+            raise ApiError(400, exc.code, exc.message) from None
+        finally:
+            zip_path.unlink(missing_ok=True)   # không giữ DICOM: header có thông tin bệnh nhân
+        return {k: info[k] for k in ("series_description", "series_number", "n_series", "n_slices")}
 
     def delete_job(self, job_id: str) -> None:
         shutil.rmtree(self.job_dir(job_id), ignore_errors=True)

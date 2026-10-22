@@ -1549,8 +1549,9 @@ lệch hệ thống (khoảng −2 mm với đường kính ống sống và đ�
 Ở chỗ thang đo khớp y văn (diện tích ống sống), ngưỡng học được rơi đúng vào vùng ngưỡng y văn.
 
 ### Dùng trong `ai/analyze.py`
-`LIT_CUTOFFS` (s12) là nơi **duy nhất** khai báo ngưỡng y văn. `ai/analyze.py` import bảng này và
-thêm trường `literature` vào mỗi gợi ý: giá trị rơi vào mức nào theo y văn.
+`LIT_CUTOFFS` trong `src/analysis/literature.py` là nơi **duy nhất** khai báo ngưỡng y văn. File này cố
+ý không import gì, để BE không phải cài scikit-learn. s12 và `ai/analyze.py` cùng import bảng này;
+`ai/analyze.py` thêm trường `literature` vào mỗi gợi ý: giá trị rơi vào mức nào theo y văn.
 
 | Ví dụ (BN 100, BN 154) | Ý nghĩa |
 |---|---|
@@ -1581,6 +1582,15 @@ và ④, nó hay báo nặng hơn thực tế với đường kính ống sống
   được xây dựng trên phim X-quang.
 
 ### Nguồn
+**Bài gốc gắn với từng ngưỡng.** Đây là link hiện bên cạnh dòng "theo y văn" trên giao diện
+(`LIT_SOURCES` trong `src/analysis/literature.py`, trường `literature_source` của `analyze()`):
+
+| Ngưỡng | Bài | Mức chắc chắn |
+|---|---|---|
+| Diện tích bao màng cứng ~75 mm² | Schönström và cộng sự, *Spine* 1984: đo "diện tích tới hạn" trên mẫu tử thi, 76,9 / 71,5 / 64,8 mm² ở L2 / L3 / L4 ([PMID 6495030](https://pubmed.ncbi.nlm.nih.gov/6495030/)) | ✅ Đúng là bài đề ra mốc ~75 mm². Mốc 100 mm² đến từ bài CT năm 1985 của cùng nhóm (*Spine* 10: 806–811), chưa tìm được PMID |
+| Đường kính trước–sau < 10 / 12 mm | Verbiest, *J Bone Joint Surg Br* 1954; 36-B: 230–237 ([doi:10.1302/0301-620X.36B2.230](https://doi.org/10.1302/0301-620X.36B2.230)): bài kinh điển định nghĩa hẹp ống sống do phát triển | ⚠️ Chưa xác nhận bài này ghi đúng mốc 10 / 12 mm; mốc được gán cho Verbiest qua nguồn thứ cấp |
+| Trượt ≥ 3 mm | Không có một bài đề xuất duy nhất; ví dụ một nghiên cứu dùng mốc này: *Front Surg* 2022 ([doi:10.3389/fsurg.2022.860865](https://doi.org/10.3389/fsurg.2022.860865)) | ⚠️ Nguồn minh họa |
+
 Nguồn thứ cấp đã dùng (truy cập 10/2026):
 
 - Đường kính ống sống:
@@ -1598,5 +1608,5 @@ Nguồn thứ cấp đã dùng (truy cập 10/2026):
   [PMC3486675](https://pmc.ncbi.nlm.nih.gov/articles/PMC3486675),
   [Frontiers in Surgery 2022](https://www.frontiersin.org/journals/surgery/articles/10.3389/fsurg.2022.860865/pdf).
 
-Trước khi trích trong báo cáo, cần tìm và đọc bài gốc: Schönström và cộng sự (1984, 1985) về diện
-tích bao màng cứng; nguồn gốc của mốc 10 / 12 mm cho đường kính ống sống.
+Trước khi trích trong báo cáo, cần đọc toàn văn: bài CT năm 1985 của Schönström (mốc 100 mm²) và
+bài của Verbiest (xem có ghi mốc 10 / 12 mm hay mốc này đến từ bài khác).

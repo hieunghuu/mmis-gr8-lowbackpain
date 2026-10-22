@@ -152,6 +152,11 @@ function parseSuggestion(raw: unknown, p: string): Suggestion {
     sensitivity: num(o.sensitivity, `${p}.sensitivity`),
     specificity: num(o.specificity, `${p}.specificity`),
     ppv: num(o.ppv, `${p}.ppv`),
+    literature: opt(o.literature, null, (v) => str(v, `${p}.literature`)),
+    literature_source: opt(o.literature_source, null, (v) => {
+      const s = obj(v, `${p}.literature_source`)
+      return { citation: str(s.citation, `${p}.literature_source.citation`), url: str(s.url, `${p}.literature_source.url`) }
+    }),
   }
 }
 
@@ -240,6 +245,15 @@ export function parseJob(raw: unknown): Job {
     input: {
       filename: opt(input.filename ?? o.filename, '', (v) => str(v, 'job.input.filename')),
       size_bytes: opt(input.size_bytes, 0, (v) => num(v, 'job.input.size_bytes')),
+      dicom: opt(input.dicom, null, (v) => {
+        const d = obj(v, 'job.input.dicom')
+        return {
+          series_description: str(d.series_description, 'job.input.dicom.series_description'),
+          series_number: num(d.series_number, 'job.input.dicom.series_number'),
+          n_series: num(d.n_series, 'job.input.dicom.n_series'),
+          n_slices: num(d.n_slices, 'job.input.dicom.n_slices'),
+        }
+      }),
     },
     options: {
       iso: opt(options.iso, false, (v) => bool(v, 'job.options.iso')),

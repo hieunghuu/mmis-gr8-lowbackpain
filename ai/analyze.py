@@ -29,7 +29,7 @@ SRC = Path(__file__).resolve().parents[1] / "pipeline" / "src"
 sys.path.insert(0, str(SRC))
 from common import T_ANALYSIS
 from measurements.s09_level_features import measure_case
-from analysis.s12_literature_compare import LIT_CUTOFFS
+from analysis.literature import LIT_CUTOFFS, LIT_SOURCES
 
 MEASURES = ["disc_height_mm", "dhi", "disc_csf_ratio", "disc_vb_ratio", "disc_post_bulge_mm",
             "canal_ap_mm", "canal_csa_approx_mm2", "listhesis_mm"]
@@ -130,7 +130,9 @@ def _suggest(level, measures):
                             "threshold": _num(r.threshold), "threshold_unit": r.threshold_unit,
                             "percentile": _percentile(v, r.measure, level), "confidence": r.confidence,
                             "sensitivity": _num(perf.cv_sens, 2), "specificity": _num(perf.cv_spec, 2),
-                            "ppv": _num(perf.cv_ppv, 2), "literature": _literature(r.measure, v)})
+                            "ppv": _num(perf.cv_ppv, 2), "literature": _literature(r.measure, v),
+                            "literature_source": dict(zip(("citation", "url"), LIT_SOURCES[r.measure]))
+                            if r.measure in LIT_SOURCES else None})
             break                                 # mỗi (bệnh, tầng) chỉ xét 1 quy tắc đủ điều kiện
     return out
 

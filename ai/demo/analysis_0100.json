@@ -77,7 +77,11 @@
           "sensitivity": 0.9,
           "specificity": 0.86,
           "ppv": 0.13,
-          "literature": "theo y văn: < 10 mm - hẹp tuyệt đối"
+          "literature": "theo y văn: < 10 mm - hẹp tuyệt đối",
+          "literature_source": {
+            "citation": "Verbiest, J Bone Joint Surg Br 1954 (mốc mm theo nguồn thứ cấp)",
+            "url": "https://doi.org/10.1302/0301-620X.36B2.230"
+          }
         },
         {
           "label": "disc_displacement",
@@ -93,7 +97,8 @@
           "sensitivity": 0.77,
           "specificity": 0.79,
           "ppv": 0.45,
-          "literature": null
+          "literature": null,
+          "literature_source": null
         },
         {
           "label": "disc_bulge",
@@ -109,7 +114,8 @@
           "sensitivity": 0.76,
           "specificity": 0.77,
           "ppv": 0.41,
-          "literature": null
+          "literature": null,
+          "literature_source": null
         },
         {
           "label": "thecal_sac_compression",
@@ -125,7 +131,11 @@
           "sensitivity": 0.71,
           "specificity": 0.77,
           "ppv": 0.32,
-          "literature": "theo y văn: < 100 mm² - hẹp tương đối (Schönström)"
+          "literature": "theo y văn: < 100 mm² - hẹp tương đối (Schönström)",
+          "literature_source": {
+            "citation": "Schönström và cs., Spine 1984 - diện tích tới hạn ~75 mm²",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/6495030/"
+          }
         },
         {
           "label": "foraminal_stenosis",
@@ -141,7 +151,8 @@
           "sensitivity": 0.76,
           "specificity": 0.75,
           "ppv": 0.22,
-          "literature": null
+          "literature": null,
+          "literature_source": null
         },
         {
           "label": "nerve_root_compression",
@@ -157,7 +168,8 @@
           "sensitivity": 0.77,
           "specificity": 0.8,
           "ppv": 0.15,
-          "literature": null
+          "literature": null,
+          "literature_source": null
         },
         {
           "label": "disc_protrusion",
@@ -173,7 +185,8 @@
           "sensitivity": 1.0,
           "specificity": 0.81,
           "ppv": 0.06,
-          "literature": null
+          "literature": null,
+          "literature_source": null
         }
       ]
     },
@@ -205,7 +218,11 @@
           "sensitivity": 0.76,
           "specificity": 0.6,
           "ppv": 0.64,
-          "literature": "theo y văn: < 10 mm - hẹp tuyệt đối"
+          "literature": "theo y văn: < 10 mm - hẹp tuyệt đối",
+          "literature_source": {
+            "citation": "Verbiest, J Bone Joint Surg Br 1954 (mốc mm theo nguồn thứ cấp)",
+            "url": "https://doi.org/10.1302/0301-620X.36B2.230"
+          }
         }
       ]
     },

@@ -209,6 +209,19 @@ function MeasureGroup({ measure, list }: { measure: MeasureKey; list: Suggestion
                 PPV <b>{fmt(s.ppv, 2)}</b>
               </span>
             </span>
+            {s.literature && (
+              <span className="lit">
+                ↳ {s.literature}
+                {s.literature_source && /^https:\/\//.test(s.literature_source.url) && (
+                  <>
+                    {' · '}
+                    <a href={s.literature_source.url} target="_blank" rel="noopener noreferrer">
+                      {s.literature_source.citation}
+                    </a>
+                  </>
+                )}
+              </span>
+            )}
           </li>
         ))}
       </ul>

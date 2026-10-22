@@ -7,8 +7,11 @@ import { formatSize } from '../format'
 const MAX_MB = 200
 
 function validate(file: File): { code: string; message: string } | null {
-  if (!/\.(nii|nii\.gz)$/i.test(file.name))
-    return { code: 'INVALID_FILE_TYPE', message: `Chỉ chấp nhận file .nii hoặc .nii.gz. File ${file.name} không hợp lệ.` }
+  if (!/\.(nii|nii\.gz|zip)$/i.test(file.name))
+    return {
+      code: 'INVALID_FILE_TYPE',
+      message: `Chỉ chấp nhận file .nii, .nii.gz hoặc .zip (DICOM). File ${file.name} không hợp lệ.`,
+    }
   if (file.size > MAX_MB * 1024 * 1024) return { code: 'FILE_TOO_LARGE', message: `File vượt quá ${MAX_MB} MB.` }
   return null
 }
@@ -68,8 +71,17 @@ export default function UploadPage() {
           onDrop={onDrop}
         >
           <span className="big">Chọn file hoặc kéo thả vào đây</span>
-          <span className="sub">.nii hoặc .nii.gz · tối đa {MAX_MB} MB · mỗi job một file</span>
-          <input id="file" ref={inputRef} type="file" accept=".nii,.gz,.nii.gz" onChange={(e) => pick(e.target.files?.[0])} />
+          <span className="sub">
+            .nii, .nii.gz hoặc .zip DICOM của một lần chụp (tự chọn series T2 sagittal) · tối đa {MAX_MB} MB · mỗi
+            job một file
+          </span>
+          <input
+            id="file"
+            ref={inputRef}
+            type="file"
+            accept=".nii,.gz,.nii.gz,.zip"
+            onChange={(e) => pick(e.target.files?.[0])}
+          />
         </label>
 
         {file && (

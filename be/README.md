@@ -5,6 +5,11 @@ FastAPI backend cho frontend trong `fe/`. Hợp đồng HTTP bám theo `docs/spe
 ## Chức năng
 
 - Upload và kiểm tra `.nii` / `.nii.gz` (tối đa 200 MB mặc định).
+- Upload `.zip` DICOM của một lần chụp: `ai.dicom_to_nifti.convert()` tự chọn series T2 sagittal và
+  chuyển sang NIfTI ngay trong request, rồi xóa zip (header DICOM có thông tin bệnh nhân). Series đã
+  chọn trả trong `input.dicom` của `GET /jobs/{id}`. Lỗi 400: `INVALID_ZIP`, `NO_DICOM`,
+  `NO_SAGITTAL_T2`, `CONVERSION_FAILED`. DB cũ được tự thêm cột `dicom_info` khi khởi động.
+- Gợi ý của `analysis` có trường `literature` (mức theo ngưỡng y văn), BE trả nguyên văn từ `ai.analyze`.
 - SQLite là nơi lưu metadata và hàng chờ bền vững.
 - Một worker nền xử lý tuần tự để không tranh GPU.
 - Gọi `ai.segment.segment()` và `ai.analyze.analyze()` ở chế độ thật.

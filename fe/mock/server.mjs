@@ -86,7 +86,13 @@ function view(job) {
     job_id: id,
     status,
     queue_position: status === 'pending' ? queuePosition(job) : null,
-    input: { filename: job.filename, size_bytes: job.size },
+    input: {
+      filename: job.filename,
+      size_bytes: job.size,
+      dicom: /\.zip$/i.test(job.filename)
+        ? { series_description: 't2_tse_sag_384', series_number: 2, n_series: 6, n_slices: 15 }
+        : null,
+    },
     options: { iso: job.iso, step1_only: job.step1 },
     created_at: job.created,
     started_at: startedAt,
@@ -149,8 +155,8 @@ async function createJob(req, res) {
   const raw = await readBody(req)
   const text = raw.toString('latin1')
   const name = /filename="([^"]*)"/.exec(text)?.[1] ?? ''
-  if (!/\.(nii|nii\.gz)$/i.test(name))
-    return fail(res, 400, 'INVALID_FILE_TYPE', 'Chỉ chấp nhận file .nii hoặc .nii.gz', { filename: name })
+  if (!/\.(nii|nii\.gz|zip)$/i.test(name))
+    return fail(res, 400, 'INVALID_FILE_TYPE', 'Chỉ chấp nhận file .nii, .nii.gz hoặc .zip (DICOM)', { filename: name })
   const opt = (key) => {
     const v = new RegExp(`name="${key}"\\r\\n\\r\\n([^\\r]*)`).exec(text)?.[1]
     if (v === undefined) return false

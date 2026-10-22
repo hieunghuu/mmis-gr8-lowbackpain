@@ -11,7 +11,7 @@ mục 3.3.1 (payload), mục 5 (worker), mục 8 (mã lỗi).
 
 | File | Việc | Chạy trên | Thời gian / ca |
 |---|---|---|---|
-| [`dicom_to_nifti.py`](dicom_to_nifti.py) | Zip một study DICOM → tự chọn series T2 sagittal (quy tắc của s02, đọc từ header) → NIfTI; xóa DICOM gốc sau khi chuyển. Chưa nối vào BE / spec | CPU | < 1 s |
+| [`dicom_to_nifti.py`](dicom_to_nifti.py) | Zip một study DICOM → tự chọn series T2 sagittal (quy tắc của s02, đọc từ header) → NIfTI; xóa DICOM gốc sau khi chuyển. BE gọi khi upload `.zip` (`be/app/storage.py`) | CPU | < 2 s |
 | [`segment.py`](segment.py) | Gọi CLI TotalSpineSeg, phân đoạn đốt sống, đĩa đệm, tủy sống, ống sống | GPU (CPU được nhưng chậm) | ~18 s GPU, ~14 phút CPU |
 | [`analyze.py`](analyze.py) | Từ ảnh + mask: QC tầng, số đo theo tầng, gợi ý bệnh | CPU | ~2 s |
 | [`demo/`](demo/) | Kết quả chạy thật trên BN 100 – dữ liệu mẫu cho FE | – | – |
@@ -73,8 +73,12 @@ Mỗi gợi ý ghi rõ quy tắc đã khớp (`value rule threshold`), phân v�
 
 Với các số đo có ngưỡng y văn (đường kính trước–sau ống sống, diện tích ống sống, độ trượt), trường
 `literature` cho biết giá trị rơi vào mức nào theo y văn, ví dụ `"theo y văn: < 10 mm - hẹp tuyệt đối"`.
-Ngưỡng khai báo một chỗ ở `LIT_CUTOFFS` của `pipeline/src/analysis/s12_literature_compare.py`. Chỉ để
+Ngưỡng khai báo một chỗ ở `LIT_CUTOFFS` của `pipeline/src/analysis/literature.py` (dùng chung với s12). Chỉ để
 tham khảo: thang đo của s09 thấp hơn y văn khoảng 2 mm với đường kính ống sống và độ trượt.
+
+Trường `literature_source` (`{citation, url}`) là bài gắn với ngưỡng đó (`LIT_SOURCES` cùng file), FE hiện
+thành link. Chỉ bài Schönström 1984 đã xác nhận là bài đề ra mốc; nhãn của hai nguồn còn lại ghi rõ mức
+chắc chắn (`pipeline/README.md` mục 7).
 
 Ví dụ đầy đủ: [`demo/analysis_0100.json`](demo/analysis_0100.json).
 
