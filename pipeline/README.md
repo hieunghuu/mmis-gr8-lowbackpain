@@ -27,6 +27,7 @@ Giải thích về bộ dữ liệu, giải phẫu và thuật ngữ y khoa: xem
 | [4. Số đo](#4-bước-4--tính-số-đo-theo-tầng-từ-mask-srcmeasurements) | `measurements/s09_level_features.py` | 13 số đo theo tầng + góc ưỡn | ✅ Xong |
 | [5. Phân tích](#5-bước-5--ghép-ảnh--văn-bản-phân-tích-srcanalysis) | `analysis/s10_level_analysis.py` | Ghép số đo ảnh × nhãn văn bản, phân tích | ✅ Xong |
 | [6. Gợi ý bệnh](#6-bước-6--gợi-ý-bệnh-theo-tầng-từ-ảnh-srcanalysiss11_threshold_rulespy) | `analysis/s11_threshold_rules.py` | Học ngưỡng số đo → gợi ý bệnh theo tầng khi chỉ có ảnh, kiểm chứng chéo theo bệnh nhân: **35/54 tổ hợp dùng được** | ✅ Xong |
+| [7. So với y văn](#7-bước-7--so-với-ngưỡng-y-văn-srcanalysiss12_literature_comparepy) | `analysis/s12_literature_compare.py` | Đặt ngưỡng học được cạnh ngưỡng y văn (Schönström, đường kính ống sống, độ trượt): **diện tích ống sống khớp y văn; đường kính ống sống, độ trượt lệch ~2 mm** | ✅ Xong |
 
 `src/common.py` khai báo đường dẫn dùng chung; `src/s00_shared_data.py` tải / đóng gói mask dùng
 chung trong nhóm (mục 0). Tên thư mục con trong `src/`, `outputs/tables/`, `outputs/figures/` trùng
@@ -218,7 +219,7 @@ mmis-gr8-lowbackpain/      # gốc repo
     │   ├── segmentation/                     # bước 2: s03, s04, s05
     │   ├── nlp/                              # bước 3: nlp_rules.py, s06, s07, s08
     │   ├── measurements/                     # bước 4: s09
-    │   └── analysis/                         # bước 5, 6: s10, s11
+    │   └── analysis/                         # bước 5, 6, 7: s10, s11, s12
     ├── annotations/                          # nhãn chuẩn vàng cho NLP (s06, s08)
     ├── kaggle/                               # notebook chạy TotalSpineSeg trên GPU
     └── outputs/                              # do script sinh ra
@@ -265,7 +266,7 @@ python src/s00_shared_data.py --fetch              # mask -> outputs/tss/sag/, k
 python src/s00_shared_data.py --fetch --previews   # them anh preview
 ```
 
-Sau đó chạy tiếp `s05` → `s11` (cần ảnh gốc + `s01`, `s02` cho bước đo tín hiệu ở `s09`).
+Sau đó chạy tiếp `s05` → `s12` (cần ảnh gốc + `s01`, `s02` cho bước đo tín hiệu ở `s09`).
 Người tạo release dùng `python src/s00_shared_data.py --pack` để đóng gói lại từ
 `outputs/tss/sag/` (zip + `MANIFEST.json` ghi commit, ngày, số ca, SHA-256 từng file).
 
@@ -302,6 +303,7 @@ cho bước sau**; các bảng còn lại là số liệu trung gian để kiể
 | | ⭐ `threshold_rules.csv` | s11 | **Ngưỡng gợi ý bệnh theo tầng** + số liệu kiểm chứng chéo |
 | | `threshold_cv_by_level.csv` | s11 | Ngưỡng z chung: kiểm chứng chéo tách theo tầng |
 | | `measure_reference.csv` | s11 | Trung bình, độ lệch chuẩn, phân vị số đo theo tầng (tính z cho BN mới) |
+| | `literature_compare.csv` | s12 | Ngưỡng y văn đặt cạnh ngưỡng học được: độ nhạy / độ đặc hiệu / PPV của cả hai trên cùng 513 BN |
 
 Đường dẫn các thư mục này khai báo trong `src/common.py` (`T_*` cho bảng, `F_*` cho hình).
 Các script dùng đa tiến trình (16 luồng CPU); thời gian ở trên đo trên máy CPU 16 luồng, RAM 7,3 GB.
@@ -1459,3 +1461,142 @@ compression) ở L4-L5 – khớp với bước 5: các bệnh này chỉ có s�
 - AUC tính trong kiểm chứng chéo chưa được lưu ra file (chỉ lưu độ nhạy / độ đặc hiệu / PPV).
 - Kế thừa giới hạn bước 5: nhãn 0 là "không được nhắc"; chỉ số đo sagittal (mặt cắt dọc); chưa
   kiểm định ngoài bộ dữ liệu.
+
+## 7. Bước 7 – So với ngưỡng y văn (`src/analysis/s12_literature_compare.py`)
+
+### Mục đích
+Ngưỡng của bước 6 học từ chính dữ liệu, với đáp án là những gì bác sĩ ghi. Bước này đặt chúng
+**cạnh các ngưỡng đã công bố** để trả lời hai câu hỏi:
+
+1. **Ngưỡng học được có hợp lý không**, hay chỉ là con số ngẫu nhiên khớp với dữ liệu?
+2. **Thang đo của s09 có lệch so với cách đo trong y văn không?** Nếu lệch thì không áp thẳng
+   ngưỡng sách vào số đo của hệ thống được.
+
+Bảng ngưỡng y văn (`LIT_CUTOFFS`) cũng được `ai/analyze.py` dùng lại để hiện dòng
+**"theo y văn: …"** bên cạnh mỗi gợi ý (xem cuối mục).
+
+### Ngưỡng y văn được so
+Chỉ các số đo **có ngưỡng y văn dạng số**:
+
+| Số đo (s09) | Ngưỡng y văn | Cách đo trong y văn | Cách s09 đo |
+|---|---|---|---|
+| `canal_ap_mm` – đường kính trước–sau ống sống | < 10 mm hẹp **tuyệt đối**; 10–12 mm hẹp **tương đối** (một số nguồn dùng 13 mm khi đo trên CT) | Đường kính trước–sau của ống sống trên lát giữa sagittal | Bề dày mask ống sống của TotalSpineSeg (nhãn 1 + 2) trong dải ±2 mm quanh tâm đĩa, trên lát giữa |
+| `canal_csa_approx_mm2` – diện tích ống sống | **Schönström**: < 75 mm² hẹp tuyệt đối, 75–99 mm² hẹp tương đối, ≥ 100 mm² bình thường | Diện tích cắt ngang **bao màng cứng** (dural sac, túi chứa dịch não tủy và rễ thần kinh) đo trên ảnh **axial** | **Xấp xỉ** từ ảnh sagittal: thể tích ống sống trong dải ±2 mm quanh đĩa / chiều cao dải |
+| `listhesis_mm` – độ trượt đốt sống | ≥ 3 mm: mốc lâm sàng hay dùng (mất vững, chỉ định mổ), **không phải định nghĩa chẩn đoán**. Phân độ Meyerding dùng % (độ I ≤ 25 %) | Độ dịch chuyển của đốt trên so với đốt dưới | Chênh lệch mép sau thân đốt trên và dưới, trên lát giữa |
+
+**Schönström** là tên tác giả (Nils Schönström, chỉnh hình, Thụy Điển). Trong các nghiên cứu năm
+1984–1985, nhóm ông đề xuất một **diện tích tới hạn khoảng 75 mm²** của bao màng cứng ở tầng L3:
+nhỏ hơn mức này thì áp lực lên rễ thần kinh tăng rõ. Từ đó có hai mốc 75 / 100 mm² dùng để phân
+loại hẹp ống sống.
+
+Không so: mất nước đĩa đệm, hẹp khoang đĩa, phồng / lồi đĩa. Các bệnh này được phân độ theo
+**hình thái** (ví dụ phân độ Pfirrmann cho thoái hóa đĩa), không có ngưỡng số chuẩn.
+
+### Phương pháp
+- Dùng cùng dữ liệu, cùng tầng, cùng đáp án với bước 6: `build_dataset()` của s10; chỉ xét tầng có
+  ≥ 10 tầng có bệnh (`MIN_POS` của s11).
+- Ngưỡng y văn là **cố định**, không học từ dữ liệu này, nên chấm thẳng trên toàn bộ 513 BN mà không
+  cần kiểm chứng chéo. Ngưỡng của bước 6 dùng số liệu **kiểm chứng chéo** (`cv_*`), để so công bằng.
+- Thêm **trung vị số đo** ở nhóm có bệnh và nhóm không bệnh, để thấy thang đo của s09 lệch so với
+  y văn hay không.
+
+Chạy: `python src/analysis/s12_literature_compare.py` (vài giây).
+
+### Kết quả bước 7
+
+**① Đường kính ống sống của s09 nhỏ hơn thang y văn khoảng 2 mm.**
+
+| Bệnh | Tầng | Trung vị (có bệnh / không bệnh) | Y văn < 10 mm: độ nhạy / độ đặc hiệu / PPV | Tỉ lệ tầng bị gắn cờ | Ngưỡng học (CV): độ nhạy / độ đặc hiệu / PPV |
+|---|---|---|---|---|---|
+| Hẹp ống sống | L3-L4 | 6,1 / 10,5 mm | 1,00 / 0,59 / 0,06 | 43 % | ≤ 7,98 mm: 0,90 / 0,86 / 0,13 |
+| Hẹp ống sống | L4-L5 | 5,6 / 10,1 mm | 0,96 / 0,51 / 0,09 | 52 % | ≤ 8,37 mm: 0,79 / 0,73 / 0,14 |
+| Chèn ép bao màng cứng | L3-L4 | 7,5 / 10,8 mm | 0,85 / 0,64 / 0,27 | 43 % | ≤ 9,17 mm: 0,69 / 0,80 / 0,34 |
+
+Khoảng **một nửa số tầng bình thường** có số đo dưới 10 mm. Nguyên nhân: s09 đo trên mask ống sống
+của TotalSpineSeg, cho số nhỏ hơn đường kính mà y văn dùng. Áp thẳng ngưỡng 10 mm thì gắn cờ khoảng
+một nửa số tầng (ngưỡng 12 mm: khoảng 80 %). Ngưỡng học được thấp hơn khoảng 2 mm, tức là **tự hiệu
+chỉnh độ lệch thang đo**.
+
+**② Diện tích ống sống khớp với Schönström.**
+
+| Bệnh | Tầng | Trung vị (có bệnh / không bệnh) | Y văn < 100 mm²: độ nhạy / độ đặc hiệu / PPV | Y văn < 75 mm²: độ nhạy / độ đặc hiệu | Ngưỡng học (CV) |
+|---|---|---|---|---|---|
+| Hẹp ống sống | L3-L4 | 82 / 165 mm² | 0,83 / 0,91 / 0,18 | 0,50 / 0,98 | ≤ **109** mm²: 0,83 / 0,89 / 0,15 |
+| Hẹp ống sống | L4-L5 | 56 / 146 mm² | 0,85 / 0,78 / 0,17 | 0,65 / 0,91 | ≤ **84** mm²: 0,79 / 0,87 / 0,24 |
+
+Ngưỡng học được (109 và 84 mm²) **nằm quanh hai mốc 75 / 100 mm²** của Schönström, và hiệu năng
+gần như ngang nhau. Đây là bằng chứng tốt nhất rằng ngưỡng của bước 6 không phải số ngẫu nhiên,
+dù s09 chỉ đo diện tích xấp xỉ từ ảnh sagittal.
+
+**③ "Chèn ép bao màng cứng" là mức nhẹ hơn "hẹp ống sống".** Với chèn ép bao màng cứng, mốc
+Schönström quá chặt: độ nhạy chỉ 0,18–0,22 (< 75 mm²) và 0,37–0,47 (< 100 mm²) ở L2-L3 … L5-S1.
+Ngưỡng học được là 133–143 mm². Bác sĩ ghi "thecal sac compression" từ mức hẹp nhẹ hơn nhiều so
+với mức Schönström coi là hẹp.
+
+**④ Độ trượt đốt cũng có độ lệch nền.** Tại L4-L5 (11 tầng có trượt đốt):
+
+| | Trung vị (có / không trượt) | Độ nhạy | Độ đặc hiệu | PPV |
+|---|---|---|---|---|
+| Y văn ≥ 3 mm | 2,95 / **−2,01** mm | 0,27 | 1,00 | 0,75 |
+| Ngưỡng học ≥ −0,51 mm (CV) | | 0,89 | 0,96 | 0,32 |
+
+Tầng không trượt có trung vị **−2,0 mm**, không phải 0: cách đo của s09 (so mép sau hai thân đốt)
+có độ lệch nền. Ngưỡng học được (−0,51 mm) tương ứng khoảng 1,5 mm trên mức nền, còn mốc 3 mm chỉ
+bắt được 27 % ca được ghi trượt đốt.
+
+**Kết luận:** so với y văn **ủng hộ** việc học ngưỡng từ dữ liệu ở bước 6. Thang đo của s09 có độ
+lệch hệ thống (khoảng −2 mm với đường kính ống sống và độ trượt), nên áp thẳng ngưỡng sách sẽ sai.
+Ở chỗ thang đo khớp y văn (diện tích ống sống), ngưỡng học được rơi đúng vào vùng ngưỡng y văn.
+
+### Dùng trong `ai/analyze.py`
+`LIT_CUTOFFS` (s12) là nơi **duy nhất** khai báo ngưỡng y văn. `ai/analyze.py` import bảng này và
+thêm trường `literature` vào mỗi gợi ý: giá trị rơi vào mức nào theo y văn.
+
+| Ví dụ (BN 100, BN 154) | Ý nghĩa |
+|---|---|
+| `"theo y văn: < 10 mm - hẹp tuyệt đối"` | Đường kính ống sống 6,38 mm |
+| `"theo y văn: < 100 mm² - hẹp tương đối (Schönström)"` | Diện tích ống sống 80,4 mm² |
+| `"theo y văn: chưa tới ngưỡng ≥ 3 mm"` | Độ trượt 2,50 mm: ngưỡng học gắn cờ, mốc y văn thì chưa |
+
+Với số đo không có ngưỡng y văn, trường này là `null`. Dòng này **chỉ để tham khảo**: theo kết quả ①
+và ④, nó hay báo nặng hơn thực tế với đường kính ống sống và nhẹ hơn với độ trượt.
+
+### Đầu ra (`outputs/tables/analysis/`)
+| File | Nội dung |
+|---|---|
+| `literature_compare.csv` | Mỗi dòng một (bệnh, số đo, tầng, ngưỡng y văn): `n_pos`, trung vị có / không bệnh, `lit_sens` / `lit_spec` / `lit_ppv` / `lit_flag_rate` của ngưỡng y văn; `data_threshold`, `data_use`, `data_cv_sens` / `data_cv_spec` / `data_cv_ppv` của ngưỡng bước 6 |
+
+### Giới hạn
+- **Nguồn y văn là nguồn thứ cấp**, chưa đối chiếu bài gốc của Schönström (1984, 1985). Các nguồn
+  hơi khác nhau ở chỗ 75 / 100 mm² là mốc cắt hay biên của khoảng, và mốc hẹp tương đối của đường
+  kính ống sống là 12 hay 13 mm.
+- **Cách đo khác nhau**: y văn đo bao màng cứng trên ảnh axial; s09 đo mask ống sống (gồm cả tủy)
+  trên ảnh sagittal. Kết quả ② cho thấy khớp, nhưng không phải cùng một đại lượng.
+- Ngưỡng y văn được chấm với **đáp án là ghi chú bác sĩ** (nhãn yếu, tầng không được nhắc coi như
+  không bệnh), giống bước 6. Độ nhạy / độ đặc hiệu ở đây là độ khớp với cách bác sĩ ghi, không phải
+  với chẩn đoán xác định.
+- Một nghiên cứu năm 2017 ghi rằng chưa có nghiên cứu nào xác định ngưỡng tối ưu về mặt lâm sàng
+  cho diện tích bao màng cứng, và mức độ hẹp liên quan kém với triệu chứng.
+- Mốc trượt 3 mm là ngưỡng mất vững, không phải định nghĩa chẩn đoán; phân độ Meyerding dùng % và
+  được xây dựng trên phim X-quang.
+
+### Nguồn
+Nguồn thứ cấp đã dùng (truy cập 10/2026):
+
+- Đường kính ống sống:
+  [Alomedika – Lumbar Spinal Stenosis](https://www.alomedika.com/penyakit/ortopedi/lumbar-spinal-stenosis),
+  [Jordan Medical Journal](https://jjournals.ju.edu.jo/index.php/JMJ/article/download/2073/1123/26011),
+  [Coluna/Columna (SciELO)](https://scielo.br/j/coluna/a/hQmQDsZd58Z3fRtRckD4HXC/?lang=en),
+  [Physiotutors – Lumbar Spinal Stenosis](https://www.physiotutors.com/da/conditions/lumbar-spinal-stenosis/).
+- Diện tích bao màng cứng (Schönström):
+  [Dural sac area is a more sensitive parameter… (PMC5728944)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5728944/),
+  [Acta Orthopaedica](https://actaorthop.org/actao/article/download/21890/25819/70319),
+  [JCDR 5097](https://www.jcdr.net/ReadXMLFile.aspx?id=5097),
+  [Dovepress 40586](https://dovepress.com/article/download/40586).
+- Trượt đốt sống:
+  [ISSLS – Degenerative spondylolisthesis](https://www.wheelessonline.com/ISSLS/section-15-chapter-1-degenerative-spondylolisthesis-pathogenesis-natural-history-and-classifications/),
+  [PMC3486675](https://pmc.ncbi.nlm.nih.gov/articles/PMC3486675),
+  [Frontiers in Surgery 2022](https://www.frontiersin.org/journals/surgery/articles/10.3389/fsurg.2022.860865/pdf).
+
+Trước khi trích trong báo cáo, cần tìm và đọc bài gốc: Schönström và cộng sự (1984, 1985) về diện
+tích bao màng cứng; nguồn gốc của mốc 10 / 12 mm cho đường kính ống sống.
