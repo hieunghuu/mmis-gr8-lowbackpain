@@ -58,7 +58,8 @@ def _tail(log_path):
     return "\n".join(lines[-LOG_TAIL_LINES:]) or None
 
 
-def segment(input_path, out_dir, *, iso=False, step1=False, timeout=900, log_path=None):
+def segment(input_path, out_dir, *, iso=False, step1=False, timeout=900, log_path=None,
+            cancel_event=None):
     out_dir = Path(out_dir)
     log_path = Path(log_path) if log_path else out_dir.parent / "logs" / "totalspineseg.log"
     log_path.parent.mkdir(parents=True, exist_ok=True)
@@ -74,11 +75,21 @@ def segment(input_path, out_dir, *, iso=False, step1=False, timeout=900, log_pat
             proc = subprocess.Popen(cmd, stdout=log, stderr=subprocess.STDOUT)   # list args, không qua shell
         except OSError as e:
             raise SegmentationError("SEGMENTATION_FAILED", f"Không chạy được TotalSpineSeg: {e}") from None
+        deadline = time.monotonic() + timeout
+        code = None
         try:
-            code = proc.wait(timeout=timeout)
-        except subprocess.TimeoutExpired:
-            code = None
-            _kill_tree(proc)
+            while code is None:
+                code = proc.poll()
+                if code is not None:
+                    break
+                if cancel_event is not None and cancel_event.wait(0.25):
+                    _kill_tree(proc)
+                    raise SegmentationError("WORKER_INTERRUPTED", "Máy chủ dừng khi job đang chạy", _tail(log_path))
+                if time.monotonic() >= deadline:
+                    _kill_tree(proc)
+                    break
+                if cancel_event is None:
+                    time.sleep(0.25)
         except BaseException:                    # BE tắt giữa chừng -> không để lại tiến trình mồ côi
             _kill_tree(proc)
             raise

@@ -42,7 +42,9 @@ mmis-gr8-lowbackpain/
 │   ├── annotations/       #   nhãn chuẩn vàng cho NLP
 │   ├── kaggle/            #   notebook chạy TotalSpineSeg trên GPU
 │   └── outputs/           #   tables/ figures/ (trong Git); nifti/, tss/… (không)
-└── fe/                    # giao diện (chưa bắt đầu)
+├── ai/                    # wrapper TotalSpineSeg + phân tích sau segmentation
+├── be/                    # FastAPI, SQLite queue, worker và lưu trữ job
+└── fe/                    # React/Vite UI + NiiVue viewer
 ```
 
 | Tài liệu | Đọc khi |

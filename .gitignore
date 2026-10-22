@@ -13,6 +13,10 @@ pipeline/outputs/cache/
 pipeline/outputs/*.log
 pipeline/outputs/tables/dicom/dicom_index.csv
 
+# Backend runtime: SQLite, uploads, masks, logs và model weights
+be/data/
+be/.env
+
 # Môi trường TotalSpineSeg (~1,2 GB) và trọng số mô hình (~4 GB)
 pipeline/.venv-tss/
 pipeline/.tss_data/
@@ -23,6 +27,8 @@ __pycache__/
 .venv/
 venv/
 .ipynb_checkpoints/
+.pytest_cache/
+.test-tmp/
 
 # Hệ điều hành / editor
 .DS_Store
