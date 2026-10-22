@@ -26,6 +26,15 @@ export interface Suggestion {
   sensitivity: number
   specificity: number
   ppv: number
+  literature: string | null
+  literature_source: { citation: string; url: string } | null
+}
+
+export interface DicomInfo {
+  series_description: string
+  series_number: number
+  n_series: number
+  n_slices: number
 }
 
 export interface LevelAnalysis {
@@ -66,7 +75,7 @@ export interface Job {
   job_id: string
   status: JobStatus
   queue_position: number | null
-  input: { filename: string; size_bytes: number }
+  input: { filename: string; size_bytes: number; dicom: DicomInfo | null }
   options: { iso: boolean; step1_only: boolean }
   created_at: string
   started_at: string | null

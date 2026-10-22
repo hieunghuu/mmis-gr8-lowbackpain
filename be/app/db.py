@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS jobs (
   original_filename TEXT NOT NULL,
   size_bytes INTEGER NOT NULL,
   input_path TEXT NOT NULL,
+  dicom_info TEXT,
   output_path TEXT,
   opt_iso INTEGER NOT NULL DEFAULT 0,
   opt_step1 INTEGER NOT NULL DEFAULT 0,
@@ -49,6 +50,9 @@ class Database:
         with self.connect() as con:
             con.execute("PRAGMA journal_mode = WAL")
             con.executescript(SCHEMA)
+            # DB tạo trước khi hỗ trợ DICOM: CREATE TABLE IF NOT EXISTS không thêm cột mới
+            if "dicom_info" not in {r["name"] for r in con.execute("PRAGMA table_info(jobs)")}:
+                con.execute("ALTER TABLE jobs ADD COLUMN dicom_info TEXT")
 
     def insert(self, values: dict[str, Any]) -> None:
         keys = list(values)

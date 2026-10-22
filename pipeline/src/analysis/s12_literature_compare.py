@@ -24,13 +24,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # src/
 from common import T_ANALYSIS
 from analysis.s10_level_analysis import LEVELS, VN, build_dataset
 from analysis.s11_threshold_rules import MIN_POS, confusion
+from analysis.literature import LIT_CUTOFFS
 
-# số đo -> (quy tắc, đơn vị, [(ngưỡng, ý nghĩa)] từ nặng đến nhẹ). ai/analyze.py dùng chung bảng này.
-LIT_CUTOFFS = {
-    "canal_ap_mm": ("<", "mm", [(10, "hẹp tuyệt đối"), (12, "hẹp tương đối")]),
-    "canal_csa_approx_mm2": ("<", "mm²", [(75, "hẹp tuyệt đối (Schönström)"), (100, "hẹp tương đối (Schönström)")]),
-    "listhesis_mm": (">=", "mm", [(3, "mốc lâm sàng, không phải định nghĩa chẩn đoán")]),
-}
 LIT_LABELS = {"canal_ap_mm": ["spinal_canal_stenosis", "thecal_sac_compression"],
               "canal_csa_approx_mm2": ["spinal_canal_stenosis", "thecal_sac_compression"],
               "listhesis_mm": ["spondylolisthesis"]}

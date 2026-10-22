@@ -73,7 +73,8 @@ def job_view(row: dict, db: Database) -> dict:
     return {
         "job_id": row["id"], "status": status,
         "queue_position": db.queue_position(row),
-        "input": {"filename": row["original_filename"], "size_bytes": row["size_bytes"]},
+        "input": {"filename": row["original_filename"], "size_bytes": row["size_bytes"],
+                  "dicom": json.loads(row["dicom_info"]) if row.get("dicom_info") else None},
         "options": {"iso": bool(row["opt_iso"]), "step1_only": bool(row["opt_step1"])},
         "created_at": row["created_at"], "started_at": row["started_at"],
         "finished_at": row["finished_at"], "duration_seconds": duration(row),
@@ -117,11 +118,12 @@ async def create_job(request: Request, file: UploadFile = File(...), iso: str = 
         raise ApiError(503, "QUEUE_FULL", "Hàng chờ đã đầy, thử lại sau")
 
     job_id, created = str(uuid.uuid4()), utcnow()
-    input_path, size = await storage.save_upload(file, job_id)
+    input_path, size, dicom = await storage.save_upload(file, job_id)
     try:
         db.insert({
             "id": job_id, "status": "pending", "original_filename": Path(file.filename or "scan.nii.gz").name,
-            "size_bytes": size, "input_path": input_path, "opt_iso": int(opt_iso),
+            "size_bytes": size, "input_path": input_path,
+            "dicom_info": json.dumps(dicom, ensure_ascii=False) if dicom else None, "opt_iso": int(opt_iso),
             "opt_step1": int(opt_step1), "created_at": created,
         })
     except Exception:

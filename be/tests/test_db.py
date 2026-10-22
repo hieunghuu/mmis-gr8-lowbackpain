@@ -1,3 +1,4 @@
+import sqlite3
 from pathlib import Path
 
 from be.app.db import Database
@@ -19,6 +20,17 @@ def test_queue_claim_and_delete(tmp_path: Path):
     assert claimed["id"].endswith("1") and claimed["status"] == "running"
     assert db.delete_if_not_running(claimed["id"]) == "running"
     assert db.delete_if_not_running(second["id"]) == "deleted"
+
+
+def test_migrates_db_without_dicom_info(tmp_path: Path):
+    path = tmp_path / "app.db"
+    with sqlite3.connect(path) as con:   # schema trước khi hỗ trợ DICOM
+        con.execute("CREATE TABLE jobs (id TEXT PRIMARY KEY, status TEXT NOT NULL, original_filename TEXT NOT NULL, "
+                    "size_bytes INTEGER NOT NULL, input_path TEXT NOT NULL, created_at TEXT NOT NULL)")
+    db = Database(path)
+    db.initialize()
+    db.insert({**row("00000000-0000-4000-8000-000000000004", "2026-01-01T00:00:00Z"), "dicom_info": "{}"})
+    assert db.get("00000000-0000-4000-8000-000000000004")["dicom_info"] == "{}"
 
 
 def test_recover_running(tmp_path: Path):

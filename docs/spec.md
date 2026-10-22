@@ -4,12 +4,13 @@ Oct 16, 2026 · @Hieu
 
 ## 1. Tổng quan và phạm vi
 
-Hệ thống nhận một ảnh MRI cột sống định dạng NIfTI, chạy [TotalSpineSeg](https://github.com/neuropoly/totalspineseg) dưới dạng job nền, rồi trả về mask phân đoạn đốt sống, đĩa đệm, tủy sống và ống sống để xem chồng lên ảnh gốc trên web. Sau phân đoạn, hệ thống đo theo từng tầng đĩa đệm và gợi ý bệnh có thể có ở mỗi tầng (mục 5, phân tích sau segmentation). Tài liệu này là hợp đồng giữa các thành phần: dev FE và BE làm song song được, chỉ cần bám đúng endpoint, payload và trạng thái mô tả ở đây.
+Hệ thống nhận một ảnh MRI cột sống định dạng NIfTI, hoặc file zip DICOM của một lần chụp (hệ thống tự chọn series T2 sagittal rồi chuyển sang NIfTI), chạy [TotalSpineSeg](https://github.com/neuropoly/totalspineseg) dưới dạng job nền, rồi trả về mask phân đoạn đốt sống, đĩa đệm, tủy sống và ống sống để xem chồng lên ảnh gốc trên web. Sau phân đoạn, hệ thống đo theo từng tầng đĩa đệm và gợi ý bệnh có thể có ở mỗi tầng (mục 5, phân tích sau segmentation). Tài liệu này là hợp đồng giữa các thành phần: dev FE và BE làm song song được, chỉ cần bám đúng endpoint, payload và trạng thái mô tả ở đây.
 
 | Thành phần | Công nghệ đề xuất | Trách nhiệm |
 | --- | --- | --- |
-| Frontend | React (Vite) + NiiVue | Upload file, theo dõi trạng thái job, hiển thị ảnh và mask |
+| Frontend | React (Vite) + NiiVue | Upload file (NIfTI hoặc zip DICOM), theo dõi trạng thái job, hiển thị ảnh và mask |
 | Backend API | FastAPI, Python ≥ 3.10 | Nhận và kiểm tra file, quản lý job, trả file kết quả |
+| Chuyển DICOM | Python (`ai/dicom_to_nifti.py`), chạy trong request upload | Đọc header mọi file trong zip, chọn series T2 sagittal, dựng NIfTI; xóa DICOM gốc |
 | Worker | Thread nền trong cùng process BE, 1 job mỗi lúc | Lấy job `pending` cũ nhất từ SQLite, gọi CLI TotalSpineSeg, cập nhật trạng thái |
 | TotalSpineSeg | CLI dựa trên nnU-Net, chạy GPU CUDA | Phân đoạn ảnh, ghi mask ra thư mục output |
 | Phân tích | Python (`ai/analyze.py`), chạy CPU trong worker | Từ ảnh + mask: QC tầng, số đo theo tầng, gợi ý bệnh theo bảng ngưỡng |
@@ -22,7 +23,7 @@ Chỉ Backend API mở cổng HTTP. Worker và TotalSpineSeg không có API mạ
 
 **Trong phạm vi MVP**
 
-- Mỗi job xử lý đúng 1 file `.nii` hoặc `.nii.gz`.
+- Mỗi job xử lý đúng 1 file: `.nii` / `.nii.gz`, hoặc `.zip` chứa DICOM của một lần chụp (nhiều series cũng được; hệ thống tự chọn series T2 sagittal, mục 5).
 - Xử lý tuần tự, mỗi lúc 1 job trên 1 GPU.
 - Không có đăng nhập; hệ thống chỉ chạy trên localhost hoặc mạng nội bộ.
 - FE xem ảnh gốc, mask và chú thích nhãn.
@@ -30,7 +31,7 @@ Chỉ Backend API mở cổng HTTP. Worker và TotalSpineSeg không có API mạ
 
 **Ngoài phạm vi MVP**
 
-- Upload DICOM (để ở giai đoạn 2, xem mục 5).
+- Upload DICOM dạng nhiều file lẻ hoặc thư mục không nén (chỉ nhận một file `.zip`); người dùng tự chọn series.
 - Nhiều người dùng, phân quyền, nhiều GPU, kết nối PACS.
 - Chỉnh sửa mask; đo đạc thủ công trên viewer.
 - Gợi ý bệnh cho ảnh axial (mặt cắt ngang) hoặc ảnh không phải cột sống thắt lưng.
@@ -96,7 +97,7 @@ Request dạng `multipart/form-data`:
 
 | Trường | Kiểu | Bắt buộc | Mặc định | Ý nghĩa |
 | --- | --- | --- | --- | --- |
-| `file` | file | Có |  | Ảnh `.nii` hoặc `.nii.gz` |
+| `file` | file | Có |  | Ảnh `.nii` / `.nii.gz`, hoặc `.zip` chứa DICOM của một lần chụp |
 | `iso` | `true` / `false` | Không | `false` | Trả mask ở độ phân giải 1 mm đẳng hướng thay vì không gian ảnh gốc |
 | `step1_only` | `true` / `false` | Không | `false` | Chỉ chạy step 1, ra một nhãn chung cho mọi đốt sống |
 
@@ -111,11 +112,27 @@ Response `202 Accepted`. FE lưu `job_id` lại rồi bắt đầu poll.
 }
 ```
 
-BE kiểm tra theo thứ tự sau và dừng ở lỗi đầu tiên gặp phải: đuôi file, kích thước, `nibabel` đọc được header, ảnh 3D (hoặc 4D có chiều cuối bằng 1), hàng chờ chưa đầy.
+BE kiểm tra theo thứ tự sau và dừng ở lỗi đầu tiên gặp phải: `iso` / `step1_only` hợp lệ, kích thước khai báo (`Content-Length`), hàng chờ chưa đầy, đuôi file, kích thước thực khi đọc file, rồi nội dung:
+
+- `.nii` / `.nii.gz`: `nibabel` đọc được, ảnh 3D (hoặc 4D có chiều cuối bằng 1), spacing và affine hợp lệ.
+- `.zip`: chuyển DICOM sang NIfTI **ngay trong request** bằng `ai.dicom_to_nifti.convert()` (thường dưới 2 giây; chạy trong threadpool, không chặn các request khác). Lỗi chuyển đổi trả `400` với mã ở mục 8. Hàng chờ được kiểm tra trước bước này để không chuyển đổi vô ích khi hàng chờ đầy.
+
+Sau bước này mọi job đều có ảnh NIfTI `input/{job_id}.nii.gz`; worker, `/input` và viewer không phân biệt ảnh đến từ NIfTI hay DICOM.
 
 ### 3.3 GET /jobs/{job\_id}
 
 Đây là payload FE dùng nhiều nhất. Trường `result` chỉ có giá trị khi `status = done`, trường `error` chỉ có giá trị khi `status = failed`.
+
+`input.dicom` là `null` khi upload NIfTI. Khi upload `.zip` DICOM, trường này cho biết series đã được chọn, để người dùng kiểm tra hệ thống chọn đúng chưa:
+
+```json
+"input": {
+  "filename": "study_0100.zip", "size_bytes": 19456210,
+  "dicom": { "series_description": "t2_tse_sag_384", "series_number": 2, "n_series": 6, "n_slices": 15 }
+}
+```
+
+`n_series` là số series tìm thấy trong zip; `n_slices` là số lát của series đã chọn.
 
 Khi đang chờ hoặc đang chạy:
 
@@ -124,7 +141,7 @@ Khi đang chờ hoặc đang chạy:
   "job_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
   "status": "pending",
   "queue_position": 2,
-  "input": { "filename": "sub-01_T2w.nii.gz", "size_bytes": 18350212 },
+  "input": { "filename": "sub-01_T2w.nii.gz", "size_bytes": 18350212, "dicom": null },
   "options": { "iso": false, "step1_only": false },
   "created_at": "2026-10-16T12:30:00Z",
   "started_at": null,
@@ -142,7 +159,7 @@ Khi hoàn thành:
   "job_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
   "status": "done",
   "queue_position": null,
-  "input": { "filename": "sub-01_T2w.nii.gz", "size_bytes": 18350212 },
+  "input": { "filename": "sub-01_T2w.nii.gz", "size_bytes": 18350212, "dicom": null },
   "options": { "iso": false, "step1_only": false },
   "created_at": "2026-10-16T12:30:00Z",
   "started_at": "2026-10-16T12:31:05Z",
@@ -208,7 +225,8 @@ Kết quả phân tích sau segmentation (mục 5). Là `null` khi job chạy v�
           "sensitivity": 0.71,
           "specificity": 0.72,
           "ppv": 0.53,
-          "literature": null
+          "literature": null,
+          "literature_source": null
         }
       ]
     }
@@ -232,6 +250,7 @@ Kết quả phân tích sau segmentation (mục 5). Là `null` khi job chạy v�
 | `suggestions[].confidence` | `"cao"` / `"vừa"`, theo cận dưới khoảng tin cậy 95 % của AUC (≥ 0,80 / ≥ 0,70) |
 | `suggestions[].sensitivity`, `specificity`, `ppv` | Độ nhạy, độ đặc hiệu, PPV của quy tắc này khi kiểm chứng chéo trên bệnh nhân chưa dùng để học |
 | `suggestions[].literature` | Chuỗi hiển thị nguyên văn bên cạnh gợi ý: `value` rơi vào mức nào theo ngưỡng y văn, ví dụ `"theo y văn: < 10 mm - hẹp tuyệt đối"` hoặc `"theo y văn: chưa tới ngưỡng < 12 mm"`. Có cho đường kính trước–sau ống sống (< 10 / < 12 mm), diện tích ống sống (Schönström < 75 / < 100 mm²) và độ trượt (≥ 3 mm); `null` với số đo khác. Chỉ để tham khảo: thang đo của hệ thống thấp hơn y văn khoảng 2 mm với đường kính ống sống và độ trượt (`pipeline/src/analysis/s12_literature_compare.py`). Trường không bắt buộc, FE cũ bỏ qua được |
+| `suggestions[].literature_source` | `{ "citation": "...", "url": "https://..." }`: bài gắn với ngưỡng y văn đó, FE hiện thành link cạnh dòng `literature`; `null` khi `literature` là `null`. Nhãn `citation` ghi rõ mức chắc chắn (vd "mốc mm theo nguồn thứ cấp"). Danh sách: `pipeline/README.md` mục 7, phần Nguồn |
 | `lordosis_deg` | Góc ưỡn thắt lưng (độ), giữa trục đĩa L1-L2 và L5-S1 |
 | `disclaimer` | Câu FE bắt buộc hiển thị cạnh bảng gợi ý |
 | `error` | `null`, hoặc `{code, message}` khi phân tích lỗi (mục 8). Khi đó `qc` là `null`, `levels` rỗng |
@@ -253,7 +272,7 @@ Query: `status` (không bắt buộc), `limit` (mặc định 20, tối đa 100)
 
 ### 3.5 GET /jobs/{job\_id}/input và /result
 
-Cả hai trả binary `.nii.gz`. Gọi `/result` khi job chưa `done` thì nhận `409 JOB_NOT_READY`. Tên file trả về là `{job_id}_input.nii.gz` và `{job_id}_seg.nii.gz`, không dùng tên file gốc.
+Cả hai trả binary `.nii.gz`; với job upload DICOM, `/input` trả ảnh NIfTI đã chuyển đổi. Gọi `/result` khi job chưa `done` thì nhận `409 JOB_NOT_READY`. Tên file trả về là `{job_id}_input.nii.gz` và `{job_id}_seg.nii.gz`, không dùng tên file gốc.
 
 ### 3.6 DELETE /jobs/{job\_id}
 
@@ -383,9 +402,25 @@ else:
 - Mỗi (bệnh, tầng) dùng đúng 1 quy tắc: ngưỡng riêng của tầng nếu có, không thì ngưỡng z chung.
 - Quy tắc có PPV < 0,05 khi kiểm chứng chéo (với ngưỡng z chung: PPV tại đúng tầng đó) bị bỏ qua, nên không bao giờ có gợi ý với `ppv` < 0,05.
 
-**Giai đoạn 2: nhận DICOM**
+**Nhận DICOM (trong `POST /jobs`, trước khi tạo job)**
 
-Thêm một bước trước khi gọi CLI: nhận file `.zip` chứa 1 series, giải nén vào `input/dicom/`, rồi chuyển sang `.nii.gz` bằng dcm2niix. Nếu ra nhiều hơn 1 file NIfTI thì báo lỗi `MULTIPLE_SERIES`. Phần còn lại giữ nguyên.
+BE gọi `ai.dicom_to_nifti.convert(zip, input/{job_id}.nii.gz)`. Worker không tham gia: khi job vào hàng chờ, ảnh đã là NIfTI.
+
+```python
+from ai.dicom_to_nifti import convert, ConvertError
+
+info = convert(zip_path, input_path)   # dict | raise ConvertError(code, message) -> HTTP 400
+```
+
+- Giải nén vào thư mục tạm, giới hạn 2 GB và 20.000 file sau giải nén (chặn zip bomb). File được ghi với tên phẳng, không dùng đường dẫn trong zip, nên không có lỗi zip-slip. Thư mục tạm và file zip đều bị **xóa ngay** sau khi chuyển, vì header DICOM chứa thông tin bệnh nhân; NIfTI thì không.
+- Đọc header mọi file, gom theo `SeriesInstanceUID`; file không phải ảnh DICOM bị bỏ qua. Không dựa vào tên thư mục hay tên file.
+- Chọn series theo đúng quy tắc của `pipeline/src/dicom/s02_select_convert.py` (đã dùng cho 515 bệnh nhân học ngưỡng), nhưng đọc từ header để chạy được với máy của hãng khác:
+  - T2: `EchoTime > 60 ms`; bỏ STIR / TIRM / FLAIR / TrueFISP / CISS;
+  - bỏ localizer và ảnh dẫn xuất (`ImageType` có `DERIVED`, vd POSDISP);
+  - mặt cắt tính từ `ImageOrientationPatient`, chỉ lấy sagittal;
+  - ưu tiên: study L-SPINE > trường nhìn ≥ 250 mm > tâm cách vùng chụp axial ≤ 100 mm > nhiều lát nhất > chụp sau.
+- Dựng ảnh bằng `build_volume()` của s02: xếp lát theo vị trí thật, bỏ lát lưu trùng, ghi đúng hình học.
+- Đã kiểm tra: chọn đúng series cho 515/515 bệnh nhân (so với `series_selected.csv`); ảnh BN 100 tạo từ zip trùng từng voxel với ảnh của pipeline, nên `analysis` cũng trùng.
 
 ## 6. Lưu trữ
 
@@ -404,6 +439,7 @@ CREATE TABLE IF NOT EXISTS jobs (
   original_filename TEXT NOT NULL,
   size_bytes        INTEGER NOT NULL,
   input_path        TEXT NOT NULL,                  -- tương đối so với DATA_DIR
+  dicom_info        TEXT,                           -- JSON input.dicom (mục 3.3), NULL nếu upload NIfTI
   output_path       TEXT,                           -- file mask cuối cùng
   opt_iso           INTEGER NOT NULL DEFAULT 0,     -- 0/1
   opt_step1         INTEGER NOT NULL DEFAULT 0,     -- 0/1
@@ -424,6 +460,7 @@ CREATE INDEX IF NOT EXISTS idx_jobs_status_created
 - Chỉ worker ghi khi đổi trạng thái; API chỉ `INSERT` lúc tạo job và `DELETE` khi xóa job.
 - Mỗi request mở một connection riêng và đặt `timeout=10` để tránh lỗi `database is locked`.
 - `queue_position` không lưu trong DB, mà tính bằng cách đếm số job `pending` có `created_at` nhỏ hơn.
+- DB tạo trước khi có cột `dicom_info`: lúc khởi động BE tự thêm cột (`ALTER TABLE`), vì `CREATE TABLE IF NOT EXISTS` không thêm cột mới cho bảng đã có.
 
 **Thư mục**
 
@@ -438,7 +475,7 @@ data/
         └── logs/totalspineseg.log
 ```
 
-BE đổi tên file upload thành `{job_id}.nii.gz` ngay khi lưu, vì tên file gốc có thể chứa tên bệnh nhân. `original_filename` chỉ để hiển thị trên FE; có thể bỏ trường này nếu dữ liệu chưa được ẩn danh.
+BE đổi tên file upload thành `{job_id}.nii.gz` ngay khi lưu, vì tên file gốc có thể chứa tên bệnh nhân. File `.zip` DICOM không được lưu: chỉ giữ ảnh NIfTI đã chuyển đổi. `original_filename` chỉ để hiển thị trên FE; có thể bỏ trường này nếu dữ liệu chưa được ẩn danh.
 
 ## 7. FE hiển thị kết quả
 
@@ -469,8 +506,8 @@ Với ảnh cột sống thắt lưng, các nhãn thường gặp là 41–45, 5
 
 **Màn hình tối thiểu**
 
-1. Trang upload: chọn file, 2 checkbox tùy chọn (`iso`, `step1_only`), nút gửi.
-2. Trang job: hiện trạng thái, vị trí trong hàng chờ, thời gian đã chạy; khi `failed` thì hiện `error.message`.
+1. Trang upload: chọn file (`.nii`, `.nii.gz` hoặc `.zip` DICOM), 2 checkbox tùy chọn (`iso`, `step1_only`), nút gửi.
+2. Trang job: hiện trạng thái, vị trí trong hàng chờ, thời gian đã chạy; khi `failed` thì hiện `error.message`. Khi `input.dicom` khác `null`, hiện series đã chọn, ví dụ "DICOM: chọn series t2_tse_sag_384 (số 2, 15 lát) trong 6 series".
 3. Viewer: mở khi `done`, gồm 3 mặt cắt kèm chú thích nhãn.
 4. Bảng phân tích cạnh viewer (từ `result.analysis`, mục 3.3.1).
 5. Danh sách job: lấy từ `GET /jobs`, có nút xóa.
@@ -479,6 +516,7 @@ Với ảnh cột sống thắt lưng, các nhãn thường gặp là 41–45, 5
 
 - Mỗi tầng một dòng (T12-L1 trên cùng). Cột: tầng, các gợi ý (`label_vi`, nhãn độ tin cậy `cao` / `vừa`), nút mở chi tiết.
 - Chi tiết một gợi ý: `measure_vi` = `value` (`rule` `threshold`), "cao hơn / thấp hơn `percentile` % bệnh nhân cùng tầng", độ nhạy / độ đặc hiệu / PPV.
+- Khi `literature` khác `null`: thêm dòng "↳ `literature`", kèm link `literature_source.citation` → `literature_source.url` (mở tab mới).
 - Bấm vào tầng thì viewer nhảy tới đĩa đệm tầng đó (nhãn 91–95, 100).
 - Luôn hiện `disclaimer` ngay trên bảng.
 - `qc.ok = false`: hiện các `qc.warnings[].message` thay cho gợi ý, vẫn cho xem số đo.
@@ -492,8 +530,12 @@ Có hai loại lỗi. Lỗi request trả về ngay qua HTTP status kèm body `e
 
 | HTTP | Code | Khi nào |
 | --- | --- | --- |
-| 400 | `INVALID_FILE_TYPE` | Đuôi file không phải `.nii` hoặc `.nii.gz` |
+| 400 | `INVALID_FILE_TYPE` | Đuôi file không phải `.nii`, `.nii.gz` hoặc `.zip` |
 | 400 | `INVALID_NIFTI` | `nibabel` không đọc được file, hoặc ảnh không phải 3D |
+| 400 | `INVALID_ZIP` | File `.zip` rỗng, hỏng, hoặc quá lớn sau khi giải nén (> 2 GB hoặc > 20.000 file) |
+| 400 | `NO_DICOM` | Zip không có file ảnh DICOM nào |
+| 400 | `NO_SAGITTAL_T2` | Có DICOM nhưng không có series T2 sagittal phù hợp; `message` liệt kê các series tìm thấy |
+| 400 | `CONVERSION_FAILED` | Chọn được series nhưng không dựng được ảnh 3D |
 | 400 | `INVALID_OPTION` | `iso` hoặc `step1_only` không phải `true` / `false` |
 | 404 | `JOB_NOT_FOUND` | Không có `job_id` này |
 | 409 | `JOB_NOT_READY` | Gọi `/result` khi job chưa `done` |
@@ -510,7 +552,6 @@ Có hai loại lỗi. Lỗi request trả về ngay qua HTTP status kèm body `e
 | `OUTPUT_NOT_FOUND` | CLI chạy xong nhưng không có file mask | Báo lỗi hệ thống |
 | `TIMEOUT` | Chạy quá `JOB_TIMEOUT_SEC` | Kiểm tra GPU hoặc kích thước ảnh |
 | `WORKER_INTERRUPTED` | BE bị restart khi job đang chạy | Tạo lại job |
-| `MULTIPLE_SERIES` | Giai đoạn 2: file zip DICOM ra nhiều hơn 1 series | Chỉ upload 1 series |
 
 **Lỗi phân tích** (trong `analysis.error`, job vẫn `done`)
 
@@ -537,7 +578,7 @@ Toàn bộ hệ thống chạy trên một máy có GPU, trong một process Pyt
 - Python ≥ 3.10 ([README](https://github.com/neuropoly/totalspineseg)).
 - Gói totalspineseg cài kèm extra `nnunetv2`, để giữ đúng phiên bản nnU-Net đã được kiểm thử.
 - Muốn dùng GPU CUDA thì cần PyTorch bản nhỏ hơn 2.6.
-- BE cần một thư viện đọc được NIfTI để kiểm tra file upload.
+- BE cần một thư viện đọc được NIfTI để kiểm tra file upload, và `pydicom` để đọc DICOM (`be/requirements.txt`).
 - Phân tích cần thêm `numpy`, `pandas`, `SimpleITK`, `scipy`, `matplotlib` (xem `pipeline/requirements.txt`). BE chạy từ gốc repo để `ai/analyze.py` tìm được `pipeline/src/` và các bảng ngưỡng.
 
 **Biến môi trường**
@@ -573,38 +614,41 @@ FE và BE làm song song được ngay từ ngày đầu: BE dựng mock trả �
 
 **Backend API**
 
-- [ ] Khởi tạo FastAPI, prefix `/api/v1`, bật CORS, có `/health`
-- [ ] Tạo schema SQLite khi khởi động, bật WAL
-- [ ] `POST /jobs`: kiểm tra file, đổi tên, lưu file, insert job, trả 202
-- [ ] `GET /jobs/{job_id}`, `GET /jobs`, `DELETE /jobs/{job_id}` theo đúng payload mục 3
-- [ ] `GET /jobs/{job_id}/input`, `/result`, `GET /labels`
-- [ ] Dùng chung format lỗi ở mục 2 và mã lỗi ở mục 8
-- [ ] Mock mode (`MOCK_WORKER=1`): job tự `done` sau 5 giây, trả lại chính ảnh input làm mask và `analysis` mẫu ở mục 3.3.1, để FE test trước khi có GPU
+- [x] Khởi tạo FastAPI, prefix `/api/v1`, bật CORS, có `/health`
+- [x] Tạo schema SQLite khi khởi động, bật WAL
+- [x] `POST /jobs`: kiểm tra file, đổi tên, lưu file, insert job, trả 202
+- [x] `POST /jobs` nhận `.zip`: `convert()` trong threadpool, xóa zip, lưu `dicom_info`, đổi `ConvertError` thành lỗi 400 (mục 5)
+- [x] `GET /jobs/{job_id}`, `GET /jobs`, `DELETE /jobs/{job_id}` theo đúng payload mục 3
+- [x] `GET /jobs/{job_id}/input`, `/result`, `GET /labels`
+- [x] Dùng chung format lỗi ở mục 2 và mã lỗi ở mục 8
+- [x] Mock mode (`MOCK_WORKER=1`): job tự `done` sau 5 giây, trả lại chính ảnh input làm mask và `analysis` mẫu ở mục 3.3.1, để FE test trước khi có GPU
 
 **Worker**
 
-- [ ] 1 worker thread lấy job `pending` cũ nhất từ SQLite (mục 4, hàng chờ bằng SQLite)
-- [ ] Gọi CLI theo mục 5, ghi log, xử lý timeout
-- [ ] Tìm file mask, tính `labels_present`, cập nhật trạng thái
-- [ ] Gọi `analyze()` sau segmentation (mục 5), lưu JSON vào cột `analysis`; lỗi phân tích không làm job `failed`
-- [ ] Khôi phục trạng thái khi BE khởi động lại (mục 4)
-- [ ] Script warm-up tải sẵn weights vào `TOTALSPINESEG_DATA`
+- [x] 1 worker thread lấy job `pending` cũ nhất từ SQLite (mục 4, hàng chờ bằng SQLite)
+- [x] Gọi CLI theo mục 5, ghi log, xử lý timeout
+- [x] Tìm file mask, tính `labels_present`, cập nhật trạng thái
+- [x] Gọi `analyze()` sau segmentation (mục 5), lưu JSON vào cột `analysis`; lỗi phân tích không làm job `failed`
+- [x] Khôi phục trạng thái khi BE khởi động lại (mục 4)
+- [x] Script warm-up tải sẵn weights vào `TOTALSPINESEG_DATA`
 
 **Frontend**
 
-- [ ] Trang upload, có báo lỗi validate
-- [ ] Trang job: poll theo quy tắc ở mục 4, giữ `job_id` trên URL
-- [ ] Viewer NiiVue: ảnh nền, mask, LUT từ `/labels`, thanh opacity, chú thích nhãn
-- [ ] Bảng phân tích theo tầng (mục 7): gợi ý, độ tin cậy, chi tiết, cảnh báo QC, disclaimer
-- [ ] Danh sách job có nút xóa
+- [x] Trang upload, có báo lỗi validate; nhận `.nii`, `.nii.gz`, `.zip`
+- [x] Trang job hiện series DICOM đã chọn (`input.dicom`); bảng phân tích hiện dòng y văn kèm link nguồn
+- [x] Trang job: poll theo quy tắc ở mục 4, giữ `job_id` trên URL
+- [x] Viewer NiiVue: ảnh nền, mask, LUT từ `/labels`, thanh opacity, chú thích nhãn
+- [x] Bảng phân tích theo tầng (mục 7): gợi ý, độ tin cậy, chi tiết, cảnh báo QC, disclaimer
+- [x] Danh sách job có nút xóa
 
 **Tiêu chí hoàn thành MVP**
 
-- [ ] Upload 1 ảnh MRI sagittal cột sống thắt lưng, sau đó thấy mask L1–L5, sacrum và các đĩa đệm chồng đúng lên ảnh gốc
-- [ ] Cùng ảnh đó có bảng phân tích 6 tầng; ảnh có 6 đốt thắt lưng (vd BN 113 của bộ dữ liệu) chỉ hiện cảnh báo, không có gợi ý
-- [ ] Đo và ghi lại thời gian chạy thực tế của một job trên GPU dùng để demo
-- [ ] Restart BE giữa chừng thì không mất job `pending`, job `running` chuyển thành `failed`
-- [ ] Cả 9 lỗi request ở mục 8 đều tái hiện được bằng `curl`
+- [x] Upload 1 ảnh MRI sagittal cột sống thắt lưng, sau đó thấy mask L1–L5, sacrum và các đĩa đệm chồng đúng lên ảnh gốc
+- [x] Cùng ảnh đó có bảng phân tích 6 tầng; ảnh có 6 đốt thắt lưng (vd BN 113 của bộ dữ liệu) chỉ hiện cảnh báo, không có gợi ý
+- [x] Upload zip DICOM của BN 100 (cả lần chụp, 6 series): chọn đúng `t2_tse_sag_384`, và `analysis` trùng với khi upload NIfTI của cùng bệnh nhân
+- [x] Đo và ghi lại thời gian chạy thực tế của một job trên GPU dùng để demo
+- [x] Restart BE giữa chừng thì không mất job `pending`, job `running` chuyển thành `failed`
+- [ ] Cả 13 lỗi request ở mục 8 đều tái hiện được bằng `curl`
 
 ## Nguồn
 

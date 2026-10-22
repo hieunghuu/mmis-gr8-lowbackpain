@@ -39,6 +39,13 @@ export default function JobPage() {
           <h1>{job.input.filename}</h1>
           <div className="meta">
             job <b className="code">{job.job_id}</b>
+            {job.input.dicom && (
+              <>
+                <br />
+                DICOM: chọn series <b>{job.input.dicom.series_description}</b> (số {job.input.dicom.series_number},{' '}
+                {job.input.dicom.n_slices} lát) trong {job.input.dicom.n_series} series
+              </>
+            )}
           </div>
         </div>
         <div className="meta">
