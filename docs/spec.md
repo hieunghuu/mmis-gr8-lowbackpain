@@ -207,7 +207,8 @@ Kết quả phân tích sau segmentation (mục 5). Là `null` khi job chạy v�
           "confidence": "vừa",
           "sensitivity": 0.71,
           "specificity": 0.72,
-          "ppv": 0.53
+          "ppv": 0.53,
+          "literature": null
         }
       ]
     }
@@ -230,6 +231,7 @@ Kết quả phân tích sau segmentation (mục 5). Là `null` khi job chạy v�
 | `suggestions[].percentile` | Vị trí của `value` so với 513 bệnh nhân cùng tầng (5 = thấp nhất 5 %, 95 = cao nhất 5 %; giới hạn trong 5–95) |
 | `suggestions[].confidence` | `"cao"` / `"vừa"`, theo cận dưới khoảng tin cậy 95 % của AUC (≥ 0,80 / ≥ 0,70) |
 | `suggestions[].sensitivity`, `specificity`, `ppv` | Độ nhạy, độ đặc hiệu, PPV của quy tắc này khi kiểm chứng chéo trên bệnh nhân chưa dùng để học |
+| `suggestions[].literature` | Chuỗi hiển thị nguyên văn bên cạnh gợi ý: `value` rơi vào mức nào theo ngưỡng y văn, ví dụ `"theo y văn: < 10 mm - hẹp tuyệt đối"` hoặc `"theo y văn: chưa tới ngưỡng < 12 mm"`. Có cho đường kính trước–sau ống sống (< 10 / < 12 mm), diện tích ống sống (Schönström < 75 / < 100 mm²) và độ trượt (≥ 3 mm); `null` với số đo khác. Chỉ để tham khảo: thang đo của hệ thống thấp hơn y văn khoảng 2 mm với đường kính ống sống và độ trượt (`pipeline/src/analysis/s12_literature_compare.py`). Trường không bắt buộc, FE cũ bỏ qua được |
 | `lordosis_deg` | Góc ưỡn thắt lưng (độ), giữa trục đĩa L1-L2 và L5-S1 |
 | `disclaimer` | Câu FE bắt buộc hiển thị cạnh bảng gợi ý |
 | `error` | `null`, hoặc `{code, message}` khi phân tích lỗi (mục 8). Khi đó `qc` là `null`, `levels` rỗng |

@@ -11,6 +11,7 @@ mục 3.3.1 (payload), mục 5 (worker), mục 8 (mã lỗi).
 
 | File | Việc | Chạy trên | Thời gian / ca |
 |---|---|---|---|
+| [`dicom_to_nifti.py`](dicom_to_nifti.py) | Zip một study DICOM → tự chọn series T2 sagittal (quy tắc của s02, đọc từ header) → NIfTI; xóa DICOM gốc sau khi chuyển. Chưa nối vào BE / spec | CPU | < 1 s |
 | [`segment.py`](segment.py) | Gọi CLI TotalSpineSeg, phân đoạn đốt sống, đĩa đệm, tủy sống, ống sống | GPU (CPU được nhưng chậm) | ~18 s GPU, ~14 phút CPU |
 | [`analyze.py`](analyze.py) | Từ ảnh + mask: QC tầng, số đo theo tầng, gợi ý bệnh | CPU | ~2 s |
 | [`demo/`](demo/) | Kết quả chạy thật trên BN 100 – dữ liệu mẫu cho FE | – | – |
@@ -68,8 +69,14 @@ Lỗi → `AnalysisError(code, message)` với `GEOMETRY_MISMATCH`, `NOT_SAGITTA
 Lỗi này **không** làm job `failed`: BE ghi vào `analysis.error`, mask vẫn xem được.
 
 Mỗi gợi ý ghi rõ quy tắc đã khớp (`value rule threshold`), phân vị so với 513 bệnh nhân cùng tầng,
-độ tin cậy (`cao` / `vừa`), độ nhạy, độ đặc hiệu, PPV khi kiểm chứng chéo (cross-validation). Ví dụ
-đầy đủ: [`demo/analysis_0100.json`](demo/analysis_0100.json).
+độ tin cậy (`cao` / `vừa`), độ nhạy, độ đặc hiệu, PPV khi kiểm chứng chéo (cross-validation).
+
+Với các số đo có ngưỡng y văn (đường kính trước–sau ống sống, diện tích ống sống, độ trượt), trường
+`literature` cho biết giá trị rơi vào mức nào theo y văn, ví dụ `"theo y văn: < 10 mm - hẹp tuyệt đối"`.
+Ngưỡng khai báo một chỗ ở `LIT_CUTOFFS` của `pipeline/src/analysis/s12_literature_compare.py`. Chỉ để
+tham khảo: thang đo của s09 thấp hơn y văn khoảng 2 mm với đường kính ống sống và độ trượt.
+
+Ví dụ đầy đủ: [`demo/analysis_0100.json`](demo/analysis_0100.json).
 
 ## Cài đặt và chạy
 
