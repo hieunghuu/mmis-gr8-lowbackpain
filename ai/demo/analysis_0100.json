@@ -76,7 +76,8 @@
           "confidence": "cao",
           "sensitivity": 0.9,
           "specificity": 0.86,
-          "ppv": 0.13
+          "ppv": 0.13,
+          "literature": "theo y văn: < 10 mm - hẹp tuyệt đối"
         },
         {
           "label": "disc_displacement",
@@ -91,7 +92,8 @@
           "confidence": "cao",
           "sensitivity": 0.77,
           "specificity": 0.79,
-          "ppv": 0.45
+          "ppv": 0.45,
+          "literature": null
         },
         {
           "label": "disc_bulge",
@@ -106,7 +108,8 @@
           "confidence": "cao",
           "sensitivity": 0.76,
           "specificity": 0.77,
-          "ppv": 0.41
+          "ppv": 0.41,
+          "literature": null
         },
         {
           "label": "thecal_sac_compression",
@@ -121,7 +124,8 @@
           "confidence": "cao",
           "sensitivity": 0.71,
           "specificity": 0.77,
-          "ppv": 0.32
+          "ppv": 0.32,
+          "literature": "theo y văn: < 100 mm² - hẹp tương đối (Schönström)"
         },
         {
           "label": "foraminal_stenosis",
@@ -136,7 +140,8 @@
           "confidence": "vừa",
           "sensitivity": 0.76,
           "specificity": 0.75,
-          "ppv": 0.22
+          "ppv": 0.22,
+          "literature": null
         },
         {
           "label": "nerve_root_compression",
@@ -151,7 +156,8 @@
           "confidence": "vừa",
           "sensitivity": 0.77,
           "specificity": 0.8,
-          "ppv": 0.15
+          "ppv": 0.15,
+          "literature": null
         },
         {
           "label": "disc_protrusion",
@@ -166,7 +172,8 @@
           "confidence": "cao",
           "sensitivity": 1.0,
           "specificity": 0.81,
-          "ppv": 0.06
+          "ppv": 0.06,
+          "literature": null
         }
       ]
     },
@@ -197,7 +204,8 @@
           "confidence": "vừa",
           "sensitivity": 0.76,
           "specificity": 0.6,
-          "ppv": 0.64
+          "ppv": 0.64,
+          "literature": "theo y văn: < 10 mm - hẹp tuyệt đối"
         }
       ]
     },

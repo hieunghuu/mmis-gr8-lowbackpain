@@ -29,6 +29,7 @@ SRC = Path(__file__).resolve().parents[1] / "pipeline" / "src"
 sys.path.insert(0, str(SRC))
 from common import T_ANALYSIS
 from measurements.s09_level_features import measure_case
+from analysis.s12_literature_compare import LIT_CUTOFFS
 
 MEASURES = ["disc_height_mm", "dhi", "disc_csf_ratio", "disc_vb_ratio", "disc_post_bulge_mm",
             "canal_ap_mm", "canal_csa_approx_mm2", "listhesis_mm"]
@@ -97,6 +98,19 @@ def _percentile(value, measure, level):
     return int(round(np.interp(value, [r[f"p{p}"] for p in PCTS], PCTS)))   # ngoài [p5, p95] -> 5 / 95
 
 
+def _literature(measure, value):
+    """Mức của value theo ngưỡng y văn (s12), vd "theo y văn: < 10 mm - hẹp tuyệt đối"; None nếu không có ngưỡng.
+    Thang đo s09 lệch y văn (đường kính ống sống, độ trượt thấp hơn ~2 mm) -> chỉ để tham khảo."""
+    if measure not in LIT_CUTOFFS:
+        return None
+    rule, unit, bands = LIT_CUTOFFS[measure]
+    sign = "<" if rule == "<" else "≥"
+    for thr, name in bands:
+        if (value < thr) if rule == "<" else (value >= thr):
+            return f"theo y văn: {sign} {thr} {unit} - {name}"
+    return f"theo y văn: chưa tới ngưỡng {sign} {bands[-1][0]} {unit}"
+
+
 def _suggest(level, measures):
     out = []
     cand = RULES[(RULES.scope == level) | (RULES.scope == "z_all")]
@@ -116,7 +130,7 @@ def _suggest(level, measures):
                             "threshold": _num(r.threshold), "threshold_unit": r.threshold_unit,
                             "percentile": _percentile(v, r.measure, level), "confidence": r.confidence,
                             "sensitivity": _num(perf.cv_sens, 2), "specificity": _num(perf.cv_spec, 2),
-                            "ppv": _num(perf.cv_ppv, 2)})
+                            "ppv": _num(perf.cv_ppv, 2), "literature": _literature(r.measure, v)})
             break                                 # mỗi (bệnh, tầng) chỉ xét 1 quy tắc đủ điều kiện
     return out
 
