@@ -1,0 +1,295 @@
+{
+  "qc": {
+    "ok": true,
+    "warnings": []
+  },
+  "levels": [
+    {
+      "level": "T12-L1",
+      "missing": null,
+      "measures": {
+        "disc_height_mm": 6.887,
+        "dhi": 0.236,
+        "disc_csf_ratio": 0.299,
+        "disc_vb_ratio": 0.829,
+        "disc_post_bulge_mm": -2.18,
+        "canal_ap_mm": 14.887,
+        "canal_csa_approx_mm2": 244.362,
+        "listhesis_mm": -2.347
+      },
+      "suggestions": []
+    },
+    {
+      "level": "L1-L2",
+      "missing": null,
+      "measures": {
+        "disc_height_mm": 5.797,
+        "dhi": 0.188,
+        "disc_csf_ratio": 0.216,
+        "disc_vb_ratio": 0.565,
+        "disc_post_bulge_mm": -1.885,
+        "canal_ap_mm": 13.425,
+        "canal_csa_approx_mm2": 218.841,
+        "listhesis_mm": -2.146
+      },
+      "suggestions": []
+    },
+    {
+      "level": "L2-L3",
+      "missing": null,
+      "measures": {
+        "disc_height_mm": 6.795,
+        "dhi": 0.221,
+        "disc_csf_ratio": 0.188,
+        "disc_vb_ratio": 0.42,
+        "disc_post_bulge_mm": 0.053,
+        "canal_ap_mm": 10.501,
+        "canal_csa_approx_mm2": 152.487,
+        "listhesis_mm": -0.569
+      },
+      "suggestions": []
+    },
+    {
+      "level": "L3-L4",
+      "missing": null,
+      "measures": {
+        "disc_height_mm": 7.812,
+        "dhi": 0.261,
+        "disc_csf_ratio": 0.272,
+        "disc_vb_ratio": 0.463,
+        "disc_post_bulge_mm": 1.51,
+        "canal_ap_mm": 7.576,
+        "canal_csa_approx_mm2": 82.305,
+        "listhesis_mm": 0.991
+      },
+      "suggestions": [
+        {
+          "label": "spinal_canal_stenosis",
+          "label_vi": "Hẹp ống sống",
+          "measure": "canal_ap_mm",
+          "measure_vi": "ống sống trước–sau (mm)",
+          "value": 7.576,
+          "rule": "<=",
+          "threshold": 7.975,
+          "threshold_unit": "gốc",
+          "percentile": 13,
+          "confidence": "cao",
+          "sensitivity": 0.9,
+          "specificity": 0.86,
+          "ppv": 0.13,
+          "literature": "theo y văn: < 10 mm - hẹp tuyệt đối"
+        },
+        {
+          "label": "disc_displacement",
+          "label_vi": "Phồng / lồi / thoát vị",
+          "measure": "disc_post_bulge_mm",
+          "measure_vi": "nhô sau (mm)",
+          "value": 1.51,
+          "rule": ">=",
+          "threshold": 0.715,
+          "threshold_unit": "gốc",
+          "percentile": 90,
+          "confidence": "cao",
+          "sensitivity": 0.77,
+          "specificity": 0.79,
+          "ppv": 0.45,
+          "literature": null
+        },
+        {
+          "label": "disc_bulge",
+          "label_vi": "Phồng đĩa",
+          "measure": "disc_post_bulge_mm",
+          "measure_vi": "nhô sau (mm)",
+          "value": 1.51,
+          "rule": ">=",
+          "threshold": 0.59,
+          "threshold_unit": "gốc",
+          "percentile": 90,
+          "confidence": "cao",
+          "sensitivity": 0.76,
+          "specificity": 0.77,
+          "ppv": 0.41,
+          "literature": null
+        },
+        {
+          "label": "thecal_sac_compression",
+          "label_vi": "Chèn ép bao màng cứng",
+          "measure": "canal_csa_approx_mm2",
+          "measure_vi": "diện tích ống sống (mm²)",
+          "value": 82.305,
+          "rule": "<=",
+          "threshold": 132.708,
+          "threshold_unit": "gốc",
+          "percentile": 5,
+          "confidence": "cao",
+          "sensitivity": 0.71,
+          "specificity": 0.77,
+          "ppv": 0.32,
+          "literature": "theo y văn: < 100 mm² - hẹp tương đối (Schönström)"
+        },
+        {
+          "label": "foraminal_stenosis",
+          "label_vi": "Hẹp lỗ liên hợp",
+          "measure": "disc_post_bulge_mm",
+          "measure_vi": "nhô sau (mm)",
+          "value": 1.51,
+          "rule": ">=",
+          "threshold": 0.715,
+          "threshold_unit": "gốc",
+          "percentile": 90,
+          "confidence": "vừa",
+          "sensitivity": 0.76,
+          "specificity": 0.75,
+          "ppv": 0.22,
+          "literature": null
+        },
+        {
+          "label": "nerve_root_compression",
+          "label_vi": "Chèn ép rễ",
+          "measure": "disc_post_bulge_mm",
+          "measure_vi": "nhô sau (mm)",
+          "value": 1.51,
+          "rule": ">=",
+          "threshold": 0.919,
+          "threshold_unit": "gốc",
+          "percentile": 90,
+          "confidence": "vừa",
+          "sensitivity": 0.77,
+          "specificity": 0.8,
+          "ppv": 0.15,
+          "literature": null
+        },
+        {
+          "label": "disc_protrusion",
+          "label_vi": "Lồi đĩa",
+          "measure": "disc_post_bulge_mm",
+          "measure_vi": "nhô sau (mm)",
+          "value": 1.51,
+          "rule": ">=",
+          "threshold": 0.512,
+          "threshold_unit": "z",
+          "percentile": 90,
+          "confidence": "cao",
+          "sensitivity": 1.0,
+          "specificity": 0.81,
+          "ppv": 0.06,
+          "literature": null
+        }
+      ]
+    },
+    {
+      "level": "L4-L5",
+      "missing": null,
+      "measures": {
+        "disc_height_mm": 8.737,
+        "dhi": 0.287,
+        "disc_csf_ratio": 0.394,
+        "disc_vb_ratio": 0.522,
+        "disc_post_bulge_mm": 1.492,
+        "canal_ap_mm": 2.924,
+        "canal_csa_approx_mm2": 45.299,
+        "listhesis_mm": 2.502
+      },
+      "suggestions": [
+        {
+          "label": "spondylolisthesis",
+          "label_vi": "Trượt đốt sống",
+          "measure": "listhesis_mm",
+          "measure_vi": "độ trượt (mm)",
+          "value": 2.502,
+          "rule": ">=",
+          "threshold": -0.509,
+          "threshold_unit": "gốc",
+          "percentile": 95,
+          "confidence": "cao",
+          "sensitivity": 0.89,
+          "specificity": 0.96,
+          "ppv": 0.32,
+          "literature": "theo y văn: chưa tới ngưỡng ≥ 3 mm"
+        },
+        {
+          "label": "spinal_canal_stenosis",
+          "label_vi": "Hẹp ống sống",
+          "measure": "canal_csa_approx_mm2",
+          "measure_vi": "diện tích ống sống (mm²)",
+          "value": 45.299,
+          "rule": "<=",
+          "threshold": 84.219,
+          "threshold_unit": "gốc",
+          "percentile": 5,
+          "confidence": "cao",
+          "sensitivity": 0.79,
+          "specificity": 0.87,
+          "ppv": 0.24,
+          "literature": "theo y văn: < 75 mm² - hẹp tuyệt đối (Schönström)"
+        },
+        {
+          "label": "foraminal_stenosis",
+          "label_vi": "Hẹp lỗ liên hợp",
+          "measure": "disc_post_bulge_mm",
+          "measure_vi": "nhô sau (mm)",
+          "value": 1.492,
+          "rule": ">=",
+          "threshold": 1.119,
+          "threshold_unit": "gốc",
+          "percentile": 73,
+          "confidence": "vừa",
+          "sensitivity": 0.71,
+          "specificity": 0.72,
+          "ppv": 0.53,
+          "literature": null
+        },
+        {
+          "label": "disc_displacement",
+          "label_vi": "Phồng / lồi / thoát vị",
+          "measure": "disc_post_bulge_mm",
+          "measure_vi": "nhô sau (mm)",
+          "value": 1.492,
+          "rule": ">=",
+          "threshold": 0.852,
+          "threshold_unit": "gốc",
+          "percentile": 73,
+          "confidence": "vừa",
+          "sensitivity": 0.67,
+          "specificity": 0.78,
+          "ppv": 0.81,
+          "literature": null
+        },
+        {
+          "label": "thecal_sac_compression",
+          "label_vi": "Chèn ép bao màng cứng",
+          "measure": "canal_ap_mm",
+          "measure_vi": "ống sống trước–sau (mm)",
+          "value": 2.924,
+          "rule": "<=",
+          "threshold": 10.767,
+          "threshold_unit": "gốc",
+          "percentile": 5,
+          "confidence": "vừa",
+          "sensitivity": 0.76,
+          "specificity": 0.6,
+          "ppv": 0.64,
+          "literature": "theo y văn: < 10 mm - hẹp tuyệt đối"
+        }
+      ]
+    },
+    {
+      "level": "L5-S1",
+      "missing": null,
+      "measures": {
+        "disc_height_mm": 10.961,
+        "dhi": 0.331,
+        "disc_csf_ratio": 0.361,
+        "disc_vb_ratio": 0.708,
+        "disc_post_bulge_mm": -0.567,
+        "canal_ap_mm": 8.573,
+        "canal_csa_approx_mm2": 82.305,
+        "listhesis_mm": -1.759
+      },
+      "suggestions": []
+    }
+  ],
+  "lordosis_deg": 46.5,
+  "disclaimer": "Gợi ý từ số đo trên ảnh, không phải chẩn đoán; bác sĩ cần xem lại.",
+  "error": null
+}

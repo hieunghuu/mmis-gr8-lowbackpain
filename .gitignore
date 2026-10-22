@@ -29,3 +29,6 @@ venv/
 Thumbs.db
 .vscode/
 .idea/
+
+# test on loca
+local.ipynb
