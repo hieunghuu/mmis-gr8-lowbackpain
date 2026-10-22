@@ -1080,6 +1080,49 @@ với nhãn bác sĩ (bước 3) theo khóa `(patient_id, level)`.
 
 Với L5-S1, "thân đốt dưới" là phần trên của xương cùng (S1).
 
+#### Minh họa các số đo (BN 100, tầng L3-L4)
+
+![Các số đo trên ảnh](outputs/figures/measurements/viz_measures.png)
+
+- **A** – toàn cảnh lát dọc giữa: viền thân đốt (vàng), đĩa (xanh dương), ống sống (xanh lá); hai
+  đường cam là trục đĩa L1-L2 và L5-S1, góc giữa chúng là `lordosis_deg` (40,4°).
+- **B** – hình học một tầng: trục **u** (dọc đĩa, trước → sau) và **v** (vuông góc, chân → đầu);
+  ① `disc_height_mm` = diện tích / chiều dài (8,4 mm), kèm 1/3 trước – sau; ② `dhi` = 8,4 / trung
+  bình 2 thân đốt (28,4 và 26,4 mm) = 0,30; ③ `disc_post_bulge_mm` = mép sau đĩa (chấm đỏ) − trung
+  bình mép sau 2 thân đốt (vạch hồng) = +1,46 mm; ④ `listhesis_mm` = −1,66 mm (âm do sai lệch hệ
+  thống ở tầng dưới – xem "Kết quả bước 4").
+- **C** – ống sống và tín hiệu: ⑤ `canal_ap_mm` đo trong dải ±2 mm (xanh lá đậm, giữa hai đường gạch)
+  = 6,38 mm; ⑥ `canal_csa_approx_mm2` = 80 mm²; vùng xanh lá nhạt (±10 mm) là nơi lấy tín hiệu dịch
+  não tủy; lõi đĩa (xanh dương) và lõi thân đốt (vàng) cho tử số / mẫu số của ⑦ `disc_csf_ratio`
+  (0,807) và ⑧ `disc_vb_ratio` (0,859).
+
+#### Tín hiệu MRI là gì, vì sao chỉ dùng tỉ số
+
+**Tín hiệu MRI** (signal intensity) là **độ sáng của từng điểm ảnh** – một con số (ảnh 12-bit:
+0–4.095). Máy MRI (cộng hưởng từ) dùng từ trường mạnh (1,5 Tesla ở bộ dữ liệu này) để xếp thẳng hàng
+các proton hydro trong nước và mỡ, phát xung sóng radio làm chúng lệch đi, rồi thu sóng radio yếu
+chúng phát ra khi hồi phục. Mỗi loại mô hồi phục nhanh chậm khác nhau → độ sáng khác nhau.
+
+| Loại ảnh | Sáng | Tối |
+|---|---|---|
+| T1 (ảnh trọng T1) | Mỡ | Nước, dịch |
+| **T2 (ảnh trọng T2) – dự án dùng** | **Nước, dịch** (dịch não tủy, nhân nhầy đĩa khỏe ~80 % nước) | Mô xơ, xương đặc, **đĩa mất nước** |
+
+Trên T2, đĩa đệm thoái hóa mất nước → **tối đi** ("đĩa đen") – đây là dấu hiệu bác sĩ ghi là
+`disc_desiccation` (mất nước đĩa đệm).
+
+**Tín hiệu MRI không có đơn vị tuyệt đối** (khác thang Hounsfield cố định của CT – chụp cắt lớp vi
+tính): cùng một đĩa có thể sáng hay tối khác nhau tùy máy, cuộn thu, thông số chụp, vị trí so với cuộn
+thu và từng lần chụp. Vì vậy "đĩa sáng 400" không có nghĩa; dự án chia cho **mốc nằm cạnh trên cùng
+ảnh**, chịu cùng các ảnh hưởng đó nên phần lớn bị triệt tiêu:
+
+- `disc_csf_ratio` – mốc là **dịch não tủy** (gần như nước tinh khiết, luôn sáng). Lấy phân vị 75
+  của ống sống để chọn phần dịch sáng, bỏ rễ thần kinh tối nằm trong ống sống.
+- `disc_vb_ratio` – mốc là **tủy xương thân đốt** phía trên (mốc thứ hai để đối chiếu).
+
+Tỉ số giảm dần từ trên xuống (trung vị 0,40 ở T12-L1 → 0,20 ở L5-S1), giảm mạnh theo tuổi (ρ = −0,70,
+bước 5) và thấp hơn rõ ở tầng bác sĩ ghi mất nước đĩa (AUC 0,77).
+
 ### Số đo theo bệnh nhân
 | Cột | Cách tính | Gợi ý |
 |---|---|---|
@@ -1099,6 +1142,8 @@ Với L5-S1, "thân đốt dưới" là phần trên của xương cùng (S1).
 | `outputs/tables/measurements/patient_features.csv` | Mỗi bệnh nhân một dòng: `lordosis_deg`, `age`, `sex` |
 | `outputs/figures/measurements/qc_overlay.png` | Overlay đo đạc trên lát giữa của vài ca |
 | `outputs/figures/measurements/qc_distributions.png` | Phân bố số đo theo tầng |
+| `outputs/figures/measurements/viz_measures.png` | Hình minh họa cách tính từng số đo trên BN 100, tầng L3-L4 (mục "Minh họa các số đo") |
+| `outputs/figures/measurements/viz_metrics.png` | Hình minh họa các độ đo đánh giá: z, ngưỡng, ROC, bảng 2×2 (bước 6) |
 
 ### Giới hạn đã biết
 - Chỉ dùng sagittal (mặt cắt dọc); ảnh axial (mặt cắt ngang – đo diện tích ống sống thật, lỗ liên hợp trái/phải) để làm thêm
@@ -1340,6 +1385,24 @@ Mỗi gợi ý dựa trên **một** số đo; thứ duy nhất được học l
   in-sample − J kiểm chứng chéo đo độ lạc quan đó.
 - **④ Lọc** – dùng tổ hợp khi cận dưới KTC 95 % của AUC ≥ 0,70 (`use`); độ tin cậy **cao** khi
   ≥ 0,80, còn lại **vừa**.
+
+#### Minh họa các độ đo đánh giá
+
+Ví dụ cặp hẹp ống sống (spinal canal stenosis) ↔ `canal_ap_mm` tại L3-L4 (512 tầng, 12 tầng bác sĩ ghi bệnh):
+
+![Các độ đo đánh giá](outputs/figures/measurements/viz_metrics.png)
+
+| Độ đo | Cách tính | Ví dụ trên hình |
+|---|---|---|
+| **z trong tầng** (A) | (giá trị − trung bình của tầng) / độ lệch chuẩn của tầng – so mỗi tầng với chính các tầng cùng vị trí, tránh lẫn hiệu ứng "tầng dưới vốn hẹp hơn" | BN 100: (6,38 − 10,26) / 2,28 = −1,71; thấp hơn 94 % BN cùng tầng (phân vị 6) |
+| **Ngưỡng Youden** (B, C) | Thử mọi ngưỡng, chọn ngưỡng có J = độ nhạy + độ đặc hiệu − 1 lớn nhất | ≤ 7,98 mm → "nghi hẹp ống sống"; J = 0,85 |
+| **AUC** (C) | Diện tích dưới đường ROC = xác suất một tầng có bệnh có số đo bất thường hơn một tầng không bệnh (0,5 = ngẫu nhiên, 1 = hoàn hảo); tương đương Mann–Whitney U / (n₁ × n₀) | 0,96 |
+| **Độ nhạy** (D) | TP / (TP + FN) – bắt được bao nhiêu % ca bệnh | 12/12 = 1,00 |
+| **Độ đặc hiệu** (D) | TN / (TN + FP) – bỏ qua đúng bao nhiêu % ca không bệnh | 426/500 = 0,85 |
+| **PPV** – giá trị dự đoán dương (D) | TP / (TP + FP) – khi báo "nghi", đúng bao nhiêu % | 12/86 = 0,14 – thấp vì bệnh hiếm (12/512 tầng) dù độ nhạy, độ đặc hiệu đều cao → lý do `ai/analyze.py` ẩn quy tắc có PPV < 0,05 |
+
+Số trên hình tính trên toàn bộ dữ liệu để minh họa; số báo cáo trong `threshold_rules.csv` lấy từ kiểm
+chứng chéo (độ nhạy 0,90, độ đặc hiệu 0,86, PPV 0,13).
 
 #### Vì sao không chia train / validation / test cố định
 - **Không có gì để tinh chỉnh** → không cần tập validation: cặp và chiều đặt trước, các hằng số
