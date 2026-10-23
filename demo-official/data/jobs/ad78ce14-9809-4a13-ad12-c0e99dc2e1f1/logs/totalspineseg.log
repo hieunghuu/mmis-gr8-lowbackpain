@@ -1,0 +1,25 @@
+Trainer nnUNetTrainerDAExt already exists at /usr/local/lib/python3.13/dist-packages/nnunetv2/training/nnUNetTrainer/nnUNetTrainerDAExt.py. Use --overwrite to replace it.
+There are 1 cases in the source folder
+I am process 0 out of 1 (max process ID is 0, we start counting with 0!)
+There are 1 cases that I would like to predict
+
+Predicting ad78ce14-9809-4a13-ad12-c0e99dc2e1f1:
+perform_everything_on_device: True
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:08<00:24,  8.20s/it] 75%|███████▌  | 3/4 [00:08<00:02,  2.30s/it]100%|██████████| 4/4 [00:09<00:00,  1.75s/it]100%|██████████| 4/4 [00:09<00:00,  2.35s/it]
+sending off prediction to background worker for resampling and export
+done with ad78ce14-9809-4a13-ad12-c0e99dc2e1f1
+GPU prediction completed. Waiting for remaining segmentation exports to finish...
+Collecting results:   0%|          | 0/1 [00:00<?, ?it/s]Collecting results: 100%|██████████| 1/1 [00:12<00:00, 12.73s/it]Collecting results: 100%|██████████| 1/1 [00:12<00:00, 12.73s/it]
+Segmentation export complete.
+There are 1 cases in the source folder
+I am process 0 out of 1 (max process ID is 0, we start counting with 0!)
+There are 1 cases that I would like to predict
+
+Predicting ad78ce14-9809-4a13-ad12-c0e99dc2e1f1:
+perform_everything_on_device: True
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:01<00:01,  1.26s/it]100%|██████████| 2/2 [00:01<00:00,  1.55it/s]
+sending off prediction to background worker for resampling and export
+done with ad78ce14-9809-4a13-ad12-c0e99dc2e1f1
+GPU prediction completed. Waiting for remaining segmentation exports to finish...
+Collecting results:   0%|          | 0/1 [00:00<?, ?it/s]Collecting results: 100%|██████████| 1/1 [00:00<00:00,  3.10it/s]Collecting results: 100%|██████████| 1/1 [00:00<00:00,  3.10it/s]
+Segmentation export complete.

@@ -38,3 +38,5 @@ Thumbs.db
 
 # test on loca
 local.ipynb
+demo-official/raw
+demo-official/data/export.zip
